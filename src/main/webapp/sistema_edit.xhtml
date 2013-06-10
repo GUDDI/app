@@ -1,0 +1,54 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false">
+
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}" action="#{sistemaEditMB.insert}"
+						rendered="#{!sistemaEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{sistemaEditMB.update}"
+						rendered="#{sistemaEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+						rendered="#{sistemaEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{sistemaEditMB.delete}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<br />
+
+			<p:fieldset legend="#{messages['sistema.label']}" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fields" columns="3">
+					
+					<h:outputLabel value="#{messages['sistema.label.id']}: " for="id" styleClass="text-input" />
+					<h:outputText id="id" value="#{sistemaEditMB.bean.id}" />
+					<p:message for="id" />
+					
+					<h:outputLabel value="#{messages['sistema.label.nome']}: " for="nome" styleClass="text-input" />
+					<h:inputText id="nome" value="#{sistemaEditMB.bean.nome}"
+						title="#{messages['sistema.alt.nome']}" />
+					<p:message for="nome" />
+					
+					<h:outputLabel value="#{messages['sistema.label.idOrgao']}: " for="idOrgao" styleClass="text-input" />
+					<h:inputText id="idOrgao" value="#{sistemaEditMB.bean.idOrgao}"
+						title="#{messages['sistema.alt.idOrgao']}" />
+					<p:message for="idOrgao" />
+					
+					<h:outputLabel value="#{messages['sistema.label.descritorSet']}: " for="descritorSet" styleClass="text-input" />
+					<h:inputText id="descritorSet" value="#{sistemaEditMB.bean.descritorSet}"
+						title="#{messages['sistema.alt.descritorSet']}" />
+					<p:message for="descritorSet" />
+					
+				</h:panelGrid>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>

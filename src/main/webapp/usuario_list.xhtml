@@ -1,0 +1,80 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form>
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton title="#{messages['button.new']}" image="ui-icon-document" action="#{usuarioListMB.getNextView}"
+						actionListener="#{usuarioListMB.clear}" ajax="false" />
+
+					<p:commandButton title="#{messages['button.delete']}" image="ui-icon-trash" onclick="confirmation.show()"
+						type="button" immediate="true" ajax="false" />
+
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
+
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{usuarioListMB.deleteSelection}"
+							actionListener="#{usuarioListMB.clear}" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+			<p:dataTable id="list" var="bean" value="#{usuarioListMB.resultList}">
+				<f:facet name="header">#{messages['usuario.list.table.title']}</f:facet>
+				<p:column style="width:1%;">
+					<h:selectBooleanCheckbox value="#{usuarioListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
+				</p:column>
+				
+				<p:column style="width:5%;" sortBy="#{bean.id}">
+					<f:facet name="header">#{messages['usuario.label.id']}</f:facet>
+					<h:outputText value="#{bean.id}" />
+				</p:column>
+						
+				<p:column sortBy="#{bean.idPapel}">
+					<f:facet name="header">#{messages['usuario.label.idPapel']}</f:facet>
+					<h:commandLink action="#{usuarioListMB.getNextView}" actionListener="#{usuarioListMB.clear}">
+						<h:outputText value="#{bean.idPapel}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+						
+				<p:column sortBy="#{bean.nome}">
+					<f:facet name="header">#{messages['usuario.label.nome']}</f:facet>
+					<h:commandLink action="#{usuarioListMB.getNextView}" actionListener="#{usuarioListMB.clear}">
+						<h:outputText value="#{bean.nome}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+						
+				<p:column sortBy="#{bean.usuario}">
+					<f:facet name="header">#{messages['usuario.label.usuario']}</f:facet>
+					<h:commandLink action="#{usuarioListMB.getNextView}" actionListener="#{usuarioListMB.clear}">
+						<h:outputText value="#{bean.usuario}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+						
+				<p:column sortBy="#{bean.senha}">
+					<f:facet name="header">#{messages['usuario.label.senha']}</f:facet>
+					<h:commandLink action="#{usuarioListMB.getNextView}" actionListener="#{usuarioListMB.clear}">
+						<h:outputText value="#{bean.senha}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+						
+				<p:column sortBy="#{bean.idOrgao}">
+					<f:facet name="header">#{messages['usuario.label.idOrgao']}</f:facet>
+					<h:commandLink action="#{usuarioListMB.getNextView}" actionListener="#{usuarioListMB.clear}">
+						<h:outputText value="#{bean.idOrgao}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+						
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

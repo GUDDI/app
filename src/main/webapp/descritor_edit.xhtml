@@ -1,0 +1,59 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false">
+
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}" action="#{descritorEditMB.insert}"
+						rendered="#{!descritorEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{descritorEditMB.update}"
+						rendered="#{descritorEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+						rendered="#{descritorEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{descritorEditMB.delete}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<br />
+
+			<p:fieldset legend="#{messages['descritor.label']}" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fields" columns="3">
+					
+					<h:outputLabel value="#{messages['descritor.label.id']}: " for="id" styleClass="text-input" />
+					<h:outputText id="id" value="#{descritorEditMB.bean.id}" />
+					<p:message for="id" />
+					
+					<h:outputLabel value="#{messages['descritor.label.descricao']}: " for="descricao" styleClass="text-input" />
+					<h:inputText id="descricao" value="#{descritorEditMB.bean.descricao}"
+						title="#{messages['descritor.alt.descricao']}" />
+					<p:message for="descricao" />
+					
+					<h:outputLabel value="#{messages['descritor.label.servicoSet']}: " for="servicoSet" styleClass="text-input" />
+					<h:inputText id="servicoSet" value="#{descritorEditMB.bean.servicoSet}"
+						title="#{messages['descritor.alt.servicoSet']}" />
+					<p:message for="servicoSet" />
+					
+					<h:outputLabel value="#{messages['descritor.label.idSistema']}: " for="idSistema" styleClass="text-input" />
+					<h:inputText id="idSistema" value="#{descritorEditMB.bean.idSistema}"
+						title="#{messages['descritor.alt.idSistema']}" />
+					<p:message for="idSistema" />
+					
+					<h:outputLabel value="#{messages['descritor.label.tagSet']}: " for="tagSet" styleClass="text-input" />
+					<h:inputText id="tagSet" value="#{descritorEditMB.bean.tagSet}"
+						title="#{messages['descritor.alt.tagSet']}" />
+					<p:message for="tagSet" />
+					
+				</h:panelGrid>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>

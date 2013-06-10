@@ -1,0 +1,64 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false">
+
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}" action="#{usuarioEditMB.insert}"
+						rendered="#{!usuarioEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{usuarioEditMB.update}"
+						rendered="#{usuarioEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+						rendered="#{usuarioEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{usuarioEditMB.delete}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<br />
+
+			<p:fieldset legend="#{messages['usuario.label']}" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fields" columns="3">
+					
+					<h:outputLabel value="#{messages['usuario.label.id']}: " for="id" styleClass="text-input" />
+					<h:outputText id="id" value="#{usuarioEditMB.bean.id}" />
+					<p:message for="id" />
+					
+					<h:outputLabel value="#{messages['usuario.label.idPapel']}: " for="idPapel" styleClass="text-input" />
+					<h:inputText id="idPapel" value="#{usuarioEditMB.bean.idPapel}"
+						title="#{messages['usuario.alt.idPapel']}" />
+					<p:message for="idPapel" />
+					
+					<h:outputLabel value="#{messages['usuario.label.nome']}: " for="nome" styleClass="text-input" />
+					<h:inputText id="nome" value="#{usuarioEditMB.bean.nome}"
+						title="#{messages['usuario.alt.nome']}" />
+					<p:message for="nome" />
+					
+					<h:outputLabel value="#{messages['usuario.label.usuario']}: " for="usuario" styleClass="text-input" />
+					<h:inputText id="usuario" value="#{usuarioEditMB.bean.usuario}"
+						title="#{messages['usuario.alt.usuario']}" />
+					<p:message for="usuario" />
+					
+					<h:outputLabel value="#{messages['usuario.label.senha']}: " for="senha" styleClass="text-input" />
+					<h:inputText id="senha" value="#{usuarioEditMB.bean.senha}"
+						title="#{messages['usuario.alt.senha']}" />
+					<p:message for="senha" />
+					
+					<h:outputLabel value="#{messages['usuario.label.idOrgao']}: " for="idOrgao" styleClass="text-input" />
+					<h:inputText id="idOrgao" value="#{usuarioEditMB.bean.idOrgao}"
+						title="#{messages['usuario.alt.idOrgao']}" />
+					<p:message for="idOrgao" />
+					
+				</h:panelGrid>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>
