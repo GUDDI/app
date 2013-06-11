@@ -56,7 +56,5 @@
 	  <version>9.1-901-1.jdbc4</version>
 	 </dependency>
 	</dependencies>
-    <properties>
-        <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
-    </properties>
+    <properties></properties>
 </project>
