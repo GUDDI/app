@@ -69,22 +69,16 @@
                     <div class="welcome"><a href="#" title=""><img src="images/userPic.png" alt="" /></a><span>Bem vindo</span></div>
                     <div class="userNav">
                         <ul>
-                            <li><a href="login.html" title=""><img src="images/icons/topnav/logout.png" alt="" /><span>Logout</span></a></li>
+                            <li><a href="login.jsf" title=""><img src="images/icons/topnav/logout.png" alt="" /><span>Login</span></a></li>
                         </ul>
                     </div>
                     <div class="fix"></div>
                 </div>
             </div>
         </div>
-        <table style="width: 100%">
-
-            <tr>
-                <td height="20"><ui:include src="/menu.xhtml" rendered="#{securityContext.loggedIn}"/></td>
-            </tr>
-            <tr valign="top">
-                <td height="400"><ui:insert name="body" /></td>
-            </tr>
-        </table>
+        <div>
+            <ui:insert name="body" />
+        </div>
 
         <p:growl id="messages" globalOnly="true" />
 

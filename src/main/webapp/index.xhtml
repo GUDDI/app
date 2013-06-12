@@ -1,11 +1,17 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+                xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
-	<ui:define name="body">
-		<p:panel>
-
-		</p:panel>
-	</ui:define>
+    <ui:define name="body">
+        <h:form id="principal">
+            <div class="loginWrapper">
+                <h:outputLabel value="Pesquisa: " for="id" />
+                <h:outputText id="id" value="#{pesquisarMB.bean.consulta}" />
+		<p:message for="id" />
+                <h:outputText id="texto" value="#{pesquisarMB.bean.consulta}" style="width:16px;height:16px;"/>
+                <h:commandButton id="pesquisar" value="Pesquisar" action="#{pesquisarMB.busca()}"/>
+            </div>
+        </h:form>
+    </ui:define>
 
 </ui:composition>
