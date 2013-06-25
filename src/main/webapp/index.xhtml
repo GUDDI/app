@@ -5,10 +5,7 @@
     <ui:define name="body">
         <h:form id="principal">
             <div class="loginWrapper">
-                <h:outputLabel value="Pesquisa: " for="id" />
-                <h:outputText id="id" value="#{pesquisarMB.bean.consulta}" />
-		<p:message for="id" />
-                <h:outputText id="texto" value="#{pesquisarMB.bean.consulta}" style="width:16px;height:16px;"/>
+                <h:inputText autocomplete="true" label="Pesquisar:" value="#{pesquisarMB.bean.consulta}" />
                 <h:commandButton id="pesquisar" value="Pesquisar" action="#{pesquisarMB.busca()}"/>
             </div>
         </h:form>
