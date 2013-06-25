@@ -38,7 +38,7 @@
             <artifactId>primefaces</artifactId>
             <scope>compile</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>all-themes</artifactId>
@@ -61,6 +61,11 @@
             <groupId>postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>9.1-901-1.jdbc4</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>login</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
     <properties></properties>
