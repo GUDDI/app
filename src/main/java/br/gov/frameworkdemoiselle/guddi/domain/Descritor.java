@@ -36,23 +36,29 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Descritor.findById", query = "SELECT d FROM Descritor d WHERE d.id = :id"),
     @NamedQuery(name = "Descritor.findByDescricao", query = "SELECT d FROM Descritor d WHERE d.descricao = :descricao")})
 public class Descritor implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
+    
+	private static final long serialVersionUID = 1L;
+    
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)
     private Long id;
-    @Size(max = 100)
+    
+	@Size(max = 100)
     @Column(length = 100)
     private String descricao;
-    @OneToMany(mappedBy = "idDescritor", fetch = FetchType.LAZY)
-    private Set<Servico> servicoSet;
-    @JoinColumn(name = "id_sistema", referencedColumnName = "id")
+    
+	@OneToMany(mappedBy = "descritor", fetch = FetchType.LAZY)
+    private Set<Servico> servicos;
+    
+	@JoinColumn(name = "id_sistema", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Sistema idSistema;
-    @OneToMany(mappedBy = "idDescritor", fetch = FetchType.LAZY)
-    private Set<Tag> tagSet;
+    private Sistema sistema;
+   
+	@OneToMany(mappedBy = "descritor", fetch = FetchType.LAZY)
+    private Set<Tag> tags;
 
     public Descritor() {
     }
@@ -78,31 +84,32 @@ public class Descritor implements Serializable {
     }
 
     @XmlTransient
-    public Set<Servico> getServicoSet() {
-        return servicoSet;
-    }
+	public Set<Servico> getServicos() {
+		return servicos;
+	}
+	
+	public void setServicos(Set<Servico> servicos) {
+		this.servicos = servicos;
+	}
 
-    public void setServicoSet(Set<Servico> servicoSet) {
-        this.servicoSet = servicoSet;
-    }
+	public Sistema getSistema() {
+		return sistema;
+	}
 
-    public Sistema getIdSistema() {
-        return idSistema;
-    }
+	
+	public void setSistema(Sistema sistema) {
+		this.sistema = sistema;
+	}
 
-    public void setIdSistema(Sistema idSistema) {
-        this.idSistema = idSistema;
-    }
-
-    @XmlTransient
-    public Set<Tag> getTagSet() {
-        return tagSet;
-    }
-
-    public void setTagSet(Set<Tag> tagSet) {
-        this.tagSet = tagSet;
-    }
-
+	@XmlTransient
+    public Set<Tag> getTags() {
+		return tags;
+	}
+	
+	public void setTags(Set<Tag> tags) {
+		this.tags = tags;
+	}
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -110,7 +117,7 @@ public class Descritor implements Serializable {
         return hash;
     }
 
-    @Override
+	@Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Descritor)) {

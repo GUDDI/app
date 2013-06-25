@@ -36,21 +36,26 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Sistema.findById", query = "SELECT s FROM Sistema s WHERE s.id = :id"),
     @NamedQuery(name = "Sistema.findByNome", query = "SELECT s FROM Sistema s WHERE s.nome = :nome")})
 public class Sistema implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
+    
+	private static final long serialVersionUID = 833945106894289319L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)
     private Long id;
-    @Size(max = 20)
+    
+	@Size(max = 20)
     @Column(length = 20)
     private String nome;
-    @JoinColumn(name = "id_orgao", referencedColumnName = "id")
+    
+	@JoinColumn(name = "id_orgao", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Orgao idOrgao;
-    @OneToMany(mappedBy = "idSistema", fetch = FetchType.LAZY)
-    private Set<Descritor> descritorSet;
+    private Orgao orgao;
+    
+	@OneToMany(mappedBy = "sistema", fetch = FetchType.LAZY)
+    private Set<Descritor> descritores;
 
     public Sistema() {
     }
@@ -75,24 +80,27 @@ public class Sistema implements Serializable {
         this.nome = nome;
     }
 
-    public Orgao getIdOrgao() {
-        return idOrgao;
-    }
+    
+	public Orgao getOrgao() {
+		return orgao;
+	}
 
-    public void setIdOrgao(Orgao idOrgao) {
-        this.idOrgao = idOrgao;
-    }
+	
+	public void setOrgao(Orgao orgao) {
+		this.orgao = orgao;
+	}
 
-    @XmlTransient
-    public Set<Descritor> getDescritorSet() {
-        return descritorSet;
-    }
+	@XmlTransient
+	public Set<Descritor> getDescritores() {
+		return descritores;
+	}
 
-    public void setDescritorSet(Set<Descritor> descritorSet) {
-        this.descritorSet = descritorSet;
-    }
+	
+	public void setDescritores(Set<Descritor> descritores) {
+		this.descritores = descritores;
+	}
 
-    @Override
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);

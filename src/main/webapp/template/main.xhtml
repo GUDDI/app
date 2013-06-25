@@ -63,19 +63,26 @@
     </h:head>
 
     <h:body style="background-color:#f1f1f1">
+    	<h:form>
         <div id="topNav">
             <div class="fixed">
                 <div class="wrapper">
                     <div class="welcome"><a href="#" title=""><img src="images/userPic.png" alt="" /></a><span>Bem vindo</span></div>
                     <div class="userNav">
                         <ul>
-                            <li><a href="login.jsf" title=""><img src="images/icons/topnav/logout.png" alt="" /><span>Login</span></a></li>
+                            <li>
+								<h:commandLink  action="login.jsf" rendered="#{not identity.isLogged}">
+									<img src="images/icons/topnav/logout.png" alt="" /><span>Login</span>
+								</h:commandLink>
+                            </li>
+                            
                         </ul>
                     </div>
                     <div class="fix"></div>
                 </div>
             </div>
         </div>
+    	</h:form>
         <div>
             <ui:insert name="body" />
         </div>

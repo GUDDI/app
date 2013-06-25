@@ -49,10 +49,10 @@
 					</h:commandLink>
 				</p:column>
 						
-				<p:column sortBy="#{bean.idServico}">
-					<f:facet name="header">#{messages['excecao.label.idServico']}</f:facet>
+				<p:column sortBy="#{bean.servico}">
+					<f:facet name="header">#{messages['excecao.label.servico']}</f:facet>
 					<h:commandLink action="#{excecaoListMB.getNextView}" actionListener="#{excecaoListMB.clear}">
-						<h:outputText value="#{bean.idServico}" />
+						<h:outputText value="#{bean.servico}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>

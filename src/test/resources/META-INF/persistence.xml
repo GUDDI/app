@@ -6,14 +6,16 @@
 	<!--
 	-->
 	<persistence-unit name="bookmark-ds" transaction-type="RESOURCE_LOCAL">
-
+		<!-- 
 		<class>br.gov.frameworkdemoiselle.guddi.domain.Bookmark</class>
+		 -->
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
 			<property name="javax.persistence.jdbc.user" value="sa" />
 			<property name="javax.persistence.jdbc.password" value="" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:." />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
 
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="false" />

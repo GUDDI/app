@@ -41,18 +41,18 @@
 					</h:commandLink>
 				</p:column>
 						
-				<p:column sortBy="#{bean.sistemaSet}">
-					<f:facet name="header">#{messages['orgao.label.sistemaSet']}</f:facet>
+				<p:column sortBy="#{bean.sistemas}">
+					<f:facet name="header">#{messages['orgao.label.sistemas']}</f:facet>
 					<h:commandLink action="#{orgaoListMB.getNextView}" actionListener="#{orgaoListMB.clear}">
-						<h:outputText value="#{bean.sistemaSet}" />
+						<h:outputText value="#{bean.sistemas}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
 						
-				<p:column sortBy="#{bean.usuarioSet}">
-					<f:facet name="header">#{messages['orgao.label.usuarioSet']}</f:facet>
+				<p:column sortBy="#{bean.usuarios}">
+					<f:facet name="header">#{messages['orgao.label.usuarios']}</f:facet>
 					<h:commandLink action="#{orgaoListMB.getNextView}" actionListener="#{orgaoListMB.clear}">
-						<h:outputText value="#{bean.usuarioSet}" />
+						<h:outputText value="#{bean.usuarios}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>

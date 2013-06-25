@@ -41,18 +41,18 @@
 					</h:commandLink>
 				</p:column>
 						
-				<p:column sortBy="#{bean.idOrgao}">
-					<f:facet name="header">#{messages['sistema.label.idOrgao']}</f:facet>
+				<p:column sortBy="#{bean.orgao}">
+					<f:facet name="header">#{messages['sistema.label.orgao']}</f:facet>
 					<h:commandLink action="#{sistemaListMB.getNextView}" actionListener="#{sistemaListMB.clear}">
-						<h:outputText value="#{bean.idOrgao}" />
+						<h:outputText value="#{bean.orgao}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
 						
-				<p:column sortBy="#{bean.descritorSet}">
-					<f:facet name="header">#{messages['sistema.label.descritorSet']}</f:facet>
+				<p:column sortBy="#{bean.descritores}">
+					<f:facet name="header">#{messages['sistema.label.descritores']}</f:facet>
 					<h:commandLink action="#{sistemaListMB.getNextView}" actionListener="#{sistemaListMB.clear}">
-						<h:outputText value="#{bean.descritorSet}" />
+						<h:outputText value="#{bean.descritores}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>

@@ -41,26 +41,26 @@
 					</h:commandLink>
 				</p:column>
 						
-				<p:column sortBy="#{bean.servicoSet}">
-					<f:facet name="header">#{messages['descritor.label.servicoSet']}</f:facet>
+				<p:column sortBy="#{bean.servicos}">
+					<f:facet name="header">#{messages['descritor.label.servicos']}</f:facet>
 					<h:commandLink action="#{descritorListMB.getNextView}" actionListener="#{descritorListMB.clear}">
-						<h:outputText value="#{bean.servicoSet}" />
+						<h:outputText value="#{bean.servicos}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
 						
-				<p:column sortBy="#{bean.idSistema}">
-					<f:facet name="header">#{messages['descritor.label.idSistema']}</f:facet>
+				<p:column sortBy="#{bean.sistema}">
+					<f:facet name="header">#{messages['descritor.label.sistema']}</f:facet>
 					<h:commandLink action="#{descritorListMB.getNextView}" actionListener="#{descritorListMB.clear}">
-						<h:outputText value="#{bean.idSistema}" />
+						<h:outputText value="#{bean.sistema}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
 						
-				<p:column sortBy="#{bean.tagSet}">
-					<f:facet name="header">#{messages['descritor.label.tagSet']}</f:facet>
+				<p:column sortBy="#{bean.tags}">
+					<f:facet name="header">#{messages['descritor.label.tags']}</f:facet>
 					<h:commandLink action="#{descritorListMB.getNextView}" actionListener="#{descritorListMB.clear}">
-						<h:outputText value="#{bean.tagSet}" />
+						<h:outputText value="#{bean.tags}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
