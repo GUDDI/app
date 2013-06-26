@@ -33,10 +33,10 @@
 					<h:outputText value="#{bean.id}" />
 				</p:column>
 						
-				<p:column sortBy="#{bean.papel}">
-					<f:facet name="header">#{messages['usuario.label.papel']}</f:facet>
+				<p:column sortBy="#{bean.papeis}">
+					<f:facet name="header">#{messages['usuario.label.papeis']}</f:facet>
 					<h:commandLink action="#{usuarioListMB.getNextView}" actionListener="#{usuarioListMB.clear}">
-						<h:outputText value="#{bean.papel}" />
+						<h:outputText value="#{bean.papeis}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>

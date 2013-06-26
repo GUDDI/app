@@ -1,7 +1,9 @@
 package br.gov.frameworkdemoiselle.guddi.security;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
 
+import br.gov.frameworkdemoiselle.guddi.business.UsuarioBC;
 import br.gov.frameworkdemoiselle.security.Authorizer;
 
 /**
@@ -14,17 +16,32 @@ public class MyAuthorizer implements Authorizer {
 	@Inject
 	private Identity identity;
 	
+	@Inject
+	private EntityManager em;
+
+	
 	@Override
 	public boolean hasRole(String role) {
-
-		//TODO Autorizar no banco de dados
 		
-		return true;
+		Boolean hasRole = (Boolean) em.createNativeQuery("SELECT COUNT(1) > 0 FROM public.usuario_papel up JOIN public.papel p ON p.id = up.id_papel " +
+													     "WHERE up.id_usuario = :idUser AND p.descricao = :role ")
+						   .setParameter("idUser", identity.getId())			     
+						   .setParameter("role", role)
+						   .getSingleResult();
+		
+		return hasRole;
 	}
 
-	@Override
+	@Override //TODO Discutir essa implementacao. O que seriam resource e operation na visão de Papel
 	public boolean hasPermission(String resource, String operation) {
-		return true;
+		Boolean hasRole = (Boolean) em.createNativeQuery("SELECT COUNT(1) > 0 FROM public.usuario_papel up JOIN public.papel p ON p.id = up.id_papel " +
+														 "WHERE up.id_usuario = :idUser AND (p.descricao = :resource OR p.descricao = :operation)")
+				   .setParameter("idUser", identity.getId())			     
+				   .setParameter("resource", resource)
+				   .setParameter("operation", operation)
+				   .getSingleResult();
+
+		return hasRole;
 	}
 
 }

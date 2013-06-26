@@ -74,6 +74,9 @@
 								<h:commandLink  action="login.jsf" rendered="#{not identity.isLogged}">
 									<img src="images/icons/topnav/logout.png" alt="" /><span>Login</span>
 								</h:commandLink>
+								
+								<h:outputText value="#{identity.name}" rendered="#{identity.isLogged}"/>
+								<h:commandLink value="(sair)" action="#{identity.logout}" rendered="#{identity.isLogged}" />
                             </li>
                             
                         </ul>

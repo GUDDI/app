@@ -19,6 +19,8 @@ public class Identity implements Serializable, Principal {
 
 	private Boolean isLogged = false;
 
+	private Long id;
+	
 	private String name;
 
 	private String login;
@@ -36,6 +38,18 @@ public class Identity implements Serializable, Principal {
 			securityContext.login();
 			return "index.jsf";
 		} catch (Exception e) {
+			e.printStackTrace();
+			messageContext.add(e.getMessage(), SeverityType.ERROR);
+			return null;
+		}
+	}
+	
+	public String logout() {
+		try {
+			securityContext.logout();
+			return "index.jsf";
+		} catch (Exception e) {
+			e.printStackTrace();
 			messageContext.add(e.getMessage(), SeverityType.ERROR);
 			return null;
 		}
@@ -72,6 +86,14 @@ public class Identity implements Serializable, Principal {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

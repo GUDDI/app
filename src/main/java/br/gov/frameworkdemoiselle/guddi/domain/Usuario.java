@@ -5,7 +5,8 @@
 package br.gov.frameworkdemoiselle.guddi.domain;
 
 import java.io.Serializable;
-import java.math.BigInteger;
+import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -32,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
     @NamedQuery(name = "Usuario.findById", query = "SELECT u FROM Usuario u WHERE u.id = :id"),
-    @NamedQuery(name = "Usuario.findByPapel", query = "SELECT u FROM Usuario u WHERE u.papel = :papel"),
+    //@NamedQuery(name = "Usuario.findByPapel", query = "SELECT u FROM Usuario u WHERE u.papel = :papel"),
     @NamedQuery(name = "Usuario.findByNome", query = "SELECT u FROM Usuario u WHERE u.nome = :nome"),
     @NamedQuery(name = "Usuario.findByUsuario", query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario"),
     @NamedQuery(name = "Usuario.findBySenha", query = "SELECT u FROM Usuario u WHERE u.senha = :senha")})
@@ -47,9 +50,11 @@ public class Usuario implements Serializable {
     @Column(nullable = false)
     private Long id;
 	
-	@JoinColumn(name = "id_papel", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Papel papel;
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "usuario_papel", catalog = "guddi", schema = "public",
+			   joinColumns = { @JoinColumn(name = "id_usuario", nullable = false, updatable = false) }, 
+			   inverseJoinColumns = { @JoinColumn(name = "id_papel", nullable = false, updatable = false) })
+    private List<Papel> papeis;
     
     @Size(max = 50)
     @Column(length = 50)
@@ -81,13 +86,14 @@ public class Usuario implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-	public Papel getPapel() {
-		return papel;
-	}
 	
-	public void setPapel(Papel papel) {
-		this.papel = papel;
+	public List<Papel> getPapeis() {
+		return papeis;
+	}
+
+	
+	public void setPapeis(List<Papel> papeis) {
+		this.papeis = papeis;
 	}
 
 	public String getNome() {

@@ -3,11 +3,10 @@ package br.gov.frameworkdemoiselle.guddi.security;
 import java.security.Principal;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 
 import br.gov.frameworkdemoiselle.guddi.business.UsuarioBC;
 import br.gov.frameworkdemoiselle.guddi.domain.Usuario;
-import br.gov.frameworkdemoiselle.guddi.exception.GuddiBusinessException;
+import br.gov.frameworkdemoiselle.guddi.util.CriptografiaUtil;
 import br.gov.frameworkdemoiselle.security.AuthenticationException;
 import br.gov.frameworkdemoiselle.security.Authenticator;
 
@@ -26,28 +25,23 @@ public class MyAuthenticator implements Authenticator {
 
 	@Override
 	public void authenticate() throws AuthenticationException {
-
-		System.out.println(identity.getLogin() + " " + identity.getPassword());
-		
 		Usuario user = usuarioBC.findByLogin(identity.getLogin());
 		
 		if(user == null) {
 			throw new AuthenticationException("O login falhou.");
 		} else {
-			if(!user.getSenha().equals(identity.getPassword())) {
+			if(!user.getSenha().equals(CriptografiaUtil.getCodigoMd5(identity.getPassword()))) {
 				throw new AuthenticationException("O login falhou.");
 			}
 		}
 		
+		this.identity.setId(user.getId());
 		this.identity.setIsLogged(true);
 		this.identity.setName(user.getNome());
-
 	}
 
 	@Override
 	public void unAuthenticate() {
-
-		// TODO Invalidar sessao
 
 		this.identity = null;
 
@@ -55,13 +49,11 @@ public class MyAuthenticator implements Authenticator {
 
 	@Override
 	public Principal getUser() {
-
 		if (this.identity != null && this.identity.getIsLogged()) {
 			return this.identity;
 		} else {
 			return null;
 		}
-
 	}
 
 }
