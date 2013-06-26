@@ -15,5 +15,6 @@ Any value defined here will override the pom.xml file value but is only applicab
 -->
         <netbeans.checkstyle.format>true</netbeans.checkstyle.format>
         <netbeans.compile.on.save>none</netbeans.compile.on.save>
+        <org-netbeans-modules-maven-jaxws.dont_5f_ask_5f_for_5f_nonjsr109_5f_config>true</org-netbeans-modules-maven-jaxws.dont_5f_ask_5f_for_5f_nonjsr109_5f_config>
     </properties>
 </project-shared-configuration>
