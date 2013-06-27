@@ -49,10 +49,10 @@
 					</h:commandLink>
 				</p:column>
 						
-				<p:column sortBy="#{bean.idServico}">
-					<f:facet name="header">#{messages['atributo.label.idServico']}</f:facet>
+				<p:column sortBy="#{bean.servico}">
+					<f:facet name="header">#{messages['atributo.label.servico']}</f:facet>
 					<h:commandLink action="#{atributoListMB.getNextView}" actionListener="#{atributoListMB.clear}">
-						<h:outputText value="#{bean.idServico}" />
+						<h:outputText value="#{bean.servico}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>

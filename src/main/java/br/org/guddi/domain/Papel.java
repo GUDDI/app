@@ -30,14 +30,17 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Papel.findById", query = "SELECT p FROM Papel p WHERE p.id = :id"),
     @NamedQuery(name = "Papel.findByDescricao", query = "SELECT p FROM Papel p WHERE p.descricao = :descricao")})
 public class Papel implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
+    
+	private static final long serialVersionUID = -9146098310699200511L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)
     private Long id;
-    @Size(max = 20)
+    
+	@Size(max = 20)
     @Column(length = 20)
     private String descricao;
 

@@ -26,13 +26,12 @@
             <scope>compile</scope>
         </dependency>
         <!-- If you are using a JTA transaction then use this extension -->
-        <!--
         <dependency>
             <groupId>br.gov.frameworkdemoiselle</groupId>
             <artifactId>demoiselle-jta</artifactId>
             <scope>compile</scope>
         </dependency>
-        -->
+        
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
@@ -62,11 +61,13 @@
             <artifactId>postgresql</artifactId>
             <version>9.1-901-1.jdbc4</version>
         </dependency>
+        <!-- 
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>login</artifactId>
             <version>${project.version}</version>
         </dependency>
+         -->
         <dependency>
             <groupId>com.sun.xml.ws</groupId>
             <artifactId>webservices-rt</artifactId>
@@ -76,4 +77,23 @@
     <properties>
         <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
     </properties>
+    
+    <build>
+    	<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+				<version>7.4.Final</version>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>

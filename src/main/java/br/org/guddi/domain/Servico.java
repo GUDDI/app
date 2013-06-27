@@ -36,23 +36,29 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Servico.findById", query = "SELECT s FROM Servico s WHERE s.id = :id"),
     @NamedQuery(name = "Servico.findByNome", query = "SELECT s FROM Servico s WHERE s.nome = :nome")})
 public class Servico implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
+    
+	private static final long serialVersionUID = 4084161390208797022L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)
     private Long id;
+    
     @Size(max = 50)
     @Column(length = 50)
     private String nome;
-    @OneToMany(mappedBy = "idServico", fetch = FetchType.LAZY)
-    private Set<Atributo> atributoSet;
+    
+    @OneToMany(mappedBy = "servico", fetch = FetchType.LAZY)
+    private Set<Atributo> atributos;
+
     @JoinColumn(name = "id_descritor", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Descritor idDescritor;
-    @OneToMany(mappedBy = "idServico", fetch = FetchType.LAZY)
-    private Set<Excecao> excecaoSet;
+    private Descritor descritor;
+    
+    @OneToMany(mappedBy = "servico", fetch = FetchType.LAZY)
+    private Set<Excecao> excecoes;
 
     public Servico() {
     }
@@ -78,39 +84,43 @@ public class Servico implements Serializable {
     }
 
     @XmlTransient
-    public Set<Atributo> getAtributoSet() {
-        return atributoSet;
-    }
+	public Set<Atributo> getAtributos() {
+		return atributos;
+	}
 
-    public void setAtributoSet(Set<Atributo> atributoSet) {
-        this.atributoSet = atributoSet;
-    }
+	
+	public void setAtributos(Set<Atributo> atributos) {
+		this.atributos = atributos;
+	}
 
-    public Descritor getIdDescritor() {
-        return idDescritor;
-    }
+	
+	public Descritor getDescritor() {
+		return descritor;
+	}
 
-    public void setIdDescritor(Descritor idDescritor) {
-        this.idDescritor = idDescritor;
-    }
+	
+	public void setDescritor(Descritor descritor) {
+		this.descritor = descritor;
+	}
 
-    @XmlTransient
-    public Set<Excecao> getExcecaoSet() {
-        return excecaoSet;
-    }
+	@XmlTransient
+	public Set<Excecao> getExcecoes() {
+		return excecoes;
+	}
 
-    public void setExcecaoSet(Set<Excecao> excecaoSet) {
-        this.excecaoSet = excecaoSet;
-    }
-
-    @Override
+	
+	public void setExcecoes(Set<Excecao> excecoes) {
+		this.excecoes = excecoes;
+	}
+	
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-
-    @Override
+	
+	@Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Servico)) {

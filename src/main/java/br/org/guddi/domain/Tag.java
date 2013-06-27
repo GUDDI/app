@@ -33,19 +33,23 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Tag.findById", query = "SELECT t FROM Tag t WHERE t.id = :id"),
     @NamedQuery(name = "Tag.findByTag", query = "SELECT t FROM Tag t WHERE t.tag = :tag")})
 public class Tag implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
+    
+	private static final long serialVersionUID = 5602366476002683716L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)
     private Long id;
-    @Size(max = 15)
+    
+	@Size(max = 15)
     @Column(length = 15)
     private String tag;
-    @JoinColumn(name = "id_descritor", referencedColumnName = "id")
+    
+	@JoinColumn(name = "id_descritor", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Descritor idDescritor;
+    private Descritor descritor;  
 
     public Tag() {
     }
@@ -70,15 +74,15 @@ public class Tag implements Serializable {
         this.tag = tag;
     }
 
-    public Descritor getIdDescritor() {
-        return idDescritor;
-    }
+	public Descritor getDescritor() {
+		return descritor;
+	}
 
-    public void setIdDescritor(Descritor idDescritor) {
-        this.idDescritor = idDescritor;
-    }
+	public void setDescritor(Descritor descritor) {
+		this.descritor = descritor;
+	}
 
-    @Override
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);

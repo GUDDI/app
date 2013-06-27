@@ -5,7 +5,8 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
-import java.math.BigInteger;
+import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -32,37 +35,47 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
     @NamedQuery(name = "Usuario.findById", query = "SELECT u FROM Usuario u WHERE u.id = :id"),
-    @NamedQuery(name = "Usuario.findByIdPapel", query = "SELECT u FROM Usuario u WHERE u.idPapel = :idPapel"),
+    //@NamedQuery(name = "Usuario.findByPapel", query = "SELECT u FROM Usuario u WHERE u.papel = :papel"),
     @NamedQuery(name = "Usuario.findByNome", query = "SELECT u FROM Usuario u WHERE u.nome = :nome"),
     @NamedQuery(name = "Usuario.findByUsuario", query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario"),
     @NamedQuery(name = "Usuario.findBySenha", query = "SELECT u FROM Usuario u WHERE u.senha = :senha")})
 public class Usuario implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
+    
+	private static final long serialVersionUID = 3300855504795838859L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)
     private Long id;
-    @Column(name = "id_papel")
-    private BigInteger idPapel;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "usuario_papel", catalog = "guddi", schema = "public",
+			   joinColumns = { @JoinColumn(name = "id_usuario", nullable = false, updatable = false) }, 
+			   inverseJoinColumns = { @JoinColumn(name = "id_papel", nullable = false, updatable = false) })
+    private List<Papel> papeis;
+    
     @Size(max = 50)
     @Column(length = 50)
     private String nome;
+    
     @Size(max = 15)
     @Column(length = 15)
     private String usuario;
+    
     @Size(max = 15)
     @Column(length = 15)
     private String senha;
+    
     @JoinColumn(name = "id_orgao", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Orgao idOrgao;
+    private Orgao orgao;
 
     public Usuario() {
     }
-
-    public Usuario(Long id) {
+    
+	public Usuario(Long id) {
         this.id = id;
     }
 
@@ -73,16 +86,17 @@ public class Usuario implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+	
+	public List<Papel> getPapeis() {
+		return papeis;
+	}
 
-    public BigInteger getIdPapel() {
-        return idPapel;
-    }
+	
+	public void setPapeis(List<Papel> papeis) {
+		this.papeis = papeis;
+	}
 
-    public void setIdPapel(BigInteger idPapel) {
-        this.idPapel = idPapel;
-    }
-
-    public String getNome() {
+	public String getNome() {
         return nome;
     }
 
@@ -105,16 +119,16 @@ public class Usuario implements Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+    
+	public Orgao getOrgao() {
+		return orgao;
+	}
 
-    public Orgao getIdOrgao() {
-        return idOrgao;
-    }
+	public void setOrgao(Orgao orgao) {
+		this.orgao = orgao;
+	}
 
-    public void setIdOrgao(Orgao idOrgao) {
-        this.idOrgao = idOrgao;
-    }
-
-    @Override
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);

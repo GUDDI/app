@@ -34,22 +34,27 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Atributo.findByNome", query = "SELECT a FROM Atributo a WHERE a.nome = :nome"),
     @NamedQuery(name = "Atributo.findByTipo", query = "SELECT a FROM Atributo a WHERE a.tipo = :tipo")})
 public class Atributo implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
+    
+	private static final long serialVersionUID = 7517355321528352171L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)
     private Long id;
+    
     @Size(max = 20)
     @Column(length = 20)
     private String nome;
+    
     @Size(max = 10)
     @Column(length = 10)
     private String tipo;
+    
     @JoinColumn(name = "id_servico", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Servico idServico;
+    private Servico servico;
 
     public Atributo() {
     }
@@ -82,15 +87,15 @@ public class Atributo implements Serializable {
         this.tipo = tipo;
     }
 
-    public Servico getIdServico() {
-        return idServico;
-    }
+	public Servico getServico() {
+		return servico;
+	}
+	
+	public void setServico(Servico servico) {
+		this.servico = servico;
+	}
 
-    public void setIdServico(Servico idServico) {
-        this.idServico = idServico;
-    }
-
-    @Override
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);

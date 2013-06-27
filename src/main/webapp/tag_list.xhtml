@@ -41,10 +41,10 @@
 					</h:commandLink>
 				</p:column>
 						
-				<p:column sortBy="#{bean.idDescritor}">
-					<f:facet name="header">#{messages['tag.label.idDescritor']}</f:facet>
+				<p:column sortBy="#{bean.descritor}">
+					<f:facet name="header">#{messages['tag.label.descritor']}</f:facet>
 					<h:commandLink action="#{tagListMB.getNextView}" actionListener="#{tagListMB.clear}">
-						<h:outputText value="#{bean.idDescritor}" />
+						<h:outputText value="#{bean.descritor}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>

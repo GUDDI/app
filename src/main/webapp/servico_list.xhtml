@@ -41,26 +41,26 @@
 					</h:commandLink>
 				</p:column>
 						
-				<p:column sortBy="#{bean.atributoSet}">
-					<f:facet name="header">#{messages['servico.label.atributoSet']}</f:facet>
+				<p:column sortBy="#{bean.atributos}">
+					<f:facet name="header">#{messages['servico.label.atributos']}</f:facet>
 					<h:commandLink action="#{servicoListMB.getNextView}" actionListener="#{servicoListMB.clear}">
-						<h:outputText value="#{bean.atributoSet}" />
+						<h:outputText value="#{bean.atributos}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
 						
-				<p:column sortBy="#{bean.idDescritor}">
-					<f:facet name="header">#{messages['servico.label.idDescritor']}</f:facet>
+				<p:column sortBy="#{bean.descritor}">
+					<f:facet name="header">#{messages['servico.label.descritor']}</f:facet>
 					<h:commandLink action="#{servicoListMB.getNextView}" actionListener="#{servicoListMB.clear}">
-						<h:outputText value="#{bean.idDescritor}" />
+						<h:outputText value="#{bean.descritor}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
 						
-				<p:column sortBy="#{bean.excecaoSet}">
-					<f:facet name="header">#{messages['servico.label.excecaoSet']}</f:facet>
+				<p:column sortBy="#{bean.excecoes}">
+					<f:facet name="header">#{messages['servico.label.excecoes']}</f:facet>
 					<h:commandLink action="#{servicoListMB.getNextView}" actionListener="#{servicoListMB.clear}">
-						<h:outputText value="#{bean.excecaoSet}" />
+						<h:outputText value="#{bean.excecoes}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
