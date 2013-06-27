@@ -15,6 +15,11 @@ public class PesquisarBC extends DelegateCrud<Pesquisa, Long, PesquisaDAO> {
         
         public List<Pesquisa> busca(String consulta){
             List<Pesquisa> lista = new ArrayList<Pesquisa>();
+            
+            for (int i = 0; i < 50; i++) {
+            	lista.add(new Pesquisa("orgao "+i, "Servico " +i, "atributo " +i));
+			}
+            
             return lista;
         }
 	

@@ -14,15 +14,17 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author 05081364908
  */
-@Entity
-@Table(catalog = "guddi", schema = "public")
+//@Entity
+//@Table(catalog = "guddi", schema = "public")
 @XmlRootElement
 public class Pesquisa implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
+    
     private Long id;
+    
     private String consulta;
+    
     private Long idOrgao;
     private String nomeOrgao;
     private Long idServico;
@@ -34,7 +36,16 @@ public class Pesquisa implements Serializable {
     public Pesquisa() {
     }
 
-    public Long getId() {
+    //TODO
+    public Pesquisa(String nomeOrgao, String nomeServico, String nomeAtributo) {
+		super();
+		this.nomeOrgao = nomeOrgao;
+		this.nomeServico = nomeServico;
+		this.nomeAtributo = nomeAtributo;
+	}
+
+
+	public Long getId() {
         return id;
     }
 
