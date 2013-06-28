@@ -61,8 +61,8 @@ A estrutura deve ficar assim:
 	|   |   |_ postgresql-9.1-902.jdbc4.jar
 
 Declare seu driver no standalone.xml
-	No arquivo standalone.xml ($JBOSS_HOME/standalone/configuration/standalone.xml) localize a tag "<drivers>" e insira o seguinte trecho:
-			dentro dela haverá uma tag  "<datasources>". Insira o seguinte trecho dentro de "<datasources>:"
+	No arquivo standalone.xml ($JBOSS_HOME/standalone/configuration/standalone.xml) localize a tag drivers e insira o seguinte trecho:
+			dentro dela haverá uma tag  datasources. Insira o seguinte trecho dentro de datasources
 
     <driver name="postgresql" module="org.postgresql">
         <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
