@@ -64,8 +64,8 @@ public class Usuario implements Serializable {
     @Column(length = 15)
     private String usuario;
     
-    @Size(max = 15)
-    @Column(length = 15)
+    @Size(max = 32)
+    @Column(length = 32)
     private String senha;
     
     @JoinColumn(name = "id_orgao", referencedColumnName = "id")
