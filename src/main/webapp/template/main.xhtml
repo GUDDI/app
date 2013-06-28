@@ -86,14 +86,20 @@
                 </div>
             </div>
         </h:form>
-
-
-        <div>
-            <ui:include src="/menu.xhtml" rendered="#{identity.isLogged}"/>
-            <ui:insert name="crud" rendered="#{identity.isLogged}"/>
-            <ui:insert name="body" rendered="#{not identity.isLogged}"/>
-        </div>
-
+        
+       	<p:panel rendered="#{identity.isLogged}">
+       		<div>
+	   			<ui:include src="/menu.xhtml"/>
+	   		</div>
+	   		<div style="clear: both; padding-top: 10px; padding-bottom: 10px;"></div>
+	   		<div>
+	   			<ui:insert name="crud"/>
+	   		</div>
+  	   	</p:panel>
+   	    
+        <p:panel rendered="#{not identity.isLogged}">
+        	<ui:insert name="body"/>
+       	</p:panel>
 
         <p:growl id="messages" globalOnly="true" />
 
