@@ -71,12 +71,12 @@
                         <div class="userNav">
                             <ul>
                                 <li>
-                                    <h:commandLink  action="login.jsf" rendered="#{not identity.isLogged}">
+                                    <h:commandLink  action="login.jsf" rendered="#{not securityContext.loggedIn}">
                                         <img src="images/icons/topnav/logout.png" alt="" /><span>Login</span>
                                     </h:commandLink>
 
-                                    <h:outputText value="#{identity.name}" rendered="#{identity.isLogged}"/>
-                                    <h:commandLink value="(sair)" action="#{identity.logout}" rendered="#{identity.isLogged}" />
+                                    <h:outputText value="#{identity.name}" rendered="#{securityContext.loggedIn}"/>
+                                    <h:commandLink value="(sair)" action="#{securityContext.logout}" rendered="#{securityContext.loggedIn}" />
                                 </li>
 
                             </ul>
@@ -87,7 +87,7 @@
             </div>
         </h:form>
         
-       	<p:panel rendered="#{identity.isLogged}">
+       	<p:panel rendered="#{securityContext.loggedIn}">
        		<div>
 	   			<ui:include src="/menu.xhtml"/>
 	   		</div>
@@ -97,7 +97,7 @@
 	   		</div>
   	   	</p:panel>
    	    
-        <p:panel rendered="#{not identity.isLogged}">
+        <p:panel rendered="#{not securityContext.loggedIn}">
         	<ui:insert name="body"/>
        	</p:panel>
 

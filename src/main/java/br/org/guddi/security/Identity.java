@@ -17,8 +17,6 @@ public class Identity implements Serializable, Principal {
 
 	private static final long serialVersionUID = -8003651916557123604L;
 
-	private Boolean isLogged = false;
-
 	private Long id;
 	
 	private String name;
@@ -71,15 +69,6 @@ public class Identity implements Serializable, Principal {
 		this.password = password;
 	}
 	
-	public Boolean getIsLogged() {
-		return isLogged;
-	}
-
-	
-	public void setIsLogged(Boolean isLogged) {
-		this.isLogged = isLogged;
-	}
-
 	public String getName() {
 		return name;
 	}

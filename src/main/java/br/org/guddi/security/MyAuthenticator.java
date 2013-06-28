@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.security.AuthenticationException;
 import br.gov.frameworkdemoiselle.security.Authenticator;
+import br.gov.frameworkdemoiselle.security.SecurityContext;
 import br.org.guddi.business.UsuarioBC;
 import br.org.guddi.domain.Usuario;
 import br.org.guddi.util.CriptografiaUtil;
@@ -22,6 +23,9 @@ public class MyAuthenticator implements Authenticator {
 	
 	@Inject
 	private UsuarioBC usuarioBC;
+	
+	@Inject
+	private SecurityContext securityContext;
 
 	@Override
 	public void authenticate() throws AuthenticationException {
@@ -36,22 +40,21 @@ public class MyAuthenticator implements Authenticator {
 		}
 		
 		this.identity.setId(user.getId());
-		this.identity.setIsLogged(true);
 		this.identity.setName(user.getNome());
 	}
 
 	@Override
 	public void unAuthenticate() {
-
 		this.identity = null;
-
 	}
 
 	@Override
 	public Principal getUser() {
-		if (this.identity != null && this.identity.getIsLogged()) {
+		
+		if (this.identity != null && this.identity.getId() != null) {
 			return this.identity;
-		} else {
+		}
+		else {
 			return null;
 		}
 	}
