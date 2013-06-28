@@ -25,6 +25,8 @@ Abra seu banco de dados e execute os comandos para inserir o usuário teste para
     INSERT INTO papel (id, descricao) VALUES (1, 'PAPEL');
     INSERT INTO usuario (id, nome, senha, usuario, id_orgao) VALUES (1, 'teste', '698dc19d489c4e4db73e28a713eab07b', 'teste', 1);
 
+O usuário inicial será "teste" e a senha "teste".
+
 ##Configurando e Instalando no Tomcat7
 
 Para compilar escolha o perfil tomcat7 (Eclipse e Netbeans)
