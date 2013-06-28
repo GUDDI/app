@@ -1,45 +1,44 @@
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+                xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
-	<ui:define name="body">
-		<h:form id="pesquisa_form">
-			<div style="heigth: 50px;"> 
-				Serviços
-			</div>
-			<div style="heigth: 100px; text-align: center;">
-                <h:inputText autocomplete="true" label="Pesquisar:" value="#{pesquisarMB.consulta}" />
-                <h:commandButton id="pesquisar" value="Pesquisar" action="#{pesquisarMB.buscar()}" />
-                
-                <p:commandButton id="search_button"
-							value="Pesquisar"
-							title="Pesquisar"
-							icon="ui-icon-search"
-							action="#{pesquisarMB.buscar()}"
-							update=":result_form:panel" />
-                
+    <ui:define name="body">
+        <h:form id="pesquisa_form">
+            <div style="heigth: 50px;"> 
+                Serviços
             </div>
-            
-          </h:form>
-          <h:form id="result_form">
-          <h:panelGroup id="panel" style="padding: 10px 10px 10px 50px;">
-				<p:dataTable id="list" value="#{pesquisarMB.lista}"
-						var="item" rowIndexVar="index" lazy="true"
-						paginator="true" 
-						rows="10"
-						>
+            <div style="heigth: 100px; text-align: center;">
+                <h:inputText autocomplete="true" label="Pesquisar:" value="#{pesquisarMB.consulta}" />
 
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="Descrição" />
-							</f:facet>
-							<h:outputText value="#{item.nomeOrgao}" />
-						</p:column>
-						
-				</p:dataTable>	
-          </h:panelGroup>
-		</h:form>
+                <p:commandButton id="search_button"
+                                 value="Pesquisar"
+                                 title="Pesquisar"
+                                 icon="ui-icon-search"
+                                 action="#{pesquisarMB.buscar()}"
+                                 update=":result_form:panel" />
 
-	</ui:define>
+            </div>
+
+        </h:form>
+        <h:form id="result_form">
+            <h:panelGroup id="panel" style="padding: 10px 10px 10px 50px;">
+                <p:dataTable id="list" value="#{pesquisarMB.lista}"
+                             var="item" rowIndexVar="index" lazy="true"
+                             paginator="true" 
+                             rows="10"
+                             >
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Descrição" />
+                        </f:facet>
+                        <h:outputText value="#{item.nomeOrgao}" />
+                    </p:column>
+
+                </p:dataTable>	
+            </h:panelGroup>
+        </h:form>
+
+    </ui:define>
 </ui:composition>
