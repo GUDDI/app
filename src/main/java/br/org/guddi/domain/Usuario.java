@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author 05081364908
  */
 @Entity
-@Table(catalog = "guddi", schema = "guddi")
+@Table(catalog = "guddi", schema = "public")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
@@ -44,14 +44,14 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 3300855504795838859L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)
     private Long id;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "usuario_papel", catalog = "guddi", schema = "guddi",
+	@JoinTable(name = "usuario_papel", catalog = "guddi", schema = "public",
 			   joinColumns = { @JoinColumn(name = "id_usuario", nullable = false, updatable = false) }, 
 			   inverseJoinColumns = { @JoinColumn(name = "id_papel", nullable = false, updatable = false) })
     private List<Papel> papeis;

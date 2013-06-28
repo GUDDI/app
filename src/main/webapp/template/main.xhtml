@@ -62,33 +62,44 @@
 
     </h:head>
 
-    <h:body style="background-color:#f1f1f1">
-    	<h:form>
-        <div id="topNav">
-            <div class="fixed">
-                <div class="wrapper">
-                    <div class="welcome"><a href="#" title=""><img src="images/userPic.png" alt="" /></a><span>Bem vindo</span></div>
-                    <div class="userNav">
-                        <ul>
-                            <li>
-								<h:commandLink  action="login.jsf" rendered="#{not identity.isLogged}">
-									<img src="images/icons/topnav/logout.png" alt="" /><span>Login</span>
-								</h:commandLink>
-								
-								<h:outputText value="#{identity.name}" rendered="#{identity.isLogged}"/>
-								<h:commandLink value="(sair)" action="#{identity.logout}" rendered="#{identity.isLogged}" />
-                            </li>
-                            
-                        </ul>
+    <h:body >
+        <h:form>
+            <div id="topNav">
+                <div class="fixed">
+                    <div class="wrapper">
+                        <div class="welcome"><a href="#" title=""><img src="images/userPic.png" alt="" /></a><span>Bem vindo</span></div>
+                        <div class="userNav">
+                            <ul>
+                                <li>
+                                    <h:commandLink  action="login.jsf" rendered="#{not securityContext.loggedIn}">
+                                        <img src="images/icons/topnav/logout.png" alt="" /><span>Login</span>
+                                    </h:commandLink>
+
+                                    <h:outputText value="#{identity.name}" rendered="#{securityContext.loggedIn}"/>
+                                    <h:commandLink value="(sair)" action="#{securityContext.logout}" rendered="#{securityContext.loggedIn}" />
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="fix"></div>
                     </div>
-                    <div class="fix"></div>
                 </div>
             </div>
-        </div>
-    	</h:form>
-        <div>
-            <ui:insert name="body" />
-        </div>
+        </h:form>
+        
+       	<p:panel rendered="#{securityContext.loggedIn}">
+       		<div>
+	   			<ui:include src="/menu.xhtml"/>
+	   		</div>
+	   		<div style="clear: both; padding-top: 10px; padding-bottom: 10px;"></div>
+	   		<div>
+	   			<ui:insert name="crud"/>
+	   		</div>
+  	   	</p:panel>
+   	    
+        <p:panel rendered="#{not securityContext.loggedIn}">
+        	<ui:insert name="body"/>
+       	</p:panel>
 
         <p:growl id="messages" globalOnly="true" />
 

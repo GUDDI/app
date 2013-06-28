@@ -2,87 +2,55 @@
 	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<h:form>
-        <div class="leftNav">
-    	<ul id="menu">
-            <li class="dash"><a href="index.html" title="" class="active"><span>#{messages['menu.usuario']}</span></a>
-                <ul class="sub">
-                    <li><a href="/usuario_edit.jsf" title="">#{messages['menu.menuitem.new']}</a></li>
-                    <li><a href="/usuario_list.jsf" title="">"#{messages['menu.menuitem.list']}"</a></li>
-                </ul>
-            </li>
-            <li class="graphs"><a href="charts.html" title=""><span>Graphs and charts</span></a></li>
-            <li class="forms"><a href="form_elements.html" title=""><span>Form elements</span></a></li>
-            <li class="login"><a href="ui_elements.html" title=""><span>Interface elements</span></a></li>
-            <li class="typo"><a href="typo.html" title=""><span>Typography</span></a></li>
-            <li class="tables"><a href="tables.html" title=""><span>Tables</span></a></li>
-            <li class="cal"><a href="calendar.html" title=""><span>Calendar</span></a></li>
-            <li class="gallery"><a href="gallery.html" title=""><span>Gallery</span></a></li>
-            <li class="widgets"><a href="widgets.html" title=""><span>Widgets</span></a></li>
-            <li class="files"><a href="file_manager.html" title=""><span>File manager</span></a></li>
-            <li class="errors"><a href="#" title="" class="exp"><span>Error pages</span><span class="numberLeft">6</span></a>
-            	<ul class="sub">
-                    <li><a href="403.html" title="">403 page</a></li>
-                    <li><a href="404.html" title="">404 page</a></li>
-                    <li><a href="405.html" title="">405 page</a></li>
-                    <li><a href="500.html" title="">500 page</a></li>
-                    <li><a href="503.html" title="">503 page</a></li>
-                    <li class="last"><a href="offline.html" title="">Website is offline</a></li>
-                </ul>
-            </li>
-            <li class="pic"><a href="icons.html" title=""><span>Buttons and icons</span></a></li>
-            <li class="contacts"><a href="contacts.html" title=""><span>Organized contact list</span></a></li>
-        </ul>
-    </div>
+   
+        <h:form>
             <p:menubar id="menu_principal" >
                 <p:submenu label="#{messages['menu.usuario']}" >
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/usuario_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/usuario_list.jsf"></p:menuitem>
-			</p:submenu>
+                    <p:menuitem value="#{messages['menu.menuitem.new']}" url="/usuario_edit.jsf"></p:menuitem>
+                    <p:menuitem value="#{messages['menu.menuitem.list']}" url="/usuario_list.jsf"></p:menuitem>
+                </p:submenu>
 
-			<p:submenu label="#{messages['menu.tag']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/tag_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/tag_list.jsf"></p:menuitem>
-			</p:submenu>
+                <p:submenu label="#{messages['menu.tag']}">
+                    <p:menuitem value="#{messages['menu.menuitem.new']}" url="/tag_edit.jsf"></p:menuitem>
+                    <p:menuitem value="#{messages['menu.menuitem.list']}" url="/tag_list.jsf"></p:menuitem>
+                </p:submenu>
 
-			<p:submenu label="#{messages['menu.sistema']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/sistema_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/sistema_list.jsf"></p:menuitem>
-			</p:submenu>
+                <p:submenu label="#{messages['menu.sistema']}">
+                    <p:menuitem value="#{messages['menu.menuitem.new']}" url="/sistema_edit.jsf"></p:menuitem>
+                    <p:menuitem value="#{messages['menu.menuitem.list']}" url="/sistema_list.jsf"></p:menuitem>
+                </p:submenu>
 
-			<p:submenu label="#{messages['menu.servico']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/servico_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/servico_list.jsf"></p:menuitem>
-			</p:submenu>
+                <p:submenu label="#{messages['menu.servico']}">
+                    <p:menuitem value="#{messages['menu.menuitem.new']}" url="/servico_edit.jsf"></p:menuitem>
+                    <p:menuitem value="#{messages['menu.menuitem.list']}" url="/servico_list.jsf"></p:menuitem>
+                </p:submenu>
 
-			<p:submenu label="#{messages['menu.papel']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/papel_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/papel_list.jsf"></p:menuitem>
-			</p:submenu>
+                <p:submenu label="#{messages['menu.papel']}">
+                    <p:menuitem value="#{messages['menu.menuitem.new']}" url="/papel_edit.jsf"></p:menuitem>
+                    <p:menuitem value="#{messages['menu.menuitem.list']}" url="/papel_list.jsf"></p:menuitem>
+                </p:submenu>
 
-			<p:submenu label="#{messages['menu.orgao']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/orgao_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/orgao_list.jsf"></p:menuitem>
-			</p:submenu>
+                <p:submenu label="#{messages['menu.orgao']}">
+                    <p:menuitem value="#{messages['menu.menuitem.new']}" url="/orgao_edit.jsf"></p:menuitem>
+                    <p:menuitem value="#{messages['menu.menuitem.list']}" url="/orgao_list.jsf"></p:menuitem>
+                </p:submenu>
 
-			<p:submenu label="#{messages['menu.excecao']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/excecao_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/excecao_list.jsf"></p:menuitem>
-			</p:submenu>
+                <p:submenu label="#{messages['menu.excecao']}">
+                    <p:menuitem value="#{messages['menu.menuitem.new']}" url="/excecao_edit.jsf"></p:menuitem>
+                    <p:menuitem value="#{messages['menu.menuitem.list']}" url="/excecao_list.jsf"></p:menuitem>
+                </p:submenu>
 
-			<p:submenu label="#{messages['menu.descritor']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/descritor_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/descritor_list.jsf"></p:menuitem>
-			</p:submenu>
+                <p:submenu label="#{messages['menu.descritor']}">
+                    <p:menuitem value="#{messages['menu.menuitem.new']}" url="/descritor_edit.jsf"></p:menuitem>
+                    <p:menuitem value="#{messages['menu.menuitem.list']}" url="/descritor_list.jsf"></p:menuitem>
+                </p:submenu>
 
 
-			<p:submenu label="#{messages['menu.atributo']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/atributo_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/atributo_list.jsf"></p:menuitem>
-			</p:submenu>
-
-			<p:menuitem value="#{messages['menu.menuitem.quit']}" action="#{securityContext.logout}" />
-		</p:menubar>
-	</h:form>
-
+                <p:submenu label="#{messages['menu.atributo']}">
+                    <p:menuitem value="#{messages['menu.menuitem.new']}" url="/atributo_edit.jsf"></p:menuitem>
+                    <p:menuitem value="#{messages['menu.menuitem.list']}" url="/atributo_list.jsf"></p:menuitem>
+                </p:submenu>
+                
+            </p:menubar>
+        </h:form>
 </ui:composition>

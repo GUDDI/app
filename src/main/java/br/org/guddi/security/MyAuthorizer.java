@@ -22,7 +22,7 @@ public class MyAuthorizer implements Authorizer {
 	@Override
 	public boolean hasRole(String role) {
 		
-		Boolean hasRole = (Boolean) em.createNativeQuery("SELECT COUNT(1) > 0 FROM public.usuario_papel up JOIN public.papel p ON p.id = up.id_papel " +
+		Boolean hasRole = (Boolean) em.createNativeQuery("SELECT COUNT(1) > 0 FROM usuario_papel up JOIN papel p ON p.id = up.id_papel " +
 													     "WHERE up.id_usuario = :idUser AND p.descricao = :role ")
 						   .setParameter("idUser", identity.getId())			     
 						   .setParameter("role", role)
@@ -33,7 +33,7 @@ public class MyAuthorizer implements Authorizer {
 
 	@Override //TODO Discutir essa implementacao. O que seriam resource e operation na visão de Papel
 	public boolean hasPermission(String resource, String operation) {
-		Boolean hasRole = (Boolean) em.createNativeQuery("SELECT COUNT(1) > 0 FROM public.usuario_papel up JOIN public.papel p ON p.id = up.id_papel " +
+		Boolean hasRole = (Boolean) em.createNativeQuery("SELECT COUNT(1) > 0 FROM usuario_papel up JOIN papel p ON p.id = up.id_papel " +
 														 "WHERE up.id_usuario = :idUser AND (p.descricao = :resource OR p.descricao = :operation)")
 				   .setParameter("idUser", identity.getId())			     
 				   .setParameter("resource", resource)
