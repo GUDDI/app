@@ -25,11 +25,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
+ * Conceito de Dominio servicos dentro de um Sistemas. 
  *
  * @author 05081364908
  */
 @Entity
-@Table(catalog = "guddi", schema = "public")
+@Table(catalog = "guddi", schema = "guddi")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Descritor.findAll", query = "SELECT d FROM Descritor d"),
@@ -40,7 +41,7 @@ public class Descritor implements Serializable {
 	private static final long serialVersionUID = 1L;
     
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)
@@ -50,13 +51,13 @@ public class Descritor implements Serializable {
     @Column(length = 100)
     private String descricao;
     
+	@JoinColumn(name = "id_sistema", referencedColumnName = "id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Sistema sistema;
+
 	@OneToMany(mappedBy = "descritor", fetch = FetchType.LAZY)
     private Set<Servico> servicos;
     
-	@JoinColumn(name = "id_sistema", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Sistema sistema;
-   
 	@OneToMany(mappedBy = "descritor", fetch = FetchType.LAZY)
     private Set<Tag> tags;
 
@@ -66,8 +67,15 @@ public class Descritor implements Serializable {
     public Descritor(Long id) {
         this.id = id;
     }
+    
+    public Descritor(Long id, String descricao, Sistema sistema) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
+		this.sistema = sistema;
+	}
 
-    public Long getId() {
+	public Long getId() {
         return id;
     }
 

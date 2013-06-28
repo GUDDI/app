@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author 05081364908
  */
 @Entity
-@Table(catalog = "guddi", schema = "public")
+@Table(catalog = "guddi", schema = "guddi")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Orgao.findAll", query = "SELECT o FROM Orgao o"),
@@ -38,7 +38,7 @@ public class Orgao implements Serializable {
 	private static final long serialVersionUID = -762179107126837980L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)

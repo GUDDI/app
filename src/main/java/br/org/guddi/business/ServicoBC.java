@@ -11,4 +11,10 @@ public class ServicoBC extends DelegateCrud<Servico, Long, ServicoDAO> {
 	
 	private static final long serialVersionUID = 1L;
 	
+	public Servico load(Long id) {
+	
+		return getDelegate().loadFromDetalhamento(id);
+	
+	}
+	
 }

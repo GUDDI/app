@@ -14,6 +14,9 @@
     <class>br.org.guddi.domain.Papel</class>
     <class>br.org.guddi.domain.Servico</class>
     <class>br.org.guddi.domain.Usuario</class>
+    <!-- 
+    <class>br.org.guddi.domain.Pesquisa</class>
+     -->
      
     <properties>
      	<property name="hibernate.show_sql" value="true" />

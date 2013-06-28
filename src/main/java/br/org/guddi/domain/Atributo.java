@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author 05081364908
  */
 @Entity
-@Table(catalog = "guddi", schema = "public")
+@Table(catalog = "guddi", schema = "guddi")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Atributo.findAll", query = "SELECT a FROM Atributo a"),
@@ -38,7 +38,7 @@ public class Atributo implements Serializable {
 	private static final long serialVersionUID = 7517355321528352171L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)

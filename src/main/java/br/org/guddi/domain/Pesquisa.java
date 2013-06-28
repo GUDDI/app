@@ -1,123 +1,113 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in the editor.
  */
 package br.org.guddi.domain;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
  * @author 05081364908
  */
-//@Entity
-//@Table(catalog = "guddi", schema = "public")
+// @Entity
+// @Table(catalog = "guddi", schema = "guddi")
 @XmlRootElement
 public class Pesquisa implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    
-    private Long id;
-    
-    private String consulta;
-    
-    private Long idOrgao;
-    private String nomeOrgao;
-    private Long idServico;
-    private String nomeServico;
-    private Long idAtributo;
-    private String nomeAtributo;
-    private String descAtributo;
+	private static final long serialVersionUID = 1L;
 
-    public Pesquisa() {
-    }
+	private Long idServico;
 
-    //TODO
-    public Pesquisa(String nomeOrgao, String nomeServico, String nomeAtributo) {
-		super();
-		this.nomeOrgao = nomeOrgao;
-		this.nomeServico = nomeServico;
-		this.nomeAtributo = nomeAtributo;
+	private String nomeServico;
+
+	private String wsdlLink;
+
+	private Long idDescritor;
+
+	private String nomeDescritor;
+
+	private Long idSistema;
+
+	private String nomeSistema;
+
+	private Long idOrgao;
+
+	private String nomeOrgao;
+
+	public Pesquisa() {
 	}
 
+	public Long getIdOrgao() {
+		return idOrgao;
+	}
 
-	public Long getId() {
-        return id;
-    }
+	public void setIdOrgao(Long idOrgao) {
+		this.idOrgao = idOrgao;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public String getNomeOrgao() {
+		return nomeOrgao;
+	}
 
-    public String getConsulta() {
-        return consulta;
-    }
+	public void setNomeOrgao(String nomeOrgao) {
+		this.nomeOrgao = nomeOrgao;
+	}
 
-    public void setConsulta(String consulta) {
-        this.consulta = consulta;
-    }
+	public Long getIdServico() {
+		return idServico;
+	}
 
-    public Long getIdOrgao() {
-        return idOrgao;
-    }
+	public void setIdServico(Long idServico) {
+		this.idServico = idServico;
+	}
 
-    public void setIdOrgao(Long idOrgao) {
-        this.idOrgao = idOrgao;
-    }
+	public String getNomeServico() {
+		return nomeServico;
+	}
 
-    public String getNomeOrgao() {
-        return nomeOrgao;
-    }
+	public void setNomeServico(String nomeServico) {
+		this.nomeServico = nomeServico;
+	}
 
-    public void setNomeOrgao(String nomeOrgao) {
-        this.nomeOrgao = nomeOrgao;
-    }
+	public String getWsdlLink() {
+		return wsdlLink;
+	}
 
-    public Long getIdServico() {
-        return idServico;
-    }
+	public void setWsdlLink(String wsdlLink) {
+		this.wsdlLink = wsdlLink;
+	}
 
-    public void setIdServico(Long idServico) {
-        this.idServico = idServico;
-    }
+	public Long getIdDescritor() {
+		return idDescritor;
+	}
 
-    public String getNomeServico() {
-        return nomeServico;
-    }
+	public void setIdDescritor(Long idDescritor) {
+		this.idDescritor = idDescritor;
+	}
 
-    public void setNomeServico(String nomeServico) {
-        this.nomeServico = nomeServico;
-    }
+	public String getNomeDescritor() {
+		return nomeDescritor;
+	}
 
-    public Long getIdAtributo() {
-        return idAtributo;
-    }
+	public void setNomeDescritor(String nomeDescritor) {
+		this.nomeDescritor = nomeDescritor;
+	}
 
-    public void setIdAtributo(Long idAtributo) {
-        this.idAtributo = idAtributo;
-    }
+	public Long getIdSistema() {
+		return idSistema;
+	}
 
-    public String getNomeAtributo() {
-        return nomeAtributo;
-    }
+	public void setIdSistema(Long idSistema) {
+		this.idSistema = idSistema;
+	}
 
-    public void setNomeAtributo(String nomeAtributo) {
-        this.nomeAtributo = nomeAtributo;
-    }
+	public String getNomeSistema() {
+		return nomeSistema;
+	}
 
-    public String getDescAtributo() {
-        return descAtributo;
-    }
-
-    public void setDescAtributo(String descAtributo) {
-        this.descAtributo = descAtributo;
-    }
-
- 
-
+	public void setNomeSistema(String nomeSistema) {
+		this.nomeSistema = nomeSistema;
+	}
 
 }

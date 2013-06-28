@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author 05081364908
  */
 @Entity
-@Table(catalog = "guddi", schema = "public")
+@Table(catalog = "guddi", schema = "guddi")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Sistema.findAll", query = "SELECT s FROM Sistema s"),
@@ -40,7 +40,7 @@ public class Sistema implements Serializable {
 	private static final long serialVersionUID = 833945106894289319L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)

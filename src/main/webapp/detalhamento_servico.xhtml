@@ -1,0 +1,91 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:panelGroup layout="block">
+			<p:panel>
+				<f:facet name="header">
+					<h:outputText value="Detalhamento de Serviço" />
+				</f:facet>
+
+				<h:form id="form_cadastro">
+					<h:panelGroup styleClass="view_grid" >
+					
+						<h:panelGrid columns="2" styleClass="data_grid" columnClasses="col_label, col_value">
+							<h:outputText value="Serviço:* " />
+							<h:outputText id="servico" value="#{detalharPesquisaMB.bean.nome}" />
+							
+							<h:outputText value="Sistema:* " />
+							<h:outputText id="nomeSistema" value="#{detalharPesquisaMB.bean.descritor.sistema.nome}" />
+							
+							<h:outputText value="Órgão:* " />
+							<h:outputText id="nomeOrgao" value="#{detalharPesquisaMB.bean.descritor.sistema.orgao.nome}" />
+							
+							<h:outputText value="Descritor:* " />
+							<h:outputText id="descritor" value="#{detalharPesquisaMB.bean.descritor.descricao}" />
+						</h:panelGrid>
+
+						<h:panelGroup layout="block" styleClass="vspacer" />
+						
+						<p:fieldset legend="Atributos" toggleable="true">
+							<h:panelGrid columns="2" styleClass="data_grid" columnClasses="col_label, col_value">
+							
+								<p:dataTable id="list_atributos"
+											 value="#{detalharPesquisaMB.bean.atributos}"
+											 var="item" rowIndexVar="index"
+											 emptyMessage="#{messages['p.data-table.empty-message']}">
+				
+									<p:column>
+										<f:facet name="header">
+											<h:outputText value="Nome" />
+										</f:facet>
+										<h:outputText value="#{item.nome}" />
+									</p:column>
+									
+									<p:column>
+										<f:facet name="header">
+											<h:outputText value="Tipo" />
+										</f:facet>
+										<h:outputText value="#{item.tipo}" />
+									</p:column>
+								</p:dataTable>
+							
+							</h:panelGrid>
+							
+						</p:fieldset>
+						
+						<p:fieldset legend="Excessões" toggleable="true">
+							<h:panelGrid columns="2" styleClass="data_grid" columnClasses="col_label, col_value">
+							
+								<p:dataTable id="list_excessoes"
+											 value="#{detalharPesquisaMB.bean.excecoes}"
+											 var="item" rowIndexVar="index"
+											 emptyMessage="#{messages['p.data-table.empty-message']}">
+				
+									<p:column>
+										<f:facet name="header">
+											<h:outputText value="Nome" />
+										</f:facet>
+										<h:outputText value="#{item.identificador}" />
+									</p:column>
+									
+									<p:column>
+										<f:facet name="header">
+											<h:outputText value="Tipo" />
+										</f:facet>
+										<h:outputText value="#{item.descricao}" />
+									</p:column>
+								</p:dataTable>
+							
+							</h:panelGrid>
+							
+						</p:fieldset>
+						
+
+					</h:panelGroup>
+				</h:form>
+			</p:panel>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>

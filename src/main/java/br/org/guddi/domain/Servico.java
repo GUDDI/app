@@ -5,7 +5,9 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,12 +26,14 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import org.hibernate.annotations.Type;
+
 /**
  *
  * @author 05081364908
  */
 @Entity
-@Table(catalog = "guddi", schema = "public")
+@Table(catalog = "guddi", schema = "guddi")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Servico.findAll", query = "SELECT s FROM Servico s"),
@@ -40,7 +44,7 @@ public class Servico implements Serializable {
 	private static final long serialVersionUID = 4084161390208797022L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)
@@ -50,15 +54,20 @@ public class Servico implements Serializable {
     @Column(length = 50)
     private String nome;
     
-    @OneToMany(mappedBy = "servico", fetch = FetchType.LAZY)
-    private Set<Atributo> atributos;
+    @Size(max = 500)
+    @Column(name="wsdl_Link", length = 500)
+    @Type(type="text")
+    private String wsdlLink;
 
     @JoinColumn(name = "id_descritor", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Descritor descritor;
     
     @OneToMany(mappedBy = "servico", fetch = FetchType.LAZY)
-    private Set<Excecao> excecoes;
+    private List<Atributo> atributos;
+    
+    @OneToMany(mappedBy = "servico", fetch = FetchType.LAZY)
+    private List<Excecao> excecoes;
 
     public Servico() {
     }
@@ -83,17 +92,6 @@ public class Servico implements Serializable {
         this.nome = nome;
     }
 
-    @XmlTransient
-	public Set<Atributo> getAtributos() {
-		return atributos;
-	}
-
-	
-	public void setAtributos(Set<Atributo> atributos) {
-		this.atributos = atributos;
-	}
-
-	
 	public Descritor getDescritor() {
 		return descritor;
 	}
@@ -102,17 +100,33 @@ public class Servico implements Serializable {
 	public void setDescritor(Descritor descritor) {
 		this.descritor = descritor;
 	}
+	
+	@XmlTransient
+	public List<Atributo> getAtributos() {
+		return atributos;
+	}
+
+	public void setAtributos(List<Atributo> atributos) {
+		this.atributos = atributos;
+	}
 
 	@XmlTransient
-	public Set<Excecao> getExcecoes() {
+	public List<Excecao> getExcecoes() {
 		return excecoes;
 	}
 
-	
-	public void setExcecoes(Set<Excecao> excecoes) {
+	public void setExcecoes(List<Excecao> excecoes) {
 		this.excecoes = excecoes;
 	}
+
+	public String getWsdlLink() {
+		return wsdlLink;
+	}
 	
+	public void setWsdlLink(String wsdlLink) {
+		this.wsdlLink = wsdlLink;
+	}
+
 	@Override
     public int hashCode() {
         int hash = 0;
