@@ -19,6 +19,11 @@ no pom.xml, para seu banco.
             <version>9.1-901-1.jdbc4</version>
         </dependency>
 
+Abra seu banco de dados e execute os comandos para inserir o usuário teste para a aplicação.
+
+    INSERT INTO orgao (id, nome) VALUES (1, 'ORGAO');
+    INSERT INTO papel (id, descricao) VALUES (1, 'PAPEL');
+    INSERT INTO usuario (id, nome, senha, usuario, id_orgao) VALUES (1, 'teste', '698dc19d489c4e4db73e28a713eab07b', 'teste', 1);
 
 ##Configurando e Instalando no Tomcat7
 
@@ -97,4 +102,6 @@ Inicie o Jboss e faça o build da aplicação utilizando o seguinte comando. O m
 
 
 Para compilar escolha o perfil jboss7 (Eclipse e Netbeans)
+
+Na tela de login do GUDDI o usuário inicial é teste e a senha teste, conforme a inserção no banco de dados comentado nos passos anteriores.
 
