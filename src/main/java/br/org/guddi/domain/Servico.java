@@ -26,8 +26,6 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-import org.hibernate.annotations.Type;
-
 /**
  *
  * @author 05081364908
@@ -56,7 +54,6 @@ public class Servico implements Serializable {
     
     @Size(max = 500)
     @Column(name="wsdl_Link", length = 500)
-    @Type(type="text")
     private String wsdlLink;
 
     @JoinColumn(name = "id_descritor", referencedColumnName = "id")

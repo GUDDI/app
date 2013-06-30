@@ -40,6 +40,7 @@ public class MyAuthenticator implements Authenticator {
 		}
 		
 		this.identity.setId(user.getId());
+                this.identity.setIdPapel(user.getPapeis().get(0).getId());
 		this.identity.setName(user.getNome());
 	}
 
