@@ -4,7 +4,7 @@
 
 
     <h:form>
-        <p:menubar id="menu_admin" rendered="#{securityContext.hasRole("ADMINSTRADOR")}">
+        <p:menubar id="menu_admin" rendered="#{securityContext.hasRole('ADMINSTRADOR')}">
             <p:submenu label="#{messages['menu.usuario']}" >
                 <p:menuitem value="#{messages['menu.menuitem.new']}" url="/usuario_edit.jsf"></p:menuitem>
                 <p:menuitem value="#{messages['menu.menuitem.list']}" url="/usuario_list.jsf"></p:menuitem>
@@ -26,7 +26,7 @@
             </p:submenu>
         </p:menubar>
 
-        <p:menubar id="menu_usuario" rendered="#{securityContext.loggedIn}>
+        <p:menubar id="menu_usuario" rendered="#{securityContext.loggedIn}">
              <p:submenu label="#{messages['menu.sistema']}">
                 <p:menuitem value="#{messages['menu.menuitem.new']}" url="/sistema_edit.jsf"></p:menuitem>
                 <p:menuitem value="#{messages['menu.menuitem.list']}" url="/sistema_list.jsf"></p:menuitem>
