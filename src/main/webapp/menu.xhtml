@@ -26,7 +26,7 @@
             </p:submenu>
         </p:menubar>
 
-        <p:menubar id="menu_usuario" rendered="#{securityContext.loggedIn}">
+        <p:menubar id="menu_usuario" rendered="#{securityContext.hasRole('MANAGER')}">
              <p:submenu label="#{messages['menu.sistema']}">
                 <p:menuitem value="#{messages['menu.menuitem.new']}" url="/sistema_edit.jsf"></p:menuitem>
                 <p:menuitem value="#{messages['menu.menuitem.list']}" url="/sistema_list.jsf"></p:menuitem>

@@ -8,8 +8,10 @@ import br.gov.frameworkdemoiselle.security.AuthenticationException;
 import br.gov.frameworkdemoiselle.security.Authenticator;
 import br.gov.frameworkdemoiselle.security.SecurityContext;
 import br.org.guddi.business.UsuarioBC;
+import br.org.guddi.domain.Papel;
 import br.org.guddi.domain.Usuario;
 import br.org.guddi.util.CriptografiaUtil;
+import java.util.ArrayList;
 
 /**
  * @author thiago.soares
@@ -40,8 +42,13 @@ public class MyAuthenticator implements Authenticator {
 		}
 		
 		this.identity.setId(user.getId());
-                this.identity.setIdPapel(user.getPapeis().get(0).getId());
-		this.identity.setName(user.getNome());
+                this.identity.setName(user.getNome());
+                this.identity.setOrgao(user.getOrgao().getId());
+                this.identity.setPapeis(new ArrayList<String>());
+                for(Papel p : user.getPapeis()){
+                    this.identity.getPapeis().add(p.getDescricao());
+                }
+                
 	}
 
 	@Override

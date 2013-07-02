@@ -1,52 +1,52 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+                xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
-	<ui:define name="body">
-		<h:form id="pesquisa_form">
-			<div style="heigth: 100px; text-align: center; padding-top: 40px;">
+    <ui:define name="body">
+        <h:form id="pesquisa_form">
+            <div style="heigth: 100px; text-align: center; padding-top: 40px;">
                 <h:inputText autocomplete="true" label="Pesquisar:" value="#{pesquisarMB.searchParam}" />
                 <p:commandButton id="search_button"
-							value="Pesquisar"
-							title="Pesquisar"
-							icon="ui-icon-search"
-							action="#{pesquisarMB.search()}"
-							update=":result_form:panel" />
-                
+                                 value="Pesquisar"
+                                 title="Pesquisar"
+                                 icon="ui-icon-search"
+                                 action="#{pesquisarMB.search()}"
+                                 update=":result_form:panel" />
+
             </div>
-            
-         </h:form>
-         <h:form id="result_form">
-          <h:panelGroup id="panel" style="padding: 10px 10px 10px 50px;">
-				<p:dataTable id="list" value="#{pesquisarMB.lazyModel}"
-						var="item" rowIndexVar="index" lazy="true"
-						paginator="true" paginatorPosition="#{messages['p.data-table.paginator-position']}"
-						first="#{pesquisarMB.first}"
-						rows="#{pesquisarMB.rows}"
-						pageLinks="#{messages['p.data-table.page-links']}"
-						rowsPerPageTemplate="#{messages['p.data-table.rows-per-page-template']}"
-						paginatorTemplate="#{messages['p.data-table.paginator-template']}"
-						currentPageReportTemplate="#{messages['p.data-table.current-page-report-template']}"
-						emptyMessage="#{messages['p.data-table.empty-message']}">		
 
-						<p:column>
-								
-							<h:commandLink action="#{detalharPesquisaMB.detalharServico}" value="#{item.nomeServico}" 
-										   style="font-size: medium; color: #1122CC; cursor: pointer;">
-							   <f:param name="id" value="#{item.idServico}" />
-							</h:commandLink>
-							<br/>
-							<div style="font-size: 0.9em; padding: 5px 10px;">
-								<h:outputText value="#{item.nomeSistema}" /> (<h:outputText value="#{item.nomeOrgao}" />)
-								<br/>
-								<h:outputText value="#{item.nomeDescritor}" />
-							</div>
-							
-						</p:column>
-						
-				</p:dataTable>	
-          </h:panelGroup>
-		</h:form>
+        </h:form>
+        <h:form id="result_form">
+            <h:panelGroup id="panel" style="padding: 10px 10px 10px 50px;" rendered="#{pesquisarMB.rows > 0}">
+                <p:dataTable id="list" value="#{pesquisarMB.lazyModel}"
+                             var="item" rowIndexVar="index" lazy="true"
+                             paginator="true" paginatorPosition="#{messages['p.data-table.paginator-position']}"
+                             first="#{pesquisarMB.first}"
+                             rows="#{pesquisarMB.rows}"
+                             pageLinks="#{messages['p.data-table.page-links']}"
+                             rowsPerPageTemplate="#{messages['p.data-table.rows-per-page-template']}"
+                             paginatorTemplate="#{messages['p.data-table.paginator-template']}"
+                             currentPageReportTemplate="#{messages['p.data-table.current-page-report-template']}"
+                             emptyMessage="#{messages['p.data-table.empty-message']}">		
 
-	</ui:define>
+                    <p:column>
+
+                        <h:commandLink action="#{detalharPesquisaMB.detalharServico}" value="#{item.nomeServico}" 
+                                       style="font-size: medium; color: #1122CC; cursor: pointer;">
+                            <f:param name="id" value="#{item.idServico}" />
+                        </h:commandLink>
+                        <br/>
+                        <div style="font-size: 0.9em; padding: 5px 10px;">
+                            <h:outputText value="#{item.nomeSistema}" /> (<h:outputText value="#{item.nomeOrgao}" />)
+                            <br/>
+                            <h:outputText value="#{item.nomeDescritor}" />
+                        </div>
+
+                    </p:column>
+
+                </p:dataTable>	
+            </h:panelGroup>
+        </h:form>
+
+    </ui:define>
 </ui:composition>

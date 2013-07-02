@@ -10,6 +10,7 @@ import javax.inject.Named;
 import br.gov.frameworkdemoiselle.message.MessageContext;
 import br.gov.frameworkdemoiselle.message.SeverityType;
 import br.gov.frameworkdemoiselle.security.SecurityContext;
+import java.util.List;
 
 @Named
 @SessionScoped
@@ -21,7 +22,9 @@ public class Identity implements Serializable, Principal {
     private String name;
     private String login;
     private String password;
-    private Long idPapel;
+    private Long orgao;
+    private List<String> papeis;
+    
     @Inject
     private SecurityContext securityContext;
     @Inject
@@ -89,11 +92,20 @@ public class Identity implements Serializable, Principal {
         this.id = id;
     }
 
-    public Long getIdPapel() {
-        return idPapel;
+    public Long getOrgao() {
+        return orgao;
     }
 
-    public void setIdPapel(Long idPapel) {
-        this.idPapel = idPapel;
+    public void setOrgao(Long orgao) {
+        this.orgao = orgao;
     }
+
+    public List<String> getPapeis() {
+        return papeis;
+    }
+
+    public void setPapeis(List<String> papeis) {
+        this.papeis = papeis;
+    }
+
 }
