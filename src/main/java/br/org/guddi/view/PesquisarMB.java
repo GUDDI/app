@@ -24,7 +24,7 @@ import br.org.guddi.business.ServicoBC;
 import br.org.guddi.constant.Constants;
 import br.org.guddi.domain.Pesquisa;
 import br.org.guddi.domain.Servico;
-import br.org.guddi.util.searh.SearchFilter;
+import br.org.guddi.util.search.SearchFilter;
 
 
 //@Named

@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
-import br.org.guddi.util.searh.SearchFilter;
+import br.org.guddi.util.search.SearchFilter;
 
 @RunWith(DemoiselleRunner.class)
 public class PesquisarBCTest {

@@ -8,7 +8,7 @@ import br.gov.frameworkdemoiselle.template.DelegateCrud;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.org.guddi.domain.Pesquisa;
 import br.org.guddi.persistence.PesquisaDAO;
-import br.org.guddi.util.searh.SearchFilter;
+import br.org.guddi.util.search.SearchFilter;
 
 @BusinessController
 public class PesquisarBC extends DelegateCrud<Pesquisa, Long, PesquisaDAO> {

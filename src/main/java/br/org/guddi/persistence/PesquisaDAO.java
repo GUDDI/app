@@ -8,7 +8,7 @@ import javax.persistence.Query;
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 import br.org.guddi.domain.Pesquisa;
-import br.org.guddi.util.searh.SearchFilter;
+import br.org.guddi.util.search.SearchFilter;
 
 @PersistenceController
 public class PesquisaDAO extends JPACrud<Pesquisa, Long> {

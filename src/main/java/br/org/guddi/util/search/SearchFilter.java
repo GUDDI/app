@@ -1,4 +1,4 @@
-package br.org.guddi.util.searh;
+package br.org.guddi.util.search;
 
 import java.util.Map;
 
