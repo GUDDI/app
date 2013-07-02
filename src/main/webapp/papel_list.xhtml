@@ -7,10 +7,10 @@
 		<h:form>
 			<p:toolbar>
 				<p:toolbarGroup align="left">
-					<p:commandButton title="#{messages['button.new']}" image="ui-icon-document" action="#{papelListMB.getNextView}"
+					<p:commandButton value="#{messages['button.new']}" icon="ui-icon-document" action="#{papelListMB.getNextView}"
 						actionListener="#{papelListMB.clear}" ajax="false" />
 
-					<p:commandButton title="#{messages['button.delete']}" image="ui-icon-trash" onclick="confirmation.show()"
+					<p:commandButton value="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
 						type="button" immediate="true" ajax="false" />
 
 					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
@@ -22,26 +22,37 @@
 					</p:confirmDialog>
 				</p:toolbarGroup>
 			</p:toolbar>
-			<p:dataTable id="list" var="bean" value="#{papelListMB.resultList}">
-				<f:facet name="header">#{messages['papel.list.table.title']}</f:facet>
-				<p:column style="width:1%;">
-					<h:selectBooleanCheckbox value="#{papelListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
-				</p:column>
-				
-				<p:column style="width:5%;" sortBy="#{bean.id}">
-					<f:facet name="header">#{messages['papel.label.id']}</f:facet>
-					<h:outputText value="#{bean.id}" />
-				</p:column>
+			
+			<fieldset>
+				<div class="widget first">
+					<div class="head">
+						<h5 class="iFrames">#{messages['papel.list.table.title']}</h5>
+					</div>
+					
+					<p:dataTable id="list" var="bean" value="#{papelListMB.resultList}">
+					
+						<p:ajax event="sort" oncomplete="$('form').jqTransform({imgPath:'../images/forms'});"/>
 						
-				<p:column sortBy="#{bean.descricao}">
-					<f:facet name="header">#{messages['papel.label.descricao']}</f:facet>
-					<h:commandLink action="#{papelListMB.getNextView}" actionListener="#{papelListMB.clear}">
-						<h:outputText value="#{bean.descricao}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
+						<p:column style="width:1%;">
+							<h:selectBooleanCheckbox value="#{papelListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
+						</p:column>
 						
-			</p:dataTable>
+						<p:column style="width:5%;" sortBy="#{bean.id}">
+							<f:facet name="header">#{messages['papel.label.id']}</f:facet>
+							<h:outputText value="#{bean.id}" />
+						</p:column>
+								
+						<p:column sortBy="#{bean.descricao}">
+							<f:facet name="header">#{messages['papel.label.descricao']}</f:facet>
+							<h:commandLink action="#{papelListMB.getNextView}" actionListener="#{papelListMB.clear}">
+								<h:outputText value="#{bean.descricao}" />
+								<f:param name="id" value="#{bean.id}" />
+							</h:commandLink>
+						</p:column>
+								
+					</p:dataTable>
+				</div>
+			</fieldset>
 		</h:form>
 
 	</ui:define>

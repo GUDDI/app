@@ -4,16 +4,16 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="crud">
-		<h:form prependId="false">
+		<h:form prependId="false" styleClass="mainForm">
 
 			<p:toolbar>
 				<p:toolbarGroup align="left">
 					<p:commandButton value="#{messages['button.save']}" action="#{papelEditMB.insert}"
-						rendered="#{!papelEditMB.updateMode}" ajax="false" />
+						rendered="#{!papelEditMB.updateMode}" ajax="false" icon="ui-icon-disk"/>
 					<p:commandButton value="#{messages['button.save']}" action="#{papelEditMB.update}"
-						rendered="#{papelEditMB.updateMode}" ajax="false" />
+						rendered="#{papelEditMB.updateMode}" ajax="false"  icon="ui-icon-disk"/>
 					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-						rendered="#{papelEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+						rendered="#{papelEditMB.updateMode}" type="button" immediate="true" ajax="false"  icon="ui-icon-trash"/>
 					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
 						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{papelEditMB.delete}" immediate="true"
@@ -23,22 +23,29 @@
 				</p:toolbarGroup>
 			</p:toolbar>
 
-			<br />
-
-			<p:fieldset legend="#{messages['papel.label']}" toggleable="true" toggleSpeed="500">
-				<h:panelGrid id="fields" columns="3">
+			<fieldset>
+				<div class="widget first">
+					<div class="head">
+						<h5 class="iList">#{messages['papel.label']}</h5>
+					</div>
 					
-					<h:outputLabel value="#{messages['papel.label.id']}: " for="id" styleClass="text-input" />
-					<h:outputText id="id" value="#{papelEditMB.bean.id}" />
-					<p:message for="id" />
+					<div class="rowElem">
+						<h:outputLabel value="#{messages['papel.label.id']}: " for="id" />
+						<div class="formLeft">
+							<h:outputText id="id" value="#{papelEditMB.bean.id}" />
+						</div>
+						<div class="fix"></div>
+					</div>
 					
-					<h:outputLabel value="#{messages['papel.label.descricao']}: " for="descricao" styleClass="text-input" />
-					<h:inputText id="descricao" value="#{papelEditMB.bean.descricao}"
-						title="#{messages['papel.alt.descricao']}" />
-					<p:message for="descricao" />
-					
-				</h:panelGrid>
-			</p:fieldset>
+					<div class="rowElem">
+						<h:outputLabel value="#{messages['papel.label.descricao']}: " for="descricao"/>
+						<div class="formLeft">
+							<h:inputText id="descricao" value="#{papelEditMB.bean.descricao}" title="#{messages['papel.alt.descricao']}" />
+						</div>
+						<div class="fix"></div>
+					</div>
+				</div>
+			</fieldset>
 		</h:form>
 	</ui:define>
 </ui:composition>

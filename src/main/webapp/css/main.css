@@ -458,6 +458,7 @@ html ul.tabs li.activeTab a { color: #797979; }
 .rowElem:first-child { border-top: none; }
 
 .formRight { float: right; width: 528px; margin: 12px 12px 12px 0px; }
+.formLeft { float: left; width: 528px; margin: 12px 12px 12px 0px; }
 .formBottom { /*width: 688px;*/ margin: 12px 12px 12px 0; }
 .rowElem > label { padding: 15px 0; width: 130px; }
 .rowElem .topLabel { padding: 5px 12px 12px 0; }
