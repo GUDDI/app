@@ -1,7 +1,7 @@
 $(function() {
 	
 	//===== Time picker =====//
-	
+	/*
 	$('.timepicker').timeEntry({
 		show24Hours: true, // 24 hours format
 		showSeconds: true, // Show seconds?
@@ -50,13 +50,15 @@ $(function() {
 
 	//===== File manager =====//	
 	
-	$('#fileManager').elfinder({
-		url : 'php/connector.php',
-	})
 	
-
+	//$('#fileManager').elfinder({
+	//	url : 'php/connector.php',
+	//});
+	
+	*/
 	//===== Alert windows =====//
 
+	/*
 	$(".bAlert").click( function() {
 		jAlert('This is a custom alert box. Title and this text can be easily editted', 'Alert Dialog Sample');
 	});
@@ -77,9 +79,11 @@ $(function() {
 		jAlert('You can use HTML, such as <strong>bold</strong>, <em>italics</em>, and <u>underline</u>!');
 	});
 
+	*/
 
 	//===== Accordion =====//		
 	
+	/*
 	$('div.menu_body:eq(0)').show();
 	$('.acc .head:eq(0)').show().css({color:"#2B6893"});
 	
@@ -87,12 +91,11 @@ $(function() {
 		$(this).css({color:"#2B6893"}).next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("slow");
 		$(this).siblings().css({color:"#404040"});
 	});
-	
-	
-	
+	*/
 	
 	//===== WYSIWYG editor =====//
 	
+	/*
 	$('.wysiwyg').wysiwyg({
 		iFrameClass: "wysiwyg-input",
 		controls: {
@@ -186,7 +189,7 @@ $(function() {
 	});
 	
 	//$('.wysiwyg').wysiwyg("insertHtml", "Sample code");
-
+	*/
 
 
 
@@ -196,11 +199,12 @@ $(function() {
 	
 	//===== ToTop =====//
 
-	$().UItoTop({ easingType: 'easeOutQuart' });	
+	//$().UItoTop({ easingType: 'easeOutQuart' });	
 	
 	
 	//===== Spinner options =====//
-	
+
+	/*
 	var itemList = [
 		{url: "http://ejohn.org", title: "John Resig"},
 		{url: "http://bassistance.de/", title: "J&ouml;rn Zaefferer"},
@@ -344,7 +348,7 @@ $(function() {
 		"sPaginationType": "full_numbers",
 		"sDom": '<""f>t<"F"lp>'
 	});
-	
+	*/
 	
 	//===== Form elements styling =====//
 	
@@ -353,11 +357,12 @@ $(function() {
 	
 	//===== Form validation engine =====//
 
-	$("#valid").validationEngine();
+	//$("#valid").validationEngine();
 	
 
 	//===== Datepickers =====//
 
+	/*
 	$( ".datepicker" ).datepicker({ 
 		defaultDate: +7,
 		autoSize: true,
@@ -611,7 +616,7 @@ $(function() {
 		speed: 200
 	});
 	
-	
+	*/
 
 
 
@@ -620,7 +625,7 @@ $(function() {
 
 
 	/* Lines */
-	
+	/*
 	$(function () {
     var sin = [], cos = [];
     for (var i = 0; i < 10; i += 0.5) {
@@ -689,9 +694,10 @@ $(function() {
 });
 
 
-
+*/
 	/* Lines with autodrowing */
 
+	/*
 	$(function () {
 		// we use an inline data source in the example, usually data would
 		// be fetched from a server
@@ -761,10 +767,11 @@ $(function() {
 		update();
 	});
 
-
+*/
 
 	/* Bars */
 
+	/*
 	$(function () {
     var d2 = [[0.6, 29], [2.6, 13], [4.6, 46], [6.6, 30], [8.6, 48], [10.6, 22], [12.6, 40], [14.6, 32], [16.6, 39], [18.6, 16], [20.6, 27], [22.6, 22], [24.6, 2], [26.6, 45], [28.6, 23], [30.6, 28], [32.6, 30], [34.6, 40], [36.6, 20], [38.6, 47], [40.6, 12], [42.6, 49], [44.6, 28], [46.6, 15], [48.6, 24]];
 	
@@ -788,13 +795,14 @@ $(function() {
 
 	});
 
-
+*/
 
 
 
 
 	/* Pie charts */
-	
+
+	/*
 	$(function () {
 		var data = [];
 		var series = Math.floor(Math.random()*10)+1;
@@ -871,6 +879,7 @@ $(function() {
 		percent = parseFloat(obj.series.percent).toFixed(2);
 		alert(''+obj.series.label+': '+percent+'%');
 	}
+	*/
 
 	
 });
