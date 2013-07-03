@@ -4,7 +4,7 @@ import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 
 import br.org.guddi.domain.Papel;
-import br.org.guddi.domain.Recursos;
+import br.org.guddi.domain.Recurso;
 
 @PersistenceController
 public class PapelDAO extends JPACrud<Papel, Long> {

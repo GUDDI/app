@@ -24,10 +24,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(catalog = "guddi", schema = "guddi")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Recursos.findAll", query = "SELECT r FROM Recursos r"),
-    @NamedQuery(name = "Recursos.findById", query = "SELECT r FROM Recursos r WHERE r.id = :id"),
-    @NamedQuery(name = "Recursos.findByNome", query = "SELECT r FROM Recursos r WHERE r.nome = :nome")})
-public class Recursos implements Serializable {
+    @NamedQuery(name = "Recurso.findAll", query = "SELECT r FROM Recurso r"),
+    @NamedQuery(name = "Recurso.findById", query = "SELECT r FROM Recurso r WHERE r.id = :id"),
+    @NamedQuery(name = "Recurso.findByNome", query = "SELECT r FROM Recurso r WHERE r.nome = :nome")})
+public class Recurso implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -38,10 +38,10 @@ public class Recursos implements Serializable {
     @Column(length = 50)
     private String nome;
 
-    public Recursos() {
+    public Recurso() {
     }
 
-    public Recursos(Long id) {
+    public Recurso(Long id) {
         this.id = id;
     }
 
@@ -71,10 +71,10 @@ public class Recursos implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Recursos)) {
+        if (!(object instanceof Recurso)) {
             return false;
         }
-        Recursos other = (Recursos) object;
+        Recurso other = (Recurso) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -83,7 +83,7 @@ public class Recursos implements Serializable {
 
     @Override
     public String toString() {
-        return "br.org.guddi.domain.Recursos[ id=" + id + " ]";
+        return "br.org.guddi.domain.Recurso[ id=" + id + " ]";
     }
 
 }

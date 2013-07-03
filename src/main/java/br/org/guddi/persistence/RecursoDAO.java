@@ -4,19 +4,19 @@ import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 
 import br.org.guddi.domain.Orgao;
-import br.org.guddi.domain.Recursos;
+import br.org.guddi.domain.Recurso;
 
 @PersistenceController
-public class RecursosDAO extends JPACrud<Recursos, Long> {
+public class RecursoDAO extends JPACrud<Recurso, Long> {
 
 	private static final long serialVersionUID = 1L;
 
-        public Recursos load(String nome){
-            return (Recursos) getEntityManager().createNamedQuery("Recursos.findByNome").setParameter("nome", nome).getSingleResult();
+        public Recurso load(String nome){
+            return (Recurso) getEntityManager().createNamedQuery("Recurso.findByNome").setParameter("nome", nome).getSingleResult();
         }
 
         public void clear(){
-            for (Recursos object : findAll()) {
+            for (Recurso object : findAll()) {
                 delete(object.getId());
             }
         }

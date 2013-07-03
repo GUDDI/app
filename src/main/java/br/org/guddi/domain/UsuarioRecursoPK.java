@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * @author escritorio
  */
 @Embeddable
-public class UsuarioRecursosPK implements Serializable {
+public class UsuarioRecursoPK implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_usuario", nullable = false)
@@ -25,10 +25,10 @@ public class UsuarioRecursosPK implements Serializable {
     @Column(nullable = false)
     private Integer recursos;
 
-    public UsuarioRecursosPK() {
+    public UsuarioRecursoPK() {
     }
 
-    public UsuarioRecursosPK(Long idUsuario, Integer recursos) {
+    public UsuarioRecursoPK(Long idUsuario, Integer recursos) {
         this.idUsuario = idUsuario;
         this.recursos = recursos;
     }
@@ -60,10 +60,10 @@ public class UsuarioRecursosPK implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UsuarioRecursosPK)) {
+        if (!(object instanceof UsuarioRecursoPK)) {
             return false;
         }
-        UsuarioRecursosPK other = (UsuarioRecursosPK) object;
+        UsuarioRecursoPK other = (UsuarioRecursoPK) object;
         if (this.idUsuario != other.idUsuario) {
             return false;
         }
@@ -75,7 +75,7 @@ public class UsuarioRecursosPK implements Serializable {
 
     @Override
     public String toString() {
-        return "br.org.guddi.domain.UsuarioRecursosPK[ idUsuario=" + idUsuario + ", recursos=" + recursos + " ]";
+        return "br.org.guddi.domain.UsuarioRecursoPK[ idUsuario=" + idUsuario + ", recursos=" + recursos + " ]";
     }
 
 }

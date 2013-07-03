@@ -5,7 +5,7 @@ import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.template.DelegateCrud;
 import br.org.guddi.domain.Papel;
-import br.org.guddi.domain.Recursos;
+import br.org.guddi.domain.Recurso;
 import br.org.guddi.persistence.PapelDAO;
 import br.org.guddi.security.IRoles;
 import br.org.guddi.security.Resources;

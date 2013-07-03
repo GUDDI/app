@@ -7,10 +7,10 @@ package br.org.guddi.business;
 import br.gov.frameworkdemoiselle.lifecycle.Startup;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.org.guddi.domain.Papel;
-import br.org.guddi.domain.Recursos;
+import br.org.guddi.domain.Recurso;
 import br.org.guddi.domain.Usuario;
 import br.org.guddi.persistence.PapelDAO;
-import br.org.guddi.persistence.RecursosDAO;
+import br.org.guddi.persistence.RecursoDAO;
 import br.org.guddi.persistence.UsuarioDAO;
 import br.org.guddi.security.Resources;
 import br.org.guddi.security.Roles;
@@ -27,7 +27,7 @@ public class SecurityBC {
     @Inject
     private UsuarioDAO usuarioDAO;
     @Inject
-    private RecursosDAO recursosDAO;
+    private RecursoDAO recursoDAO;
     @Inject
     private PapelDAO papelDAO;
 
@@ -37,15 +37,15 @@ public class SecurityBC {
 
     @Startup
     public void loadDataRecursos() {
-//        recursosDAO.clear();
+//        recursoDAO.clear();
 //        List<String> lista = Resources.getResourcesList();
 //        for (String recursos : lista) {
-//            Recursos rec = recursosDAO.load(recursos);
+//            Recurso rec = recursoDAO.load(recursos);
 //            if (rec == null) {
-//                rec = new Recursos();
+//                rec = new Recurso();
 //                rec.setId(Resources.getResource(recursos));
 //                rec.setNome(recursos);
-//                recursosDAO.insert(rec);
+//                recursoDAO.insert(rec);
 //            }
 //
 //        }
