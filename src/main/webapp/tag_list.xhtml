@@ -28,31 +28,31 @@
 					<div class="head">
 						<h5 class="iFrames">#{messages['tag.list.table.title']}</h5>
 					</div>
+			
+					<p:dataTable id="list" var="bean" value="#{tagListMB.resultList}">
+						
+						<p:ajax event="sort" oncomplete="$('form').jqTransform({imgPath:'../images/forms'});"/>
+					
+						<p:column style="width:1%;">
+							<h:selectBooleanCheckbox value="#{tagListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
+						</p:column>
+						
+						<p:column style="width:5%;" sortBy="#{bean.id}">
+							<f:facet name="header">#{messages['tag.label.id']}</f:facet>
+							<h:outputText value="#{bean.id}" />
+						</p:column>
+								
+						<p:column sortBy="#{bean.tag}">
+							<f:facet name="header">#{messages['tag.label.tag']}</f:facet>
+							<h:commandLink action="#{tagListMB.getNextView}" actionListener="#{tagListMB.clear}">
+								<h:outputText value="#{bean.tag}" />
+								<f:param name="id" value="#{bean.id}" />
+							</h:commandLink>
+						</p:column>
+								
+					</p:dataTable>
 				</div>
 			</fieldset>
-			
-			<p:dataTable id="list" var="bean" value="#{tagListMB.resultList}">
-				
-				<p:ajax event="sort" oncomplete="$('form').jqTransform({imgPath:'../images/forms'});"/>
-			
-				<p:column style="width:1%;">
-					<h:selectBooleanCheckbox value="#{tagListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
-				</p:column>
-				
-				<p:column style="width:5%;" sortBy="#{bean.id}">
-					<f:facet name="header">#{messages['tag.label.id']}</f:facet>
-					<h:outputText value="#{bean.id}" />
-				</p:column>
-						
-				<p:column sortBy="#{bean.tag}">
-					<f:facet name="header">#{messages['tag.label.tag']}</f:facet>
-					<h:commandLink action="#{tagListMB.getNextView}" actionListener="#{tagListMB.clear}">
-						<h:outputText value="#{bean.tag}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-						
-			</p:dataTable>
 		</h:form>
 
 	</ui:define>
