@@ -24,7 +24,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author 05081364908
  */
 @Entity
-@Table(catalog = "guddi", schema = "guddi")
+//@Table(catalog = "guddi", schema = "guddi")
+@Table
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
@@ -40,7 +41,7 @@ public class Usuario implements Serializable {
     private Long id;
     
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "usuario_papel", catalog = "guddi", schema = "guddi",
+    @JoinTable(name = "usuario_papel",
             joinColumns = {
         @JoinColumn(name = "id_usuario", nullable = false, updatable = false)},
             inverseJoinColumns = {

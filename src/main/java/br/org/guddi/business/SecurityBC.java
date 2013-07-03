@@ -16,6 +16,7 @@ import br.org.guddi.security.Resources;
 import br.org.guddi.security.Roles;
 import java.util.List;
 import javax.inject.Inject;
+import javax.persistence.NoResultException;
 
 /**
  *
@@ -35,36 +36,44 @@ public class SecurityBC {
         return usuarioDAO.findByLogin(login);
     }
 
-    @Startup
+    //@Startup
     public void loadDataRecursos() {
-//        recursoDAO.clear();
-//        List<String> lista = Resources.getResourcesList();
-//        for (String recursos : lista) {
-//            Recurso rec = recursoDAO.load(recursos);
-//            if (rec == null) {
-//                rec = new Recurso();
-//                rec.setId(Resources.getResource(recursos));
-//                rec.setNome(recursos);
-//                recursoDAO.insert(rec);
-//            }
-//
-//        }
+        recursoDAO.clear();
+        List<String> lista = Resources.getResourcesList();
+        for (String recursos : lista) {
+            Recurso rec = recursoDAO.load(recursos);
+            if (rec == null) {
+                rec = new Recurso();
+                rec.setId(Resources.getResource(recursos));
+                rec.setNome(recursos);
+                recursoDAO.insert(rec);
+            }
+
+        }
     }
 
     @Startup
     public void loadDataRoles() {
-//        papelDAO.clear();
-//        List<String> lista = Roles.getRole();
-//        for (String papel : lista) {
-//            Papel pap = papelDAO.load(papel);
-//            if (pap == null) {
-//                pap = new Papel();
-//                pap.setId(Resources.getResource(papel));
-//                pap.setDescricao(papel);
-//                papelDAO.insert(pap);
-//            }
-//
-//        }
+        //papelDAO.clear();
+        List<String> lista = Roles.getRole();
+        for (String papel : lista) {
+        	Papel pap = null;
+        	
+        	try{
+        		pap = papelDAO.load(papel);
+        	}
+        	catch(NoResultException e){
+        		
+        	}
+        	
+            if (pap == null) {
+                pap = new Papel();
+                pap.setId(Roles.getRole(papel));
+                pap.setDescricao(papel);
+                papelDAO.insert(pap);
+            }
+
+        }
     }
 
     public Boolean hasRole(Long idUsuario, Long idRole) {

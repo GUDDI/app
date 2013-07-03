@@ -32,7 +32,8 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author 05081364908
  */
 @Entity
-@Table(catalog = "guddi", schema = "guddi")
+//@Table(catalog = "guddi", schema = "guddi")
+@Table
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Descritor.findAll", query = "SELECT d FROM Descritor d"),
@@ -61,7 +62,7 @@ public class Descritor implements Serializable {
     private Set<Servico> servicos;
     
 	@ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "descritor_tag", catalog = "guddi", schema = "guddi",
+    @JoinTable(name = "descritor_tag",
             joinColumns = {
         @JoinColumn(name = "id_descritor", nullable = false, updatable = false)},
             inverseJoinColumns = {

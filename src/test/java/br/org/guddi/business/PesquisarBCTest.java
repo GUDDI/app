@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 import br.org.guddi.util.search.SearchFilter;
 
-@RunWith(DemoiselleRunner.class)
+//@RunWith(DemoiselleRunner.class)
 public class PesquisarBCTest {
 
 	@Inject

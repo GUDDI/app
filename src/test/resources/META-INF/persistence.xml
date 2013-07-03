@@ -5,7 +5,7 @@
 
 	<!-- If you are using tomcat6/tomcat7/junit then use this persistence-unit -->
 	<!-- -->
-	<persistence-unit name="bookmark-ds" transaction-type="RESOURCE_LOCAL">
+	<persistence-unit name="guddi-ds" transaction-type="RESOURCE_LOCAL">
 
 		<class>br.org.guddi.domain.Tag</class>
 		<class>br.org.guddi.domain.Atributo</class>

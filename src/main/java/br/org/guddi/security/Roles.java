@@ -54,6 +54,7 @@ public class Roles implements IRoles {
         list.add(USER);
         list.add(MANAGER);
         list.add(ADMINISTRATOR);
+        list.add(INVALID);
         return list;
     }
 
@@ -68,6 +69,9 @@ public class Roles implements IRoles {
         }
         if (listRole.contains(ADMINISTRATOR)) {
             number = number + 4L;
+        }
+        if (listRole.contains(INVALID)) {
+            number = number + 8L;
         }
 
         return number;

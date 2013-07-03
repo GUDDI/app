@@ -26,14 +26,14 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
     }
 
     public Boolean hasRole(Long idUsuario, Long idRole) {
-        return (Boolean) getEntityManager().createNativeQuery("SELECT COUNT(1) > 0 FROM guddi.usuario_papel WHERE id_usuario = :idUser AND id_papel = :role")
+        return (Boolean) getEntityManager().createNativeQuery("SELECT COUNT(1) > 0 FROM usuario_papel WHERE id_usuario = :idUser AND id_papel = :role")
                 .setParameter("idUser", idUsuario)
                 .setParameter("role", idRole)
                 .getSingleResult();
     }
 
     public Integer hasPermission(Long idUsuario, Long idResource){
-        return (Integer) getEntityManager().createNativeQuery("SELECT operacao FROM guddi.usuario_recursos ur WHERE id_usuario = :idUser AND id_recursos = :resource")
+        return (Integer) getEntityManager().createNativeQuery("SELECT operacao FROM usuario_recursos ur WHERE id_usuario = :idUser AND id_recursos = :resource")
                 .setParameter("idUser", idUsuario)
                 .setParameter("resource", idResource)
                 .getSingleResult();

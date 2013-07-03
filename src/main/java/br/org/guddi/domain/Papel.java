@@ -29,7 +29,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 
 @Entity
-@Table(catalog = "guddi", schema = "guddi")
+//@Table(catalog = "guddi", schema = "guddi")
+@Table
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Papel.findAll", query = "SELECT p FROM Papel p"),
@@ -41,7 +42,7 @@ public class Papel implements Serializable{
 	private static final long serialVersionUID = -9146098310699200511L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
 	@Size(max = 20)
