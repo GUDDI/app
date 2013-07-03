@@ -4,16 +4,22 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="crud">
-		<h:form prependId="false">
+		<h:form prependId="false" styleClass="mainForm">
 
 			<p:toolbar>
 				<p:toolbarGroup align="left">
 					<p:commandButton value="#{messages['button.save']}" action="#{tagEditMB.insert}"
-						rendered="#{!tagEditMB.updateMode}" ajax="false" />
+						rendered="#{!tagEditMB.updateMode}" ajax="false" icon="ui-icon-disk"/>
+						
 					<p:commandButton value="#{messages['button.save']}" action="#{tagEditMB.update}"
-						rendered="#{tagEditMB.updateMode}" ajax="false" />
+						rendered="#{tagEditMB.updateMode}" ajax="false" icon="ui-icon-disk"/>
+						
 					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-						rendered="#{tagEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+						rendered="#{tagEditMB.updateMode}" type="button" immediate="true" ajax="false" icon="ui-icon-trash"/>
+						
+					<p:commandButton value="#{messages['button.back']}" action="tag_list.jsf" icon="ui-icon-circle-arrow-w"
+						immediate="true" ajax="false"/>
+					
 					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
 						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{tagEditMB.delete}" immediate="true"
@@ -23,27 +29,32 @@
 				</p:toolbarGroup>
 			</p:toolbar>
 
-			<br />
+			
+			<fieldset>
+				<div class="widget first">
+					<div class="head">
+						<h5 class="iList">#{messages['tag.label']}</h5>
+					</div>
+					
+					<div class="rowElem">
+						<h:outputLabel value="#{messages['tag.label.id']}: " for="id"/>
+						<div class="formLeft">
+							<h:outputText id="id" value="#{tagEditMB.bean.id}" />
+						</div>
+						<div class="fix"></div>
+					</div>
+					
+					<div class="rowElem">
+						<h:outputLabel value="#{messages['tag.label.tag']}: " for="tag"/>
+						<div class="formLeft">
+							<h:inputText id="tag" value="#{tagEditMB.bean.tag}" title="#{messages['tag.alt.tag']}" />
+						</div>
+						<div class="fix"></div>
+					</div>
+					
+				</div>
+			</fieldset>
 
-			<p:fieldset legend="#{messages['tag.label']}" toggleable="true" toggleSpeed="500">
-				<h:panelGrid id="fields" columns="3">
-					
-					<h:outputLabel value="#{messages['tag.label.id']}: " for="id" styleClass="text-input" />
-					<h:outputText id="id" value="#{tagEditMB.bean.id}" />
-					<p:message for="id" />
-					
-					<h:outputLabel value="#{messages['tag.label.tag']}: " for="tag" styleClass="text-input" />
-					<h:inputText id="tag" value="#{tagEditMB.bean.tag}"
-						title="#{messages['tag.alt.tag']}" />
-					<p:message for="tag" />
-					
-					<h:outputLabel value="#{messages['tag.label.descritor']}: " for="descritor" styleClass="text-input" />
-					<h:inputText id="descritor" value="#{tagEditMB.bean.descritor}"
-						title="#{messages['tag.alt.descritor']}" />
-					<p:message for="descritor" />
-					
-				</h:panelGrid>
-			</p:fieldset>
 		</h:form>
 	</ui:define>
 </ui:composition>

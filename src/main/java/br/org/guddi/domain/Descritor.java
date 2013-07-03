@@ -14,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -58,7 +60,12 @@ public class Descritor implements Serializable {
 	@OneToMany(mappedBy = "descritor", fetch = FetchType.LAZY)
     private Set<Servico> servicos;
     
-	@OneToMany(mappedBy = "descritor", fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "descritor_tag", catalog = "guddi", schema = "guddi",
+            joinColumns = {
+        @JoinColumn(name = "id_descritor", nullable = false, updatable = false)},
+            inverseJoinColumns = {
+        @JoinColumn(name = "id_tag", nullable = false, updatable = false)})
     private Set<Tag> tags;
 
     public Descritor() {
