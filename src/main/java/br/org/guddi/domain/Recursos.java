@@ -85,5 +85,5 @@ public class Recursos implements Serializable {
     public String toString() {
         return "br.org.guddi.domain.Recursos[ id=" + id + " ]";
     }
-    
+
 }

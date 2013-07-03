@@ -34,7 +34,7 @@ public class UsuarioRecursos implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)
-    private int operacao;
+    private Integer operacao;
 
     public UsuarioRecursos() {
     }
@@ -43,12 +43,12 @@ public class UsuarioRecursos implements Serializable {
         this.usuarioRecursosPK = usuarioRecursosPK;
     }
 
-    public UsuarioRecursos(UsuarioRecursosPK usuarioRecursosPK, int operacao) {
+    public UsuarioRecursos(UsuarioRecursosPK usuarioRecursosPK, Integer operacao) {
         this.usuarioRecursosPK = usuarioRecursosPK;
         this.operacao = operacao;
     }
 
-    public UsuarioRecursos(long idUsuario, int recursos) {
+    public UsuarioRecursos(Long idUsuario, Integer recursos) {
         this.usuarioRecursosPK = new UsuarioRecursosPK(idUsuario, recursos);
     }
 
@@ -60,11 +60,11 @@ public class UsuarioRecursos implements Serializable {
         this.usuarioRecursosPK = usuarioRecursosPK;
     }
 
-    public int getOperacao() {
+    public Integer getOperacao() {
         return operacao;
     }
 
-    public void setOperacao(int operacao) {
+    public void setOperacao(Integer operacao) {
         this.operacao = operacao;
     }
 
@@ -92,5 +92,5 @@ public class UsuarioRecursos implements Serializable {
     public String toString() {
         return "br.org.guddi.domain.UsuarioRecursos[ usuarioRecursosPK=" + usuarioRecursosPK + " ]";
     }
-    
+
 }

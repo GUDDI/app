@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import br.gov.frameworkdemoiselle.security.AuthenticationException;
 import br.gov.frameworkdemoiselle.security.Authenticator;
 import br.gov.frameworkdemoiselle.security.SecurityContext;
-import br.org.guddi.business.UsuarioBC;
+import br.org.guddi.business.SecurityBC;
 import br.org.guddi.domain.Papel;
 import br.org.guddi.domain.Usuario;
 import br.org.guddi.util.CriptografiaUtil;
@@ -22,17 +22,17 @@ public class MyAuthenticator implements Authenticator {
 
 	@Inject
 	private Identity identity;
-	
+
 	@Inject
-	private UsuarioBC usuarioBC;
-	
+	private SecurityBC securityBC;
+
 	@Inject
 	private SecurityContext securityContext;
 
 	@Override
 	public void authenticate() throws AuthenticationException {
-		Usuario user = usuarioBC.findByLogin(identity.getLogin());
-		
+		Usuario user = securityBC.findByLogin(identity.getLogin());
+
 		if(user == null) {
 			throw new AuthenticationException("O login falhou.");
 		} else {
@@ -40,7 +40,7 @@ public class MyAuthenticator implements Authenticator {
 				throw new AuthenticationException("O login falhou.");
 			}
 		}
-		
+
 		this.identity.setId(user.getId());
                 this.identity.setName(user.getNome());
                 this.identity.setOrgao(user.getOrgao().getId());
@@ -48,7 +48,7 @@ public class MyAuthenticator implements Authenticator {
                 for(Papel p : user.getPapeis()){
                     this.identity.getPapeis().add(p.getDescricao());
                 }
-                
+
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class MyAuthenticator implements Authenticator {
 
 	@Override
 	public Principal getUser() {
-		
+
 		if (this.identity != null && this.identity.getId() != null) {
 			return this.identity;
 		}

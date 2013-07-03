@@ -19,25 +19,25 @@ public class UsuarioRecursosPK implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_usuario", nullable = false)
-    private long idUsuario;
+    private Long idUsuario;
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)
-    private int recursos;
+    private Integer recursos;
 
     public UsuarioRecursosPK() {
     }
 
-    public UsuarioRecursosPK(long idUsuario, int recursos) {
+    public UsuarioRecursosPK(Long idUsuario, Integer recursos) {
         this.idUsuario = idUsuario;
         this.recursos = recursos;
     }
 
-    public long getIdUsuario() {
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(long idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -45,15 +45,15 @@ public class UsuarioRecursosPK implements Serializable {
         return recursos;
     }
 
-    public void setRecursos(int recursos) {
+    public void setRecursos(Integer recursos) {
         this.recursos = recursos;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) idUsuario;
-        hash += (int) recursos;
+        hash += (Long) idUsuario;
+        hash += (Integer) recursos;
         return hash;
     }
 
@@ -77,5 +77,5 @@ public class UsuarioRecursosPK implements Serializable {
     public String toString() {
         return "br.org.guddi.domain.UsuarioRecursosPK[ idUsuario=" + idUsuario + ", recursos=" + recursos + " ]";
     }
-    
+
 }
