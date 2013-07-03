@@ -5,15 +5,13 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -38,19 +36,12 @@ public class Tag implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @NotNull
-    @Column(nullable = false)
     private Long id;
     
 	@Size(max = 15)
     @Column(length = 15)
     private String tag;
     
-	@JoinColumn(name = "id_descritor", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Descritor descritor;  
-
     public Tag() {
     }
 
@@ -73,14 +64,6 @@ public class Tag implements Serializable {
     public void setTag(String tag) {
         this.tag = tag;
     }
-
-	public Descritor getDescritor() {
-		return descritor;
-	}
-
-	public void setDescritor(Descritor descritor) {
-		this.descritor = descritor;
-	}
 
 	@Override
     public int hashCode() {
