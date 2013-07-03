@@ -5,22 +5,29 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Basic;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author 05081364908
  */
+
 @Entity
 @Table(catalog = "guddi", schema = "guddi")
 @XmlRootElement
@@ -28,7 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Papel.findAll", query = "SELECT p FROM Papel p"),
     @NamedQuery(name = "Papel.findById", query = "SELECT p FROM Papel p WHERE p.id = :id"),
     @NamedQuery(name = "Papel.findByDescricao", query = "SELECT p FROM Papel p WHERE p.descricao = :descricao")})
-public class Papel implements Serializable {
+public class Papel implements Serializable{
+   
     
 	private static final long serialVersionUID = -9146098310699200511L;
 
@@ -88,4 +96,4 @@ public class Papel implements Serializable {
         return "br.gov.frameworkdemoiselle.guddi.domain.Papel[ id=" + id + " ]";
     }
 
-}
+   }

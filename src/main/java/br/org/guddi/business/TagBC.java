@@ -6,10 +6,10 @@ import br.gov.frameworkdemoiselle.template.DelegateCrud;
 
 import br.org.guddi.domain.Tag;
 import br.org.guddi.persistence.TagDAO;
-import br.org.guddi.security.Papeis;
+import br.org.guddi.security.IRoles;
 
 @BusinessController
-@RequiredRole(value = Papeis.ADMINISTRADOR)
+@RequiredRole(value = IRoles.ADMINISTRATOR)
 public class TagBC extends DelegateCrud<Tag, Long, TagDAO> {
 	
 	private static final long serialVersionUID = 1L;

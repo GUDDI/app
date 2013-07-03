@@ -16,16 +16,7 @@ public class UsuarioBC extends DelegateCrud<Usuario, Long, UsuarioDAO> {
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Inject
-	private EntityManager em;
-	
 	public Usuario findByLogin(String login) {
-		try {
-			return (Usuario) em.createNamedQuery("Usuario.findByUsuario").setParameter("usuario", login).getSingleResult();
-		} catch (NonUniqueResultException e) {
-			return null;
-		} catch (NoResultException e) {
-			return null;
-		}
+		return getDelegate().findByLogin(login);
 	}
 }

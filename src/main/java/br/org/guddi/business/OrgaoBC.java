@@ -6,10 +6,10 @@ import br.gov.frameworkdemoiselle.template.DelegateCrud;
 
 import br.org.guddi.domain.Orgao;
 import br.org.guddi.persistence.OrgaoDAO;
-import br.org.guddi.security.Papeis;
+import br.org.guddi.security.IRoles;
 
 @BusinessController
-@RequiredRole(value = Papeis.ADMINISTRADOR)
+@RequiredRole(value = IRoles.ADMINISTRATOR)
 public class OrgaoBC extends DelegateCrud<Orgao, Long, OrgaoDAO> {
 	
 	private static final long serialVersionUID = 1L;

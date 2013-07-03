@@ -4,7 +4,6 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import br.gov.frameworkdemoiselle.security.Authorizer;
-import br.gov.frameworkdemoiselle.security.SecurityContext;
 
 /**
 * @author thiago.soares
@@ -15,31 +14,32 @@ public class MyAuthorizer implements Authorizer {
 	
 	@Inject
 	private Identity identity;
+        
+        @Inject
+        private EntityManager em;
 	
 	@Override
 	public boolean hasRole(String role) {
 		
-//		Boolean hasRole = (Boolean) em.createNativeQuery("SELECT COUNT(1) > 0 FROM usuario_papel up JOIN papel p ON p.id = up.id_papel " +
-//													     "WHERE up.id_usuario = :idUser AND p.descricao = :role ")
-//						   .setParameter("idUser", identity.getId())			     
-//						   .setParameter("role", role)
-//						   .getSingleResult();
+		Boolean hasRole = (Boolean) em.createNativeQuery("SELECT COUNT(1) > 0 FROM guddi.usuario_papel WHERE id_usuario = :idUser AND id_papel = :role")
+						   .setParameter("idUser", identity.getId())			     
+						   .setParameter("role", Roles.getOperation(role))
+						   .getSingleResult();
             
-           Boolean hasRole = identity.getPapeis().contains(role);
+//           Boolean hasRole = identity.getPapeis().contains(role);
 		
 		return hasRole;
 	}
-
-	@Override //TODO Discutir essa implementacao. O que seriam resource e operation na visão de Papel
+        
+	@Override 
 	public boolean hasPermission(String resource, String operation) {
-//		Boolean hasRole = (Boolean) em.createNativeQuery("SELECT COUNT(1) > 0 FROM usuario_papel up JOIN papel p ON p.id = up.id_papel " +
-//														 "WHERE up.id_usuario = :idUser AND (p.descricao = :resource OR p.descricao = :operation)")
-//				   .setParameter("idUser", identity.getId())			     
-//				   .setParameter("resource", resource)
-//				   .setParameter("operation", operation)
-//				   .getSingleResult();
-                Boolean hasRole = (identity.getPapeis().contains(resource) || identity.getPapeis().contains(operation));
-		return hasRole;
+		Integer retorno = (Integer) em.createNativeQuery("SELECT operacao FROM guddi.usuario_recursos ur WHERE id_usuario = :idUser AND id_recursos = :resource")
+				   .setParameter("idUser", identity.getId())			     
+				   .setParameter("resource", Resources.getResource(resource))
+				   .getSingleResult();
+//                Boolean hasRole = (identity.getPapeis().contains(resource) || identity.getPapeis().contains(operation));
+                
+		return Operations.listOperations(retorno).contains(operation);
 	}
 
 }
