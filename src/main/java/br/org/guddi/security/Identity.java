@@ -24,7 +24,7 @@ public class Identity implements Serializable, Principal {
     private String password;
     private Long orgao;
     private List<String> papeis;
-    
+
     @Inject
     private SecurityContext securityContext;
     @Inject
@@ -33,7 +33,7 @@ public class Identity implements Serializable, Principal {
     public String login() {
         try {
             securityContext.login();
-            return "index.jsf";
+            return "index.html";
         } catch (Exception e) {
             e.printStackTrace();
             messageContext.add(e.getMessage(), SeverityType.ERROR);
