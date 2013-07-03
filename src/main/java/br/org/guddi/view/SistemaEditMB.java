@@ -1,46 +1,97 @@
 package br.org.guddi.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import br.gov.frameworkdemoiselle.annotation.PreviousView;
+
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
-import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
-import br.gov.frameworkdemoiselle.transaction.Transactional;
+import br.org.guddi.business.OrgaoBC;
 import br.org.guddi.business.SistemaBC;
+import br.org.guddi.domain.Descritor;
+import br.org.guddi.domain.Orgao;
 import br.org.guddi.domain.Sistema;
 
 @ViewController
-@PreviousView("./sistema_list.jsf")
-public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
+public class SistemaEditMB {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private SistemaBC sistemaBC;
 	
-	@Override
-	@Transactional
-	public String delete() {
-		this.sistemaBC.delete(getId());
-		return getPreviousView();
+	@Inject
+	private OrgaoBC orgaoBC;
+	
+	private Descritor descritor;
+
+	@Inject
+	private Orgao orgao;
+
+	@Inject
+	private Sistema sistema;
+	
+	private List<Descritor> desc;
+	
+	
+	
+	@PostConstruct
+	public void inicia(){
+		this.descritor = new Descritor();
+	}
+
+	public void delete(){
 	}
 	
-	@Override
-	@Transactional
-	public String insert() {
-		this.sistemaBC.insert(getBean());
-		return getPreviousView();
+	public void insert(){
 	}
 	
-	@Override
-	@Transactional
-	public String update() {
-		this.sistemaBC.update(getBean());
-		return getPreviousView();
+	public List<Orgao> getOrgaos() {
+		return orgaoBC.findAll();
+	}
+
+	public List<Descritor> getDescritores() {
+		if(desc == null)
+			desc = new ArrayList<Descritor>();
+		return desc;
 	}
 	
-	@Override
-	protected void handleLoad() {
-		setBean(this.sistemaBC.load(getId()));
+	public void adicionaDescritor() {
+		desc.add(this.descritor);
+		this.descritor = new Descritor();
+		
 	}
+
+	public Descritor getDescritor() {
+		return descritor;
+	}
+
+	public void setDescritor(Descritor descritor) {
+		this.descritor = descritor;
+	}
+	
+	public void removeDescritor(Integer index){
+		this.desc.remove(index);
+	}
+
+	public Orgao getOrgao() {
+		return orgao;
+	}
+
+	public void setOrgao(Orgao orgao) {
+		this.orgao = orgao;
+	}
+
+	public Sistema getSistema() {
+		return sistema;
+	}
+
+	public void setSistema(Sistema sistema) {
+		this.sistema = sistema;
+	}
+	
+	
+
 
 }
