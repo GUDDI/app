@@ -66,16 +66,16 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
-    public Papel getPapeis() {
+    public Papel getPapel() {
         return papel;
     }
 
     /**
      *
-     * @param papeis
+     * @param papel
      */
-    public void setPapeis(Papel papeis) {
-        this.papel = papeis;
+    public void setPapel(Papel papel) {
+        this.papel = papel;
     }
 
     /**

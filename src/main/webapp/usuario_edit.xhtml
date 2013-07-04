@@ -4,16 +4,20 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="crud">
-		<h:form prependId="false">
+		<h:form prependId="false" styleClass="mainForm">
 
 			<p:toolbar>
 				<p:toolbarGroup align="left">
 					<p:commandButton value="#{messages['button.save']}" action="#{usuarioEditMB.insert}"
-						rendered="#{!usuarioEditMB.updateMode}" ajax="false" />
+						rendered="#{!usuarioEditMB.updateMode}" ajax="false" icon="ui-icon-disk"/>
 					<p:commandButton value="#{messages['button.save']}" action="#{usuarioEditMB.update}"
-						rendered="#{usuarioEditMB.updateMode}" ajax="false" />
+						rendered="#{usuarioEditMB.updateMode}" ajax="false" icon="ui-icon-disk"/>
 					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-						rendered="#{usuarioEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+						rendered="#{usuarioEditMB.updateMode}" type="button" immediate="true" ajax="false" icon="ui-icon-trash"/>
+						
+					<p:commandButton value="#{messages['button.back']}" action="usuario_list.jsf" icon="ui-icon-circle-arrow-w"
+						immediate="true" ajax="false"/>
+						
 					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
 						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{usuarioEditMB.delete}" immediate="true"
@@ -23,42 +27,55 @@
 				</p:toolbarGroup>
 			</p:toolbar>
 
-			<br />
+			<fieldset>
+				<div class="widget first">
+					<div class="head">
+						<h5 class="iList">#{messages['usuario.label']}</h5>
+					</div>
+					
+					<div class="rowElem">
+						<h:outputLabel value="#{messages['usuario.label.id']}: " for="id"/>
+						<div class="formLeft">
+							<h:outputText id="id" value="#{usuarioEditMB.bean.id}" />
+						</div>
+						<div class="fix"></div>
+					</div>
+					
+					<div class="rowElem">
+						<h:outputLabel value="#{messages['usuario.label.papel']}: " for="papel" />
+						<div class="formLeft">
+							<h:outputText id="papel" value="#{usuarioEditMB.bean.papel.descricao}" title="#{messages['usuario.alt.papel']}" />
+						</div>
+						<div class="fix"></div>
+					</div>
+					
+					<div class="rowElem">
+						<h:outputLabel value="#{messages['usuario.label.nome']}: " for="nome"/>
+						<div class="formLeft">
+							<h:outputText id="nome" value="#{usuarioEditMB.bean.nome}" title="#{messages['usuario.alt.nome']}" />
+						</div>
+						<div class="fix"></div>
+					</div>
+					
+					<div class="rowElem">
+						<h:outputLabel value="#{messages['usuario.label.usuario']}: " for="usuario"/>
+						<div class="formLeft">
+							<h:outputText id="usuario" value="#{usuarioEditMB.bean.usuario}" title="#{messages['usuario.alt.usuario']}" />
+						</div>
+						<div class="fix"></div>
+					</div>
+					
+					<div class="rowElem">
+						<h:outputLabel value="#{messages['usuario.label.orgao']}: " for="orgao"/>
+						<div class="formLeft">
+							<h:outputText id="orgao" value="#{usuarioEditMB.bean.orgao.nome}" title="#{messages['usuario.alt.orgao']}" />
+						</div>
+						<div class="fix"></div>
+					</div>
+					
+				</div>
+			</fieldset>
 
-			<p:fieldset legend="#{messages['usuario.label']}" toggleable="true" toggleSpeed="500">
-				<h:panelGrid id="fields" columns="3">
-					
-					<h:outputLabel value="#{messages['usuario.label.id']}: " for="id" styleClass="text-input" />
-					<h:outputText id="id" value="#{usuarioEditMB.bean.id}" />
-					<p:message for="id" />
-					
-					<h:outputLabel value="#{messages['usuario.label.papeis']}: " for="papeis" styleClass="text-input" />
-					<h:inputText id="papeis" value="#{usuarioEditMB.bean.papeis}"
-						title="#{messages['usuario.alt.papeis']}" />
-					<p:message for="papeis" />
-					
-					<h:outputLabel value="#{messages['usuario.label.nome']}: " for="nome" styleClass="text-input" />
-					<h:inputText id="nome" value="#{usuarioEditMB.bean.nome}"
-						title="#{messages['usuario.alt.nome']}" />
-					<p:message for="nome" />
-					
-					<h:outputLabel value="#{messages['usuario.label.usuario']}: " for="usuario" styleClass="text-input" />
-					<h:inputText id="usuario" value="#{usuarioEditMB.bean.usuario}"
-						title="#{messages['usuario.alt.usuario']}" />
-					<p:message for="usuario" />
-					
-					<h:outputLabel value="#{messages['usuario.label.senha']}: " for="senha" styleClass="text-input" />
-					<h:inputText id="senha" value="#{usuarioEditMB.bean.senha}"
-						title="#{messages['usuario.alt.senha']}" />
-					<p:message for="senha" />
-					
-					<h:outputLabel value="#{messages['usuario.label.orgao']}: " for="orgao" styleClass="text-input" />
-					<h:inputText id="orgao" value="#{usuarioEditMB.bean.orgao}"
-						title="#{messages['usuario.alt.orgao']}" />
-					<p:message for="orgao" />
-					
-				</h:panelGrid>
-			</p:fieldset>
 		</h:form>
 	</ui:define>
 </ui:composition>

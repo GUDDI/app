@@ -40,7 +40,7 @@ public class MyAuthenticator implements Authenticator {
         this.identity.setName(user.getNome());
         this.identity.setOrgao(user.getOrgao().getId());
         this.identity.setNomeorgao(user.getOrgao().getNome());
-        this.identity.setPapel(user.getPapeis().getDescricao());
+        this.identity.setPapel(user.getPapel().getDescricao());
 
     }
 
