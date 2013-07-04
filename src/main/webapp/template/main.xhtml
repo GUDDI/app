@@ -80,21 +80,25 @@
             <div id="topNav">
                 <div class="fixed">
                     <div class="wrapper">
-                        <div class="welcome"><a href="#" title=""><img src="images/userPic.png" alt="" /></a><span>Bem vindo</span></div>
+                        <div class="welcome"><a href="#" title=""><img src="images/userPic.png" alt="" /></a><span><h:outputText value="#{identity.name}" rendered="#{securityContext.loggedIn}"/></span></div>
                         <div class="userNav">
                             <ul>
                                 <li>
                                     <h:commandLink  action="login.jsf" rendered="#{not securityContext.loggedIn}">
                                         <img src="images/icons/topnav/logout.png" alt="" /><span>Login</span>
                                     </h:commandLink>
-                                    <h:outputText value="#{identity.name}" rendered="#{securityContext.loggedIn}"/>
-                                    <h:outputText value="#{identity.papel}" rendered="#{securityContext.loggedIn}"/>
+                                </li>
+                            </ul> 
+                            <ul>
+                                <h:outputText value="#{identity.papel}" rendered="#{securityContext.loggedIn}"/>
+                            </ul>
+                            <ul>
+                                <li>
                                     <h:outputText value="#{identity.nomeorgao}" rendered="#{securityContext.loggedIn}"/>
                                 </li>
                                 <li>
-                                    <h:commandLink value="(sair)" action="#{securityContext.logout}" rendered="#{securityContext.loggedIn}" />
+                                    <h:commandLink value="(sair)" action="#{securityContext.logout}" rendered="#{securityContext.loggedIn}" />                                    
                                 </li>
-
                             </ul>
                         </div>
                         <div class="fix"></div>

@@ -59,7 +59,7 @@ public class Roles implements IRoles {
      *
      * @return
      */
-    public static List<String> getRole() {
+    public static List<String> getRolesList() {
         List<String> list = new ArrayList<String>();
         list.add(USER);
         list.add(MANAGER);

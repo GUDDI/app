@@ -15,6 +15,7 @@ import br.org.guddi.persistence.UsuarioDAO;
 import br.org.guddi.security.Resources;
 import br.org.guddi.security.Roles;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
 
@@ -36,34 +37,28 @@ public class SecurityBC {
         return usuarioDAO.findByLogin(login);
     }
 
-    //@Startup
-    public void loadDataRecursos() {
-        recursoDAO.clear();
-        List<String> lista = Resources.getResourcesList();
-        for (String recursos : lista) {
-            Recurso rec = recursoDAO.load(recursos);
-            if (rec == null) {
-                rec = new Recurso();
-                rec.setId(Resources.getResource(recursos));
-                rec.setNome(recursos);
-                recursoDAO.insert(rec);
+    @Startup
+    public void bootstrap() {
+        try {
+
+            recursoDAO.clear();
+            List<String> listarec = Resources.getResourcesList();
+            for (String recursos : listarec) {
+                Recurso rec = recursoDAO.load(recursos);
+                if (rec == null) {
+                    rec = new Recurso();
+                    rec.setId(Resources.getResource(recursos));
+                    rec.setNome(recursos);
+                    recursoDAO.insert(rec);
+                }
+
             }
 
-        }
-    }
-
-    @Startup
-    public void loadDataRoles() {
-        try {
             papelDAO.clear();
-            List<String> lista = Roles.getRole();
-            for (String papel : lista) {
+            List<String> listapap = Roles.getRolesList();
+            for (String papel : listapap) {
                 Papel pap = null;
-
-
                 pap = papelDAO.load(papel);
-
-
                 if (pap == null) {
                     pap = new Papel();
                     pap.setId(Roles.getRole(papel));
@@ -71,7 +66,9 @@ public class SecurityBC {
                     papelDAO.insert(pap);
                 }
             }
+
         } catch (Exception e) {
+            LOG.log(Level.SEVERE, e.getMessage());
         }
     }
 
