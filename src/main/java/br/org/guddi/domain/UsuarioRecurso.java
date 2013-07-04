@@ -129,6 +129,6 @@ public class UsuarioRecurso implements Serializable {
     public String toString() {
         return "br.org.guddi.domain.UsuarioRecurso[ usuarioRecursoPK=" + usuarioRecursoPK + " ]";
     }
-    private static final Logger LOG = Logger.getLogger(UsuarioRecurso.class.getName());
+
 
 }

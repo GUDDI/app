@@ -11,8 +11,8 @@ import java.util.logging.Logger;
 @BusinessController
 @RequiredRole(value = IRoles.MANAGER)
 public class SistemaBC extends DelegateCrud<Sistema, Long, SistemaDAO> {
-	
+
 	private static final long serialVersionUID = 1L;
-    private static final Logger LOG = Logger.getLogger(SistemaBC.class.getName());
-	
+
+
 }

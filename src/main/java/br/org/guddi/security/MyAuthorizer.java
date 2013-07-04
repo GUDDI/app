@@ -38,5 +38,5 @@ public class MyAuthorizer implements Authorizer {
         Integer idOperacao = securityBC.hasPermission(identity.getId(), Resources.getResource(resource));
         return Operations.listOperations(idOperacao).contains(operation);
     }
-    private static final Logger LOG = Logger.getLogger(MyAuthorizer.class.getName());
+
 }

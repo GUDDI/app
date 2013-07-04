@@ -111,5 +111,5 @@ public class SearchFilter {
     public void setFilters(Map<String, String> filters) {
 		this.filters = filters;
 	}
-    private static final Logger LOG = Logger.getLogger(SearchFilter.class.getName());
+
 }

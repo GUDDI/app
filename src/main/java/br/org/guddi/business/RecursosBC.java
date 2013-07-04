@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 public class RecursosBC extends DelegateCrud<Recurso, Long, RecursoDAO> {
 
 	private static final long serialVersionUID = 1L;
-    private static final Logger LOG = Logger.getLogger(RecursosBC.class.getName());
+
 
 
 

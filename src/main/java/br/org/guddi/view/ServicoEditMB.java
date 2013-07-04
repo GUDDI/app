@@ -17,7 +17,7 @@ public class ServicoEditMB extends AbstractEditPageBean<Servico, Long> {
 
 	@Inject
 	private ServicoBC servicoBC;
-	
+
 	/**
      *
      * @return
@@ -28,7 +28,7 @@ public class ServicoEditMB extends AbstractEditPageBean<Servico, Long> {
 		this.servicoBC.delete(getId());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      * @return
@@ -39,7 +39,7 @@ public class ServicoEditMB extends AbstractEditPageBean<Servico, Long> {
 		this.servicoBC.insert(getBean());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      * @return
@@ -50,7 +50,7 @@ public class ServicoEditMB extends AbstractEditPageBean<Servico, Long> {
 		this.servicoBC.update(getBean());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      */
@@ -58,6 +58,6 @@ public class ServicoEditMB extends AbstractEditPageBean<Servico, Long> {
 	protected void handleLoad() {
 		setBean(this.servicoBC.load(getId()));
 	}
-    private static final Logger LOG = Logger.getLogger(ServicoEditMB.class.getName());
+
 
 }

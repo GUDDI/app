@@ -17,7 +17,7 @@ public class ExcecaoEditMB extends AbstractEditPageBean<Excecao, Long> {
 
 	@Inject
 	private ExcecaoBC excecaoBC;
-	
+
 	/**
      *
      * @return
@@ -28,7 +28,7 @@ public class ExcecaoEditMB extends AbstractEditPageBean<Excecao, Long> {
 		this.excecaoBC.delete(getId());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      * @return
@@ -39,7 +39,7 @@ public class ExcecaoEditMB extends AbstractEditPageBean<Excecao, Long> {
 		this.excecaoBC.insert(getBean());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      * @return
@@ -50,7 +50,7 @@ public class ExcecaoEditMB extends AbstractEditPageBean<Excecao, Long> {
 		this.excecaoBC.update(getBean());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      */
@@ -58,6 +58,6 @@ public class ExcecaoEditMB extends AbstractEditPageBean<Excecao, Long> {
 	protected void handleLoad() {
 		setBean(this.excecaoBC.load(getId()));
 	}
-    private static final Logger LOG = Logger.getLogger(ExcecaoEditMB.class.getName());
+
 
 }

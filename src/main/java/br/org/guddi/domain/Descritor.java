@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- * Conceito de Dominio servicos dentro de um Sistemas. 
+ * Conceito de Dominio servicos dentro de um Sistemas.
  *
  * @author 05081364908
  */
@@ -41,27 +41,27 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Descritor.findById", query = "SELECT d FROM Descritor d WHERE d.id = :id"),
     @NamedQuery(name = "Descritor.findByDescricao", query = "SELECT d FROM Descritor d WHERE d.descricao = :descricao")})
 public class Descritor implements Serializable {
-    
+
 	private static final long serialVersionUID = 1L;
-    
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)
     private Long id;
-    
+
 	@Size(max = 100)
     @Column(length = 100)
     private String descricao;
-    
+
 	@JoinColumn(name = "id_sistema", referencedColumnName = "id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Sistema sistema;
 
 	@OneToMany(mappedBy = "descritor", fetch = FetchType.LAZY)
     private Set<Servico> servicos;
-    
+
 	@ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "descritor_tag",
             joinColumns = {
@@ -83,7 +83,7 @@ public class Descritor implements Serializable {
     public Descritor(Long id) {
         this.id = id;
     }
-    
+
     /**
      *
      * @param id
@@ -137,7 +137,7 @@ public class Descritor implements Serializable {
 	public Set<Servico> getServicos() {
 		return Collections.unmodifiableSet(servicos);
 	}
-	
+
 	/**
      *
      * @param servicos
@@ -154,7 +154,7 @@ public class Descritor implements Serializable {
 		return sistema;
 	}
 
-	
+
 	/**
      *
      * @param sistema
@@ -171,7 +171,7 @@ public class Descritor implements Serializable {
     public Set<Tag> getTags() {
 		return Collections.unmodifiableSet(tags);
 	}
-	
+
 	/**
      *
      * @param tags
@@ -179,7 +179,7 @@ public class Descritor implements Serializable {
     public void setTags(Set<Tag> tags) {
 		this.tags = tags;
 	}
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -204,6 +204,6 @@ public class Descritor implements Serializable {
     public String toString() {
         return "br.gov.frameworkdemoiselle.guddi.domain.Descritor[ id=" + id + " ]";
     }
-    private static final Logger LOG = Logger.getLogger(Descritor.class.getName());
+
 
 }

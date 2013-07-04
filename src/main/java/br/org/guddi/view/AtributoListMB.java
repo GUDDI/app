@@ -21,7 +21,7 @@ public class AtributoListMB extends AbstractListPageBean<Atributo, Long> {
 
 	@Inject
 	private AtributoBC atributoBC;
-	
+
 	/**
      *
      * @return
@@ -30,7 +30,7 @@ public class AtributoListMB extends AbstractListPageBean<Atributo, Long> {
 	protected List<Atributo> handleResultList() {
 		return this.atributoBC.findAll();
 	}
-	
+
 	/**
      *
      * @return
@@ -48,6 +48,6 @@ public class AtributoListMB extends AbstractListPageBean<Atributo, Long> {
 		}
 		return getPreviousView();
 	}
-    private static final Logger LOG = Logger.getLogger(AtributoListMB.class.getName());
+
 
 }

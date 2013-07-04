@@ -27,5 +27,5 @@ public class PapelDAO extends JPACrud<Papel, Long> {
                 delete(object.getId());
             }
         }
-    private static final Logger LOG = Logger.getLogger(PapelDAO.class.getName());
+
 }

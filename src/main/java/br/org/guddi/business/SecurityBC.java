@@ -68,7 +68,7 @@ public class SecurityBC {
             }
 
         } catch (Exception e) {
-            LOG.log(Level.SEVERE, e.getMessage());
+           // LOG.log(Level.SEVERE, e.getMessage());
         }
     }
 
@@ -92,5 +92,5 @@ public class SecurityBC {
         return usuarioDAO.hasPermission(idUsuario, idResource);
 
     }
-    private static final Logger LOG = Logger.getLogger(SecurityBC.class.getName());
+
 }

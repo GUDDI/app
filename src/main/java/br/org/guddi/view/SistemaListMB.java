@@ -21,7 +21,7 @@ public class SistemaListMB extends AbstractListPageBean<Sistema, Long> {
 
 	@Inject
 	private SistemaBC sistemaBC;
-	
+
 	/**
      *
      * @return
@@ -30,7 +30,7 @@ public class SistemaListMB extends AbstractListPageBean<Sistema, Long> {
 	protected List<Sistema> handleResultList() {
 		return this.sistemaBC.findAll();
 	}
-	
+
 	/**
      *
      * @return
@@ -48,6 +48,5 @@ public class SistemaListMB extends AbstractListPageBean<Sistema, Long> {
 		}
 		return getPreviousView();
 	}
-    private static final Logger LOG = Logger.getLogger(SistemaListMB.class.getName());
 
 }

@@ -29,14 +29,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Papel.findById", query = "SELECT p FROM Papel p WHERE p.id = :id"),
     @NamedQuery(name = "Papel.findByDescricao", query = "SELECT p FROM Papel p WHERE p.descricao = :descricao")})
 public class Papel implements Serializable{
-   
-    
+
+
 	private static final long serialVersionUID = 9146098310699200511L;
 
 	@Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
 	@Size(max = 20)
     @Column(length = 20)
     private String descricao;
@@ -111,6 +111,6 @@ public class Papel implements Serializable{
     public String toString() {
         return "br.gov.frameworkdemoiselle.guddi.domain.Papel[ id=" + id + " ]";
     }
-    private static final Logger LOG = Logger.getLogger(Papel.class.getName());
+
 
    }

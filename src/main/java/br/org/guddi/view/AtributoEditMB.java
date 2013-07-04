@@ -17,7 +17,7 @@ public class AtributoEditMB extends AbstractEditPageBean<Atributo, Long> {
 
 	@Inject
 	private AtributoBC atributoBC;
-	
+
 	/**
      *
      * @return
@@ -28,7 +28,7 @@ public class AtributoEditMB extends AbstractEditPageBean<Atributo, Long> {
 		this.atributoBC.delete(getId());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      * @return
@@ -39,7 +39,7 @@ public class AtributoEditMB extends AbstractEditPageBean<Atributo, Long> {
 		this.atributoBC.insert(getBean());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      * @return
@@ -50,7 +50,7 @@ public class AtributoEditMB extends AbstractEditPageBean<Atributo, Long> {
 		this.atributoBC.update(getBean());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      */
@@ -58,6 +58,6 @@ public class AtributoEditMB extends AbstractEditPageBean<Atributo, Long> {
 	protected void handleLoad() {
 		setBean(this.atributoBC.load(getId()));
 	}
-    private static final Logger LOG = Logger.getLogger(AtributoEditMB.class.getName());
+
 
 }

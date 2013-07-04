@@ -35,24 +35,24 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Excecao.findByIdentificador", query = "SELECT e FROM Excecao e WHERE e.identificador = :identificador"),
     @NamedQuery(name = "Excecao.findByDescricao", query = "SELECT e FROM Excecao e WHERE e.descricao = :descricao")})
 public class Excecao implements Serializable {
-    
+
 	private static final long serialVersionUID = 1L;
-    
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(nullable = false)
     private Long id;
-    
+
 	@Size(max = 20)
     @Column(length = 20)
     private String identificador;
-    
+
 	@Size(max = 255)
     @Column(length = 255)
     private String descricao;
-    
+
 	@JoinColumn(name = "id_servico", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Servico servico;
@@ -126,7 +126,7 @@ public class Excecao implements Serializable {
     public Servico getServico() {
 		return servico;
 	}
-	
+
 	/**
      *
      * @param servico
@@ -159,6 +159,5 @@ public class Excecao implements Serializable {
     public String toString() {
         return "br.gov.frameworkdemoiselle.guddi.domain.Excecao[ id=" + id + " ]";
     }
-    private static final Logger LOG = Logger.getLogger(Excecao.class.getName());
 
 }

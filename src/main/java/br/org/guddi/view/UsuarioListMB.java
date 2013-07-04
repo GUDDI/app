@@ -21,7 +21,7 @@ public class UsuarioListMB extends AbstractListPageBean<Usuario, Long> {
 
 	@Inject
 	private UsuarioBC usuarioBC;
-	
+
 	/**
      *
      * @return
@@ -30,7 +30,7 @@ public class UsuarioListMB extends AbstractListPageBean<Usuario, Long> {
 	protected List<Usuario> handleResultList() {
 		return this.usuarioBC.findAll();
 	}
-	
+
 	/**
      *
      * @return
@@ -48,6 +48,6 @@ public class UsuarioListMB extends AbstractListPageBean<Usuario, Long> {
 		}
 		return getPreviousView();
 	}
-    private static final Logger LOG = Logger.getLogger(UsuarioListMB.class.getName());
+   
 
 }

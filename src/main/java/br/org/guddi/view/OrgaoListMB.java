@@ -21,7 +21,7 @@ public class OrgaoListMB extends AbstractListPageBean<Orgao, Long> {
 
 	@Inject
 	private OrgaoBC orgaoBC;
-	
+
 	/**
      *
      * @return
@@ -30,7 +30,7 @@ public class OrgaoListMB extends AbstractListPageBean<Orgao, Long> {
 	protected List<Orgao> handleResultList() {
 		return this.orgaoBC.findAll();
 	}
-	
+
 	/**
      *
      * @return
@@ -48,6 +48,5 @@ public class OrgaoListMB extends AbstractListPageBean<Orgao, Long> {
 		}
 		return getPreviousView();
 	}
-    private static final Logger LOG = Logger.getLogger(OrgaoListMB.class.getName());
 
 }

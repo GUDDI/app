@@ -17,7 +17,7 @@ public class PapelEditMB extends AbstractEditPageBean<Papel, Long> {
 
 	@Inject
 	private PapelBC papelBC;
-	
+
 	/**
      *
      * @return
@@ -28,7 +28,7 @@ public class PapelEditMB extends AbstractEditPageBean<Papel, Long> {
 		this.papelBC.delete(getId());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      * @return
@@ -39,7 +39,7 @@ public class PapelEditMB extends AbstractEditPageBean<Papel, Long> {
 		this.papelBC.insert(getBean());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      * @return
@@ -50,7 +50,7 @@ public class PapelEditMB extends AbstractEditPageBean<Papel, Long> {
 		this.papelBC.update(getBean());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      */
@@ -58,6 +58,6 @@ public class PapelEditMB extends AbstractEditPageBean<Papel, Long> {
 	protected void handleLoad() {
 		setBean(this.papelBC.load(getId()));
 	}
-    private static final Logger LOG = Logger.getLogger(PapelEditMB.class.getName());
+
 
 }

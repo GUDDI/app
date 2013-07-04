@@ -17,7 +17,7 @@ public class TagEditMB extends AbstractEditPageBean<Tag, Long> {
 
 	@Inject
 	private TagBC tagBC;
-	
+
 	/**
      *
      * @return
@@ -28,7 +28,7 @@ public class TagEditMB extends AbstractEditPageBean<Tag, Long> {
 		this.tagBC.delete(getId());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      * @return
@@ -39,7 +39,7 @@ public class TagEditMB extends AbstractEditPageBean<Tag, Long> {
 		this.tagBC.insert(getBean());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      * @return
@@ -50,7 +50,7 @@ public class TagEditMB extends AbstractEditPageBean<Tag, Long> {
 		this.tagBC.update(getBean());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      */
@@ -58,6 +58,5 @@ public class TagEditMB extends AbstractEditPageBean<Tag, Long> {
 	protected void handleLoad() {
 		setBean(this.tagBC.load(getId()));
 	}
-    private static final Logger LOG = Logger.getLogger(TagEditMB.class.getName());
 
 }

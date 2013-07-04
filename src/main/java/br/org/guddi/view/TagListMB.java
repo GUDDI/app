@@ -21,7 +21,7 @@ public class TagListMB extends AbstractListPageBean<Tag, Long> {
 
 	@Inject
 	private TagBC tagBC;
-	
+
 	/**
      *
      * @return
@@ -30,7 +30,7 @@ public class TagListMB extends AbstractListPageBean<Tag, Long> {
 	protected List<Tag> handleResultList() {
 		return this.tagBC.findAll();
 	}
-	
+
 	/**
      *
      * @return
@@ -48,6 +48,5 @@ public class TagListMB extends AbstractListPageBean<Tag, Long> {
 		}
 		return getPreviousView();
 	}
-    private static final Logger LOG = Logger.getLogger(TagListMB.class.getName());
 
 }

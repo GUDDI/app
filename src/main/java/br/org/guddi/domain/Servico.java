@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Servico.findById", query = "SELECT s FROM Servico s WHERE s.id = :id"),
     @NamedQuery(name = "Servico.findByNome", query = "SELECT s FROM Servico s WHERE s.nome = :nome")})
 public class Servico implements Serializable {
-    
+
 	private static final long serialVersionUID = 4084161390208797022L;
 
 	@Id
@@ -48,11 +48,11 @@ public class Servico implements Serializable {
     @NotNull
     @Column(nullable = false)
     private Long id;
-    
+
     @Size(max = 50)
     @Column(length = 50)
     private String nome;
-    
+
     @Size(max = 500)
     @Column(name="wsdl_Link", length = 500)
     private String wsdlLink;
@@ -60,10 +60,10 @@ public class Servico implements Serializable {
     @JoinColumn(name = "id_descritor", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Descritor descritor;
-    
+
     @OneToMany(mappedBy = "servico", fetch = FetchType.LAZY)
     private List<Atributo> atributos;
-    
+
     @OneToMany(mappedBy = "servico", fetch = FetchType.LAZY)
     private List<Excecao> excecoes;
 
@@ -121,7 +121,7 @@ public class Servico implements Serializable {
 		return descritor;
 	}
 
-	
+
 	/**
      *
      * @param descritor
@@ -129,7 +129,7 @@ public class Servico implements Serializable {
     public void setDescritor(Descritor descritor) {
 		this.descritor = descritor;
 	}
-	
+
 	/**
      *
      * @return
@@ -171,7 +171,7 @@ public class Servico implements Serializable {
     public String getWsdlLink() {
 		return wsdlLink;
 	}
-	
+
 	/**
      *
      * @param wsdlLink
@@ -186,7 +186,7 @@ public class Servico implements Serializable {
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-	
+
 	@Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -204,6 +204,6 @@ public class Servico implements Serializable {
     public String toString() {
         return "br.gov.frameworkdemoiselle.guddi.domain.Servico[ id=" + id + " ]";
     }
-    private static final Logger LOG = Logger.getLogger(Servico.class.getName());
+
 
 }

@@ -38,7 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Sistema.findById", query = "SELECT s FROM Sistema s WHERE s.id = :id"),
     @NamedQuery(name = "Sistema.findByNome", query = "SELECT s FROM Sistema s WHERE s.nome = :nome")})
 public class Sistema implements Serializable {
-    
+
 	private static final long serialVersionUID = 833945106894289319L;
 
 	@Id
@@ -47,15 +47,15 @@ public class Sistema implements Serializable {
     @NotNull
     @Column(nullable = false)
     private Long id;
-    
+
 	@Size(max = 20)
     @Column(length = 20)
     private String nome;
-    
+
 	@JoinColumn(name = "id_orgao", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Orgao orgao;
-    
+
 	@OneToMany(mappedBy = "sistema", fetch = FetchType.LAZY)
     private Set<Descritor> descritores;
 
@@ -105,7 +105,7 @@ public class Sistema implements Serializable {
         this.nome = nome;
     }
 
-    
+
 	/**
      *
      * @return
@@ -114,7 +114,7 @@ public class Sistema implements Serializable {
 		return orgao;
 	}
 
-	
+
 	/**
      *
      * @param orgao
@@ -132,7 +132,7 @@ public class Sistema implements Serializable {
 		return Collections.unmodifiableSet(descritores);
 	}
 
-	
+
 	/**
      *
      * @param descritores
@@ -165,6 +165,6 @@ public class Sistema implements Serializable {
     public String toString() {
         return "br.gov.frameworkdemoiselle.guddi.domain.Sistema[ id=" + id + " ]";
     }
-    private static final Logger LOG = Logger.getLogger(Sistema.class.getName());
+
 
 }

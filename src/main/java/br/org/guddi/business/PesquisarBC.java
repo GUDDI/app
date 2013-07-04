@@ -32,7 +32,7 @@ public class PesquisarBC extends DelegateCrud<Pesquisa, Long, PesquisaDAO> {
     public int count(String searchParam) {
 		return getDelegate().count(searchParam);
 	}
-	
+
 	/**
      *
      * @param searchParam
@@ -43,7 +43,7 @@ public class PesquisarBC extends DelegateCrud<Pesquisa, Long, PesquisaDAO> {
 	public List<Pesquisa> search(String searchParam, SearchFilter filter) {
 		return getDelegate().search(searchParam, filter);
 	}
-    private static final Logger LOG = Logger.getLogger(PesquisarBC.class.getName());
-	
+
+
 
 }

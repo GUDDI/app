@@ -11,9 +11,9 @@ import java.util.logging.Logger;
 @BusinessController
 @RequiredRole(value = IRoles.MANAGER)
 public class ServicoBC extends DelegateCrud<Servico, Long, ServicoDAO> {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
      *
      * @param id
@@ -21,10 +21,10 @@ public class ServicoBC extends DelegateCrud<Servico, Long, ServicoDAO> {
      */
     @Override
     public Servico load(Long id) {
-	
+
 		return getDelegate().loadFromDetalhamento(id);
-	
+
 	}
-    private static final Logger LOG = Logger.getLogger(ServicoBC.class.getName());
-	
+
+
 }

@@ -109,6 +109,6 @@ public class Recurso implements Serializable {
     public String toString() {
         return "br.org.guddi.domain.Recurso[ id=" + id + " ]";
     }
-    private static final Logger LOG = Logger.getLogger(Recurso.class.getName());
+
 
 }

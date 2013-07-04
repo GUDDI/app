@@ -21,7 +21,7 @@ public class DescritorListMB extends AbstractListPageBean<Descritor, Long> {
 
 	@Inject
 	private DescritorBC descritorBC;
-	
+
 	/**
      *
      * @return
@@ -30,7 +30,7 @@ public class DescritorListMB extends AbstractListPageBean<Descritor, Long> {
 	protected List<Descritor> handleResultList() {
 		return this.descritorBC.findAll();
 	}
-	
+
 	/**
      *
      * @return
@@ -48,6 +48,6 @@ public class DescritorListMB extends AbstractListPageBean<Descritor, Long> {
 		}
 		return getPreviousView();
 	}
-    private static final Logger LOG = Logger.getLogger(DescritorListMB.class.getName());
+
 
 }

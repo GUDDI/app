@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 public class AtributoDAO extends JPACrud<Atributo, Long> {
 
 	private static final long serialVersionUID = 1L;
-    private static final Logger LOG = Logger.getLogger(AtributoDAO.class.getName());
-	
+
+
 
 }

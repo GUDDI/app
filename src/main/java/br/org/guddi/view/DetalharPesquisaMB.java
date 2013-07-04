@@ -18,31 +18,31 @@ public class DetalharPesquisaMB extends AbstractEditPageBean<Servico, Long> {
 
 	@Inject
 	private ServicoBC servicoBC;
-	
+
 	private Long idServico;
-	
+
 	/**
      *
      */
     @Override
 	protected void handleLoad() {
-		
+
 		setBean(servicoBC.load(getId()));
-		
+
 	}
-	
+
 	/**
      *
      * @return
      */
     public String detalharServico() {
 
-		
+
 
 		return getNextView();
 	}
 
-	
+
 	/**
      *
      * @return
@@ -91,11 +91,11 @@ public class DetalharPesquisaMB extends AbstractEditPageBean<Servico, Long> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-    private static final Logger LOG = Logger.getLogger(DetalharPesquisaMB.class.getName());
 
 
-	
-	
-	
-	
+
+
+
+
+
 }

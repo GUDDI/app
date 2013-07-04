@@ -184,6 +184,5 @@ public class Pesquisa implements Serializable {
     public void setNomeSistema(String nomeSistema) {
 		this.nomeSistema = nomeSistema;
 	}
-    private static final Logger LOG = Logger.getLogger(Pesquisa.class.getName());
 
 }

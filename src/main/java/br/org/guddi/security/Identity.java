@@ -112,5 +112,5 @@ public class Identity implements Serializable, Principal {
     public void setNomeorgao(String nomeorgao) {
         this.nomeorgao = nomeorgao;
     }
-    private static final Logger LOG = Logger.getLogger(Identity.class.getName());
+
 }

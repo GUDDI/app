@@ -27,5 +27,5 @@ public class RecursoDAO extends JPACrud<Recurso, Long> {
                 delete(object.getId());
             }
         }
-    private static final Logger LOG = Logger.getLogger(RecursoDAO.class.getName());
+
 }

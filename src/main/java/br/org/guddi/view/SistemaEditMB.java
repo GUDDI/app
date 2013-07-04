@@ -20,10 +20,10 @@ public class SistemaEditMB {
 
 	@Inject
 	private SistemaBC sistemaBC;
-	
+
 	@Inject
 	private OrgaoBC orgaoBC;
-	
+
 	private Descritor descritor;
 
 	@Inject
@@ -31,11 +31,11 @@ public class SistemaEditMB {
 
 	@Inject
 	private Sistema sistema;
-	
+
 	private List<Descritor> desc;
-	
-	
-	
+
+
+
 	/**
      *
      */
@@ -49,13 +49,13 @@ public class SistemaEditMB {
      */
     public void delete(){
 	}
-	
+
 	/**
      *
      */
     public void insert(){
 	}
-	
+
 	/**
      *
      * @return
@@ -74,14 +74,14 @@ public class SistemaEditMB {
         }
 		return Collections.unmodifiableList(desc);
 	}
-	
+
 	/**
      *
      */
     public void adicionaDescritor() {
 		desc.add(this.descritor);
 		this.descritor = new Descritor();
-		
+
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class SistemaEditMB {
     public void setDescritor(Descritor descritor) {
 		this.descritor = descritor;
 	}
-	
+
 	/**
      *
      * @param index
@@ -139,9 +139,8 @@ public class SistemaEditMB {
     public void setSistema(Sistema sistema) {
 		this.sistema = sistema;
 	}
-    private static final Logger LOG = Logger.getLogger(SistemaEditMB.class.getName());
-	
-	
+
+
 
 
 }

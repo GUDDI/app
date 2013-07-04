@@ -21,7 +21,7 @@ public class PapelListMB extends AbstractListPageBean<Papel, Long> {
 
 	@Inject
 	private PapelBC papelBC;
-	
+
 	/**
      *
      * @return
@@ -30,7 +30,7 @@ public class PapelListMB extends AbstractListPageBean<Papel, Long> {
 	protected List<Papel> handleResultList() {
 		return this.papelBC.findAll();
 	}
-	
+
 	/**
      *
      * @return
@@ -48,6 +48,6 @@ public class PapelListMB extends AbstractListPageBean<Papel, Long> {
 		}
 		return getPreviousView();
 	}
-    private static final Logger LOG = Logger.getLogger(PapelListMB.class.getName());
+
 
 }

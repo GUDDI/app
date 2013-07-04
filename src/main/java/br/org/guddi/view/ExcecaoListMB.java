@@ -21,7 +21,7 @@ public class ExcecaoListMB extends AbstractListPageBean<Excecao, Long> {
 
 	@Inject
 	private ExcecaoBC excecaoBC;
-	
+
 	/**
      *
      * @return
@@ -30,7 +30,7 @@ public class ExcecaoListMB extends AbstractListPageBean<Excecao, Long> {
 	protected List<Excecao> handleResultList() {
 		return this.excecaoBC.findAll();
 	}
-	
+
 	/**
      *
      * @return
@@ -48,6 +48,6 @@ public class ExcecaoListMB extends AbstractListPageBean<Excecao, Long> {
 		}
 		return getPreviousView();
 	}
-    private static final Logger LOG = Logger.getLogger(ExcecaoListMB.class.getName());
+
 
 }

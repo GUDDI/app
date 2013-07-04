@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Atributo.findByNome", query = "SELECT a FROM Atributo a WHERE a.nome = :nome"),
     @NamedQuery(name = "Atributo.findByTipo", query = "SELECT a FROM Atributo a WHERE a.tipo = :tipo")})
 public class Atributo implements Serializable {
-    
+
 	private static final long serialVersionUID = 7517355321528352171L;
 
 	@Id
@@ -44,15 +44,15 @@ public class Atributo implements Serializable {
     @NotNull
     @Column(nullable = false)
     private Long id;
-    
+
     @Size(max = 20)
     @Column(length = 20)
     private String nome;
-    
+
     @Size(max = 10)
     @Column(length = 10)
     private String tipo;
-    
+
     @JoinColumn(name = "id_servico", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Servico servico;
@@ -126,7 +126,7 @@ public class Atributo implements Serializable {
     public Servico getServico() {
 		return servico;
 	}
-	
+
 	/**
      *
      * @param servico
@@ -159,6 +159,6 @@ public class Atributo implements Serializable {
     public String toString() {
         return "br.gov.frameworkdemoiselle.guddi.domain.Atributo[ id=" + id + " ]";
     }
-    private static final Logger LOG = Logger.getLogger(Atributo.class.getName());
+
 
 }

@@ -17,7 +17,7 @@ public class OrgaoEditMB extends AbstractEditPageBean<Orgao, Long> {
 
 	@Inject
 	private OrgaoBC orgaoBC;
-	
+
 	/**
      *
      * @return
@@ -28,7 +28,7 @@ public class OrgaoEditMB extends AbstractEditPageBean<Orgao, Long> {
 		this.orgaoBC.delete(getId());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      * @return
@@ -39,7 +39,7 @@ public class OrgaoEditMB extends AbstractEditPageBean<Orgao, Long> {
 		this.orgaoBC.insert(getBean());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      * @return
@@ -50,7 +50,7 @@ public class OrgaoEditMB extends AbstractEditPageBean<Orgao, Long> {
 		this.orgaoBC.update(getBean());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      */
@@ -58,6 +58,6 @@ public class OrgaoEditMB extends AbstractEditPageBean<Orgao, Long> {
 	protected void handleLoad() {
 		setBean(this.orgaoBC.load(getId()));
 	}
-    private static final Logger LOG = Logger.getLogger(OrgaoEditMB.class.getName());
+
 
 }

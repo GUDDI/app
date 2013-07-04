@@ -43,6 +43,6 @@ public class CriptografiaUtil {
 		}
 		return s.toString();
 	}
-    private static final Logger LOG = Logger.getLogger(CriptografiaUtil.class.getName());
+
 
 }

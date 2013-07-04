@@ -21,7 +21,7 @@ public class ServicoListMB extends AbstractListPageBean<Servico, Long> {
 
 	@Inject
 	private ServicoBC servicoBC;
-	
+
 	/**
      *
      * @return
@@ -30,7 +30,7 @@ public class ServicoListMB extends AbstractListPageBean<Servico, Long> {
 	protected List<Servico> handleResultList() {
 		return this.servicoBC.findAll();
 	}
-	
+
 	/**
      *
      * @return
@@ -48,6 +48,6 @@ public class ServicoListMB extends AbstractListPageBean<Servico, Long> {
 		}
 		return getPreviousView();
 	}
-    private static final Logger LOG = Logger.getLogger(ServicoListMB.class.getName());
+
 
 }

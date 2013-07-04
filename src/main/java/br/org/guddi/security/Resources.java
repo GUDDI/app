@@ -103,5 +103,5 @@ public class Resources implements IResources {
 
         return lista;
     }
-    private static final Logger LOG = Logger.getLogger(Resources.class.getName());
+
 }

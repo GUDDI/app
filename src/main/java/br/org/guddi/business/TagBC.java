@@ -11,8 +11,8 @@ import java.util.logging.Logger;
 @BusinessController
 @RequiredRole(value = IRoles.ADMINISTRATOR)
 public class TagBC extends DelegateCrud<Tag, Long, TagDAO> {
-	
+
 	private static final long serialVersionUID = 1L;
-    private static final Logger LOG = Logger.getLogger(TagBC.class.getName());
-	
+
+
 }

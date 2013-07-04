@@ -65,5 +65,5 @@ public class MyAuthenticator implements Authenticator {
             return null;
         }
     }
-    private static final Logger LOG = Logger.getLogger(MyAuthenticator.class.getName());
+
 }

@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class ServicoDAO extends JPACrud<Servico, Long> {
 
 	private static final long serialVersionUID = 1L;
-	
+
 
 	/**
      *
@@ -21,22 +21,22 @@ public class ServicoDAO extends JPACrud<Servico, Long> {
      */
     public Servico loadFromDetalhamento(Long id) {
 		StringBuilder sql = new StringBuilder("SELECT s FROM Servico s ");
-		
+
 		sql.append("LEFT JOIN FETCH s.descritor ");
 		sql.append("WHERE s.id = :id");
-		
+
 		Servico servico = (Servico) super.createQuery(sql.toString()).setParameter("id", id).getSingleResult();
-		
-		
+
+
 		List<Atributo> atributos = super.createQuery("SELECT a FROM Atributo a WHERE a.servico = :servico ").setParameter("servico", servico).getResultList();
-		
+
 		List<Excecao> excecoes = super.createQuery("SELECT a FROM Excecao a WHERE a.servico = :servico ").setParameter("servico", servico).getResultList();
-		
+
 		servico.setAtributos(atributos);
 		servico.setExcecoes(excecoes);
-		
+
 		return servico;
 	}
-    private static final Logger LOG = Logger.getLogger(ServicoDAO.class.getName());
-	
+
+
 }

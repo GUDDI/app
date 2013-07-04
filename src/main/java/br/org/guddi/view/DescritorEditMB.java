@@ -17,7 +17,7 @@ public class DescritorEditMB extends AbstractEditPageBean<Descritor, Long> {
 
 	@Inject
 	private DescritorBC descritorBC;
-	
+
 	/**
      *
      * @return
@@ -28,7 +28,7 @@ public class DescritorEditMB extends AbstractEditPageBean<Descritor, Long> {
 		this.descritorBC.delete(getId());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      * @return
@@ -39,7 +39,7 @@ public class DescritorEditMB extends AbstractEditPageBean<Descritor, Long> {
 		this.descritorBC.insert(getBean());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      * @return
@@ -50,7 +50,7 @@ public class DescritorEditMB extends AbstractEditPageBean<Descritor, Long> {
 		this.descritorBC.update(getBean());
 		return getPreviousView();
 	}
-	
+
 	/**
      *
      */
@@ -58,6 +58,6 @@ public class DescritorEditMB extends AbstractEditPageBean<Descritor, Long> {
 	protected void handleLoad() {
 		setBean(this.descritorBC.load(getId()));
 	}
-    private static final Logger LOG = Logger.getLogger(DescritorEditMB.class.getName());
+
 
 }

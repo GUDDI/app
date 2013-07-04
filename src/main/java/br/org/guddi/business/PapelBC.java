@@ -13,7 +13,6 @@ import java.util.logging.Logger;
 public class PapelBC extends DelegateCrud<Papel, Long, PapelDAO> {
 
     private static final long serialVersionUID = 1L;
-    private static final Logger LOG = Logger.getLogger(PapelBC.class.getName());
 
 
 }

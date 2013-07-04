@@ -29,17 +29,17 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Tag.findById", query = "SELECT t FROM Tag t WHERE t.id = :id"),
     @NamedQuery(name = "Tag.findByTag", query = "SELECT t FROM Tag t WHERE t.tag = :tag")})
 public class Tag implements Serializable {
-    
+
 	private static final long serialVersionUID = 5602366476002683716L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
 	@Size(max = 15)
     @Column(length = 15)
     private String tag;
-    
+
     /**
      *
      */
@@ -110,6 +110,6 @@ public class Tag implements Serializable {
     public String toString() {
         return "br.gov.frameworkdemoiselle.guddi.domain.Tag[ id=" + id + " ]";
     }
-    private static final Logger LOG = Logger.getLogger(Tag.class.getName());
+
 
 }

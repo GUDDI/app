@@ -36,14 +36,14 @@ public class Orgao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Size(max = 50)
     @Column(length = 50)
     private String nome;
-    
+
     @OneToMany(mappedBy = "orgao", fetch = FetchType.LAZY)
     private Set<Sistema> sistemas;
-    
+
     @OneToMany(mappedBy = "orgao", fetch = FetchType.LAZY)
     private Set<Usuario> usuarios;
 
@@ -151,5 +151,5 @@ public class Orgao implements Serializable {
     public String toString() {
         return "br.gov.frameworkdemoiselle.guddi.domain.Orgao[ id=" + id + " ]";
     }
-    private static final Logger LOG = Logger.getLogger(Orgao.class.getName());
+
 }

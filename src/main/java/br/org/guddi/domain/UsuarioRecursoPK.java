@@ -89,10 +89,10 @@ public class UsuarioRecursoPK implements Serializable {
             return false;
         }
         UsuarioRecursoPK other = (UsuarioRecursoPK) object;
-        if (this.idUsuario != other.idUsuario) {
+        if (!this.idUsuario.equals(other.idUsuario)) {
             return false;
         }
-        if (this.recursos != other.recursos) {
+        if (!this.recursos.equals(other.recursos)) {
             return false;
         }
         return true;
@@ -102,6 +102,6 @@ public class UsuarioRecursoPK implements Serializable {
     public String toString() {
         return "br.org.guddi.domain.UsuarioRecursoPK[ idUsuario=" + idUsuario + ", recursos=" + recursos + " ]";
     }
-    private static final Logger LOG = Logger.getLogger(UsuarioRecursoPK.class.getName());
+
 
 }
