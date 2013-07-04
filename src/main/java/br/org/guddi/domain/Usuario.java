@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Usuario.findByUsuario", query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario")})
 public class Usuario implements Serializable {
 
-    private static final long serialVersionUID = 3_300_855_504_795_838_859L;
+    private static final long serialVersionUID = 330085550479838859L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

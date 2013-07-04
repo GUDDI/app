@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Papel implements Serializable{
    
     
-	private static final long serialVersionUID = 9_146_098_310_699_200_511L;
+	private static final long serialVersionUID = 9146098310699200511L;
 
 	@Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)

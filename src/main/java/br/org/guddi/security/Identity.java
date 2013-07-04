@@ -15,7 +15,7 @@ import javax.inject.Named;
 @SessionScoped
 public class Identity implements Serializable, Principal {
 
-    private static final long serialVersionUID = 8_003_651_916_557_123_604L;
+    private static final long serialVersionUID = 8003651916557123604L;
     private Boolean isLogged = false;
     private Long id;
     private String name;

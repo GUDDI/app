@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Sistema.findByNome", query = "SELECT s FROM Sistema s WHERE s.nome = :nome")})
 public class Sistema implements Serializable {
     
-	private static final long serialVersionUID = 833_945_106_894_289_319L;
+	private static final long serialVersionUID = 833945106894289319L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

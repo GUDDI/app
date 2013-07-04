@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Orgao.findByNome", query = "SELECT o FROM Orgao o WHERE o.nome = :nome")})
 public class Orgao implements Serializable {
 
-    private static final long serialVersionUID = 762_179_107_126_837_980L;
+    private static final long serialVersionUID = 762179107126837980L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Atributo.findByTipo", query = "SELECT a FROM Atributo a WHERE a.tipo = :tipo")})
 public class Atributo implements Serializable {
     
-	private static final long serialVersionUID = 7_517_355_321_528_352_171L;
+	private static final long serialVersionUID = 7517355321528352171L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

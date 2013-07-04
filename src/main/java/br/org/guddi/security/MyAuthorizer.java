@@ -10,7 +10,7 @@ import javax.inject.Inject;
  */
 public class MyAuthorizer implements Authorizer {
 
-    private static final long serialVersionUID = 9_096_849_270_023_234_484L;
+    private static final long serialVersionUID = 9096827023234484L;
     @Inject
     private Identity identity;
     @Inject

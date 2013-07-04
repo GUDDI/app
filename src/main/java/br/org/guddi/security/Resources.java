@@ -41,7 +41,7 @@ public class Resources implements IResources{
      * @return
      */
     public static List<String> getResourcesList(){
-        List<String> lista = new ArrayList<>();
+        List<String> lista = new ArrayList<String>();
 
         lista.add(ATRIBUTO);
         lista.add(DESCRITOR);

@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Servico.findByNome", query = "SELECT s FROM Servico s WHERE s.nome = :nome")})
 public class Servico implements Serializable {
     
-	private static final long serialVersionUID = 4_084_161_390_208_797_022L;
+	private static final long serialVersionUID = 4084161390208797022L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

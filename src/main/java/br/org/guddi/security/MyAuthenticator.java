@@ -14,7 +14,7 @@ import javax.inject.Inject;
  */
 public class MyAuthenticator implements Authenticator {
 
-    private static final long serialVersionUID = 5_348_324_948_048_837_944L;
+    private static final long serialVersionUID = 5348324948048837944L;
     @Inject
     private Identity identity;
     @Inject

@@ -70,7 +70,7 @@ public class SistemaEditMB {
      */
     public List<Descritor> getDescritores() {
 		if(desc == null) {
-            desc = new ArrayList<>();
+            desc = new ArrayList<Descritor>();
         }
 		return Collections.unmodifiableList(desc);
 	}

@@ -14,7 +14,7 @@ import java.util.List;
 public class Operations implements IOperations{
 
     public static List<String> listOperations(int sum) {
-        List<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<String>();
         list.add("LIST");
         switch (sum) {
             case 1:

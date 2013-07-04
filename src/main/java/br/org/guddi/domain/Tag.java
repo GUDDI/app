@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Tag.findByTag", query = "SELECT t FROM Tag t WHERE t.tag = :tag")})
 public class Tag implements Serializable {
     
-	private static final long serialVersionUID = 5_602_366_476_002_683_716L;
+	private static final long serialVersionUID = 5602366476002683716L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

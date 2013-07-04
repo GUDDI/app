@@ -20,7 +20,7 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
     public Usuario findByLogin(String login) {
         try {
             return (Usuario) getEntityManager().createNamedQuery("Usuario.findByUsuario").setParameter("usuario", login).getSingleResult();
-        } catch (NonUniqueResultException | NoResultException e) {
+        } catch (NoResultException e) {
             return null;
         }
     }
@@ -32,7 +32,7 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
      * @return
      */
     public Boolean hasRole(Long idUsuario, Long idRole) {
-        return (Boolean) getEntityManager().createNativeQuery("SELECT COUNT(1) > 0 FROM usuario_papel WHERE id_usuario = :idUser AND id_papel = :role")
+        return (Boolean) getEntityManager().createNativeQuery("SELECT COUNT(1) > 0 FROM usuario WHERE id_usuario = :idUser AND id_papel = :role")
                 .setParameter("idUser", idUsuario)
                 .setParameter("role", idRole)
                 .getSingleResult();

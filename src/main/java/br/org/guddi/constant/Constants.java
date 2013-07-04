@@ -16,6 +16,6 @@ public interface Constants {
 	/**
      *
      */
-    public static final Long CONVERSATION_TIMEOUT = 600_000L; 
+    public static final Long CONVERSATION_TIMEOUT = 600000L; 
 	
 	}

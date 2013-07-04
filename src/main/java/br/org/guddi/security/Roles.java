@@ -20,7 +20,7 @@ public class Roles implements IRoles {
      * @return
      */
     public static List<String> getRole(Long role) {
-        List<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<String>();
         switch (Integer.getInteger("" + role)) {
             case 1:
                 list.add(USER);
@@ -60,7 +60,7 @@ public class Roles implements IRoles {
      * @return
      */
     public static List<String> getRole() {
-        List<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<String>();
         list.add(USER);
         list.add(MANAGER);
         list.add(ADMINISTRATOR);

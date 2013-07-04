@@ -57,7 +57,7 @@ public class PesquisaDAO extends JPACrud<Pesquisa, Long> {
 		
 		List<Object[]> objList = query.getResultList();
 		
-		List<Pesquisa> list = new ArrayList<>();
+		List<Pesquisa> list = new ArrayList<Pesquisa>();
 		for (Object[] obj : objList) {
 			
 			Pesquisa p = new Pesquisa();
