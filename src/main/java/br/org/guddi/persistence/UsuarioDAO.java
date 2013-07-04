@@ -32,7 +32,7 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
      * @return
      */
     public Boolean hasRole(Long idUsuario, Long idRole) {
-        return (Boolean) getEntityManager().createNativeQuery("SELECT COUNT(1) > 0 FROM usuario WHERE id_usuario = :idUser AND id_papel = :role")
+        return (Boolean) getEntityManager().createNativeQuery("SELECT COUNT(1) > 0 FROM guddi.usuario WHERE id = :idUser AND id_papel = :role")
                 .setParameter("idUser", idUsuario)
                 .setParameter("role", idRole)
                 .getSingleResult();
