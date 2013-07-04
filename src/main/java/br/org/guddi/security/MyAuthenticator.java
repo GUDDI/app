@@ -26,7 +26,7 @@ public class MyAuthenticator implements Authenticator {
      */
     @Override
     public void authenticate() throws AuthenticationException {
-        Usuario user = securityBC.findByLogin(identity.getLogin());
+        Usuario user = securityBC.findByEmail(identity.getEmail());
 
         if (user == null) {
             throw new AuthenticationException("O login falhou.");

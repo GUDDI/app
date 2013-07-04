@@ -1,19 +1,26 @@
 package br.org.guddi.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.org.guddi.business.UsuarioBC;
+import br.org.guddi.domain.Papel;
 import br.org.guddi.domain.Usuario;
-import java.util.logging.Logger;
-import javax.inject.Inject;
+import br.org.guddi.security.Roles;
 
 @ViewController
 @PreviousView("./usuario_list.jsf")
 public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
 
 	private static final long serialVersionUID = 1L;
+	
+	private List<Papel> papeis;
 
 	@Inject
 	private UsuarioBC usuarioBC;
@@ -58,6 +65,20 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
 	protected void handleLoad() {
 		setBean(this.usuarioBC.load(getId()));
 	}
-    private static final Logger LOG = Logger.getLogger(UsuarioEditMB.class.getName());
+
+	public List<Papel> getPapeis(){
+
+		this.papeis = new ArrayList<Papel>();
+		
+		List<String> roles = Roles.getRolesList();
+		for (String role : roles) {
+			Papel papel = new Papel();
+			papel.setId(Roles.getRole(role));
+			papel.setDescricao(role);
+			this.papeis.add(papel);
+		}
+		
+		return this.papeis;
+	}
 
 }

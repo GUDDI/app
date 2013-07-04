@@ -1,11 +1,10 @@
 package br.org.guddi.persistence;
 
+import javax.persistence.NoResultException;
+
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 import br.org.guddi.domain.Usuario;
-import java.util.logging.Logger;
-import javax.persistence.NoResultException;
-import javax.persistence.NonUniqueResultException;
 
 @PersistenceController
 public class UsuarioDAO extends JPACrud<Usuario, Long> {
@@ -14,12 +13,12 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
 
     /**
      *
-     * @param login
+     * @param email
      * @return
      */
-    public Usuario findByLogin(String login) {
+    public Usuario findByEmail(String email) {
         try {
-            return (Usuario) getEntityManager().createNamedQuery("Usuario.findByUsuario").setParameter("usuario", login).getSingleResult();
+            return (Usuario) getEntityManager().createNamedQuery("Usuario.findByEmail").setParameter("email", email).getSingleResult();
         } catch (NoResultException e) {
             return null;
         }
@@ -51,5 +50,4 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
                 .getSingleResult();
 
     }
-    private static final Logger LOG = Logger.getLogger(UsuarioDAO.class.getName());
 }

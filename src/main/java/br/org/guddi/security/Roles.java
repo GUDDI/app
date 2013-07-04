@@ -111,5 +111,4 @@ public class Roles implements IRoles {
 
         return 99L;
     }
-    private static final Logger LOG = Logger.getLogger(Roles.class.getName());
 }

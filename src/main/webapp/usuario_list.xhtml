@@ -51,10 +51,10 @@
 							</h:commandLink>
 						</p:column>
 								
-						<p:column sortBy="#{bean.usuario}">
-							<f:facet name="header">#{messages['usuario.label.usuario']}</f:facet>
+						<p:column sortBy="#{bean.email}">
+							<f:facet name="header">#{messages['usuario.label.email']}</f:facet>
 							<h:commandLink action="#{usuarioListMB.getNextView}" actionListener="#{usuarioListMB.clear}">
-								<h:outputText value="#{bean.usuario}" />
+								<h:outputText value="#{bean.email}" />
 								<f:param name="id" value="#{bean.id}" />
 							</h:commandLink>
 						</p:column>
@@ -66,6 +66,15 @@
 								<f:param name="id" value="#{bean.id}" />
 							</h:commandLink>
 						</p:column>
+						
+						<p:column sortBy="#{bean.isAtivo}">
+							<f:facet name="header">#{messages['usuario.label.isAtivo']}</f:facet>
+							<h:commandLink action="#{usuarioListMB.getNextView}" actionListener="#{usuarioListMB.clear}">
+								<h:outputText value="#{bean.isAtivo}" />
+								<f:param name="id" value="#{bean.id}" />
+							</h:commandLink>
+						</p:column>
+						
 								
 					</p:dataTable>
 				</div>

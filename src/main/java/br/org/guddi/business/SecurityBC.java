@@ -33,8 +33,8 @@ public class SecurityBC {
     @Inject
     private PapelDAO papelDAO;
 
-    public Usuario findByLogin(String login) {
-        return usuarioDAO.findByLogin(login);
+    public Usuario findByEmail(String email) {
+        return usuarioDAO.findByEmail(email);
     }
 
     @Startup

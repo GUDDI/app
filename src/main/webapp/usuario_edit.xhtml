@@ -24,6 +24,7 @@
 							ajax="false" />
 						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
 					</p:confirmDialog>
+					
 				</p:toolbarGroup>
 			</p:toolbar>
 
@@ -44,7 +45,9 @@
 					<div class="rowElem">
 						<h:outputLabel value="#{messages['usuario.label.papel']}: " for="papel" />
 						<div class="formLeft">
-							<h:outputText id="papel" value="#{usuarioEditMB.bean.papel.descricao}" title="#{messages['usuario.alt.papel']}" />
+							<h:selectOneMenu id="papel" value="#{usuarioEditMB.bean.papel}">
+								<f:selectItems value="#{usuarioEditMB.papeis}" var="papel" itemValue="#{papel}" itemLabel="#{papel.descricao}"/>
+							</h:selectOneMenu>
 						</div>
 						<div class="fix"></div>
 					</div>
@@ -58,9 +61,9 @@
 					</div>
 					
 					<div class="rowElem">
-						<h:outputLabel value="#{messages['usuario.label.usuario']}: " for="usuario"/>
+						<h:outputLabel value="#{messages['usuario.label.email']}: " for="email"/>
 						<div class="formLeft">
-							<h:outputText id="usuario" value="#{usuarioEditMB.bean.usuario}" title="#{messages['usuario.alt.usuario']}" />
+							<h:outputText id="email" value="#{usuarioEditMB.bean.email}" title="#{messages['usuario.alt.email']}" />
 						</div>
 						<div class="fix"></div>
 					</div>
@@ -68,7 +71,20 @@
 					<div class="rowElem">
 						<h:outputLabel value="#{messages['usuario.label.orgao']}: " for="orgao"/>
 						<div class="formLeft">
-							<h:outputText id="orgao" value="#{usuarioEditMB.bean.orgao.nome}" title="#{messages['usuario.alt.orgao']}" />
+							<h:selectOneMenu id="orgao" value="#{usuarioEditMB.bean.orgao}">
+								<f:selectItems value="#{orgaoListMB.resultList}" var="orgao" itemValue="#{orgao}" itemLabel="#{orgao.nome}"/>
+							</h:selectOneMenu>
+						</div>
+						<div class="fix"></div>
+					</div>
+					
+					<div class="rowElem">
+						<h:outputLabel value="#{messages['usuario.label.isAtivo']}: " for="ativo"/>
+						<div class="formLeft">
+							<h:selectOneMenu id="ativo" value="#{usuarioEditMB.bean.isAtivo}">
+								<f:selectItem itemValue="true" itemLabel="#{messages['usuario.label.isAtivo.sim']}"/>
+								<f:selectItem itemValue="false" itemLabel="#{messages['usuario.label.isAtivo.nao']}"/>
+							</h:selectOneMenu>
 						</div>
 						<div class="fix"></div>
 					</div>
