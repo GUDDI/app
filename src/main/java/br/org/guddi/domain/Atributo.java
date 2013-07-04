@@ -5,6 +5,7 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +27,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author 05081364908
  */
 @Entity
-//@Table(catalog = "guddi", schema = "guddi")
 @Table
 @XmlRootElement
 @NamedQueries({
@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Atributo.findByTipo", query = "SELECT a FROM Atributo a WHERE a.tipo = :tipo")})
 public class Atributo implements Serializable {
     
-	private static final long serialVersionUID = 7517355321528352171L;
+	private static final long serialVersionUID = 7_517_355_321_528_352_171L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,42 +57,81 @@ public class Atributo implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Servico servico;
 
+    /**
+     *
+     */
     public Atributo() {
     }
 
+    /**
+     *
+     * @param id
+     */
     public Atributo(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     *
+     * @param nome
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTipo() {
         return tipo;
     }
 
+    /**
+     *
+     * @param tipo
+     */
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
-	public Servico getServico() {
+	/**
+     *
+     * @return
+     */
+    public Servico getServico() {
 		return servico;
 	}
 	
-	public void setServico(Servico servico) {
+	/**
+     *
+     * @param servico
+     */
+    public void setServico(Servico servico) {
 		this.servico = servico;
 	}
 
@@ -120,5 +159,6 @@ public class Atributo implements Serializable {
     public String toString() {
         return "br.gov.frameworkdemoiselle.guddi.domain.Atributo[ id=" + id + " ]";
     }
+    private static final Logger LOG = Logger.getLogger(Atributo.class.getName());
 
 }

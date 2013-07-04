@@ -5,7 +5,9 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.Set;
+import java.util.logging.Logger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +31,6 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author 05081364908
  */
 @Entity
-//@Table(catalog = "guddi", schema = "guddi")
 @Table
 @XmlRootElement
 @NamedQueries({
@@ -38,7 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Sistema.findByNome", query = "SELECT s FROM Sistema s WHERE s.nome = :nome")})
 public class Sistema implements Serializable {
     
-	private static final long serialVersionUID = 833945106894289319L;
+	private static final long serialVersionUID = 833_945_106_894_289_319L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,46 +59,85 @@ public class Sistema implements Serializable {
 	@OneToMany(mappedBy = "sistema", fetch = FetchType.LAZY)
     private Set<Descritor> descritores;
 
+    /**
+     *
+     */
     public Sistema() {
     }
 
+    /**
+     *
+     * @param id
+     */
     public Sistema(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     *
+     * @param nome
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
     
-	public Orgao getOrgao() {
+	/**
+     *
+     * @return
+     */
+    public Orgao getOrgao() {
 		return orgao;
 	}
 
 	
-	public void setOrgao(Orgao orgao) {
+	/**
+     *
+     * @param orgao
+     */
+    public void setOrgao(Orgao orgao) {
 		this.orgao = orgao;
 	}
 
-	@XmlTransient
+	/**
+     *
+     * @return
+     */
+    @XmlTransient
 	public Set<Descritor> getDescritores() {
-		return descritores;
+		return Collections.unmodifiableSet(descritores);
 	}
 
 	
-	public void setDescritores(Set<Descritor> descritores) {
+	/**
+     *
+     * @param descritores
+     */
+    public void setDescritores(Set<Descritor> descritores) {
 		this.descritores = descritores;
 	}
 
@@ -125,5 +165,6 @@ public class Sistema implements Serializable {
     public String toString() {
         return "br.gov.frameworkdemoiselle.guddi.domain.Sistema[ id=" + id + " ]";
     }
+    private static final Logger LOG = Logger.getLogger(Sistema.class.getName());
 
 }

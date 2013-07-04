@@ -1,12 +1,13 @@
 package br.org.guddi.view;
 
-import javax.inject.Inject;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.org.guddi.business.ExcecaoBC;
 import br.org.guddi.domain.Excecao;
+import java.util.logging.Logger;
+import javax.inject.Inject;
 
 @ViewController
 @PreviousView("./excecao_list.jsf")
@@ -17,30 +18,46 @@ public class ExcecaoEditMB extends AbstractEditPageBean<Excecao, Long> {
 	@Inject
 	private ExcecaoBC excecaoBC;
 	
-	@Override
+	/**
+     *
+     * @return
+     */
+    @Override
 	@Transactional
 	public String delete() {
 		this.excecaoBC.delete(getId());
 		return getPreviousView();
 	}
 	
-	@Override
+	/**
+     *
+     * @return
+     */
+    @Override
 	@Transactional
 	public String insert() {
 		this.excecaoBC.insert(getBean());
 		return getPreviousView();
 	}
 	
-	@Override
+	/**
+     *
+     * @return
+     */
+    @Override
 	@Transactional
 	public String update() {
 		this.excecaoBC.update(getBean());
 		return getPreviousView();
 	}
 	
-	@Override
+	/**
+     *
+     */
+    @Override
 	protected void handleLoad() {
 		setBean(this.excecaoBC.load(getId()));
 	}
+    private static final Logger LOG = Logger.getLogger(ExcecaoEditMB.class.getName());
 
 }

@@ -1,21 +1,25 @@
 package br.org.guddi.persistence;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.Query;
-
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 import br.org.guddi.domain.Pesquisa;
 import br.org.guddi.util.search.SearchFilter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+import javax.persistence.Query;
 
 @PersistenceController
 public class PesquisaDAO extends JPACrud<Pesquisa, Long> {
 
 	private static final long serialVersionUID = 1L;
 
-	public int count(String searchParam) {
+	/**
+     *
+     * @param searchParam
+     * @return
+     */
+    public int count(String searchParam) {
 		
 		StringBuilder sql = new StringBuilder("SELECT ct FROM guddi.fc_servico_localizar_total_registros( :search ) ct; ");
 		
@@ -30,7 +34,13 @@ public class PesquisaDAO extends JPACrud<Pesquisa, Long> {
 		return n.intValue();
 	}
 	
-	public List<Pesquisa> search(String searchParam, SearchFilter parameters) {
+	/**
+     *
+     * @param searchParam
+     * @param parameters
+     * @return
+     */
+    public List<Pesquisa> search(String searchParam, SearchFilter parameters) {
 		StringBuilder sql = new StringBuilder("SELECT p.id_orgao, p.nome_orgao, p.id_sistema, p.nome_sistema, p.id_descritor, p.descricao_descritor, p.id_servico, p.nome_servico, p.wsdl_link_servico FROM guddi.fc_servico_localizar( :search , :firstResult, :maxResult) p ;  ");
 		
 		Query query = getEntityManager().createNativeQuery(sql.toString());
@@ -47,7 +57,7 @@ public class PesquisaDAO extends JPACrud<Pesquisa, Long> {
 		
 		List<Object[]> objList = query.getResultList();
 		
-		List<Pesquisa> list = new ArrayList<Pesquisa>();
+		List<Pesquisa> list = new ArrayList<>();
 		for (Object[] obj : objList) {
 			
 			Pesquisa p = new Pesquisa();
@@ -80,5 +90,6 @@ public class PesquisaDAO extends JPACrud<Pesquisa, Long> {
 		
 		return param;
 	}
+    private static final Logger LOG = Logger.getLogger(PesquisaDAO.class.getName());
 
 }

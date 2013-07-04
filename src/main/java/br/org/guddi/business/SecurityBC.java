@@ -15,8 +15,8 @@ import br.org.guddi.persistence.UsuarioDAO;
 import br.org.guddi.security.Resources;
 import br.org.guddi.security.Roles;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.inject.Inject;
-import javax.persistence.NoResultException;
 
 /**
  *
@@ -54,34 +54,46 @@ public class SecurityBC {
 
     @Startup
     public void loadDataRoles() {
-        //papelDAO.clear();
-        List<String> lista = Roles.getRole();
-        for (String papel : lista) {
-        	Papel pap = null;
-        	
-        	try{
-        		pap = papelDAO.load(papel);
-        	}
-        	catch(NoResultException e){
-        		
-        	}
-        	
-            if (pap == null) {
-                pap = new Papel();
-                pap.setId(Roles.getRole(papel));
-                pap.setDescricao(papel);
-                papelDAO.insert(pap);
-            }
+        try {
+            papelDAO.clear();
+            List<String> lista = Roles.getRole();
+            for (String papel : lista) {
+                Papel pap = null;
 
+
+                pap = papelDAO.load(papel);
+
+
+                if (pap == null) {
+                    pap = new Papel();
+                    pap.setId(Roles.getRole(papel));
+                    pap.setDescricao(papel);
+                    papelDAO.insert(pap);
+                }
+            }
+        } catch (Exception e) {
         }
     }
 
+    /**
+     *
+     * @param idUsuario
+     * @param idRole
+     * @return
+     */
     public Boolean hasRole(Long idUsuario, Long idRole) {
         return usuarioDAO.hasRole(idUsuario, idRole);
     }
 
-    public Integer hasPermission(Long idUsuario, Long idResource){
+    /**
+     *
+     * @param idUsuario
+     * @param idResource
+     * @return
+     */
+    public Integer hasPermission(Long idUsuario, Long idResource) {
         return usuarioDAO.hasPermission(idUsuario, idResource);
 
     }
+    private static final Logger LOG = Logger.getLogger(SecurityBC.class.getName());
 }

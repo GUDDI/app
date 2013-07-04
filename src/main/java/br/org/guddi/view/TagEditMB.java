@@ -1,12 +1,13 @@
 package br.org.guddi.view;
 
-import javax.inject.Inject;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.org.guddi.business.TagBC;
 import br.org.guddi.domain.Tag;
+import java.util.logging.Logger;
+import javax.inject.Inject;
 
 @ViewController
 @PreviousView("./tag_list.jsf")
@@ -17,30 +18,46 @@ public class TagEditMB extends AbstractEditPageBean<Tag, Long> {
 	@Inject
 	private TagBC tagBC;
 	
-	@Override
+	/**
+     *
+     * @return
+     */
+    @Override
 	@Transactional
 	public String delete() {
 		this.tagBC.delete(getId());
 		return getPreviousView();
 	}
 	
-	@Override
+	/**
+     *
+     * @return
+     */
+    @Override
 	@Transactional
 	public String insert() {
 		this.tagBC.insert(getBean());
 		return getPreviousView();
 	}
 	
-	@Override
+	/**
+     *
+     * @return
+     */
+    @Override
 	@Transactional
 	public String update() {
 		this.tagBC.update(getBean());
 		return getPreviousView();
 	}
 	
-	@Override
+	/**
+     *
+     */
+    @Override
 	protected void handleLoad() {
 		setBean(this.tagBC.load(getId()));
 	}
+    private static final Logger LOG = Logger.getLogger(TagEditMB.class.getName());
 
 }

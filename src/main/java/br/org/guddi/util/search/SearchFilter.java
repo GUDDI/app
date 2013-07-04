@@ -1,6 +1,8 @@
 package br.org.guddi.util.search;
 
+import java.util.Collections;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class SearchFilter {
 
@@ -9,56 +11,105 @@ public class SearchFilter {
 	private boolean sortOrder;
 	private Map<String, String> filters;
 
-	public SearchFilter() {
+	/**
+     *
+     */
+    public SearchFilter() {
 		super();
 		first = 0;
 		pageSize = 10;
 		sortOrder = true;
 	}
 
-	public SearchFilter(int first, int pageSize) {
+	/**
+     *
+     * @param first
+     * @param pageSize
+     */
+    public SearchFilter(int first, int pageSize) {
 		super();
 		this.first = first;
 		this.pageSize = pageSize;
 	}
 
-	public int getFirst() {
+	/**
+     *
+     * @return
+     */
+    public int getFirst() {
 		return first;
 	}
 
-	public void setFirst(int first) {
+	/**
+     *
+     * @param first
+     */
+    public void setFirst(int first) {
 		this.first = first;
 	}
 
-	public int getPageSize() {
+	/**
+     *
+     * @return
+     */
+    public int getPageSize() {
 		return pageSize;
 	}
 
-	public void setPageSize(int pageSize) {
+	/**
+     *
+     * @param pageSize
+     */
+    public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}
 
-	public String getSortField() {
+	/**
+     *
+     * @return
+     */
+    public String getSortField() {
 		return sortField;
 	}
 
-	public void setSortField(String sortField) {
+	/**
+     *
+     * @param sortField
+     */
+    public void setSortField(String sortField) {
 		this.sortField = sortField;
 	}
 
-	public boolean getSortOrder() {
+	/**
+     *
+     * @return
+     */
+    public boolean getSortOrder() {
 		return sortOrder;
 	}
 
-	public void setSortOrder(boolean sortOrder) {
+	/**
+     *
+     * @param sortOrder
+     */
+    public void setSortOrder(boolean sortOrder) {
 		this.sortOrder = sortOrder;
 	}
 
-	public Map<String, String> getFilters() {
-		return filters;
+	/**
+     *
+     * @return
+     */
+    public Map<String, String> getFilters() {
+		return Collections.unmodifiableMap(filters);
 	}
 
-	public void setFilters(Map<String, String> filters) {
+	/**
+     *
+     * @param filters
+     */
+    public void setFilters(Map<String, String> filters) {
 		this.filters = filters;
 	}
+    private static final Logger LOG = Logger.getLogger(SearchFilter.class.getName());
 }

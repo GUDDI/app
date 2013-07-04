@@ -5,6 +5,7 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -20,7 +21,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author escritorio
  */
 @Entity
-//@Table(name = "usuario_recursos", catalog = "guddi", schema = "guddi")
 @Table(name = "usuario_recursos")
 @XmlRootElement
 @NamedQueries({
@@ -30,6 +30,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "UsuarioRecurso.findByOperacao", query = "SELECT u FROM UsuarioRecurso u WHERE u.operacao = :operacao")})
 public class UsuarioRecurso implements Serializable {
     private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
     @EmbeddedId
     protected UsuarioRecursoPK usuarioRecursoPK;
     @Basic(optional = false)
@@ -37,34 +40,67 @@ public class UsuarioRecurso implements Serializable {
     @Column(nullable = false)
     private Integer operacao;
 
+    /**
+     *
+     */
     public UsuarioRecurso() {
     }
 
+    /**
+     *
+     * @param usuarioRecursoPK
+     */
     public UsuarioRecurso(UsuarioRecursoPK usuarioRecursoPK) {
         this.usuarioRecursoPK = usuarioRecursoPK;
     }
 
+    /**
+     *
+     * @param usuarioRecursoPK
+     * @param operacao
+     */
     public UsuarioRecurso(UsuarioRecursoPK usuarioRecursoPK, Integer operacao) {
         this.usuarioRecursoPK = usuarioRecursoPK;
         this.operacao = operacao;
     }
 
+    /**
+     *
+     * @param idUsuario
+     * @param recursos
+     */
     public UsuarioRecurso(Long idUsuario, Integer recursos) {
         this.usuarioRecursoPK = new UsuarioRecursoPK(idUsuario, recursos);
     }
 
+    /**
+     *
+     * @return
+     */
     public UsuarioRecursoPK getUsuarioRecursosPK() {
         return usuarioRecursoPK;
     }
 
+    /**
+     *
+     * @param usuarioRecursoPK
+     */
     public void setUsuarioRecursosPK(UsuarioRecursoPK usuarioRecursoPK) {
         this.usuarioRecursoPK = usuarioRecursoPK;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getOperacao() {
         return operacao;
     }
 
+    /**
+     *
+     * @param operacao
+     */
     public void setOperacao(Integer operacao) {
         this.operacao = operacao;
     }
@@ -93,5 +129,6 @@ public class UsuarioRecurso implements Serializable {
     public String toString() {
         return "br.org.guddi.domain.UsuarioRecurso[ usuarioRecursoPK=" + usuarioRecursoPK + " ]";
     }
+    private static final Logger LOG = Logger.getLogger(UsuarioRecurso.class.getName());
 
 }

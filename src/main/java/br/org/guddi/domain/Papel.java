@@ -5,23 +5,16 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.Basic;
+import java.util.logging.Logger;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -29,7 +22,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 
 @Entity
-//@Table(catalog = "guddi", schema = "guddi")
 @Table
 @XmlRootElement
 @NamedQueries({
@@ -39,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Papel implements Serializable{
    
     
-	private static final long serialVersionUID = -9146098310699200511L;
+	private static final long serialVersionUID = 9_146_098_310_699_200_511L;
 
 	@Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,25 +41,48 @@ public class Papel implements Serializable{
     @Column(length = 20)
     private String descricao;
 
+    /**
+     *
+     */
     public Papel() {
     }
 
+    /**
+     *
+     * @param id
+     */
     public Papel(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDescricao() {
         return descricao;
     }
 
+    /**
+     *
+     * @param descricao
+     */
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
@@ -96,5 +111,6 @@ public class Papel implements Serializable{
     public String toString() {
         return "br.gov.frameworkdemoiselle.guddi.domain.Papel[ id=" + id + " ]";
     }
+    private static final Logger LOG = Logger.getLogger(Papel.class.getName());
 
    }

@@ -5,8 +5,7 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
-
-import javax.persistence.Basic;
+import java.util.logging.Logger;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -24,7 +22,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author 05081364908
  */
 @Entity
-//@Table(catalog = "guddi", schema = "guddi")
 @Table
 @XmlRootElement
 @NamedQueries({
@@ -33,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Tag.findByTag", query = "SELECT t FROM Tag t WHERE t.tag = :tag")})
 public class Tag implements Serializable {
     
-	private static final long serialVersionUID = 5602366476002683716L;
+	private static final long serialVersionUID = 5_602_366_476_002_683_716L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,25 +40,48 @@ public class Tag implements Serializable {
     @Column(length = 15)
     private String tag;
     
+    /**
+     *
+     */
     public Tag() {
     }
 
+    /**
+     *
+     * @param id
+     */
     public Tag(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTag() {
         return tag;
     }
 
+    /**
+     *
+     * @param tag
+     */
     public void setTag(String tag) {
         this.tag = tag;
     }
@@ -90,5 +110,6 @@ public class Tag implements Serializable {
     public String toString() {
         return "br.gov.frameworkdemoiselle.guddi.domain.Tag[ id=" + id + " ]";
     }
+    private static final Logger LOG = Logger.getLogger(Tag.class.getName());
 
 }

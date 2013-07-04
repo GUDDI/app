@@ -1,30 +1,29 @@
 package br.org.guddi.security;
 
-import java.io.Serializable;
-import java.security.Principal;
-
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import br.gov.frameworkdemoiselle.message.MessageContext;
 import br.gov.frameworkdemoiselle.message.SeverityType;
 import br.gov.frameworkdemoiselle.security.SecurityContext;
-import java.util.List;
+import java.io.Serializable;
+import java.security.Principal;
+import java.util.Objects;
+import java.util.logging.Logger;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 @Named
 @SessionScoped
 public class Identity implements Serializable, Principal {
 
-    private static final long serialVersionUID = -8003651916557123604L;
+    private static final long serialVersionUID = 8_003_651_916_557_123_604L;
     private Boolean isLogged = false;
     private Long id;
     private String name;
     private String login;
     private String password;
     private Long orgao;
-    private List<String> papeis;
-
+    private String nomeorgao;
+    private String papel;
     @Inject
     private SecurityContext securityContext;
     @Inject
@@ -35,7 +34,6 @@ public class Identity implements Serializable, Principal {
             securityContext.login();
             return "index.html";
         } catch (Exception e) {
-            e.printStackTrace();
             messageContext.add(e.getMessage(), SeverityType.ERROR);
             return null;
         }
@@ -46,7 +44,6 @@ public class Identity implements Serializable, Principal {
             securityContext.logout();
             return "index.jsf";
         } catch (Exception e) {
-            e.printStackTrace();
             messageContext.add(e.getMessage(), SeverityType.ERROR);
             return null;
         }
@@ -76,6 +73,7 @@ public class Identity implements Serializable, Principal {
         this.isLogged = isLogged;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -100,12 +98,42 @@ public class Identity implements Serializable, Principal {
         this.orgao = orgao;
     }
 
-    public List<String> getPapeis() {
-        return papeis;
+    public String getPapel() {
+        return papel;
     }
 
-    public void setPapeis(List<String> papeis) {
-        this.papeis = papeis;
+    public void setPapel(String papel) {
+        this.papel = papel;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Identity other = (Identity) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
+    }
+
+    public String getNomeorgao() {
+        return nomeorgao;
+    }
+
+    public void setNomeorgao(String nomeorgao) {
+        this.nomeorgao = nomeorgao;
+    }
+    private static final Logger LOG = Logger.getLogger(Identity.class.getName());
 }

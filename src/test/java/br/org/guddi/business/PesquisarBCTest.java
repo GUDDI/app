@@ -1,12 +1,8 @@
 package br.org.guddi.business;
 
+import java.util.logging.Logger;
 import javax.inject.Inject;
-
 import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
-import br.org.guddi.util.search.SearchFilter;
 
 //@RunWith(DemoiselleRunner.class)
 public class PesquisarBCTest {
@@ -14,20 +10,30 @@ public class PesquisarBCTest {
 	@Inject
 	private PesquisarBC bc;
 	
-	@Test
+	/**
+     *
+     */
+    @Test
 	public void testSearhValidation() {
 		//bc.searhValidation("");
 	}
 
-	@Test
+	/**
+     *
+     */
+    @Test
 	public void testCount() {
 		//System.out.println(bc.count(""));
 	}
 
-	@Test
+	/**
+     *
+     */
+    @Test
 	public void testSearch() {
 		//System.out.println(bc.search("", new SearchFilter(0,1)));
 	}
+    private static final Logger LOG = Logger.getLogger(PesquisarBCTest.class.getName());
 
 
 }

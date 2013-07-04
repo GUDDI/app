@@ -5,6 +5,7 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -25,26 +26,50 @@ public class UsuarioRecursoPK implements Serializable {
     @Column(nullable = false)
     private Integer recursos;
 
+    /**
+     *
+     */
     public UsuarioRecursoPK() {
     }
 
+    /**
+     *
+     * @param idUsuario
+     * @param recursos
+     */
     public UsuarioRecursoPK(Long idUsuario, Integer recursos) {
         this.idUsuario = idUsuario;
         this.recursos = recursos;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getIdUsuario() {
         return idUsuario;
     }
 
+    /**
+     *
+     * @param idUsuario
+     */
     public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getRecursos() {
         return recursos;
     }
 
+    /**
+     *
+     * @param recursos
+     */
     public void setRecursos(Integer recursos) {
         this.recursos = recursos;
     }
@@ -77,5 +102,6 @@ public class UsuarioRecursoPK implements Serializable {
     public String toString() {
         return "br.org.guddi.domain.UsuarioRecursoPK[ idUsuario=" + idUsuario + ", recursos=" + recursos + " ]";
     }
+    private static final Logger LOG = Logger.getLogger(UsuarioRecursoPK.class.getName());
 
 }

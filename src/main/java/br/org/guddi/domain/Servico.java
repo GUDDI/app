@@ -5,8 +5,9 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
-import java.util.Set;
+import java.util.logging.Logger;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -31,7 +32,6 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author 05081364908
  */
 @Entity
-//@Table(catalog = "guddi", schema = "guddi")
 @Table
 @XmlRootElement
 @NamedQueries({
@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Servico.findByNome", query = "SELECT s FROM Servico s WHERE s.nome = :nome")})
 public class Servico implements Serializable {
     
-	private static final long serialVersionUID = 4084161390208797022L;
+	private static final long serialVersionUID = 4_084_161_390_208_797_022L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,61 +67,116 @@ public class Servico implements Serializable {
     @OneToMany(mappedBy = "servico", fetch = FetchType.LAZY)
     private List<Excecao> excecoes;
 
+    /**
+     *
+     */
     public Servico() {
     }
 
+    /**
+     *
+     * @param id
+     */
     public Servico(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     *
+     * @param nome
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-	public Descritor getDescritor() {
+	/**
+     *
+     * @return
+     */
+    public Descritor getDescritor() {
 		return descritor;
 	}
 
 	
-	public void setDescritor(Descritor descritor) {
+	/**
+     *
+     * @param descritor
+     */
+    public void setDescritor(Descritor descritor) {
 		this.descritor = descritor;
 	}
 	
-	@XmlTransient
+	/**
+     *
+     * @return
+     */
+    @XmlTransient
 	public List<Atributo> getAtributos() {
-		return atributos;
+		return Collections.unmodifiableList(atributos);
 	}
 
-	public void setAtributos(List<Atributo> atributos) {
+	/**
+     *
+     * @param atributos
+     */
+    public void setAtributos(List<Atributo> atributos) {
 		this.atributos = atributos;
 	}
 
-	@XmlTransient
+	/**
+     *
+     * @return
+     */
+    @XmlTransient
 	public List<Excecao> getExcecoes() {
-		return excecoes;
+		return Collections.unmodifiableList(excecoes);
 	}
 
-	public void setExcecoes(List<Excecao> excecoes) {
+	/**
+     *
+     * @param excecoes
+     */
+    public void setExcecoes(List<Excecao> excecoes) {
 		this.excecoes = excecoes;
 	}
 
-	public String getWsdlLink() {
+	/**
+     *
+     * @return
+     */
+    public String getWsdlLink() {
 		return wsdlLink;
 	}
 	
-	public void setWsdlLink(String wsdlLink) {
+	/**
+     *
+     * @param wsdlLink
+     */
+    public void setWsdlLink(String wsdlLink) {
 		this.wsdlLink = wsdlLink;
 	}
 
@@ -149,5 +204,6 @@ public class Servico implements Serializable {
     public String toString() {
         return "br.gov.frameworkdemoiselle.guddi.domain.Servico[ id=" + id + " ]";
     }
+    private static final Logger LOG = Logger.getLogger(Servico.class.getName());
 
 }

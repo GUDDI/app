@@ -1,8 +1,7 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
-import java.util.List;
-
+import java.util.logging.Logger;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -24,7 +21,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author 05081364908
  */
 @Entity
-//@Table(catalog = "guddi", schema = "guddi")
 @Table
 @XmlRootElement
 @NamedQueries({
@@ -35,31 +31,22 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Usuario.findByUsuario", query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario")})
 public class Usuario implements Serializable {
 
-    private static final long serialVersionUID = 3300855504795838859L;
+    private static final long serialVersionUID = 3_300_855_504_795_838_859L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "usuario_papel",
-            joinColumns = {
-        @JoinColumn(name = "id_usuario", nullable = false, updatable = false)},
-            inverseJoinColumns = {
-        @JoinColumn(name = "id_papel", nullable = false, updatable = false)})
-    private List<Papel> papeis;
-    
+    @JoinColumn(name = "id_papel", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Papel papel;
     @Size(max = 50)
     @Column(length = 50)
     private String nome;
-    
     @Size(max = 15)
     @Column(length = 15)
     private String usuario;
-    
     @Size(max = 32)
     @Column(length = 32)
     private String senha;
-    
     @JoinColumn(name = "id_orgao", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Orgao orgao;
@@ -79,42 +66,78 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
-    public List<Papel> getPapeis() {
-        return papeis;
+    public Papel getPapeis() {
+        return papel;
     }
 
-    public void setPapeis(List<Papel> papeis) {
-        this.papeis = papeis;
+    /**
+     *
+     * @param papeis
+     */
+    public void setPapeis(Papel papeis) {
+        this.papel = papeis;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     *
+     * @param nome
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUsuario() {
         return usuario;
     }
 
+    /**
+     *
+     * @param usuario
+     */
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSenha() {
         return senha;
     }
 
+    /**
+     *
+     * @param senha
+     */
     public void setSenha(String senha) {
         this.senha = senha;
     }
 
+    /**
+     *
+     * @return
+     */
     public Orgao getOrgao() {
         return orgao;
     }
 
+    /**
+     *
+     * @param orgao
+     */
     public void setOrgao(Orgao orgao) {
         this.orgao = orgao;
     }
@@ -143,4 +166,5 @@ public class Usuario implements Serializable {
     public String toString() {
         return "br.gov.frameworkdemoiselle.guddi.domain.Usuario[ id=" + id + " ]";
     }
+    private static final Logger LOG = Logger.getLogger(Usuario.class.getName());
 }

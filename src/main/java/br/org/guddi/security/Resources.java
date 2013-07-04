@@ -7,6 +7,7 @@ package br.org.guddi.security;
 import static br.org.guddi.security.IResources.ORGAO;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,19 +15,33 @@ import java.util.List;
  */
 public class Resources implements IResources{
 
-   public static String getResources(int id) {
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public static String getResources(int id) {
 
         return "";
     }
 
+    /**
+     *
+     * @param resource
+     * @return
+     */
     public static Long getResource(String resource) {
         Long number = 0L;
 
         return number;
     }
 
+    /**
+     *
+     * @return
+     */
     public static List<String> getResourcesList(){
-        List<String> lista = new ArrayList<String>();
+        List<String> lista = new ArrayList<>();
 
         lista.add(ATRIBUTO);
         lista.add(DESCRITOR);
@@ -39,5 +54,6 @@ public class Resources implements IResources{
 
         return lista;
     }
+    private static final Logger LOG = Logger.getLogger(Resources.class.getName());
 
 }

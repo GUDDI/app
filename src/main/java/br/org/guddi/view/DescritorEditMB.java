@@ -1,12 +1,13 @@
 package br.org.guddi.view;
 
-import javax.inject.Inject;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.org.guddi.business.DescritorBC;
 import br.org.guddi.domain.Descritor;
+import java.util.logging.Logger;
+import javax.inject.Inject;
 
 @ViewController
 @PreviousView("./descritor_list.jsf")
@@ -17,30 +18,46 @@ public class DescritorEditMB extends AbstractEditPageBean<Descritor, Long> {
 	@Inject
 	private DescritorBC descritorBC;
 	
-	@Override
+	/**
+     *
+     * @return
+     */
+    @Override
 	@Transactional
 	public String delete() {
 		this.descritorBC.delete(getId());
 		return getPreviousView();
 	}
 	
-	@Override
+	/**
+     *
+     * @return
+     */
+    @Override
 	@Transactional
 	public String insert() {
 		this.descritorBC.insert(getBean());
 		return getPreviousView();
 	}
 	
-	@Override
+	/**
+     *
+     * @return
+     */
+    @Override
 	@Transactional
 	public String update() {
 		this.descritorBC.update(getBean());
 		return getPreviousView();
 	}
 	
-	@Override
+	/**
+     *
+     */
+    @Override
 	protected void handleLoad() {
 		setBean(this.descritorBC.load(getId()));
 	}
+    private static final Logger LOG = Logger.getLogger(DescritorEditMB.class.getName());
 
 }

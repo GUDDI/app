@@ -1,8 +1,9 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.Set;
-
+import java.util.logging.Logger;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,7 +24,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 
 @Entity
-//@Table(catalog = "guddi", schema = "guddi")
 @Table
 @XmlRootElement
 @NamedQueries({
@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Orgao.findByNome", query = "SELECT o FROM Orgao o WHERE o.nome = :nome")})
 public class Orgao implements Serializable {
 
-    private static final long serialVersionUID = -762179107126837980L;
+    private static final long serialVersionUID = 762_179_107_126_837_980L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -47,43 +47,82 @@ public class Orgao implements Serializable {
     @OneToMany(mappedBy = "orgao", fetch = FetchType.LAZY)
     private Set<Usuario> usuarios;
 
+    /**
+     *
+     */
     public Orgao() {
     }
 
+    /**
+     *
+     * @param id
+     */
     public Orgao(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     *
+     * @param nome
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlTransient
     public Set<Sistema> getSistemas() {
-        return sistemas;
+        return Collections.unmodifiableSet(sistemas);
     }
 
+    /**
+     *
+     * @param sistemas
+     */
     public void setSistemas(Set<Sistema> sistemas) {
         this.sistemas = sistemas;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlTransient
     public Set<Usuario> getUsuarios() {
-        return usuarios;
+        return Collections.unmodifiableSet(usuarios);
     }
 
+    /**
+     *
+     * @param usuarios
+     */
     public void setUsuarios(Set<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
@@ -112,4 +151,5 @@ public class Orgao implements Serializable {
     public String toString() {
         return "br.gov.frameworkdemoiselle.guddi.domain.Orgao[ id=" + id + " ]";
     }
+    private static final Logger LOG = Logger.getLogger(Orgao.class.getName());
 }

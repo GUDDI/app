@@ -1,8 +1,5 @@
 package br.org.guddi.view;
 
-import java.util.Iterator;
-import java.util.List;
-import javax.inject.Inject;
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -10,6 +7,10 @@ import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.org.guddi.business.ServicoBC;
 import br.org.guddi.domain.Servico;
+import java.util.Iterator;
+import java.util.List;
+import java.util.logging.Logger;
+import javax.inject.Inject;
 
 @ViewController
 @NextView("./servico_edit.jsf")
@@ -21,12 +22,20 @@ public class ServicoListMB extends AbstractListPageBean<Servico, Long> {
 	@Inject
 	private ServicoBC servicoBC;
 	
-	@Override
+	/**
+     *
+     * @return
+     */
+    @Override
 	protected List<Servico> handleResultList() {
 		return this.servicoBC.findAll();
 	}
 	
-	@Transactional
+	/**
+     *
+     * @return
+     */
+    @Transactional
 	public String deleteSelection() {
 		boolean delete;
 		for (Iterator<Long> iter = getSelection().keySet().iterator(); iter.hasNext();) {
@@ -39,5 +48,6 @@ public class ServicoListMB extends AbstractListPageBean<Servico, Long> {
 		}
 		return getPreviousView();
 	}
+    private static final Logger LOG = Logger.getLogger(ServicoListMB.class.getName());
 
 }

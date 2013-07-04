@@ -1,16 +1,13 @@
 package br.org.guddi.view;
 
-import javax.inject.Inject;
-
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
-import br.gov.frameworkdemoiselle.template.AbstractPageBean;
-import br.org.guddi.business.PesquisarBC;
 import br.org.guddi.business.ServicoBC;
-import br.org.guddi.domain.Pesquisa;
 import br.org.guddi.domain.Servico;
+import java.util.logging.Logger;
+import javax.inject.Inject;
 
 @ViewController
 @PreviousView("./pesquisa_list.jsf")
@@ -24,14 +21,21 @@ public class DetalharPesquisaMB extends AbstractEditPageBean<Servico, Long> {
 	
 	private Long idServico;
 	
-	@Override
+	/**
+     *
+     */
+    @Override
 	protected void handleLoad() {
 		
 		setBean(servicoBC.load(getId()));
 		
 	}
 	
-	public String detalharServico() {
+	/**
+     *
+     * @return
+     */
+    public String detalharServico() {
 
 		
 
@@ -39,34 +43,55 @@ public class DetalharPesquisaMB extends AbstractEditPageBean<Servico, Long> {
 	}
 
 	
-	public Long getIdServico() {
+	/**
+     *
+     * @return
+     */
+    public Long getIdServico() {
 		return idServico;
 	}
 
-	public void setIdServico(Long idServico) {
+	/**
+     *
+     * @param idServico
+     */
+    public void setIdServico(Long idServico) {
 		this.idServico = idServico;
 	}
 
 
-	@Override
+	/**
+     *
+     * @return
+     */
+    @Override
 	public String delete() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
-	@Override
+	/**
+     *
+     * @return
+     */
+    @Override
 	public String insert() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
-	@Override
+	/**
+     *
+     * @return
+     */
+    @Override
 	public String update() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+    private static final Logger LOG = Logger.getLogger(DetalharPesquisaMB.class.getName());
 
 
 	

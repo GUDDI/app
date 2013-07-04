@@ -2,14 +2,26 @@ package br.org.guddi.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.logging.Logger;
 
 public class CriptografiaUtil {
 
-	public static String getCodigoMd5(String mesnagem) {
+	/**
+     *
+     * @param mesnagem
+     * @return
+     */
+    public static String getCodigoMd5(String mesnagem) {
 		return stringHexa(gerarHash(mesnagem, "MD5"));
 	}
 
-	public static byte[] gerarHash(String frase, String algoritmo) {
+	/**
+     *
+     * @param frase
+     * @param algoritmo
+     * @return
+     */
+    public static byte[] gerarHash(String frase, String algoritmo) {
 		try {
 			MessageDigest md = MessageDigest.getInstance(algoritmo);
 			md.update(frase.getBytes());
@@ -24,11 +36,13 @@ public class CriptografiaUtil {
 		for (int i = 0; i < bytes.length; i++) {
 			int parteAlta = ((bytes[i] >> 4) & 0xf) << 4;
 			int parteBaixa = bytes[i] & 0xf;
-			if (parteAlta == 0)
-				s.append('0');
+			if (parteAlta == 0) {
+                s.append('0');
+            }
 			s.append(Integer.toHexString(parteAlta | parteBaixa));
 		}
 		return s.toString();
 	}
+    private static final Logger LOG = Logger.getLogger(CriptografiaUtil.class.getName());
 
 }

@@ -4,7 +4,7 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
-
+import java.util.logging.Logger;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -35,79 +35,155 @@ public class Pesquisa implements Serializable {
 
 	private String nomeOrgao;
 
-	public Pesquisa() {
+	/**
+     *
+     */
+    public Pesquisa() {
 	}
 
-	public Long getIdOrgao() {
+	/**
+     *
+     * @return
+     */
+    public Long getIdOrgao() {
 		return idOrgao;
 	}
 
-	public void setIdOrgao(Long idOrgao) {
+	/**
+     *
+     * @param idOrgao
+     */
+    public void setIdOrgao(Long idOrgao) {
 		this.idOrgao = idOrgao;
 	}
 
-	public String getNomeOrgao() {
+	/**
+     *
+     * @return
+     */
+    public String getNomeOrgao() {
 		return nomeOrgao;
 	}
 
-	public void setNomeOrgao(String nomeOrgao) {
+	/**
+     *
+     * @param nomeOrgao
+     */
+    public void setNomeOrgao(String nomeOrgao) {
 		this.nomeOrgao = nomeOrgao;
 	}
 
-	public Long getIdServico() {
+	/**
+     *
+     * @return
+     */
+    public Long getIdServico() {
 		return idServico;
 	}
 
-	public void setIdServico(Long idServico) {
+	/**
+     *
+     * @param idServico
+     */
+    public void setIdServico(Long idServico) {
 		this.idServico = idServico;
 	}
 
-	public String getNomeServico() {
+	/**
+     *
+     * @return
+     */
+    public String getNomeServico() {
 		return nomeServico;
 	}
 
-	public void setNomeServico(String nomeServico) {
+	/**
+     *
+     * @param nomeServico
+     */
+    public void setNomeServico(String nomeServico) {
 		this.nomeServico = nomeServico;
 	}
 
-	public String getWsdlLink() {
+	/**
+     *
+     * @return
+     */
+    public String getWsdlLink() {
 		return wsdlLink;
 	}
 
-	public void setWsdlLink(String wsdlLink) {
+	/**
+     *
+     * @param wsdlLink
+     */
+    public void setWsdlLink(String wsdlLink) {
 		this.wsdlLink = wsdlLink;
 	}
 
-	public Long getIdDescritor() {
+	/**
+     *
+     * @return
+     */
+    public Long getIdDescritor() {
 		return idDescritor;
 	}
 
-	public void setIdDescritor(Long idDescritor) {
+	/**
+     *
+     * @param idDescritor
+     */
+    public void setIdDescritor(Long idDescritor) {
 		this.idDescritor = idDescritor;
 	}
 
-	public String getNomeDescritor() {
+	/**
+     *
+     * @return
+     */
+    public String getNomeDescritor() {
 		return nomeDescritor;
 	}
 
-	public void setNomeDescritor(String nomeDescritor) {
+	/**
+     *
+     * @param nomeDescritor
+     */
+    public void setNomeDescritor(String nomeDescritor) {
 		this.nomeDescritor = nomeDescritor;
 	}
 
-	public Long getIdSistema() {
+	/**
+     *
+     * @return
+     */
+    public Long getIdSistema() {
 		return idSistema;
 	}
 
-	public void setIdSistema(Long idSistema) {
+	/**
+     *
+     * @param idSistema
+     */
+    public void setIdSistema(Long idSistema) {
 		this.idSistema = idSistema;
 	}
 
-	public String getNomeSistema() {
+	/**
+     *
+     * @return
+     */
+    public String getNomeSistema() {
 		return nomeSistema;
 	}
 
-	public void setNomeSistema(String nomeSistema) {
+	/**
+     *
+     * @param nomeSistema
+     */
+    public void setNomeSistema(String nomeSistema) {
 		this.nomeSistema = nomeSistema;
 	}
+    private static final Logger LOG = Logger.getLogger(Pesquisa.class.getName());
 
 }

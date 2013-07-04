@@ -5,7 +5,9 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.Set;
+import java.util.logging.Logger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +34,6 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author 05081364908
  */
 @Entity
-//@Table(catalog = "guddi", schema = "guddi")
 @Table
 @XmlRootElement
 @NamedQueries({
@@ -69,13 +70,26 @@ public class Descritor implements Serializable {
         @JoinColumn(name = "id_tag", nullable = false, updatable = false)})
     private Set<Tag> tags;
 
+    /**
+     *
+     */
     public Descritor() {
     }
 
+    /**
+     *
+     * @param id
+     */
     public Descritor(Long id) {
         this.id = id;
     }
     
+    /**
+     *
+     * @param id
+     * @param descricao
+     * @param sistema
+     */
     public Descritor(Long id, String descricao, Sistema sistema) {
 		super();
 		this.id = id;
@@ -83,46 +97,86 @@ public class Descritor implements Serializable {
 		this.sistema = sistema;
 	}
 
-	public Long getId() {
+	/**
+     *
+     * @return
+     */
+    public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDescricao() {
         return descricao;
     }
 
+    /**
+     *
+     * @param descricao
+     */
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlTransient
 	public Set<Servico> getServicos() {
-		return servicos;
+		return Collections.unmodifiableSet(servicos);
 	}
 	
-	public void setServicos(Set<Servico> servicos) {
+	/**
+     *
+     * @param servicos
+     */
+    public void setServicos(Set<Servico> servicos) {
 		this.servicos = servicos;
 	}
 
-	public Sistema getSistema() {
+	/**
+     *
+     * @return
+     */
+    public Sistema getSistema() {
 		return sistema;
 	}
 
 	
-	public void setSistema(Sistema sistema) {
+	/**
+     *
+     * @param sistema
+     */
+    public void setSistema(Sistema sistema) {
 		this.sistema = sistema;
 	}
 
-	@XmlTransient
+	/**
+     *
+     * @return
+     */
+    @XmlTransient
     public Set<Tag> getTags() {
-		return tags;
+		return Collections.unmodifiableSet(tags);
 	}
 	
-	public void setTags(Set<Tag> tags) {
+	/**
+     *
+     * @param tags
+     */
+    public void setTags(Set<Tag> tags) {
 		this.tags = tags;
 	}
     
@@ -150,5 +204,6 @@ public class Descritor implements Serializable {
     public String toString() {
         return "br.gov.frameworkdemoiselle.guddi.domain.Descritor[ id=" + id + " ]";
     }
+    private static final Logger LOG = Logger.getLogger(Descritor.class.getName());
 
 }

@@ -1,17 +1,17 @@
 package br.org.guddi.view;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.org.guddi.business.OrgaoBC;
 import br.org.guddi.business.SistemaBC;
 import br.org.guddi.domain.Descritor;
 import br.org.guddi.domain.Orgao;
 import br.org.guddi.domain.Sistema;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 @ViewController
 public class SistemaEditMB {
@@ -36,60 +36,110 @@ public class SistemaEditMB {
 	
 	
 	
-	@PostConstruct
+	/**
+     *
+     */
+    @PostConstruct
 	public void inicia(){
 		this.descritor = new Descritor();
 	}
 
-	public void delete(){
+	/**
+     *
+     */
+    public void delete(){
 	}
 	
-	public void insert(){
+	/**
+     *
+     */
+    public void insert(){
 	}
 	
-	public List<Orgao> getOrgaos() {
+	/**
+     *
+     * @return
+     */
+    public List<Orgao> getOrgaos() {
 		return orgaoBC.findAll();
 	}
 
-	public List<Descritor> getDescritores() {
-		if(desc == null)
-			desc = new ArrayList<Descritor>();
-		return desc;
+	/**
+     *
+     * @return
+     */
+    public List<Descritor> getDescritores() {
+		if(desc == null) {
+            desc = new ArrayList<>();
+        }
+		return Collections.unmodifiableList(desc);
 	}
 	
-	public void adicionaDescritor() {
+	/**
+     *
+     */
+    public void adicionaDescritor() {
 		desc.add(this.descritor);
 		this.descritor = new Descritor();
 		
 	}
 
-	public Descritor getDescritor() {
+	/**
+     *
+     * @return
+     */
+    public Descritor getDescritor() {
 		return descritor;
 	}
 
-	public void setDescritor(Descritor descritor) {
+	/**
+     *
+     * @param descritor
+     */
+    public void setDescritor(Descritor descritor) {
 		this.descritor = descritor;
 	}
 	
-	public void removeDescritor(Integer index){
+	/**
+     *
+     * @param index
+     */
+    public void removeDescritor(Integer index){
 		this.desc.remove(index);
 	}
 
-	public Orgao getOrgao() {
+	/**
+     *
+     * @return
+     */
+    public Orgao getOrgao() {
 		return orgao;
 	}
 
-	public void setOrgao(Orgao orgao) {
+	/**
+     *
+     * @param orgao
+     */
+    public void setOrgao(Orgao orgao) {
 		this.orgao = orgao;
 	}
 
-	public Sistema getSistema() {
+	/**
+     *
+     * @return
+     */
+    public Sistema getSistema() {
 		return sistema;
 	}
 
-	public void setSistema(Sistema sistema) {
+	/**
+     *
+     * @param sistema
+     */
+    public void setSistema(Sistema sistema) {
 		this.sistema = sistema;
 	}
+    private static final Logger LOG = Logger.getLogger(SistemaEditMB.class.getName());
 	
 	
 

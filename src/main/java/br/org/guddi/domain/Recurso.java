@@ -5,6 +5,7 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +22,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author escritorio
  */
 @Entity
-//@Table(catalog = "guddi", schema = "guddi")
 @Table
 @XmlRootElement
 @NamedQueries({
@@ -39,25 +39,48 @@ public class Recurso implements Serializable {
     @Column(length = 50)
     private String nome;
 
+    /**
+     *
+     */
     public Recurso() {
     }
 
+    /**
+     *
+     * @param id
+     */
     public Recurso(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     *
+     * @param nome
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -86,5 +109,6 @@ public class Recurso implements Serializable {
     public String toString() {
         return "br.org.guddi.domain.Recurso[ id=" + id + " ]";
     }
+    private static final Logger LOG = Logger.getLogger(Recurso.class.getName());
 
 }

@@ -1,12 +1,12 @@
 package br.org.guddi.persistence;
 
-import java.util.List;
-
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 import br.org.guddi.domain.Atributo;
 import br.org.guddi.domain.Excecao;
 import br.org.guddi.domain.Servico;
+import java.util.List;
+import java.util.logging.Logger;
 
 @PersistenceController
 public class ServicoDAO extends JPACrud<Servico, Long> {
@@ -14,7 +14,12 @@ public class ServicoDAO extends JPACrud<Servico, Long> {
 	private static final long serialVersionUID = 1L;
 	
 
-	public Servico loadFromDetalhamento(Long id) {
+	/**
+     *
+     * @param id
+     * @return
+     */
+    public Servico loadFromDetalhamento(Long id) {
 		StringBuilder sql = new StringBuilder("SELECT s FROM Servico s ");
 		
 		sql.append("LEFT JOIN FETCH s.descritor ");
@@ -32,5 +37,6 @@ public class ServicoDAO extends JPACrud<Servico, Long> {
 		
 		return servico;
 	}
+    private static final Logger LOG = Logger.getLogger(ServicoDAO.class.getName());
 	
 }

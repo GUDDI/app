@@ -1,30 +1,19 @@
 package br.org.guddi.view;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.enterprise.context.Conversation;
-import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-
-import org.primefaces.model.LazyDataModel;
-import org.primefaces.model.SortOrder;
-import org.slf4j.Logger;
-
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.message.MessageContext;
-import br.gov.frameworkdemoiselle.stereotype.Controller;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractPageBean;
 import br.org.guddi.business.PesquisarBC;
-import br.org.guddi.business.ServicoBC;
-import br.org.guddi.constant.Constants;
 import br.org.guddi.domain.Pesquisa;
-import br.org.guddi.domain.Servico;
 import br.org.guddi.util.search.SearchFilter;
+import java.util.List;
+import java.util.Map;
+import javax.inject.Inject;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
+import org.slf4j.Logger;
 
 
 //@Named
@@ -65,24 +54,36 @@ public class PesquisarMB extends AbstractPageBean {
 	private Logger logger;
     
 	
-	public PesquisarMB() {
+	/**
+     *
+     */
+    public PesquisarMB() {
 		super();
 		first = 0;
 		rows = 10;
 	}
     
-	/*Search*/
+	/**
+     *
+     */
+    
 	
     public void clearSearch() {
     	searchParam = "";
 		lazyModel = null;
 	}
 
+    /**
+     *
+     */
     public void searchFirst() {
 		first = 0;
 		search();
 	}
     
+    /**
+     *
+     */
     public void search() {
     	
     	//beginConversation();
@@ -126,7 +127,11 @@ public class PesquisarMB extends AbstractPageBean {
 	}
 
 
-    /*Conversation and navigations Control*/
+    /**
+     *
+     * @return
+     */
+    
     
     public String init() {
 		//beginConversation();
@@ -136,60 +141,92 @@ public class PesquisarMB extends AbstractPageBean {
 		return getPreviousView();
 	}
     
-    /*private boolean beginConversation() {
-		if (conversation.isTransient()) {
-			conversation.setTimeout(Constants.CONVERSATION_TIMEOUT);
-			conversation.begin();
-			return true;
-		}
-		return false;
-	}*/
+    /**
+     *
+     */
     public void clear() {
 		//model = null;
 	}
     
     
     
+    /**
+     *
+     * @return
+     */
     public String back() {
 		clear();
 		search();
 		return getPreviousView();
 	}
     
-    /*Getters and Setters*/
+    /**
+     *
+     * @return
+     */
+    
 
 	public LazyDataModel<Pesquisa> getLazyModel() {
 		return lazyModel;
 	}
 
-	public String getSearchParam() {
+	/**
+     *
+     * @return
+     */
+    public String getSearchParam() {
 		return searchParam;
 	}
 
-	public void setSearchParam(String searchParam) {
+	/**
+     *
+     * @param searchParam
+     */
+    public void setSearchParam(String searchParam) {
 		this.searchParam = searchParam;
 	}
 
-	public void setLazyModel(LazyDataModel<Pesquisa> lazyModel) {
+	/**
+     *
+     * @param lazyModel
+     */
+    public void setLazyModel(LazyDataModel<Pesquisa> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
 
 	
-	public int getFirst() {
+	/**
+     *
+     * @return
+     */
+    public int getFirst() {
 		return first;
 	}
 	
-	public void setFirst(int first) {
+	/**
+     *
+     * @param first
+     */
+    public void setFirst(int first) {
 		this.first = first;
 	}
 	
-	public int getRows() {
+	/**
+     *
+     * @return
+     */
+    public int getRows() {
 		return rows;
 	}
 	
-	public void setRows(int rows) {
+	/**
+     *
+     * @param rows
+     */
+    public void setRows(int rows) {
 		this.rows = rows;
 	}
+    private static final java.util.logging.Logger LOG = java.util.logging.Logger.getLogger(PesquisarMB.class.getName());
 	
 	
 }

@@ -13,12 +13,8 @@ import java.util.List;
  */
 public class Operations implements IOperations{
 
-    Operations() {
-       
-    }
-
     public static List<String> listOperations(int sum) {
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         list.add("LIST");
         switch (sum) {
             case 1:
@@ -52,20 +48,24 @@ public class Operations implements IOperations{
                 break;
         }
         return list;
+       
     }
 
     public static int getOperation(List<String> listOp) {
         int number = 0;
         if (listOp.contains(UPDATE)) {
-            number = number + 1;
+            number += 1;
         }
         if (listOp.contains(INSERT)) {
-            number = number + 2;
+            number += 2;
         }
         if (listOp.contains(DELETE)) {
-            number = number + 4;
+            number += 4;
         }
-
         return number;
+    }
+
+    Operations() {
+       
     }
 }

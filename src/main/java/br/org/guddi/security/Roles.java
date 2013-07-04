@@ -6,6 +6,7 @@ import static br.org.guddi.security.IRoles.MANAGER;
 import static br.org.guddi.security.IRoles.USER;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  *
@@ -13,8 +14,13 @@ import java.util.List;
  */
 public class Roles implements IRoles {
 
+    /**
+     *
+     * @param role
+     * @return
+     */
     public static List<String> getRole(Long role) {
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         switch (Integer.getInteger("" + role)) {
             case 1:
                 list.add(USER);
@@ -49,8 +55,12 @@ public class Roles implements IRoles {
         return list;
     }
 
+    /**
+     *
+     * @return
+     */
     public static List<String> getRole() {
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         list.add(USER);
         list.add(MANAGER);
         list.add(ADMINISTRATOR);
@@ -58,25 +68,35 @@ public class Roles implements IRoles {
         return list;
     }
 
+    /**
+     *
+     * @param listRole
+     * @return
+     */
     public static Long getRole(List<String> listRole) {
         Long number = 0L;
 
         if (listRole.contains(USER)) {
-            number = number + 1L;
+            number += 1L;
         }
         if (listRole.contains(MANAGER)) {
-            number = number + 2L;
+            number += 2L;
         }
         if (listRole.contains(ADMINISTRATOR)) {
-            number = number + 4L;
+            number += 4L;
         }
         if (listRole.contains(INVALID)) {
-            number = number + 8L;
+            number += 8L;
         }
 
         return number;
     }
 
+    /**
+     *
+     * @param role
+     * @return
+     */
     public static Long getRole(String role) {
 
         if (role.equals(USER)) {
@@ -91,4 +111,5 @@ public class Roles implements IRoles {
 
         return 99L;
     }
+    private static final Logger LOG = Logger.getLogger(Roles.class.getName());
 }

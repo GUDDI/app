@@ -5,6 +5,7 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +27,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author 05081364908
  */
 @Entity
-//@Table(catalog = "guddi", schema = "guddi")
 @Table
 @XmlRootElement
 @NamedQueries({
@@ -57,42 +57,81 @@ public class Excecao implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Servico servico;
 
+    /**
+     *
+     */
     public Excecao() {
     }
 
+    /**
+     *
+     * @param id
+     */
     public Excecao(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getIdentificador() {
         return identificador;
     }
 
+    /**
+     *
+     * @param identificador
+     */
     public void setIdentificador(String identificador) {
         this.identificador = identificador;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDescricao() {
         return descricao;
     }
 
+    /**
+     *
+     * @param descricao
+     */
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
-	public Servico getServico() {
+	/**
+     *
+     * @return
+     */
+    public Servico getServico() {
 		return servico;
 	}
 	
-	public void setServico(Servico servico) {
+	/**
+     *
+     * @param servico
+     */
+    public void setServico(Servico servico) {
 		this.servico = servico;
 	}
 
@@ -120,5 +159,6 @@ public class Excecao implements Serializable {
     public String toString() {
         return "br.gov.frameworkdemoiselle.guddi.domain.Excecao[ id=" + id + " ]";
     }
+    private static final Logger LOG = Logger.getLogger(Excecao.class.getName());
 
 }
