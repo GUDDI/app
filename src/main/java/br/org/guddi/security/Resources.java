@@ -10,7 +10,6 @@ import static br.org.guddi.security.IResources.PAPEL;
 import static br.org.guddi.security.IResources.TAG;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  *

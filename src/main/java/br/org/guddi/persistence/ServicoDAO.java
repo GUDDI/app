@@ -6,7 +6,6 @@ import br.org.guddi.domain.Atributo;
 import br.org.guddi.domain.Excecao;
 import br.org.guddi.domain.Servico;
 import java.util.List;
-import java.util.logging.Logger;
 
 @PersistenceController
 public class ServicoDAO extends JPACrud<Servico, Long> {

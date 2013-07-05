@@ -2,7 +2,6 @@ package br.org.guddi.security;
 
 import br.gov.frameworkdemoiselle.security.Authorizer;
 import br.org.guddi.business.SecurityBC;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 
 /**

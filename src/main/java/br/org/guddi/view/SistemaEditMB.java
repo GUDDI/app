@@ -17,6 +17,12 @@ import br.org.guddi.domain.Servico;
 import br.org.guddi.domain.Sistema;
 import br.org.guddi.domain.Tag;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+
 @ViewController
 public class SistemaEditMB {
 

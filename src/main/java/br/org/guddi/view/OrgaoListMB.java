@@ -9,7 +9,6 @@ import br.org.guddi.business.OrgaoBC;
 import br.org.guddi.domain.Orgao;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 
 @ViewController

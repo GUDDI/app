@@ -1,10 +1,5 @@
 package br.org.guddi.view;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -13,6 +8,9 @@ import br.org.guddi.business.UsuarioBC;
 import br.org.guddi.domain.Papel;
 import br.org.guddi.domain.Usuario;
 import br.org.guddi.security.Roles;
+import java.util.ArrayList;
+import java.util.List;
+import javax.inject.Inject;
 
 @ViewController
 @PreviousView("./usuario_list.jsf")

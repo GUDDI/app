@@ -1,10 +1,9 @@
 package br.org.guddi.persistence;
 
-import javax.persistence.NoResultException;
-
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 import br.org.guddi.domain.Usuario;
+import javax.persistence.NoResultException;
 
 @PersistenceController
 public class UsuarioDAO extends JPACrud<Usuario, Long> {
@@ -16,9 +15,9 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
      * @param email
      * @return
      */
-    public Usuario findByEmail(String email) {
+    public Usuario findByUserName(String usuario) {
         try {
-            return (Usuario) getEntityManager().createNamedQuery("Usuario.findByEmail").setParameter("email", email).getSingleResult();
+            return (Usuario) getEntityManager().createNamedQuery("Usuario.findByUsuario").setParameter("usuario", usuario).getSingleResult();
         } catch (NoResultException e) {
             return null;
         }
