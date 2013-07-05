@@ -61,6 +61,14 @@
 					</div>
 					
 					<div class="rowElem">
+						<h:outputLabel value="#{messages['usuario.label.usuario']}: " for="usuario"/>
+						<div class="formLeft">
+							<h:outputText id="usuario" value="#{usuarioEditMB.bean.usuario}" title="#{messages['usuario.alt.usuario']}" />
+						</div>
+						<div class="fix"></div>
+					</div>
+					
+					<div class="rowElem">
 						<h:outputLabel value="#{messages['usuario.label.email']}: " for="email"/>
 						<div class="formLeft">
 							<h:outputText id="email" value="#{usuarioEditMB.bean.email}" title="#{messages['usuario.alt.email']}" />

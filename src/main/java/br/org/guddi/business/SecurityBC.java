@@ -31,8 +31,8 @@ public class SecurityBC {
     @Inject
     private PapelDAO papelDAO;
 
-    public Usuario findByUserName(String email) {
-        return usuarioDAO.findByUserName(email);
+    public Usuario findByUserName(String usuario) {
+        return usuarioDAO.findByUserName(usuario);
     }
 
     @Startup
