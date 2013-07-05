@@ -3,7 +3,6 @@ package br.org.guddi.persistence;
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 import br.org.guddi.domain.Recurso;
-import java.util.logging.Logger;
 
 @PersistenceController
 public class RecursoDAO extends JPACrud<Recurso, Long> {

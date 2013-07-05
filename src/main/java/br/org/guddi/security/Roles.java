@@ -6,7 +6,6 @@ import static br.org.guddi.security.IRoles.MANAGER;
 import static br.org.guddi.security.IRoles.USER;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  *

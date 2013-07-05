@@ -9,7 +9,6 @@ import br.org.guddi.business.AtributoBC;
 import br.org.guddi.domain.Atributo;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 
 @ViewController

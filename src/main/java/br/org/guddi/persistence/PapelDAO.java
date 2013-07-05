@@ -3,7 +3,6 @@ package br.org.guddi.persistence;
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 import br.org.guddi.domain.Papel;
-import java.util.logging.Logger;
 
 @PersistenceController
 public class PapelDAO extends JPACrud<Papel, Long> {

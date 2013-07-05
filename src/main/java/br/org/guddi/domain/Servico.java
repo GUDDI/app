@@ -7,8 +7,6 @@ package br.org.guddi.domain;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Logger;
-
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;

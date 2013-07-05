@@ -6,7 +6,6 @@ import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.org.guddi.business.AtributoBC;
 import br.org.guddi.domain.Atributo;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 
 @ViewController
