@@ -10,7 +10,7 @@
     <packaging>war</packaging>
 
     <name>guddi</name>
-    <description>Governament UDDI</description>
+    <description>e-DSG</description>
     <url></url>
 
     <parent>

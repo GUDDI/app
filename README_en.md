@@ -1,7 +1,5 @@
 # Guddi APP
 
-Universal Description, Discovery and Integration for Government
-
 ## Click for intall
 
 ### The database
