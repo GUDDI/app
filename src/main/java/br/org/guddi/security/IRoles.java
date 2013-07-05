@@ -10,11 +10,11 @@ package br.org.guddi.security;
  */
 public interface IRoles {
 
-    public static final String USER = "USER";
-    public static final String MANAGER = "MANAGER";
-    public static final String ADMINISTRATOR = "ADMINISTRATOR";
-    
-    public static final String INVALID = "INVALID";
-   
+    static final String USER = "1";
+    static final String MANAGER = "2";
+    static final String ADMINISTRATOR = "4";
+
+    static final String INVALID = "0";
+
 
 }

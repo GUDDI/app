@@ -10,10 +10,10 @@ package br.org.guddi.security;
  */
 public interface IOperations {
 
-    public static final String LIST = "LIST";
-    public static final String UPDATE = "UPDATE";
-    public static final String INSERT = "INSERT";
-    public static final String DELETE = "DELETE";
-    public static final String INVALID = "INVALID";
-    
+    static final String LIST = "LIST";
+    static final String UPDATE = "UPDATE";
+    static final String INSERT = "INSERT";
+    static final String DELETE = "DELETE";
+    static final String INVALID = "INVALID";
+
 }

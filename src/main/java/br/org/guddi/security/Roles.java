@@ -1,5 +1,6 @@
 package br.org.guddi.security;
 
+import br.org.guddi.constant.RolesConfiguration;
 import static br.org.guddi.security.IRoles.ADMINISTRATOR;
 import static br.org.guddi.security.IRoles.INVALID;
 import static br.org.guddi.security.IRoles.MANAGER;
@@ -7,6 +8,7 @@ import static br.org.guddi.security.IRoles.USER;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.inject.Inject;
 
 /**
  *
@@ -14,6 +16,9 @@ import java.util.logging.Logger;
  */
 public class Roles implements IRoles {
 
+    @Inject
+    private RolesConfiguration rc;
+    
     /**
      *
      * @param role
