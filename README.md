@@ -1,6 +1,5 @@
 #GUDDI APP
-
-Universal Description, Discovery and Integration for Government 
+ 
 
 ##Instruções para intalação
 
