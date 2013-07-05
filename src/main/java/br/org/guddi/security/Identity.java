@@ -5,7 +5,6 @@ import br.gov.frameworkdemoiselle.message.SeverityType;
 import br.gov.frameworkdemoiselle.security.SecurityContext;
 import java.io.Serializable;
 import java.security.Principal;
-import java.util.logging.Logger;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,6 +18,7 @@ public class Identity implements Serializable, Principal {
     private Long id;
     private String name;
     private String email;
+    private String usuario;
     private String password;
     private Long orgao;
     private String nomeorgao;
@@ -113,4 +113,11 @@ public class Identity implements Serializable, Principal {
         this.nomeorgao = nomeorgao;
     }
 
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
 }

@@ -6,7 +6,6 @@ import br.org.guddi.business.SecurityBC;
 import br.org.guddi.domain.Usuario;
 import br.org.guddi.util.CriptografiaUtil;
 import java.security.Principal;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 
 /**
@@ -26,7 +25,7 @@ public class MyAuthenticator implements Authenticator {
      */
     @Override
     public void authenticate() throws AuthenticationException {
-        Usuario user = securityBC.findByEmail(identity.getEmail());
+        Usuario user = securityBC.findByUserName(identity.getUsuario());
 
         if (user == null) {
             throw new AuthenticationException("O login falhou.");
