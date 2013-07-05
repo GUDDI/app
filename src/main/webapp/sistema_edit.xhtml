@@ -8,11 +8,11 @@
 			<p:toolbar>
 				<p:toolbarGroup align="left">
 					<p:commandButton value="#{messages['button.save']}" action="#{sistemaEditMB.insert}"
-						rendered="#{!sistemaEditMB.sistema.id == null}" ajax="false" />
+						rendered="#{!sistemaEditMB.updateMode()}" ajax="false" />
 					<p:commandButton value="#{messages['button.save']}" action="#{sistemaEditMB.update}"
-						rendered="#{sistemaEditMB.sistema.id != null}" ajax="false" />
+						rendered="#{sistemaEditMB.updateMode()}" ajax="false" />
 					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-						rendered="#{sistemaEditMB.sistema.id != null}" type="button" immediate="true" ajax="false" />
+						rendered="#{sistemaEditMB.updateMode()}" type="button" immediate="true" ajax="false" />
 					<p:confirmDialog message="#{messages['label.confirm.delete']}" 
 						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
 						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{sistemaEditMB.delete}" immediate="true"
@@ -23,55 +23,60 @@
 			</p:toolbar>
 
 			<br />
-
-			<p:fieldset legend="#{messages['sistema.label']}" toggleable="true" toggleSpeed="500">
-				<h:panelGrid id="fields" columns="3">
-					
-					<h:outputLabel value="#{messages['sistema.label.orgao']}: " for="orgao" styleClass="text-input" />
-					<p:selectOneMenu id="orgao" value="#{sistemaEditMB.orgao}" title="#{messages['orgao.label']}" >
-						<f:selectItem itemLabel="Selecione" itemValue=""/>
-						<f:selectItems var="org" value="#{sistemaEditMB.orgaos}"  itemValue="#{org}" itemLabel="#{org.nome}"/>
-					</p:selectOneMenu> 
-					<p:message for="orgao" />
-					
-					
-					<h:outputLabel value="#{messages['sistema.label.id']}: " for="id" styleClass="text-input" />
-					<h:outputText id="id" value="#{sistemaEditMB.sistema.id}" />
-					<p:message for="id" />
-					
-					<h:outputLabel value="#{messages['sistema.label.nome']}: " for="nome" styleClass="text-input" />
-					<h:inputText id="nome" value="#{sistemaEditMB.sistema.nome}"
-						title="#{messages['sistema.alt.nome']}" />
-					<p:message for="nome" />
-					
-					
-					
-					<h:outputLabel value="#{messages['sistema.label.novo_descritor']}: " for="descritor" styleClass="text-input" />
-					<h:inputText id="descritor" value="#{sistemaEditMB.descritor.descricao}"
-						title="#{messages['sistema.alt.descritor']}" />
-					<p:message for="descritor" />
-					
-					
-					<h:outputLabel value="#{messages['sistema.label.descritores']}: " for="list" styleClass="text-input" />
-					<p:dataTable id="list" var="bean" value="#{sistemaEditMB.descritores}">
+			<h:panelGrid columns="2">
+				<p:fieldset legend="#{messages['sistema.label']}" toggleable="true" toggleSpeed="500">
+					<h:panelGrid id="fields" columns="3">
+						<h:outputLabel value="#{messages['sistema.label.id']}: " for="id" styleClass="text-input" />
+						<h:outputText id="id" value="#{sistemaEditMB.sistema.id}" />
+						<p:message for="id" />
+						
+						<h:outputLabel value="#{messages['sistema.label.orgao']}: " for="orgao" styleClass="text-input" />
+						<p:selectOneMenu id="orgao" value="#{sistemaEditMB.orgao}" title="#{messages['orgao.label']}" >
+							<f:selectItem itemLabel="Selecione" itemValue=""/>
+							<f:selectItems var="org" value="#{sistemaEditMB.orgaos}"  itemValue="#{org}" itemLabel="#{org.nome}"/>
+						</p:selectOneMenu> 
+						<p:message for="orgao" />
+						
+											
+						<h:outputLabel value="#{messages['sistema.label.nome']}: " for="nome" styleClass="text-input" />
+						<h:inputText id="nome" value="#{sistemaEditMB.sistema.nome}"
+							title="#{messages['sistema.alt.nome']}" />
+						<p:message for="nome" />
+						
+						
+						
+						<h:outputLabel value="#{messages['sistema.label.novo_descritor']}: " for="descritor" styleClass="text-input" />
+						<h:inputText id="descritor" value="#{sistemaEditMB.descritor.descricao}"
+							title="#{messages['sistema.alt.descritor']}" />
+						<p:commandButton  value="+" update="list" actionListener="#{sistemaEditMB.adicionaDescritor()}">
+							<f:ajax execute="@all"/>
+						</p:commandButton>
+						
+						<h:outputLabel value="#{messages['sistema.label.descritores']}: " for="list" styleClass="text-input" />
+						<p:dataTable id="list" var="bean" value="#{sistemaEditMB.descritores}">
+							<p:column style="width:80%;" sortBy="#{bean.id}">
+								<f:facet name="header">#{messages['sistema.label.id']}</f:facet>
+								<h:outputText value="#{bean.descricao}" />
+							</p:column>	
+							<p:column style="width:20%;" sortBy="#{bean.id}">
+								
+								<p:commandLink update="list" styleClass="ui-icon ui-icon-trash" action="#{sistemaEditMB.removeDescritor(bean.id)}">
+									<f:ajax execute="@all"/>
+								</p:commandLink>
+							</p:column>					
+						</p:dataTable>
+						<p:message for="descritor" />
+					</h:panelGrid>
+				</p:fieldset>
+				<p:fieldset legend="#{messages['sistema.label']}">
+					<p:dataTable id="listServicos" var="bean" value="#{servicoListMB.resultList}">
 						<p:column style="width:80%;" sortBy="#{bean.id}">
-							<f:facet name="header">#{messages['sistema.label.id']}</f:facet>
+							<f:facet name="header">#{messages['servico.label.id']}</f:facet>
 							<h:outputText value="#{bean.descricao}" />
 						</p:column>	
-						<p:column style="width:20%;" sortBy="#{bean.id}">
-							
-							<p:commandLink update="list" styleClass="ui-icon ui-icon-trash" action="#{sistemaEditMB.removeDescritor(bean.id)}">
-								
-							</p:commandLink>
-						</p:column>					
 					</p:dataTable>
-					<p:message for="list" />
-					
-					
-					
-					
-				</h:panelGrid>
-			</p:fieldset>
+				</p:fieldset>
+			</h:panelGrid>
 		</h:form>
 	</ui:define>
 </ui:composition>

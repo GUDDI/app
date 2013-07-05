@@ -1,21 +1,32 @@
 package br.org.guddi.view;
 
-import br.gov.frameworkdemoiselle.stereotype.ViewController;
-import br.org.guddi.business.OrgaoBC;
-import br.org.guddi.business.SistemaBC;
-import br.org.guddi.domain.Descritor;
-import br.org.guddi.domain.Orgao;
-import br.org.guddi.domain.Sistema;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Logger;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+
+import br.gov.frameworkdemoiselle.stereotype.ViewController;
+import br.org.guddi.business.OrgaoBC;
+import br.org.guddi.business.ServicoBC;
+import br.org.guddi.business.SistemaBC;
+import br.org.guddi.domain.Descritor;
+import br.org.guddi.domain.Orgao;
+import br.org.guddi.domain.Servico;
+import br.org.guddi.domain.Sistema;
+import br.org.guddi.domain.Tag;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 @ViewController
 public class SistemaEditMB {
 
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	@Inject
@@ -24,17 +35,21 @@ public class SistemaEditMB {
 	@Inject
 	private OrgaoBC orgaoBC;
 
-	private Descritor descritor;
-
 	@Inject
 	private Orgao orgao;
 
 	@Inject
 	private Sistema sistema;
+	
+	@Inject
+	private ServicoBC servicoBC;
+	
 
+	private Descritor descritor;
+	
 	private List<Descritor> desc;
-
-
+	
+	private List<Tag> tag; 
 
 	/**
      *
@@ -44,6 +59,13 @@ public class SistemaEditMB {
 		this.descritor = new Descritor();
 	}
 
+    public boolean updateMode(){
+    	if(sistema.getId() != null)
+    		return true;
+    	
+    	return false;
+    }
+    
 	/**
      *
      */
@@ -55,6 +77,10 @@ public class SistemaEditMB {
      */
     public void insert(){
 	}
+    
+    public void update(){
+    	
+    }
 
 	/**
      *
@@ -81,6 +107,7 @@ public class SistemaEditMB {
     public void adicionaDescritor() {
 		desc.add(this.descritor);
 		this.descritor = new Descritor();
+		System.out.println("Processando");
 
 	}
 
@@ -104,7 +131,7 @@ public class SistemaEditMB {
      *
      * @param index
      */
-    public void removeDescritor(Integer index){
+    public void removeDescritor(int index){
 		this.desc.remove(index);
 	}
 
@@ -140,7 +167,26 @@ public class SistemaEditMB {
 		this.sistema = sistema;
 	}
 
+    /**
+     * 
+     * @return
+     */
+	public List<Tag> getTag() {
+		return tag;
+	}
 
+	/**
+	 * 
+	 * @param tag
+	 */
+	public void setTag(Tag tag) {
+		this.tag.add(tag);
+	}
+
+
+	public List<Servico> getServicos(){
+		return servicoBC.findAll();
+	}
 
 
 }

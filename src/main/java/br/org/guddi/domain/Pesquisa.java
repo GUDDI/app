@@ -4,7 +4,6 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
-import java.util.logging.Logger;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**

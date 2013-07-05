@@ -15,8 +15,6 @@ import br.org.guddi.persistence.UsuarioDAO;
 import br.org.guddi.security.Resources;
 import br.org.guddi.security.Roles;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 
 /**
@@ -33,8 +31,8 @@ public class SecurityBC {
     @Inject
     private PapelDAO papelDAO;
 
-    public Usuario findByEmail(String email) {
-        return usuarioDAO.findByEmail(email);
+    public Usuario findByUserName(String usuario) {
+        return usuarioDAO.findByUserName(usuario);
     }
 
     @Startup

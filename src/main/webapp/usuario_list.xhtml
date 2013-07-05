@@ -50,6 +50,14 @@
 								<f:param name="id" value="#{bean.id}" />
 							</h:commandLink>
 						</p:column>
+						
+						<p:column sortBy="#{bean.usuario}">
+							<f:facet name="header">#{messages['usuario.label.usuario']}</f:facet>
+							<h:commandLink action="#{usuarioListMB.getNextView}" actionListener="#{usuarioListMB.clear}">
+								<h:outputText value="#{bean.usuario}" />
+								<f:param name="id" value="#{bean.id}" />
+							</h:commandLink>
+						</p:column>
 								
 						<p:column sortBy="#{bean.email}">
 							<f:facet name="header">#{messages['usuario.label.email']}</f:facet>

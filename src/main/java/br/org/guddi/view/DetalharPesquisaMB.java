@@ -6,7 +6,6 @@ import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.org.guddi.business.ServicoBC;
 import br.org.guddi.domain.Servico;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 
 @ViewController

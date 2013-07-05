@@ -6,7 +6,6 @@ import br.gov.frameworkdemoiselle.template.DelegateCrud;
 import br.org.guddi.domain.Orgao;
 import br.org.guddi.persistence.OrgaoDAO;
 import br.org.guddi.security.IRoles;
-import java.util.logging.Logger;
 
 @BusinessController
 @RequiredRole(value = IRoles.ADMINISTRATOR)

@@ -2,7 +2,6 @@ package br.org.guddi.util.search;
 
 import java.util.Collections;
 import java.util.Map;
-import java.util.logging.Logger;
 
 public class SearchFilter {
 

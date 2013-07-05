@@ -6,7 +6,6 @@ import br.org.guddi.domain.Pesquisa;
 import br.org.guddi.util.search.SearchFilter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.persistence.Query;
 
 @PersistenceController
