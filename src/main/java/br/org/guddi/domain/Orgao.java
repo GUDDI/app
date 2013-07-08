@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Orgao implements Serializable {
 
     private static final long serialVersionUID = 762179107126837980L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -45,6 +46,31 @@ public class Orgao implements Serializable {
 
     @OneToMany(mappedBy = "orgao", fetch = FetchType.LAZY)
     private Set<Usuario> usuarios;
+    
+    @Column(length=100)
+    private String url;
+    
+    @Column(length=10)
+    private String sigla;
+    
+    @Column(length=50)
+    private String razaoSocial;
+    
+    @Column(length=10)
+    private String codigo;
+    
+    @Column(length=2)
+    private String uf;
+    
+    @Column(length=70)
+    private String endereco;
+    
+    @Column(length=60)
+    private String email;
+    
+    @Column(length=50)
+    private String nomeContato;
+    
 
     /**
      *
@@ -125,8 +151,72 @@ public class Orgao implements Serializable {
     public void setUsuarios(Set<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
+    
+    public String getUrl() {
+		return url;
+	}
 
-    @Override
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getSigla() {
+		return sigla;
+	}
+
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
+	}
+
+	public String getRazaoSocial() {
+		return razaoSocial;
+	}
+
+	public void setRazaoSocial(String razaoSocial) {
+		this.razaoSocial = razaoSocial;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getUf() {
+		return this.uf;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getNomeContato() {
+		return nomeContato;
+	}
+
+	public void setNomeContato(String nomeContato) {
+		this.nomeContato = nomeContato;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);

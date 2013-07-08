@@ -47,6 +47,22 @@
 								<f:param name="id" value="#{bean.id}" />
 							</h:commandLink>
 						</p:column>
+						
+						<p:column sortBy="#{bean.uf}">
+							<f:facet name="header">#{messages['orgao.label.uf']}</f:facet>
+							<h:commandLink action="#{orgaoListMB.getNextView}" actionListener="#{orgaoListMB.clear}">
+								<h:outputText value="#{bean.uf}" />
+								<f:param name="id" value="#{bean.id}" />
+							</h:commandLink>
+						</p:column>
+						
+						<p:column sortBy="#{bean.sigla}">
+							<f:facet name="header">#{messages['orgao.label.sigla']}</f:facet>
+							<h:commandLink action="#{orgaoListMB.getNextView}" actionListener="#{orgaoListMB.clear}">
+								<h:outputText value="#{bean.sigla}" />
+								<f:param name="id" value="#{bean.id}" />
+							</h:commandLink>
+						</p:column>
 								
 					</p:dataTable>
 				</div>
