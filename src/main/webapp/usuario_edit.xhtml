@@ -46,7 +46,7 @@
 						<h:outputLabel value="#{messages['usuario.label.papel']}: " for="papel" />
 						<div class="formLeft">
 							<h:selectOneMenu id="papel" value="#{usuarioEditMB.bean.papel}">
-								<f:selectItems value="#{usuarioEditMB.papeis}" var="papel" itemValue="#{papel}" itemLabel="#{papel.descricao}"/>
+								<f:selectItems value="#{usuarioEditMB.papeis}" var="papel" itemValue="#{papel}" itemLabel="#{papel}"/>
 							</h:selectOneMenu>
 						</div>
 						<div class="fix"></div>

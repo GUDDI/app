@@ -29,10 +29,10 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
      * @param idRole
      * @return
      */
-    public Boolean hasRole(Long idUsuario, Long idRole) {
-        return (Boolean) getEntityManager().createNativeQuery("SELECT COUNT(1) > 0 FROM guddi.usuario WHERE id = :idUser AND id_papel = :role")
+    public Boolean hasRole(Long idUsuario, Short idRole) {
+        return (Boolean) getEntityManager().createNativeQuery("SELECT COUNT(1) > 0 FROM guddi.usuario WHERE id = :idUser AND papel = :papel")
                 .setParameter("idUser", idUsuario)
-                .setParameter("role", idRole)
+                .setParameter("papel", idRole)
                 .getSingleResult();
     }
 

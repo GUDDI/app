@@ -1,52 +1,19 @@
 package br.org.guddi.view;
 
-import br.gov.frameworkdemoiselle.annotation.NextView;
-import br.gov.frameworkdemoiselle.annotation.PreviousView;
-import br.gov.frameworkdemoiselle.stereotype.ViewController;
-import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
-import br.gov.frameworkdemoiselle.transaction.Transactional;
-import br.org.guddi.business.PapelBC;
-import br.org.guddi.domain.Papel;
-import java.util.Iterator;
 import java.util.List;
-import javax.inject.Inject;
+
+import br.gov.frameworkdemoiselle.stereotype.ViewController;
+import br.org.guddi.security.Roles;
 
 @ViewController
-@NextView("./papel_edit.jsf")
-@PreviousView("./papel_list.jsf")
-public class PapelListMB extends AbstractListPageBean<Papel, Long> {
-
-	private static final long serialVersionUID = 1L;
-
-	@Inject
-	private PapelBC papelBC;
-
-	/**
-     *
-     * @return
-     */
-    @Override
-	protected List<Papel> handleResultList() {
-		return this.papelBC.findAll();
+public class PapelListMB {
+	
+	private List<String> resultList;
+	
+	protected List<String> getResultList() {
+		this.resultList = Roles.getRolesList();
+		
+		return this.resultList;
 	}
-
-	/**
-     *
-     * @return
-     */
-    @Transactional
-	public String deleteSelection() {
-		boolean delete;
-		for (Iterator<Long> iter = getSelection().keySet().iterator(); iter.hasNext();) {
-			Long id = iter.next();
-			delete = getSelection().get(id);
-			if (delete) {
-				papelBC.delete(id);
-				iter.remove();
-			}
-		}
-		return getPreviousView();
-	}
-
 
 }

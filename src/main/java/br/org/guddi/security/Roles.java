@@ -1,13 +1,11 @@
 package br.org.guddi.security;
 
-import br.org.guddi.constant.RolesConfiguration;
-import static br.org.guddi.security.IRoles.ADMINISTRATOR;
-import static br.org.guddi.security.IRoles.INVALID;
-import static br.org.guddi.security.IRoles.MANAGER;
-import static br.org.guddi.security.IRoles.USER;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.inject.Inject;
+
+import br.org.guddi.constant.RolesConfiguration;
 
 /**
  *
@@ -23,9 +21,9 @@ public class Roles implements IRoles {
      * @param role
      * @return
      */
-    public static List<String> getRole(Long role) {
+    public static List<String> getRole(Short role) {
         List<String> list = new ArrayList<String>();
-        switch (Integer.getInteger("" + role)) {
+        switch (role) {
             case 1:
                 list.add(USER);
                 break;
@@ -101,18 +99,18 @@ public class Roles implements IRoles {
      * @param role
      * @return
      */
-    public static Long getRole(String role) {
+    public static Short getRole(String role) {
 
         if (role.equals(USER)) {
-            return 1L;
+            return 1;
         }
         if (role.equals(MANAGER)) {
-            return 2L;
+            return 2;
         }
         if (role.equals(ADMINISTRATOR)) {
-            return 4L;
+            return 4;
         }
 
-        return 99L;
+        return 0;
     }
 }

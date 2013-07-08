@@ -1,9 +1,9 @@
 package br.org.guddi.security;
 
-import br.gov.frameworkdemoiselle.security.Authorizer;
-import br.org.guddi.business.SecurityBC;
-import br.org.guddi.persistence.UsuarioDAO;
 import javax.inject.Inject;
+
+import br.gov.frameworkdemoiselle.security.Authorizer;
+import br.org.guddi.persistence.UsuarioDAO;
 
 /**
  * @author thiago.soares
@@ -11,8 +11,10 @@ import javax.inject.Inject;
 public class MyAuthorizer implements Authorizer {
 
     private static final long serialVersionUID = 9096827023234484L;
+    
     @Inject
     private Identity identity;
+    
     @Inject
     private UsuarioDAO usuarioDAO;
 

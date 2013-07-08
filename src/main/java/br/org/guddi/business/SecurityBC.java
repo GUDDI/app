@@ -4,32 +4,26 @@
  */
 package br.org.guddi.business;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
 import br.gov.frameworkdemoiselle.lifecycle.Startup;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
-import br.org.guddi.domain.Papel;
 import br.org.guddi.domain.Recurso;
-import br.org.guddi.domain.Usuario;
-import br.org.guddi.persistence.PapelDAO;
 import br.org.guddi.persistence.RecursoDAO;
-import br.org.guddi.persistence.UsuarioDAO;
 import br.org.guddi.security.Resources;
-import br.org.guddi.security.Roles;
-import java.util.List;
-import javax.inject.Inject;
 
 /**
  *
  * @author 70744416353
  */
+
 @BusinessController
 public class SecurityBC {
 
     @Inject
     private RecursoDAO recursoDAO;
-    @Inject
-    private PapelDAO papelDAO;
-
-
 
     @Startup
     public void bootstrap() {
@@ -48,20 +42,9 @@ public class SecurityBC {
 
             }
 
-            papelDAO.clear();
-            List<String> listapap = Roles.getRolesList();
-            for (String papel : listapap) {
-                Papel pap = null;
-                pap = papelDAO.load(papel);
-                if (pap == null) {
-                    pap = new Papel();
-                    pap.setId(Roles.getRole(papel));
-                    pap.setDescricao(papel);
-                    papelDAO.insert(pap);
-                }
-            }
 
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
            // LOG.log(Level.SEVERE, e.getMessage());
         }
     }

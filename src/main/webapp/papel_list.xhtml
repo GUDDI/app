@@ -5,23 +5,6 @@
 
 	<ui:define name="crud">
 		<h:form>
-			<p:toolbar>
-				<p:toolbarGroup align="left">
-					<p:commandButton value="#{messages['button.new']}" icon="ui-icon-document" action="#{papelListMB.getNextView}"
-						actionListener="#{papelListMB.clear}" ajax="false" />
-
-					<p:commandButton value="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
-						type="button" immediate="true" ajax="false" />
-
-					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-						header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
-
-						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{papelListMB.deleteSelection}"
-							actionListener="#{papelListMB.clear}" />
-						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
-					</p:confirmDialog>
-				</p:toolbarGroup>
-			</p:toolbar>
 			
 			<fieldset>
 				<div class="widget first">
@@ -31,23 +14,9 @@
 					
 					<p:dataTable id="list" var="bean" value="#{papelListMB.resultList}">
 					
-						<p:ajax event="sort" oncomplete="$('form').jqTransform({imgPath:'../images/forms'});"/>
-						
-						<p:column style="width:1%;">
-							<h:selectBooleanCheckbox value="#{papelListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
-						</p:column>
-						
-						<p:column style="width:5%;" sortBy="#{bean.id}">
-							<f:facet name="header">#{messages['papel.label.id']}</f:facet>
-							<h:outputText value="#{bean.id}" />
-						</p:column>
-								
-						<p:column sortBy="#{bean.descricao}">
+						<p:column>
 							<f:facet name="header">#{messages['papel.label.descricao']}</f:facet>
-							<h:commandLink action="#{papelListMB.getNextView}" actionListener="#{papelListMB.clear}">
-								<h:outputText value="#{bean.descricao}" />
-								<f:param name="id" value="#{bean.id}" />
-							</h:commandLink>
+							<h:outputText value="#{bean}" />
 						</p:column>
 								
 					</p:dataTable>

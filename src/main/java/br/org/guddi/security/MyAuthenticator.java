@@ -1,13 +1,14 @@
 package br.org.guddi.security;
 
+import java.security.Principal;
+
+import javax.inject.Inject;
+
 import br.gov.frameworkdemoiselle.security.AuthenticationException;
 import br.gov.frameworkdemoiselle.security.Authenticator;
-import br.org.guddi.business.SecurityBC;
 import br.org.guddi.domain.Usuario;
 import br.org.guddi.persistence.UsuarioDAO;
 import br.org.guddi.util.CriptografiaUtil;
-import java.security.Principal;
-import javax.inject.Inject;
 
 /**
  * @author thiago.soares
@@ -15,8 +16,10 @@ import javax.inject.Inject;
 public class MyAuthenticator implements Authenticator {
 
     private static final long serialVersionUID = 5348324948048837944L;
+    
     @Inject
     private Identity identity;
+    
     @Inject
     private UsuarioDAO usuarioDAO;
 
@@ -40,7 +43,7 @@ public class MyAuthenticator implements Authenticator {
         this.identity.setName(user.getNome());
         this.identity.setOrgao(user.getOrgao().getId());
         this.identity.setNomeorgao(user.getOrgao().getNome());
-        this.identity.setPapel(user.getPapel().getDescricao());
+        this.identity.setPapel(Roles.getRole(user.getPapel()).get(0));
 
     }
 
