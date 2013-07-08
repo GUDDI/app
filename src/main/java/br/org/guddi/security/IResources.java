@@ -20,7 +20,7 @@ public interface IResources {
     static final String SECURITY = "SECURITY";
     static final String SERVICO = "SERVICO";
     static final String SISTEMA = "SISTEMA";
-    static final String TAG = "TAG";
+    static final String MARCACAO = "MARCACAO";
     static final String USUARIO = "USUARIO";
     
     static final String INVALID = "INVALID";

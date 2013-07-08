@@ -4,7 +4,7 @@
   <persistence-unit name="guddi-ds" transaction-type="JTA">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <jta-data-source>java:jboss/datasources/guddiDS</jta-data-source>
-    <class>br.org.guddi.domain.Tag</class>
+    <class>br.org.guddi.domain.Marcacao</class>
     <class>br.org.guddi.domain.Atributo</class>
     <class>br.org.guddi.domain.Descritor</class>
     <class>br.org.guddi.domain.Orgao</class>
@@ -32,7 +32,7 @@
   <!-- 
   <persistence-unit name="guddi-ds" transaction-type="RESOURCE_LOCAL">
     
-    <class>br.org.guddi.domain.Tag</class>
+    <class>br.org.guddi.domain.Marcacao</class>
     <class>br.org.guddi.domain.Atributo</class>
     <class>br.org.guddi.domain.Descritor</class>
     <class>br.org.guddi.domain.Orgao</class>

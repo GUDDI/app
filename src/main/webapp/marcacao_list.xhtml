@@ -7,8 +7,8 @@
 		<h:form>
 			<p:toolbar>
 				<p:toolbarGroup align="left">
-					<p:commandButton value="#{messages['button.new']}" icon="ui-icon-document" action="#{tagListMB.getNextView}"
-						actionListener="#{tagListMB.clear}" ajax="false" />
+					<p:commandButton value="#{messages['button.new']}" icon="ui-icon-document" action="#{marcacaoListMB.getNextView}"
+						actionListener="#{marcacaoListMB.clear}" ajax="false" />
 
 					<p:commandButton value="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
 						type="button" immediate="true" ajax="false" />
@@ -16,8 +16,8 @@
 					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
 
-						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{tagListMB.deleteSelection}"
-							actionListener="#{tagListMB.clear}" />
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{marcacaoListMB.deleteSelection}"
+							actionListener="#{marcacaoListMB.clear}" />
 						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
 					</p:confirmDialog>
 				</p:toolbarGroup>
@@ -26,26 +26,26 @@
 			<fieldset>
 				<div class="widget first">
 					<div class="head">
-						<h5 class="iFrames">#{messages['tag.list.table.title']}</h5>
+						<h5 class="iFrames">#{messages['marcacao.list.table.title']}</h5>
 					</div>
 			
-					<p:dataTable id="list" var="bean" value="#{tagListMB.resultList}">
+					<p:dataTable id="list" var="bean" value="#{marcacaoListMB.resultList}">
 						
 						<p:ajax event="sort" oncomplete="$('form').jqTransform({imgPath:'../images/forms'});"/>
 					
 						<p:column style="width:1%;">
-							<h:selectBooleanCheckbox value="#{tagListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
+							<h:selectBooleanCheckbox value="#{marcacaoListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
 						</p:column>
 						
 						<p:column style="width:5%;" sortBy="#{bean.id}">
-							<f:facet name="header">#{messages['tag.label.id']}</f:facet>
+							<f:facet name="header">#{messages['marcacao.label.id']}</f:facet>
 							<h:outputText value="#{bean.id}" />
 						</p:column>
 								
-						<p:column sortBy="#{bean.tag}">
-							<f:facet name="header">#{messages['tag.label.tag']}</f:facet>
-							<h:commandLink action="#{tagListMB.getNextView}" actionListener="#{tagListMB.clear}">
-								<h:outputText value="#{bean.tag}" />
+						<p:column sortBy="#{bean.marcacao}">
+							<f:facet name="header">#{messages['marcacao.label.marcacao']}</f:facet>
+							<h:commandLink action="#{marcacaoListMB.getNextView}" actionListener="#{marcacaoListMB.clear}">
+								<h:outputText value="#{bean.marcacao}" />
 								<f:param name="id" value="#{bean.id}" />
 							</h:commandLink>
 						</p:column>

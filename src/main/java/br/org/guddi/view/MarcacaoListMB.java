@@ -5,29 +5,29 @@ import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
-import br.org.guddi.business.TagBC;
-import br.org.guddi.domain.Tag;
+import br.org.guddi.business.MarcacaoBC;
+import br.org.guddi.domain.Marcacao;
 import java.util.Iterator;
 import java.util.List;
 import javax.inject.Inject;
 
 @ViewController
-@NextView("./tag_edit.jsf")
-@PreviousView("./tag_list.jsf")
-public class TagListMB extends AbstractListPageBean<Tag, Long> {
+@NextView("./marcacao_edit.jsf")
+@PreviousView("./marcacao_list.jsf")
+public class MarcacaoListMB extends AbstractListPageBean<Marcacao, Long> {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private TagBC tagBC;
+	private MarcacaoBC marcacaoBC;
 
 	/**
      *
      * @return
      */
     @Override
-	protected List<Tag> handleResultList() {
-		return this.tagBC.findAll();
+	protected List<Marcacao> handleResultList() {
+		return this.marcacaoBC.findAll();
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class TagListMB extends AbstractListPageBean<Tag, Long> {
 			Long id = iter.next();
 			delete = getSelection().get(id);
 			if (delete) {
-				tagBC.delete(id);
+				marcacaoBC.delete(id);
 				iter.remove();
 			}
 		}

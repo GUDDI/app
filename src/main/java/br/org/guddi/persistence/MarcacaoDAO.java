@@ -2,10 +2,10 @@ package br.org.guddi.persistence;
 
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
-import br.org.guddi.domain.Tag;
+import br.org.guddi.domain.Marcacao;
 
 @PersistenceController
-public class TagDAO extends JPACrud<Tag, Long> {
+public class MarcacaoDAO extends JPACrud<Marcacao, Long> {
 
 	private static final long serialVersionUID = 1L;
 

@@ -24,10 +24,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Tag.findAll", query = "SELECT t FROM Tag t"),
-    @NamedQuery(name = "Tag.findById", query = "SELECT t FROM Tag t WHERE t.id = :id"),
-    @NamedQuery(name = "Tag.findByTag", query = "SELECT t FROM Tag t WHERE t.tag = :tag")})
-public class Tag implements Serializable {
+    @NamedQuery(name = "Marcacao.findAll", query = "SELECT t FROM Marcacao t"),
+    @NamedQuery(name = "Marcacao.findById", query = "SELECT t FROM Marcacao t WHERE t.id = :id"),
+    @NamedQuery(name = "Marcacao.findByMarcacao", query = "SELECT t FROM Marcacao t WHERE t.marcacao = :marcacao")})
+public class Marcacao implements Serializable {
 
 	private static final long serialVersionUID = 5602366476002683716L;
 
@@ -37,19 +37,19 @@ public class Tag implements Serializable {
 
 	@Size(max = 15)
     @Column(length = 15)
-    private String tag;
+    private String marcacao;
 
     /**
      *
      */
-    public Tag() {
+    public Marcacao() {
     }
 
     /**
      *
      * @param id
      */
-    public Tag(Long id) {
+    public Marcacao(Long id) {
         this.id = id;
     }
 
@@ -73,16 +73,16 @@ public class Tag implements Serializable {
      *
      * @return
      */
-    public String getTag() {
-        return tag;
+    public String getMarcacao() {
+        return marcacao;
     }
 
     /**
      *
-     * @param tag
+     * @param marcacao
      */
-    public void setTag(String tag) {
-        this.tag = tag;
+    public void setMarcacao(String marcacao) {
+        this.marcacao = marcacao;
     }
 
 	@Override
@@ -95,10 +95,10 @@ public class Tag implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Tag)) {
+        if (!(object instanceof Marcacao)) {
             return false;
         }
-        Tag other = (Tag) object;
+        Marcacao other = (Marcacao) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -107,7 +107,7 @@ public class Tag implements Serializable {
 
     @Override
     public String toString() {
-        return "br.gov.frameworkdemoiselle.guddi.domain.Tag[ id=" + id + " ]";
+        return "br.gov.frameworkdemoiselle.guddi.domain.Marcacao[ id=" + id + " ]";
     }
 
 
