@@ -88,7 +88,12 @@
                                         <img src="images/icons/topnav/logout.png" alt="" /><span>Login</span>
                                     </h:commandLink>
                                 </li>
-                            </ul> 
+                                <li>
+                                    <h:commandLink  action="lembrar.jsf" rendered="#{not securityContext.loggedIn}">
+                                        <img src="images/icons/dark/repeat.png" alt="" /><span>Lembrar</span>
+                                    </h:commandLink>
+                                </li>
+                            </ul>
                             <ul>
                                 <h:outputText value="#{identity.papel}" rendered="#{securityContext.loggedIn}"/>
                             </ul>
@@ -97,7 +102,7 @@
                                     <h:outputText value="#{identity.nomeorgao}" rendered="#{securityContext.loggedIn}"/>
                                 </li>
                                 <li>
-                                    <h:commandLink value="(sair)" action="#{securityContext.logout}" rendered="#{securityContext.loggedIn}" />                                    
+                                    <h:commandLink value="(sair)" action="#{securityContext.logout}" rendered="#{securityContext.loggedIn}" />
                                 </li>
                             </ul>
                         </div>

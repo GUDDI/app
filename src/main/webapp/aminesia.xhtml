@@ -1,0 +1,62 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+    <ui:define name="body">
+        <div class="loginWrapper">
+            <div class="loginPanel">
+                <div class="head">
+                	<h5 class="iUser">#{messages['login.label']}</h5>
+                </div>
+                <h:form id="valid" styleClass="mainForm" >
+                    <fieldset>
+                        <div class="loginRow noborder">
+                            <label for="req1">#{messages['login.usuario']} :</label>
+                            <div class="loginInput">
+                                <p:inputText id="email"
+                                             value="#{identity.usuario}"
+                                             size="30" maxlength="30" autocomplete="off" />
+                            </div>
+                            <div class="fix"></div>
+                        </div>
+
+                        <div class="loginRow">
+                            <label for="req2">#{messages['login.senha']} :</label>
+                            <div class="loginInput">
+                                <p:password id="password" value="#{identity.password}" />
+                            </div>
+                            <div class="fix"></div>
+                        </div>
+                        <div class="loginRow">
+                            <label for="req2">#{messages['login.senha']} :</label>
+                            <div class="loginInput">
+                                <p:password id="passwordNew" value="#{identity.password}" />
+                            </div>
+                            <div class="fix"></div>
+                        </div>
+                        <div class="loginRow">
+                            <label for="req2">#{messages['login.senha']} :</label>
+                            <div class="loginInput">
+                                <p:password id="rePasswordNew" value="#{identity.password}" />
+                            </div>
+                            <div class="fix"></div>
+                        </div>
+
+                        <div class="loginRow">
+                            <div class="rememberMe">
+                            	<input type="checkbox" id="check2" name="chbox" />
+                            	<label>#{messages['login.lembre.me']}</label>
+                            </div>
+                            <p:commandButton id="login_button"
+                                             value="#{messages['button.login']}"
+                                             action="#{identity.login}"
+                                             styleClass="submitForm"
+                                             ajax="false" />
+                            <div class="fix"></div>
+                        </div>
+                    </fieldset>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
