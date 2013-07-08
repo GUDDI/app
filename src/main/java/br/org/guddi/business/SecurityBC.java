@@ -25,15 +25,11 @@ import javax.inject.Inject;
 public class SecurityBC {
 
     @Inject
-    private UsuarioDAO usuarioDAO;
-    @Inject
     private RecursoDAO recursoDAO;
     @Inject
     private PapelDAO papelDAO;
 
-    public Usuario findByUserName(String usuario) {
-        return usuarioDAO.findByUserName(usuario);
-    }
+
 
     @Startup
     public void bootstrap() {
@@ -70,25 +66,6 @@ public class SecurityBC {
         }
     }
 
-    /**
-     *
-     * @param idUsuario
-     * @param idRole
-     * @return
-     */
-    public Boolean hasRole(Long idUsuario, Long idRole) {
-        return usuarioDAO.hasRole(idUsuario, idRole);
-    }
 
-    /**
-     *
-     * @param idUsuario
-     * @param idResource
-     * @return
-     */
-    public Integer hasPermission(Long idUsuario, Long idResource) {
-        return usuarioDAO.hasPermission(idUsuario, idResource);
-
-    }
 
 }
