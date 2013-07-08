@@ -57,10 +57,10 @@
 					</h:commandLink>
 				</p:column>
 						
-				<p:column sortBy="#{bean.tags}">
-					<f:facet name="header">#{messages['descritor.label.tags']}</f:facet>
+				<p:column sortBy="#{bean.marcacoes}">
+					<f:facet name="header">#{messages['descritor.label.marcacoes']}</f:facet>
 					<h:commandLink action="#{descritorListMB.getNextView}" actionListener="#{descritorListMB.clear}">
-						<h:outputText value="#{bean.tags}" />
+						<h:outputText value="#{bean.marcacoes}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>

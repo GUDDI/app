@@ -7,7 +7,7 @@ package br.org.guddi.security;
 import static br.org.guddi.security.IResources.ATRIBUTO;
 import static br.org.guddi.security.IResources.ORGAO;
 import static br.org.guddi.security.IResources.PAPEL;
-import static br.org.guddi.security.IResources.TAG;
+import static br.org.guddi.security.IResources.MARCACAO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,7 +65,7 @@ public class Resources implements IResources {
         if (resource.equals(SISTEMA)) {
             number = 10L;
         }
-        if (resource.equals(TAG)) {
+        if (resource.equals(MARCACAO)) {
             number = 12L;
         }
         if (resource.equals(USUARIO)) {
@@ -95,7 +95,7 @@ public class Resources implements IResources {
         lista.add(SECURITY);
         lista.add(SERVICO);
         lista.add(SISTEMA);
-        lista.add(TAG);
+        lista.add(MARCACAO);
         lista.add(USUARIO);
 
         lista.add(INVALID);

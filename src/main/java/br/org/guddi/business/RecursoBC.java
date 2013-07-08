@@ -9,7 +9,7 @@ import br.org.guddi.security.IRoles;
 
 @BusinessController
 @RequiredRole(value = IRoles.ADMINISTRATOR)
-public class RecursosBC extends DelegateCrud<Recurso, Long, RecursoDAO> {
+public class RecursoBC extends DelegateCrud<Recurso, Long, RecursoDAO> {
 
 	private static final long serialVersionUID = 1L;
 

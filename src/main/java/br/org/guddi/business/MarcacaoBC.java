@@ -3,13 +3,13 @@ package br.org.guddi.business;
 import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.template.DelegateCrud;
-import br.org.guddi.domain.Tag;
-import br.org.guddi.persistence.TagDAO;
+import br.org.guddi.domain.Marcacao;
+import br.org.guddi.persistence.MarcacaoDAO;
 import br.org.guddi.security.IRoles;
 
 @BusinessController
 @RequiredRole(value = IRoles.ADMINISTRATOR)
-public class TagBC extends DelegateCrud<Tag, Long, TagDAO> {
+public class MarcacaoBC extends DelegateCrud<Marcacao, Long, MarcacaoDAO> {
 
 	private static final long serialVersionUID = 1L;
 

@@ -15,7 +15,7 @@ import br.org.guddi.domain.Descritor;
 import br.org.guddi.domain.Orgao;
 import br.org.guddi.domain.Servico;
 import br.org.guddi.domain.Sistema;
-import br.org.guddi.domain.Tag;
+import br.org.guddi.domain.Marcacao;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -49,7 +49,7 @@ public class SistemaEditMB {
 	
 	private List<Descritor> desc;
 	
-	private List<Tag> tag; 
+	private List<Marcacao> marcacacoes; 
 
 	/**
      *
@@ -171,16 +171,16 @@ public class SistemaEditMB {
      * 
      * @return
      */
-	public List<Tag> getTag() {
-		return tag;
+	public List<Marcacao> getMarcacoes() {
+		return marcacacoes;
 	}
 
 	/**
 	 * 
-	 * @param tag
+	 * @param marcacoes
 	 */
-	public void setTag(Tag tag) {
-		this.tag.add(tag);
+	public void setMarcacao(Marcacao marcacoes) {
+		this.marcacacoes.add(marcacoes);
 	}
 
 

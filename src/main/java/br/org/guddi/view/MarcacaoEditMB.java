@@ -4,18 +4,18 @@ import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
-import br.org.guddi.business.TagBC;
-import br.org.guddi.domain.Tag;
+import br.org.guddi.business.MarcacaoBC;
+import br.org.guddi.domain.Marcacao;
 import javax.inject.Inject;
 
 @ViewController
-@PreviousView("./tag_list.jsf")
-public class TagEditMB extends AbstractEditPageBean<Tag, Long> {
+@PreviousView("./marcacao_list.jsf")
+public class MarcacaoEditMB extends AbstractEditPageBean<Marcacao, Long> {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private TagBC tagBC;
+	private MarcacaoBC marcacaoBC;
 
 	/**
      *
@@ -24,7 +24,7 @@ public class TagEditMB extends AbstractEditPageBean<Tag, Long> {
     @Override
 	@Transactional
 	public String delete() {
-		this.tagBC.delete(getId());
+		this.marcacaoBC.delete(getId());
 		return getPreviousView();
 	}
 
@@ -35,7 +35,7 @@ public class TagEditMB extends AbstractEditPageBean<Tag, Long> {
     @Override
 	@Transactional
 	public String insert() {
-		this.tagBC.insert(getBean());
+		this.marcacaoBC.insert(getBean());
 		return getPreviousView();
 	}
 
@@ -46,7 +46,7 @@ public class TagEditMB extends AbstractEditPageBean<Tag, Long> {
     @Override
 	@Transactional
 	public String update() {
-		this.tagBC.update(getBean());
+		this.marcacaoBC.update(getBean());
 		return getPreviousView();
 	}
 
@@ -55,7 +55,7 @@ public class TagEditMB extends AbstractEditPageBean<Tag, Long> {
      */
     @Override
 	protected void handleLoad() {
-		setBean(this.tagBC.load(getId()));
+		setBean(this.marcacaoBC.load(getId()));
 	}
 
 }

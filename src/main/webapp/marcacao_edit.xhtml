@@ -8,21 +8,21 @@
 
 			<p:toolbar>
 				<p:toolbarGroup align="left">
-					<p:commandButton value="#{messages['button.save']}" action="#{tagEditMB.insert}"
-						rendered="#{!tagEditMB.updateMode}" ajax="false" icon="ui-icon-disk"/>
+					<p:commandButton value="#{messages['button.save']}" action="#{marcacaoEditMB.insert}"
+						rendered="#{!marcacaoEditMB.updateMode}" ajax="false" icon="ui-icon-disk"/>
 						
-					<p:commandButton value="#{messages['button.save']}" action="#{tagEditMB.update}"
-						rendered="#{tagEditMB.updateMode}" ajax="false" icon="ui-icon-disk"/>
+					<p:commandButton value="#{messages['button.save']}" action="#{marcacaoEditMB.update}"
+						rendered="#{marcacaoEditMB.updateMode}" ajax="false" icon="ui-icon-disk"/>
 						
 					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-						rendered="#{tagEditMB.updateMode}" type="button" immediate="true" ajax="false" icon="ui-icon-trash"/>
+						rendered="#{marcacaoEditMB.updateMode}" type="button" immediate="true" ajax="false" icon="ui-icon-trash"/>
 						
-					<p:commandButton value="#{messages['button.back']}" action="tag_list.jsf" icon="ui-icon-circle-arrow-w"
+					<p:commandButton value="#{messages['button.back']}" action="marcacao_list.jsf" icon="ui-icon-circle-arrow-w"
 						immediate="true" ajax="false"/>
 					
 					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
-						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{tagEditMB.delete}" immediate="true"
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{marcacaoEditMB.delete}" immediate="true"
 							ajax="false" />
 						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
 					</p:confirmDialog>
@@ -33,21 +33,21 @@
 			<fieldset>
 				<div class="widget first">
 					<div class="head">
-						<h5 class="iList">#{messages['tag.label']}</h5>
+						<h5 class="iList">#{messages['marcacao.label']}</h5>
 					</div>
 					
 					<div class="rowElem">
-						<h:outputLabel value="#{messages['tag.label.id']}: " for="id"/>
+						<h:outputLabel value="#{messages['marcacao.label.id']}: " for="id"/>
 						<div class="formLeft">
-							<h:outputText id="id" value="#{tagEditMB.bean.id}" />
+							<h:outputText id="id" value="#{marcacaoEditMB.bean.id}" />
 						</div>
 						<div class="fix"></div>
 					</div>
 					
 					<div class="rowElem">
-						<h:outputLabel value="#{messages['tag.label.tag']}: " for="tag"/>
+						<h:outputLabel value="#{messages['marcacao.label.marcacao']}: " for="marcacao"/>
 						<div class="formLeft">
-							<h:inputText id="tag" value="#{tagEditMB.bean.tag}" title="#{messages['tag.alt.tag']}" />
+							<h:inputText id="marcacao" value="#{marcacaoEditMB.bean.marcacao}" title="#{messages['marcacao.alt.marcacao']}" />
 						</div>
 						<div class="fix"></div>
 					</div>

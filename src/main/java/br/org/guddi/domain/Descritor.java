@@ -62,12 +62,12 @@ public class Descritor implements Serializable {
     private Set<Servico> servicos;
 
 	@ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "descritor_tag",
+    @JoinTable(name = "descritor_marcacao",
             joinColumns = {
         @JoinColumn(name = "id_descritor", nullable = false, updatable = false)},
             inverseJoinColumns = {
-        @JoinColumn(name = "id_tag", nullable = false, updatable = false)})
-    private Set<Tag> tags;
+        @JoinColumn(name = "id_marcacao", nullable = false, updatable = false)})
+    private Set<Marcacao> marcacoes;
 
     /**
      *
@@ -167,16 +167,16 @@ public class Descritor implements Serializable {
      * @return
      */
     @XmlTransient
-    public Set<Tag> getTags() {
-		return Collections.unmodifiableSet(tags);
+    public Set<Marcacao> getMarcacoes() {
+		return Collections.unmodifiableSet(marcacoes);
 	}
 
 	/**
      *
-     * @param tags
+     * @param marcacacoes
      */
-    public void setTags(Set<Tag> tags) {
-		this.tags = tags;
+    public void setMarcacoes(Set<Marcacao> marcacacoes) {
+		this.marcacoes = marcacacoes;
 	}
 
     @Override
