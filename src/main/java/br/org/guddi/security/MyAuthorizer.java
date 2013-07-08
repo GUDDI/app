@@ -2,6 +2,7 @@ package br.org.guddi.security;
 
 import br.gov.frameworkdemoiselle.security.Authorizer;
 import br.org.guddi.business.SecurityBC;
+import br.org.guddi.persistence.UsuarioDAO;
 import javax.inject.Inject;
 
 /**
@@ -13,7 +14,7 @@ public class MyAuthorizer implements Authorizer {
     @Inject
     private Identity identity;
     @Inject
-    private SecurityBC securityBC;
+    private UsuarioDAO usuarioDAO;
 
     /**
      *
@@ -22,7 +23,7 @@ public class MyAuthorizer implements Authorizer {
      */
     @Override
     public boolean hasRole(String role) {
-        Boolean hasRole = securityBC.hasRole(identity.getId(), Roles.getRole(role));
+        Boolean hasRole = usuarioDAO.hasRole(identity.getId(), Roles.getRole(role));
         return hasRole;
     }
 
@@ -34,7 +35,7 @@ public class MyAuthorizer implements Authorizer {
      */
     @Override
     public boolean hasPermission(String resource, String operation) {
-        Integer idOperacao = securityBC.hasPermission(identity.getId(), Resources.getResource(resource));
+        Integer idOperacao = usuarioDAO.hasPermission(identity.getId(), Resources.getResource(resource));
         return Operations.listOperations(idOperacao).contains(operation);
     }
 

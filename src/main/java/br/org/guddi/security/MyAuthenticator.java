@@ -4,6 +4,7 @@ import br.gov.frameworkdemoiselle.security.AuthenticationException;
 import br.gov.frameworkdemoiselle.security.Authenticator;
 import br.org.guddi.business.SecurityBC;
 import br.org.guddi.domain.Usuario;
+import br.org.guddi.persistence.UsuarioDAO;
 import br.org.guddi.util.CriptografiaUtil;
 import java.security.Principal;
 import javax.inject.Inject;
@@ -17,7 +18,7 @@ public class MyAuthenticator implements Authenticator {
     @Inject
     private Identity identity;
     @Inject
-    private SecurityBC securityBC;
+    private UsuarioDAO usuarioDAO;
 
     /**
      *
@@ -25,7 +26,7 @@ public class MyAuthenticator implements Authenticator {
      */
     @Override
     public void authenticate() throws AuthenticationException {
-        Usuario user = securityBC.findByUserName(identity.getUsuario());
+        Usuario user = usuarioDAO.findByUserName(identity.getUsuario());
 
         if (user == null) {
             throw new AuthenticationException("O login falhou.");
