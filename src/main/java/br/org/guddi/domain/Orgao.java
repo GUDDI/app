@@ -124,6 +124,9 @@ public class Orgao implements Serializable {
      */
     @XmlTransient
     public Set<Sistema> getSistemas() {
+    	if(sistemas == null){
+    		return null;
+    	}
         return Collections.unmodifiableSet(sistemas);
     }
 
@@ -141,6 +144,9 @@ public class Orgao implements Serializable {
      */
     @XmlTransient
     public Set<Usuario> getUsuarios() {
+    	if(usuarios == null){
+    		return null;
+    	}
         return Collections.unmodifiableSet(usuarios);
     }
 

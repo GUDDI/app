@@ -8,6 +8,8 @@ import br.org.guddi.business.OrgaoBC;
 import br.org.guddi.domain.Orgao;
 import javax.inject.Inject;
 
+import org.jboss.weld.exceptions.UnsupportedOperationException;
+
 /**
  *
  * @author escritorio
@@ -28,8 +30,9 @@ public class OrgaoEditMB extends AbstractEditPageBean<Orgao, Long> {
     @Override
 	@Transactional
 	public String delete() {
-		this.orgaoBC.delete(getId());
-		return getPreviousView();
+    	throw new UnsupportedOperationException();
+		//this.orgaoBC.delete(getId());
+		//return getPreviousView();
 	}
 
 	/**

@@ -5,26 +5,19 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
     <ui:define name="crud">
-        <h:form prependId="false" styleClass="mainForm">
+        <h:form prependId="false" styleClass="mainForm" acceptcharset="UTF-8" >
 
             <p:toolbar>
                 <p:toolbarGroup align="left">
                     <p:commandButton value="#{messages['button.save']}" action="#{orgaoEditMB.insert}"
                                      rendered="#{!orgaoEditMB.updateMode}" ajax="false" icon="ui-icon-disk" />
+                                     
                     <p:commandButton value="#{messages['button.save']}" action="#{orgaoEditMB.update}"
                                      rendered="#{orgaoEditMB.updateMode}" ajax="false" icon="ui-icon-disk"/>
-                    <p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-                                     rendered="#{orgaoEditMB.updateMode}" type="button" immediate="true" ajax="false" 
-                                     icon="ui-icon-trash"/>
                                      
                     <p:commandButton value="#{messages['button.back']}" action="orgao_list.jsf" icon="ui-icon-circle-arrow-w"
-						immediate="true" ajax="false"/>
+									 immediate="true" ajax="false"/>
                                      
-                    <p:confirmDialog message="#{messages['label.confirm.delete']}" 
-                                     header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
-                        <h:commandButton value="#{messages['button.dialog.yes']}" action="#{orgaoEditMB.delete}" immediate="true"/>
-                        <h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
-                    </p:confirmDialog>
                 </p:toolbarGroup>
             </p:toolbar>
 
@@ -65,12 +58,12 @@
 					</div>
 					
 					<div class="rowElem">
-						<h:outputLabel value="#{messages['orgao.label.usuarios']}: " for="usuarios"/>
+						<h:outputLabel value="#{messages['orgao.label.usuarios']}: "/>
 						<div class="formLeft">
 							<ol>
 								<c:forEach items="#{orgaoEditMB.bean.usuarios}" var="usuario">
 									<li>
-										<h:outputText value="#{usuario.nome}" />
+										<h:outputText value="#{usuario.nome} [#{usuario.usuario}]" />
 									</li>
 								</c:forEach>
 							</ol>

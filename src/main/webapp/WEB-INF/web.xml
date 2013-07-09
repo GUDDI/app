@@ -38,6 +38,15 @@
 		</web-resource-collection>
 		<auth-constraint />
 	</security-constraint>
+	
+	<!-- <filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>br.org.guddi.view.filter.CharacterEncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>*.jsf</url-pattern>
+	</filter-mapping> -->
 
 		<!-- Mapping for ConsultaService endpoint -->
 		<!-- <servlet> <servlet-name>ConsultaService</servlet-name> <servlet-class>br.org.guddi.service.Consulta</servlet-class> 
