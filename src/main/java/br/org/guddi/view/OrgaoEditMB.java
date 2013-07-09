@@ -1,14 +1,14 @@
 package br.org.guddi.view;
 
+import javax.inject.Inject;
+
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.org.guddi.business.OrgaoBC;
 import br.org.guddi.domain.Orgao;
-import javax.inject.Inject;
 
-import org.jboss.weld.exceptions.UnsupportedOperationException;
 
 /**
  *
