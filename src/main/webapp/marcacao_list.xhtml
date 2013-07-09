@@ -10,16 +10,6 @@
 					<p:commandButton value="#{messages['button.new']}" icon="ui-icon-document" action="#{marcacaoListMB.getNextView}"
 						actionListener="#{marcacaoListMB.clear}" ajax="false" />
 
-					<p:commandButton value="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
-						type="button" immediate="true" ajax="false" />
-
-					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-						header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
-
-						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{marcacaoListMB.deleteSelection}"
-							actionListener="#{marcacaoListMB.clear}" />
-						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
-					</p:confirmDialog>
 				</p:toolbarGroup>
 			</p:toolbar>
 			
@@ -30,12 +20,6 @@
 					</div>
 			
 					<p:dataTable id="list" var="bean" value="#{marcacaoListMB.resultList}">
-						
-						<p:ajax event="sort" oncomplete="$('form').jqTransform({imgPath:'../images/forms'});"/>
-					
-						<p:column style="width:1%;">
-							<h:selectBooleanCheckbox value="#{marcacaoListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
-						</p:column>
 						
 						<p:column style="width:5%;" sortBy="#{bean.id}">
 							<f:facet name="header">#{messages['marcacao.label.id']}</f:facet>

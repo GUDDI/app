@@ -26,10 +26,8 @@ public class MarcacaoEditMB extends AbstractEditPageBean<Marcacao, Long> {
      * @return
      */
     @Override
-	@Transactional
 	public String delete() {
-		this.marcacaoBC.delete(getId());
-		return getPreviousView();
+    	throw new UnsupportedOperationException();
 	}
 
 	/**

@@ -14,18 +14,9 @@
 					<p:commandButton value="#{messages['button.save']}" action="#{marcacaoEditMB.update}"
 						rendered="#{marcacaoEditMB.updateMode}" ajax="false" icon="ui-icon-disk"/>
 						
-					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-						rendered="#{marcacaoEditMB.updateMode}" type="button" immediate="true" ajax="false" icon="ui-icon-trash"/>
-						
 					<p:commandButton value="#{messages['button.back']}" action="marcacao_list.jsf" icon="ui-icon-circle-arrow-w"
 						immediate="true" ajax="false"/>
-					
-					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
-						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{marcacaoEditMB.delete}" immediate="true"
-							ajax="false" />
-						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
-					</p:confirmDialog>
+						
 				</p:toolbarGroup>
 			</p:toolbar>
 
