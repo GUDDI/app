@@ -23,6 +23,10 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+/**
+ *
+ * @author escritorio
+ */
 @ViewController
 public class SistemaEditMB {
 
@@ -59,6 +63,10 @@ public class SistemaEditMB {
 		this.descritor = new Descritor();
 	}
 
+    /**
+     *
+     * @return
+     */
     public boolean updateMode(){
     	if(sistema.getId() != null)
     		return true;
@@ -78,6 +86,9 @@ public class SistemaEditMB {
     public void insert(){
 	}
     
+    /**
+     *
+     */
     public void update(){
     	
     }
@@ -184,7 +195,11 @@ public class SistemaEditMB {
 	}
 
 
-	public List<Servico> getServicos(){
+	/**
+     *
+     * @return
+     */
+    public List<Servico> getServicos(){
 		return servicoBC.findAll();
 	}
 

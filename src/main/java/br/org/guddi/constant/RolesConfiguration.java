@@ -14,9 +14,21 @@ import br.org.guddi.security.IRoles;
 @Configuration
 public class RolesConfiguration {
 
+    /**
+     *
+     */
     public Long USER;
+    /**
+     *
+     */
     public Long MANAGER;
+    /**
+     *
+     */
     public Long ADMINISTRATOR;
+    /**
+     *
+     */
     public Long INVALID;
 
 }

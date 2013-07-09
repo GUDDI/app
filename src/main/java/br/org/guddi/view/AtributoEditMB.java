@@ -8,6 +8,10 @@ import br.org.guddi.business.AtributoBC;
 import br.org.guddi.domain.Atributo;
 import javax.inject.Inject;
 
+/**
+ *
+ * @author escritorio
+ */
 @ViewController
 @PreviousView("./atributo_list.jsf")
 public class AtributoEditMB extends AbstractEditPageBean<Atributo, Long> {

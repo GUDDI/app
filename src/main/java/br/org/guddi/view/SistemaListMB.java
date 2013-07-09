@@ -11,6 +11,10 @@ import java.util.Iterator;
 import java.util.List;
 import javax.inject.Inject;
 
+/**
+ *
+ * @author escritorio
+ */
 @ViewController
 @NextView("./sistema_edit.jsf")
 @PreviousView("./sistema_list.jsf")

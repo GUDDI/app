@@ -8,6 +8,10 @@ import br.org.guddi.persistence.PesquisaDAO;
 import br.org.guddi.util.search.SearchFilter;
 import java.util.List;
 
+/**
+ *
+ * @author escritorio
+ */
 @BusinessController
 public class PesquisarBC extends DelegateCrud<Pesquisa, Long, PesquisaDAO> {
 

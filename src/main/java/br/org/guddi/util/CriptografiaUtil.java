@@ -3,6 +3,10 @@ package br.org.guddi.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ *
+ * @author escritorio
+ */
 public class CriptografiaUtil {
 
 	/**

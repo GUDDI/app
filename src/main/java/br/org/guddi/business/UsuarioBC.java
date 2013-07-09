@@ -7,6 +7,10 @@ import br.org.guddi.domain.Usuario;
 import br.org.guddi.persistence.UsuarioDAO;
 import br.org.guddi.security.IRoles;
 
+/**
+ *
+ * @author escritorio
+ */
 @BusinessController
 @RequiredRole(value = IRoles.ADMINISTRATOR)
 public class UsuarioBC extends DelegateCrud<Usuario, Long, UsuarioDAO> {

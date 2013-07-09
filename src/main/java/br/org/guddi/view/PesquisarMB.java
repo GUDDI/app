@@ -20,6 +20,10 @@ import org.slf4j.Logger;
 //@ViewController
 //@Named
 //@SessionScoped
+/**
+ *
+ * @author escritorio
+ */
 @ViewController
 @PreviousView("./pesquisa_list.jsf")
 @NextView("./detalhamento_servico.jsf")

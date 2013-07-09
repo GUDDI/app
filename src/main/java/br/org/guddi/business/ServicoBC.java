@@ -7,6 +7,10 @@ import br.gov.frameworkdemoiselle.template.DelegateCrud;
 import br.org.guddi.domain.Servico;
 import br.org.guddi.persistence.ServicoDAO;
 
+/**
+ *
+ * @author escritorio
+ */
 @BusinessController
 
 public class ServicoBC extends DelegateCrud<Servico, Long, ServicoDAO> {
@@ -25,6 +29,10 @@ public class ServicoBC extends DelegateCrud<Servico, Long, ServicoDAO> {
 
 	}
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Servico> findAll(){
     	return getDelegate().findAll();

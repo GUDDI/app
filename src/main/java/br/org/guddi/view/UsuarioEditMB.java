@@ -11,7 +11,12 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.org.guddi.business.UsuarioBC;
 import br.org.guddi.domain.Usuario;
 import br.org.guddi.security.Roles;
+import br.org.guddi.util.CriptografiaUtil;
 
+/**
+ *
+ * @author escritorio
+ */
 @ViewController
 @PreviousView("./usuario_list.jsf")
 public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
@@ -39,6 +44,9 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
     @Override
 	@Transactional
 	public String insert() {
+                String senha = CriptografiaUtil.getCodigoMd5(""+System.currentTimeMillis());
+                getBean().setAminesia(senha);
+                getBean().setSenha(senha.substring(21, 6));
 		this.usuarioBC.insert(getBean());
 		return getPreviousView();
 	}
@@ -62,7 +70,11 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
 		setBean(this.usuarioBC.load(getId()));
 	}
 
-	public List<String> getPapeis(){
+	/**
+     *
+     * @return
+     */
+    public List<String> getPapeis(){
 		return Roles.getRolesList();
 	}
 

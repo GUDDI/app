@@ -8,6 +8,10 @@ import br.org.guddi.business.ExcecaoBC;
 import br.org.guddi.domain.Excecao;
 import javax.inject.Inject;
 
+/**
+ *
+ * @author escritorio
+ */
 @ViewController
 @PreviousView("./excecao_list.jsf")
 public class ExcecaoEditMB extends AbstractEditPageBean<Excecao, Long> {

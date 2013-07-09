@@ -4,6 +4,10 @@ import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 import br.org.guddi.domain.Recurso;
 
+/**
+ *
+ * @author escritorio
+ */
 @PersistenceController
 public class RecursoDAO extends JPACrud<Recurso, Long> {
 

@@ -8,6 +8,10 @@ import br.org.guddi.business.OrgaoBC;
 import br.org.guddi.domain.Orgao;
 import javax.inject.Inject;
 
+/**
+ *
+ * @author escritorio
+ */
 @ViewController
 @PreviousView("./orgao_list.jsf")
 public class OrgaoEditMB extends AbstractEditPageBean<Orgao, Long> {

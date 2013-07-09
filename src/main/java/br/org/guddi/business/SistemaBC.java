@@ -7,6 +7,10 @@ import br.org.guddi.domain.Sistema;
 import br.org.guddi.persistence.SistemaDAO;
 import br.org.guddi.security.IRoles;
 
+/**
+ *
+ * @author escritorio
+ */
 @BusinessController
 @RequiredRole(value = IRoles.MANAGER)
 public class SistemaBC extends DelegateCrud<Sistema, Long, SistemaDAO> {

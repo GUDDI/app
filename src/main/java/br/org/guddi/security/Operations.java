@@ -13,6 +13,11 @@ import java.util.List;
  */
 public class Operations implements IOperations{
 
+    /**
+     *
+     * @param sum
+     * @return
+     */
     public static List<String> listOperations(int sum) {
         List<String> list = new ArrayList<String>();
         list.add("LIST");
@@ -51,6 +56,11 @@ public class Operations implements IOperations{
        
     }
 
+    /**
+     *
+     * @param listOp
+     * @return
+     */
     public static int getOperation(List<String> listOp) {
         int number = 0;
         if (listOp.contains(UPDATE)) {

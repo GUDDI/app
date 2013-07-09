@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Query;
 
+/**
+ *
+ * @author escritorio
+ */
 @PersistenceController
 public class PesquisaDAO extends JPACrud<Pesquisa, Long> {
 

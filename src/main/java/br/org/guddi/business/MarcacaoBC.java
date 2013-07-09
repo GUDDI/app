@@ -7,6 +7,10 @@ import br.org.guddi.domain.Marcacao;
 import br.org.guddi.persistence.MarcacaoDAO;
 import br.org.guddi.security.IRoles;
 
+/**
+ *
+ * @author escritorio
+ */
 @BusinessController
 @RequiredRole(value = IRoles.ADMINISTRATOR)
 public class MarcacaoBC extends DelegateCrud<Marcacao, Long, MarcacaoDAO> {

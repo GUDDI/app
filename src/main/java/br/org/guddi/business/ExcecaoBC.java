@@ -7,6 +7,10 @@ import br.org.guddi.domain.Excecao;
 import br.org.guddi.persistence.ExcecaoDAO;
 import br.org.guddi.security.IRoles;
 
+/**
+ *
+ * @author escritorio
+ */
 @BusinessController
 @RequiredRole(value = IRoles.MANAGER)
 public class ExcecaoBC extends DelegateCrud<Excecao, Long, ExcecaoDAO> {

@@ -1,5 +1,9 @@
 package br.org.guddi.constant;
 
+/**
+ *
+ * @author escritorio
+ */
 public interface Constants {
 
 	

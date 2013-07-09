@@ -8,6 +8,10 @@ import br.org.guddi.business.DescritorBC;
 import br.org.guddi.domain.Descritor;
 import javax.inject.Inject;
 
+/**
+ *
+ * @author escritorio
+ */
 @ViewController
 @PreviousView("./descritor_list.jsf")
 public class DescritorEditMB extends AbstractEditPageBean<Descritor, Long> {

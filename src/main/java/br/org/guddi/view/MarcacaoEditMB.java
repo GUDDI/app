@@ -8,6 +8,10 @@ import br.org.guddi.business.MarcacaoBC;
 import br.org.guddi.domain.Marcacao;
 import javax.inject.Inject;
 
+/**
+ *
+ * @author escritorio
+ */
 @ViewController
 @PreviousView("./marcacao_list.jsf")
 public class MarcacaoEditMB extends AbstractEditPageBean<Marcacao, Long> {

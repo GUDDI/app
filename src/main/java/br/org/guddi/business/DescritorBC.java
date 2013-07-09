@@ -7,6 +7,10 @@ import br.org.guddi.domain.Descritor;
 import br.org.guddi.persistence.DescritorDAO;
 import br.org.guddi.security.IRoles;
 
+/**
+ *
+ * @author escritorio
+ */
 @BusinessController
 @RequiredRole(value = IRoles.MANAGER)
 public class DescritorBC extends DelegateCrud<Descritor, Long, DescritorDAO> {

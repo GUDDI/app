@@ -3,6 +3,10 @@ package br.org.guddi.util.search;
 import java.util.Collections;
 import java.util.Map;
 
+/**
+ *
+ * @author escritorio
+ */
 public class SearchFilter {
 
 	private int first, pageSize;

@@ -7,6 +7,10 @@ import br.org.guddi.domain.Excecao;
 import br.org.guddi.domain.Servico;
 import java.util.List;
 
+/**
+ *
+ * @author escritorio
+ */
 @PersistenceController
 public class ServicoDAO extends JPACrud<Servico, Long> {
 

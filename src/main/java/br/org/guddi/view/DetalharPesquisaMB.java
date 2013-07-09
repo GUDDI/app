@@ -8,6 +8,10 @@ import br.org.guddi.business.ServicoBC;
 import br.org.guddi.domain.Servico;
 import javax.inject.Inject;
 
+/**
+ *
+ * @author escritorio
+ */
 @ViewController
 @PreviousView("./pesquisa_list.jsf")
 @NextView("./detalhamento_servico.jsf")

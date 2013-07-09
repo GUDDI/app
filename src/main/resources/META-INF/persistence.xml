@@ -37,7 +37,6 @@
     <class>br.org.guddi.domain.Orgao</class>
     <class>br.org.guddi.domain.Excecao</class>
     <class>br.org.guddi.domain.Sistema</class>
-    <class>br.org.guddi.domain.Papel</class>
     <class>br.org.guddi.domain.Servico</class>
     <class>br.org.guddi.domain.Usuario</class>
     <shared-cache-mode>ALL</shared-cache-mode>

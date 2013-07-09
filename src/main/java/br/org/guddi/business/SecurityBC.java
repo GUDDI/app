@@ -12,19 +12,26 @@ import br.gov.frameworkdemoiselle.lifecycle.Startup;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.org.guddi.domain.Recurso;
 import br.org.guddi.persistence.RecursoDAO;
+import br.org.guddi.persistence.UsuarioDAO;
 import br.org.guddi.security.Resources;
 
 /**
  *
  * @author 70744416353
  */
-
 @BusinessController
 public class SecurityBC {
 
     @Inject
     private RecursoDAO recursoDAO;
+    
+    @Inject
+    private UsuarioDAO usuarioDAO;
 
+
+    /**
+     *
+     */
     @Startup
     public void bootstrap() {
         try {
@@ -43,12 +50,19 @@ public class SecurityBC {
             }
 
 
-        } 
-        catch (Exception e) {
-           // LOG.log(Level.SEVERE, e.getMessage());
+        } catch (Exception e) {
+            // LOG.log(Level.SEVERE, e.getMessage());
         }
     }
 
-
-
+    /**
+     *
+     * @param aminesia
+     * @param senhaatual
+     * @param senhanova
+     */
+    public void alteraSenha(String aminesia, String senhaatual, String senhanova) {
+        System.out.println(aminesia+" - "+senhaatual+" - "+senhanova);
+        usuarioDAO.UpdatePassWithAminesia( aminesia,  senhaatual,  senhanova);
+    }
 }

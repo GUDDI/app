@@ -11,6 +11,10 @@ import java.util.Iterator;
 import java.util.List;
 import javax.inject.Inject;
 
+/**
+ *
+ * @author escritorio
+ */
 @ViewController
 @NextView("./marcacao_edit.jsf")
 @PreviousView("./marcacao_list.jsf")

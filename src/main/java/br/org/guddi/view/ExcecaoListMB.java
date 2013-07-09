@@ -11,6 +11,10 @@ import java.util.Iterator;
 import java.util.List;
 import javax.inject.Inject;
 
+/**
+ *
+ * @author escritorio
+ */
 @ViewController
 @NextView("./excecao_edit.jsf")
 @PreviousView("./excecao_list.jsf")

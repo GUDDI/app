@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Usuario.findById", query = "SELECT u FROM Usuario u WHERE u.id = :id"),
     @NamedQuery(name = "Usuario.findByNome", query = "SELECT u FROM Usuario u WHERE u.nome = :nome"),
     @NamedQuery(name = "Usuario.findByUsuario", query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario"),
+    @NamedQuery(name = "Usuario.findByAminesia", query = "SELECT u FROM Usuario u WHERE u.aminesia = :aminesia"),
     @NamedQuery(name = "Usuario.findBySenha", query = "SELECT u FROM Usuario u WHERE u.senha = :senha"),
     @NamedQuery(name = "Usuario.findByEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email")})
 public class Usuario implements Serializable {
@@ -52,6 +53,11 @@ public class Usuario implements Serializable {
     @NotNull
     private String email;
     
+    @Size(max = 64)
+    @Column(length = 64)
+    @NotNull
+    private String aminesia;
+    
     @Size(max = 30)
     @Column(length = 30)
     @NotNull
@@ -61,7 +67,7 @@ public class Usuario implements Serializable {
     @Column(length = 32)
     @NotNull
     private String senha;
-  
+    
     @JoinColumn(name = "id_orgao", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
@@ -70,21 +76,40 @@ public class Usuario implements Serializable {
     @Column(name = "ativo")
     private Boolean isAtivo;
 
+    /**
+     *
+     */
     public Usuario() {
     }
 
+    /**
+     *
+     * @param id
+     */
     public Usuario(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Short getPapel() {
         return papel;
     }
@@ -161,20 +186,52 @@ public class Usuario implements Serializable {
         this.orgao = orgao;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getIsAtivo() {
         return isAtivo;
     }
 
+    /**
+     *
+     * @param isAtivo
+     */
     public void setIsAtivo(Boolean isAtivo) {
         this.isAtivo = isAtivo;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUsuario() {
         return usuario;
     }
 
+    /**
+     *
+     * @param usuario
+     */
     public void setUsuario(String usuario) {
         this.usuario = usuario;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getAminesia() {
+        return aminesia;
+    }
+
+    /**
+     *
+     * @param aminesia
+     */
+    public void setAminesia(String aminesia) {
+        this.aminesia = aminesia;
     }
     
     
