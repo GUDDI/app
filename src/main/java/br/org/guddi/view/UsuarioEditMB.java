@@ -1,14 +1,17 @@
 package br.org.guddi.view;
 
-import java.util.List;
+import java.util.HashMap;
 
 import javax.inject.Inject;
+
+import org.jboss.weld.exceptions.UnsupportedOperationException;
 
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.org.guddi.business.UsuarioBC;
+import br.org.guddi.domain.Orgao;
 import br.org.guddi.domain.Usuario;
 import br.org.guddi.security.Roles;
 import br.org.guddi.util.CriptografiaUtil;
@@ -26,6 +29,9 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
 	@Inject
 	private UsuarioBC usuarioBC;
 	
+	@Inject
+	private Orgao orgao;
+	
 	/**
      *
      * @return
@@ -33,9 +39,24 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
     @Override
 	@Transactional
 	public String delete() {
-		this.usuarioBC.delete(getId());
-		return getPreviousView();
+		throw new UnsupportedOperationException();
 	}
+    
+    @Transactional
+    public String ativar(){
+    	getBean().setIsAtivo(Boolean.TRUE);
+    	this.usuarioBC.update(getBean());
+    	
+    	return getPreviousView();
+    }
+    
+    @Transactional
+    public String inativar(){
+    	getBean().setIsAtivo(Boolean.FALSE);
+    	this.usuarioBC.update(getBean());
+    	
+    	return getPreviousView();
+    }
 	
 	/**
      *
@@ -44,9 +65,12 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
     @Override
 	@Transactional
 	public String insert() {
-                String senha = CriptografiaUtil.getCodigoMd5(""+System.currentTimeMillis());
-                getBean().setAminesia(senha);
-                getBean().setSenha(senha.substring(21, 6));
+        String senha = CriptografiaUtil.getCodigoMd5(""+System.currentTimeMillis());
+        getBean().setAminesia(senha);
+        getBean().setSenha(senha.substring(21, 27));
+        getBean().setOrgao(getOrgao());
+        getBean().setIsAtivo(Boolean.FALSE);
+        
 		this.usuarioBC.insert(getBean());
 		return getPreviousView();
 	}
@@ -68,14 +92,24 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
     @Override
 	protected void handleLoad() {
 		setBean(this.usuarioBC.load(getId()));
+		setOrgao(getBean().getOrgao());
 	}
 
 	/**
      *
      * @return
      */
-    public List<String> getPapeis(){
-		return Roles.getRolesList();
+    public HashMap<Short, String> getPapeis(){
+		return Roles.getRolesListAsMap();
 	}
+
+	public Orgao getOrgao() {
+		return orgao;
+	}
+
+	public void setOrgao(Orgao orgao) {
+		this.orgao = orgao;
+	}
+    
 
 }

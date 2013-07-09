@@ -10,19 +10,28 @@
 				<p:toolbarGroup align="left">
 					<p:commandButton value="#{messages['button.save']}" action="#{usuarioEditMB.insert}"
 						rendered="#{!usuarioEditMB.updateMode}" ajax="false" icon="ui-icon-disk"/>
-					<p:commandButton value="#{messages['button.save']}" action="#{usuarioEditMB.update}"
-						rendered="#{usuarioEditMB.updateMode}" ajax="false" icon="ui-icon-disk"/>
-					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-						rendered="#{usuarioEditMB.updateMode}" type="button" immediate="true" ajax="false" icon="ui-icon-trash"/>
+						
+					<p:commandButton value="#{messages['button.inactive']}" onclick="confirmationInactive.show()"
+						rendered="#{usuarioEditMB.bean.isAtivo and usuarioEditMB.updateMode}" type="button" immediate="true" ajax="false" icon="ui-icon-trash"/>
+						
+					<p:commandButton value="#{messages['button.active']}" onclick="confirmationActive.show()"
+						rendered="#{!usuarioEditMB.bean.isAtivo and usuarioEditMB.updateMode}" type="button" immediate="true" ajax="false" icon="ui-icon-circle-check"/>
 						
 					<p:commandButton value="#{messages['button.back']}" action="usuario_list.jsf" icon="ui-icon-circle-arrow-w"
 						immediate="true" ajax="false"/>
 						
-					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
-						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{usuarioEditMB.delete}" immediate="true"
+					<p:confirmDialog message="#{messages['label.confirm.inactive']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.inactive']}" severity="alert" widgetVar="confirmationInactive">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{usuarioEditMB.inativar}" immediate="true"
 							ajax="false" />
-						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmationInactive.hide()" type="button" />
+					</p:confirmDialog>
+					
+					<p:confirmDialog message="#{messages['label.confirm.active']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.active']}" severity="alert" widgetVar="confirmationActive">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{usuarioEditMB.ativar}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmationActive.hide()" type="button" />
 					</p:confirmDialog>
 					
 				</p:toolbarGroup>
@@ -30,6 +39,7 @@
 
 			<fieldset>
 				<div class="widget first">
+				
 					<div class="head">
 						<h5 class="iList">#{messages['usuario.label']}</h5>
 					</div>
@@ -45,8 +55,8 @@
 					<div class="rowElem">
 						<h:outputLabel value="#{messages['usuario.label.papel']}: " for="papel" />
 						<div class="formLeft">
-							<h:selectOneMenu id="papel" value="#{usuarioEditMB.bean.papel}">
-								<f:selectItems value="#{usuarioEditMB.papeis}" var="papel" itemValue="#{papel}" itemLabel="#{papel}"/>
+							<h:selectOneMenu id="papel" value="#{usuarioEditMB.bean.papel}" disabled="#{usuarioEditMB.updateMode}">
+								<f:selectItems value="#{usuarioEditMB.papeis.entrySet()}" var="papel" itemValue="#{papel.key}" itemLabel="#{papel.value}"/>
 							</h:selectOneMenu>
 						</div>
 						<div class="fix"></div>
@@ -55,7 +65,7 @@
 					<div class="rowElem">
 						<h:outputLabel value="#{messages['usuario.label.nome']}: " for="nome"/>
 						<div class="formLeft">
-							<h:outputText id="nome" value="#{usuarioEditMB.bean.nome}" title="#{messages['usuario.alt.nome']}" />
+							<h:inputText id="nome" value="#{usuarioEditMB.bean.nome}" title="#{messages['usuario.alt.nome']}" disabled="#{usuarioEditMB.updateMode}"/>
 						</div>
 						<div class="fix"></div>
 					</div>
@@ -63,7 +73,7 @@
 					<div class="rowElem">
 						<h:outputLabel value="#{messages['usuario.label.usuario']}: " for="usuario"/>
 						<div class="formLeft">
-							<h:outputText id="usuario" value="#{usuarioEditMB.bean.usuario}" title="#{messages['usuario.alt.usuario']}" />
+							<h:inputText id="usuario" value="#{usuarioEditMB.bean.usuario}" title="#{messages['usuario.alt.usuario']}" disabled="#{usuarioEditMB.updateMode}"/>
 						</div>
 						<div class="fix"></div>
 					</div>
@@ -71,7 +81,7 @@
 					<div class="rowElem">
 						<h:outputLabel value="#{messages['usuario.label.email']}: " for="email"/>
 						<div class="formLeft">
-							<h:outputText id="email" value="#{usuarioEditMB.bean.email}" title="#{messages['usuario.alt.email']}" />
+							<h:inputText id="email" value="#{usuarioEditMB.bean.email}" title="#{messages['usuario.alt.email']}" disabled="#{usuarioEditMB.updateMode}"/>
 						</div>
 						<div class="fix"></div>
 					</div>
@@ -79,19 +89,8 @@
 					<div class="rowElem">
 						<h:outputLabel value="#{messages['usuario.label.orgao']}: " for="orgao"/>
 						<div class="formLeft">
-							<h:selectOneMenu id="orgao" value="#{usuarioEditMB.bean.orgao}">
-								<f:selectItems value="#{orgaoListMB.resultList}" var="orgao" itemValue="#{orgao}" itemLabel="#{orgao.nome}"/>
-							</h:selectOneMenu>
-						</div>
-						<div class="fix"></div>
-					</div>
-					
-					<div class="rowElem">
-						<h:outputLabel value="#{messages['usuario.label.isAtivo']}: " for="ativo"/>
-						<div class="formLeft">
-							<h:selectOneMenu id="ativo" value="#{usuarioEditMB.bean.isAtivo}">
-								<f:selectItem itemValue="true" itemLabel="#{messages['usuario.label.isAtivo.sim']}"/>
-								<f:selectItem itemValue="false" itemLabel="#{messages['usuario.label.isAtivo.nao']}"/>
+							<h:selectOneMenu id="orgao" value="#{usuarioEditMB.orgao.id}" disabled="#{usuarioEditMB.updateMode}">
+								<f:selectItems value="#{orgaoListMB.resultList}" var="orgao" itemValue="#{orgao.id}" itemLabel="#{orgao.nome}"/>
 							</h:selectOneMenu>
 						</div>
 						<div class="fix"></div>

@@ -1,6 +1,7 @@
 package br.org.guddi.security;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -68,6 +69,18 @@ public class Roles implements IRoles {
         list.add(ADMINISTRATOR);
         list.add(INVALID);
         return list;
+    }
+    
+    public static HashMap<Short, String> getRolesListAsMap(){
+    	
+    	HashMap<Short, String> papeis = new HashMap<Short, String>();
+    	
+    	papeis.put(getRole(USER), USER);
+    	papeis.put(getRole(MANAGER), MANAGER);
+    	papeis.put(getRole(ADMINISTRATOR), ADMINISTRATOR);
+    	papeis.put(getRole(INVALID), INVALID);
+    	
+    	return papeis;
     }
 
     /**
