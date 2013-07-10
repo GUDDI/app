@@ -7,57 +7,45 @@
 		<h:form>
 			<p:toolbar>
 				<p:toolbarGroup align="left">
-					<p:commandButton title="#{messages['button.new']}" image="ui-icon-document" action="#{sistemaListMB.getNextView}"
+					<p:commandButton value="#{messages['button.new']}" image="ui-icon-document" action="#{sistemaListMB.getNextView}"
 						actionListener="#{sistemaListMB.clear}" ajax="false" />
 
-					<p:commandButton title="#{messages['button.delete']}" image="ui-icon-trash" onclick="confirmation.show()"
-						type="button" immediate="true" ajax="false" />
-
-					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-						header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
-
-						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{sistemaListMB.deleteSelection}"
-							actionListener="#{sistemaListMB.clear}" />
-						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
-					</p:confirmDialog>
 				</p:toolbarGroup>
 			</p:toolbar>
-			<p:dataTable id="list" var="bean" value="#{sistemaListMB.resultList}">
-				<f:facet name="header">#{messages['sistema.list.table.title']}</f:facet>
-				<p:column style="width:1%;">
-					<h:selectBooleanCheckbox value="#{sistemaListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
-				</p:column>
-				
-				<p:column style="width:5%;" sortBy="#{bean.id}">
-					<f:facet name="header">#{messages['sistema.label.id']}</f:facet>
-					<h:outputText value="#{bean.id}" />
-				</p:column>
+			
+			<fieldset>
+				<div class="widget first">
+					<div class="head">
+						<h5 class="iFrames">#{messages['sistema.list.table.title']}</h5>
+					</div>
+					
+					<p:dataTable id="list" var="bean" value="#{sistemaListMB.resultList}">
 						
-				<p:column sortBy="#{bean.nome}">
-					<f:facet name="header">#{messages['sistema.label.nome']}</f:facet>
-					<h:commandLink action="#{sistemaListMB.getNextView}" actionListener="#{sistemaListMB.clear}">
-						<h:outputText value="#{bean.nome}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-						
-				<p:column sortBy="#{bean.orgao}">
-					<f:facet name="header">#{messages['sistema.label.orgao']}</f:facet>
-					<h:commandLink action="#{sistemaListMB.getNextView}" actionListener="#{sistemaListMB.clear}">
-						<h:outputText value="#{bean.orgao}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-						
-				<p:column sortBy="#{bean.descritores}">
-					<f:facet name="header">#{messages['sistema.label.descritores']}</f:facet>
-					<h:commandLink action="#{sistemaListMB.getNextView}" actionListener="#{sistemaListMB.clear}">
-						<h:outputText value="#{bean.descritores}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-						
-			</p:dataTable>
+						<p:column style="width:5%;" sortBy="#{bean.id}">
+							<f:facet name="header">#{messages['sistema.label.id']}</f:facet>
+							<h:outputText value="#{bean.id}" />
+						</p:column>
+								
+						<p:column sortBy="#{bean.nome}">
+							<f:facet name="header">#{messages['sistema.label.nome']}</f:facet>
+							<h:commandLink action="#{sistemaListMB.getNextView}" actionListener="#{sistemaListMB.clear}">
+								<h:outputText value="#{bean.nome}" />
+								<f:param name="id" value="#{bean.id}" />
+							</h:commandLink>
+						</p:column>
+								
+						<p:column sortBy="#{bean.orgao}">
+							<f:facet name="header">#{messages['sistema.label.orgao']}</f:facet>
+							<h:commandLink action="#{sistemaListMB.getNextView}" actionListener="#{sistemaListMB.clear}">
+								<h:outputText value="#{bean.orgao.nome}" />
+								<f:param name="id" value="#{bean.id}" />
+							</h:commandLink>
+						</p:column>
+								
+					</p:dataTable>
+				</div>
+			</fieldset>
+			
 		</h:form>
 
 	</ui:define>

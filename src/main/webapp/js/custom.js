@@ -536,7 +536,7 @@ $(function() {
 
 
 	//===== Tabs =====//
-		
+	*/
 	$.fn.simpleTabs = function(){ 
 	
 		//Default Action
@@ -558,6 +558,7 @@ $(function() {
 
 	$("div[class^='widget']").simpleTabs(); //Run function on any div with class name of "Simple Tabs"
 
+	/*
 
 	//===== Placeholder for all browsers =====//
 	
@@ -585,7 +586,7 @@ $(function() {
 		$('ul.actsBody').slideToggle(100);
 	});
 	
-	
+	*/
 	//===== Collapsible elements management =====//
 	
 	$('.active').collapsible({
@@ -616,10 +617,10 @@ $(function() {
 		speed: 200
 	});
 	
-	*/
+	
 
 
-
+	/*
 
 	//===== Flot settings. You can place your own flot settings here =====//
 

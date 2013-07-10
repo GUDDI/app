@@ -1,15 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.org.guddi.domain;
 
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Set;
-import javax.persistence.Basic;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,37 +20,42 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- * Conceito de Dominio servicos dentro de um Sistemas.
  *
- * @author 05081364908
+ * @author Clovis Lemes Ferreira Junior
  */
 @Entity
 @Table
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Descritor.findAll", query = "SELECT d FROM Descritor d"),
-    @NamedQuery(name = "Descritor.findById", query = "SELECT d FROM Descritor d WHERE d.id = :id"),
-    @NamedQuery(name = "Descritor.findByDescricao", query = "SELECT d FROM Descritor d WHERE d.descricao = :descricao")})
+    @NamedQuery(name = "Descritor.findById", query = "SELECT d FROM Descritor d WHERE d.id = :id")})
 public class Descritor implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @NotNull
-    @Column(nullable = false)
     private Long id;
 
-	@Size(max = 100)
-    @Column(length = 100)
-    private String descricao;
+	@Size(max = 256)
+	@Column(length = 256)
+	private String url;
+	
+	@Size(max = 25)
+	@Column(length = 25)
+	private String nome;
+	
+	@Size(max = 1500)
+	@Column(length = 1500)
+	private String descricao;
+	
+	@Enumerated(EnumType.STRING)
+	private DescritorType tipo;
 
 	@JoinColumn(name = "id_sistema", referencedColumnName = "id")
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -89,11 +92,12 @@ public class Descritor implements Serializable {
      * @param descricao
      * @param sistema
      */
-    public Descritor(Long id, String descricao, Sistema sistema) {
+    public Descritor(Long id, String url, Sistema sistema, DescritorType tipo) {
 		super();
 		this.id = id;
-		this.descricao = descricao;
 		this.sistema = sistema;
+		this.sistema = sistema;
+		this.tipo = tipo;
 	}
 
 	/**
@@ -116,24 +120,11 @@ public class Descritor implements Serializable {
      *
      * @return
      */
-    public String getDescricao() {
-        return descricao;
-    }
-
-    /**
-     *
-     * @param descricao
-     */
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    /**
-     *
-     * @return
-     */
     @XmlTransient
 	public Set<Servico> getServicos() {
+    	if(servicos == null){
+    		return null;
+    	}
 		return Collections.unmodifiableSet(servicos);
 	}
 
@@ -168,6 +159,9 @@ public class Descritor implements Serializable {
      */
     @XmlTransient
     public Set<Marcacao> getMarcacoes() {
+    	if(marcacoes == null){
+    		return null;
+    	}
 		return Collections.unmodifiableSet(marcacoes);
 	}
 
@@ -179,7 +173,39 @@ public class Descritor implements Serializable {
 		this.marcacoes = marcacacoes;
 	}
 
-    @Override
+    public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public DescritorType getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(DescritorType tipo) {
+		this.tipo = tipo;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);

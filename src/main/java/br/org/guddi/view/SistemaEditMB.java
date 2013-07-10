@@ -7,30 +7,31 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
+import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
+import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.org.guddi.business.OrgaoBC;
 import br.org.guddi.business.ServicoBC;
 import br.org.guddi.business.SistemaBC;
+import br.org.guddi.domain.Atributo;
 import br.org.guddi.domain.Descritor;
+import br.org.guddi.domain.DescritorType;
+import br.org.guddi.domain.Excecao;
+import br.org.guddi.domain.Marcacao;
 import br.org.guddi.domain.Orgao;
 import br.org.guddi.domain.Servico;
 import br.org.guddi.domain.Sistema;
-import br.org.guddi.domain.Marcacao;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
+import br.org.guddi.security.Identity;
 
 /**
  *
  * @author escritorio
  */
 @ViewController
-public class SistemaEditMB {
+@PreviousView("./sistema_list.jsf")
+public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 
-	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	@Inject
@@ -43,68 +44,34 @@ public class SistemaEditMB {
 	private Orgao orgao;
 
 	@Inject
-	private Sistema sistema;
-	
-	@Inject
 	private ServicoBC servicoBC;
 	
-
+	@Inject
+	private Identity identity;
+	
+	private DescritorType tipoDescritor;
+	
 	private Descritor descritor;
 	
 	private List<Descritor> desc;
 	
-	private List<Marcacao> marcacacoes; 
-
+	private List<Marcacao> marcacacoes;
+	
+	@Inject
+	private Atributo atributo;
+	
+	@Inject
+	private Excecao excecao;
+	
 	/**
      *
      */
     @PostConstruct
 	public void inicia(){
+    	setOrgao(orgaoBC.load(identity.getId()));
 		this.descritor = new Descritor();
 	}
 
-    /**
-     *
-     * @return
-     */
-    public boolean updateMode(){
-    	if(sistema.getId() != null)
-    		return true;
-    	
-    	return false;
-    }
-    
-	/**
-     *
-     */
-    public void delete(){
-	}
-
-	/**
-     *
-     */
-    public void insert(){
-	}
-    
-    /**
-     *
-     */
-    public void update(){
-    	
-    }
-
-	/**
-     *
-     * @return
-     */
-    public List<Orgao> getOrgaos() {
-		return orgaoBC.findAll();
-	}
-
-	/**
-     *
-     * @return
-     */
     public List<Descritor> getDescritores() {
 		if(desc == null) {
             desc = new ArrayList<Descritor>();
@@ -162,22 +129,6 @@ public class SistemaEditMB {
 		this.orgao = orgao;
 	}
 
-	/**
-     *
-     * @return
-     */
-    public Sistema getSistema() {
-		return sistema;
-	}
-
-	/**
-     *
-     * @param sistema
-     */
-    public void setSistema(Sistema sistema) {
-		this.sistema = sistema;
-	}
-
     /**
      * 
      * @return
@@ -194,6 +145,29 @@ public class SistemaEditMB {
 		this.marcacacoes.add(marcacoes);
 	}
 
+	public DescritorType getTipoDescritor() {
+		return tipoDescritor;
+	}
+
+	public void setTipoDescritor(DescritorType tipoDescritor) {
+		this.tipoDescritor = tipoDescritor;
+	}
+	
+	public Atributo getAtributo() {
+		return atributo;
+	}
+
+	public void setAtributo(Atributo atributo) {
+		this.atributo = atributo;
+	}
+
+	public Excecao getExcecao() {
+		return excecao;
+	}
+
+	public void setExcecao(Excecao excecao) {
+		this.excecao = excecao;
+	}
 
 	/**
      *
@@ -202,6 +176,38 @@ public class SistemaEditMB {
     public List<Servico> getServicos(){
 		return servicoBC.findAll();
 	}
+    
+    public DescritorType [] getTipoDescritores(){
+    	return DescritorType.values();
+    }
+
+	@Override
+	protected void handleLoad() {
+		setBean(this.sistemaBC.load(getId()));
+	}
+
+	@Override
+	@Transactional
+	public String delete() {
+		this.sistemaBC.delete(getId());
+		return getPreviousView();
+	}
+
+	@Override
+	@Transactional
+	public String insert() {
+		this.sistemaBC.insert(getBean());
+		return getPreviousView();
+	}
+
+	@Override
+	@Transactional
+	public String update() {
+		this.sistemaBC.update(getBean());
+		return getPreviousView();
+	}
+	
+	
 
 
 }

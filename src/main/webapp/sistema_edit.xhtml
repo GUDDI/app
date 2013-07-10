@@ -1,18 +1,23 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="crud">
-		<h:form prependId="false">
+		<h:form prependId="false" styleClass="mainForm">
 
 			<p:toolbar>
 				<p:toolbarGroup align="left">
 					<p:commandButton value="#{messages['button.save']}" action="#{sistemaEditMB.insert}"
-						rendered="#{!sistemaEditMB.updateMode()}" ajax="false" />
+						rendered="#{!sistemaEditMB.updateMode}" ajax="false" icon="ui-icon-disk"/>
+						
 					<p:commandButton value="#{messages['button.save']}" action="#{sistemaEditMB.update}"
-						rendered="#{sistemaEditMB.updateMode()}" ajax="false" />
+						rendered="#{sistemaEditMB.updateMode}" ajax="false" icon="ui-icon-disk"/>
+						
 					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-						rendered="#{sistemaEditMB.updateMode()}" type="button" immediate="true" ajax="false" />
+						rendered="#{sistemaEditMB.updateMode}" type="button" immediate="true" ajax="false" icon="ui-icon-trash"/>
+						
 					<p:confirmDialog message="#{messages['label.confirm.delete']}" 
 						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
 						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{sistemaEditMB.delete}" immediate="true"
@@ -21,62 +26,282 @@
 					</p:confirmDialog>
 				</p:toolbarGroup>
 			</p:toolbar>
-
-			<br />
-			<h:panelGrid columns="2">
-				<p:fieldset legend="#{messages['sistema.label']}" toggleable="true" toggleSpeed="500">
-					<h:panelGrid id="fields" columns="3">
-						<h:outputLabel value="#{messages['sistema.label.id']}: " for="id" styleClass="text-input" />
-						<h:outputText id="id" value="#{sistemaEditMB.sistema.id}" />
-						<p:message for="id" />
+			
+			 <!-- Tabs -->
+	        <div class="widget">       
+	            <ul class="tabs">
+	                <li><a href="#tab1">#{messages['sistema.label']}</a></li>
+	                <li><a href="#tab2">#{messages['sistema.label.descritores']}</a></li>
+	            </ul>
+	            
+	            <!-- Aba do Sistema -->
+	            <div class="tab_container">
+	                <div id="tab1" class="tab_content">
 						
-						<h:outputLabel value="#{messages['sistema.label.orgao']}: " for="orgao" styleClass="text-input" />
-						<p:selectOneMenu id="orgao" value="#{sistemaEditMB.orgao}" title="#{messages['orgao.label']}" >
-							<f:selectItem itemLabel="Selecione" itemValue=""/>
-							<f:selectItems var="org" value="#{sistemaEditMB.orgaos}"  itemValue="#{org}" itemLabel="#{org.nome}"/>
-						</p:selectOneMenu> 
-						<p:message for="orgao" />
+						<div class="rowElem">
+							<h:outputLabel value="#{messages['sistema.label.id']}: " for="id"/>
+							<div class="formLeft">
+								<h:outputText id="id" value="#{sistemaEditMB.bean.id}" />
+							</div>
+							<div class="fix"></div>
+						</div>
 						
-											
-						<h:outputLabel value="#{messages['sistema.label.nome']}: " for="nome" styleClass="text-input" />
-						<h:inputText id="nome" value="#{sistemaEditMB.sistema.nome}"
-							title="#{messages['sistema.alt.nome']}" />
-						<p:message for="nome" />
+						<div class="rowElem">
+							<h:outputLabel value="#{messages['sistema.label.orgao']}: " for="orgao"/>
+							<div class="formLeft">
+								<h:outputText value="#{sistemaEditMB.orgao.nome}" />
+							</div>
+							<div class="fix"></div>
+						</div>
 						
+						<div class="rowElem">
+							<h:outputLabel value="#{messages['sistema.label.nome']}: " for="nome"/>
+							<div class="formLeft">
+								<h:inputText id="nome" value="#{sistemaEditMB.bean.nome}" />
+							</div>
+							<div class="fix"></div>
+						</div>
 						
+						<div class="rowElem">
+							<h:outputLabel value="#{messages['sistema.label.isPublico']}: " for="isPublico"/>
+							<div class="formLeft">
+								<h:selectOneMenu id="isPublico" value="#{sistemaEditMB.bean.isPublico}">
+									<f:selectItem itemLabel="#{messages['sistema.label.isPublico.sim']}" itemValue="true"/>
+									<f:selectItem itemLabel="#{messages['sistema.label.isPublico.nao']}" itemValue="false"/>
+								</h:selectOneMenu>
+							</div>
+							<div class="fix"></div>
+						</div>
 						
-						<h:outputLabel value="#{messages['sistema.label.novo_descritor']}: " for="descritor" styleClass="text-input" />
-						<h:inputText id="descritor" value="#{sistemaEditMB.descritor.descricao}"
-							title="#{messages['sistema.alt.descritor']}" />
-						<p:commandButton  value="+" update="list" actionListener="#{sistemaEditMB.adicionaDescritor()}">
-							<f:ajax execute="@all"/>
-						</p:commandButton>
+						<div class="rowElem noborder"></div>
 						
-						<h:outputLabel value="#{messages['sistema.label.descritores']}: " for="list" styleClass="text-input" />
-						<p:dataTable id="list" var="bean" value="#{sistemaEditMB.descritores}">
-							<p:column style="width:80%;" sortBy="#{bean.id}">
-								<f:facet name="header">#{messages['sistema.label.id']}</f:facet>
-								<h:outputText value="#{bean.descricao}" />
-							</p:column>	
-							<p:column style="width:20%;" sortBy="#{bean.id}">
-								
-								<p:commandLink update="list" styleClass="ui-icon ui-icon-trash" action="#{sistemaEditMB.removeDescritor(bean.id)}">
+	                </div>
+	                
+	                <!-- Aba dos Descritores -->
+	                <div id="tab2" class="tab_content">
+	                
+	                	<div class="rowElem noborder">
+							<h:outputLabel value="#{messages['sistema.label.tipo.descritor']}: " for="descritores"/>
+							<div class="formLeft">
+								<h:selectOneMenu id="descritores" value="#{sistemaEditMB.tipoDescritor}">
+									<f:selectItems value="#{sistemaEditMB.tipoDescritores}" />
+								</h:selectOneMenu>
+							</div>
+							
+							<div class="formLeft">								
+								<p:commandButton value="#{messages['sistema.label.descritores.adicionar']}" actionListener="#{sistemaEditMB.adicionaDescritor()}"
+									 			 icon="ui-icon-plus">
 									<f:ajax execute="@all"/>
-								</p:commandLink>
-							</p:column>					
-						</p:dataTable>
-						<p:message for="descritor" />
-					</h:panelGrid>
-				</p:fieldset>
-				<p:fieldset legend="#{messages['sistema.label']}">
-					<p:dataTable id="listServicos" var="bean" value="#{servicoListMB.resultList}">
-						<p:column style="width:80%;" sortBy="#{bean.id}">
-							<f:facet name="header">#{messages['servico.label.id']}</f:facet>
-							<h:outputText value="#{bean.descricao}" />
-						</p:column>	
-					</p:dataTable>
-				</p:fieldset>
-			</h:panelGrid>
+								</p:commandButton>
+							</div>
+							
+							<div class="fix"></div>
+						</div>
+						
+						<div class="rowElem noborder"></div>
+						
+						<!-- Toggles group -->
+		                <div class="widget">
+		                
+		                	<c:forEach items="#{sistemaEditMB.bean.descritores}" var="descritor">
+		                		<div class="head closed">
+		                			<h5>
+		                				#{descritor.nome} - #{descritor.tipo} #{messages['descritor.label.resumo.com']} ${fn:length(descritor.servicos)} #{messages['descritor.label.resumo.servicos']}
+		                			</h5>
+		                		</div>
+		                    	<div class="body">
+		                    	
+		                    		<div class="rowElem">
+										<h:outputLabel value="#{messages['descritor.label.url']}: " for="descritorURL"/>
+										<div class="formLeft">
+											<h:inputText id="descritorURL" value="#{descritor.url}" />
+										</div>
+										<div class="fix"></div>
+									</div>
+									
+									<div class="rowElem">
+										<h:outputLabel value="#{messages['descritor.label.marcacoes']}: " for="descritorMarcacoes"/>
+										<div class="formLeft">
+											<ol>
+												<c:forEach items="#{descritor.marcacoes}" var="marcacao">
+													<li>
+														<h:outputText value="#{marcacao.marcacao}" />
+													</li>
+												</c:forEach>
+											</ol>
+										</div>
+										<div class="fix"></div>
+									</div>
+									
+									<div class="rowElem">
+										<h:outputLabel value="#{messages['descritor.label.descricao']}: " for="descritorDescricao"/>
+										<div class="formLeft">
+											<h:inputTextarea id="descritorDescricao" value="#{descritor.descricao}" rows="10"/>
+										</div>
+										<div class="fix"></div>
+									</div>
+									
+									
+									<!-- Listagem dos serviços -->
+									
+									<div class="widget">
+										<div class="head">
+											<h5 class="iFrames">#{messages['servico.list.table.title']}</h5>
+										</div>
+									
+										<c:if test="${not empty descritor.servicos}">
+											<!-- Abas de Serviços -->
+											<ul class="tabs">
+					                    		<c:forEach items="#{descritor.servicos}" var="servico" varStatus="i">
+			                    					<li><a href="#tabServico#{i.index}">#{servico.nome}</a></li>
+					                    		</c:forEach>
+								            </ul>
+								            
+								            <div class="tab_container">
+								            	<c:forEach items="#{descritor.servicos}" var="servico" varStatus="i">
+				                					<div id="tabServico#{i.index}" class="tab_content">
+				                					
+				                						<div class="rowElem">
+															<h:outputLabel value="#{messages['servico.label.nome']}: " for="servicoNome"/>
+															<div class="formLeft">
+																<h:inputText id="servicoNome" value="#{servico.nome}" />
+															</div>
+															<div class="fix"></div>
+														</div>
+														
+														<div class="rowElem">
+															<h:outputLabel value="#{messages['servico.label.descricao']}: " for="servicoDescricao"/>
+															<div class="formLeft">
+																<h:inputTextarea id="servicoDescricao" value="#{servico.descricao}" rows="5" />
+															</div>
+															<div class="fix"></div>
+														</div>
+														
+														
+														<!-- Listagem de Atributos  -->
+														
+														
+														
+														<div class="widget">
+															<div class="head">
+																<h5 class="iFrames">#{messages['atributo.list.table.title']}</h5>
+															</div>
+														
+															<div class="rowElem">
+																<h:outputLabel value="#{messages['atributo.alt.nome']}:" for="atributoNome"/>
+																<div class="formLeft">
+																	<h:inputText id="atributoNome" value="#{sistemaEditMB.atributo.nome}" />
+																</div>
+																<div class="fix"></div>
+															</div>
+															
+															<div class="rowElem">
+																<h:outputLabel value="#{messages['atributo.alt.tipo']}:" for="atributoTipo"/>
+																<div class="formLeft">
+																	<h:selectOneMenu id="atributoTipo" value="#{sistemaEditMB.atributo.tipo}">
+																		<f:selectItem itemLabel="String" itemValue="String"/>
+																		<f:selectItem itemLabel="Integer" itemValue="Integer"/>
+																	</h:selectOneMenu>
+																</div>
+																<div class="fix"></div>
+															</div>
+															
+															<div class="rowElem">
+																<h:outputLabel value=""/>
+																<div class="formLeft">
+																	<p:commandButton value="#{messages['sistema.label.descritores.adicionar']}"
+																		 			 icon="ui-icon-plus">
+																	</p:commandButton>
+																</div>
+																<div class="fix"></div>
+															</div>
+														
+															<p:dataTable id="servicoAtributos#{i.index}" var="atributo" value="#{servico.atributos}">
+						
+																<p:column sortBy="#{atributo.nome}">
+																	<f:facet name="header">#{messages['atributo.label.nome']}</f:facet>
+																	<h:outputText value="#{atributo.nome}" />
+																</p:column>
+																		
+																<p:column sortBy="#{atributo.tipo}">
+																	<f:facet name="header">#{messages['atributo.label.tipo']}</f:facet>
+																	<h:outputText value="#{atributo.tipo}" />
+																</p:column>
+																		
+															</p:dataTable>
+														</div>
+														
+														
+														<!-- Listagem de Exceções -->
+														
+														<div class="widget">
+															<div class="head">
+																<h5 class="iFrames">#{messages['excecao.list.table.title']}</h5>
+															</div>
+															
+															<div class="rowElem">
+																<h:outputLabel value="#{messages['excecao.label.identificador']}:" for="excecaoIdentificador"/>
+																<div class="formLeft">
+																	<h:inputText id="excecaoIdentificador" value="#{sistemaEditMB.excecao.identificador}" />
+																</div>
+																<div class="fix"></div>
+															</div>
+															
+															<div class="rowElem">
+																<h:outputLabel value="#{messages['excecao.label.descricao']}:" for="excecaoDescricao"/>
+																<div class="formLeft">
+																	<h:inputText id="excecaoDescricao" value="#{sistemaEditMB.excecao.descricao}" />
+																</div>
+																<div class="fix"></div>
+															</div>
+															
+															<div class="rowElem">
+																<h:outputLabel value=""/>
+																<div class="formLeft">
+																	<p:commandButton value="#{messages['sistema.label.descritores.adicionar']}"
+																		 			 icon="ui-icon-plus">
+																	</p:commandButton>
+																</div>
+																<div class="fix"></div>
+															</div>
+														
+															<p:dataTable id="servicoExcecoes#{i.index}" var="excecao" value="#{servico.excecoes}">
+						
+																<p:column sortBy="#{excecao.identificador}">
+																	<f:facet name="header">#{messages['excecao.label.identificador']}</f:facet>
+																	<h:outputText value="#{excecao.identificador}" />
+																</p:column>
+																		
+																<p:column sortBy="#{excecao.descricao}">
+																	<f:facet name="header">#{messages['excecao.label.descricao']}</f:facet>
+																	<h:outputText value="#{excecao.descricao}" />
+																</p:column>
+																		
+															</p:dataTable>
+														</div>
+				                					</div>
+				                				</c:forEach>
+				                				
+				                				
+			                				</div>
+								            
+								            <div class="fix"></div>
+								        </c:if>
+									</div>
+						            
+		                    	</div>
+		                    	
+		                	</c:forEach>
+		                </div>
+		                <div class="fix"></div>
+	                
+	                </div>
+	                
+	                
+	            </div>	
+	            <div class="fix"></div>	 
+	        </div>
+			
 		</h:form>
 	</ui:define>
 </ui:composition>

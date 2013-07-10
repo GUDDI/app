@@ -38,7 +38,7 @@ public class SistemaListMB extends AbstractListPageBean<Sistema, Long> {
      *
      * @return
      */
-    @Transactional
+   /* @Transactional
 	public String deleteSelection() {
 		boolean delete;
 		for (Iterator<Long> iter = getSelection().keySet().iterator(); iter.hasNext();) {
@@ -50,6 +50,6 @@ public class SistemaListMB extends AbstractListPageBean<Sistema, Long> {
 			}
 		}
 		return getPreviousView();
-	}
+	}*/
 
 }

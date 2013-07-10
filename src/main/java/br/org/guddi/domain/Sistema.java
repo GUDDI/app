@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.org.guddi.domain;
 
 import java.io.Serializable;
@@ -27,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 05081364908
+ * @author Clovis Lemes Ferreira Junior
  */
 @Entity
 @Table
@@ -57,6 +53,9 @@ public class Sistema implements Serializable {
 
 	@OneToMany(mappedBy = "sistema", fetch = FetchType.LAZY)
     private Set<Descritor> descritores;
+	
+	@Column(name="publico")
+	private Boolean isPublico = Boolean.TRUE;
 
     /**
      *
@@ -128,6 +127,9 @@ public class Sistema implements Serializable {
      */
     @XmlTransient
 	public Set<Descritor> getDescritores() {
+    	if(descritores == null){
+    		return null;
+    	}
 		return Collections.unmodifiableSet(descritores);
 	}
 
@@ -138,6 +140,14 @@ public class Sistema implements Serializable {
      */
     public void setDescritores(Set<Descritor> descritores) {
 		this.descritores = descritores;
+	}
+
+	public Boolean getIsPublico() {
+		return isPublico;
+	}
+
+	public void setIsPublico(Boolean isPublico) {
+		this.isPublico = isPublico;
 	}
 
 	@Override

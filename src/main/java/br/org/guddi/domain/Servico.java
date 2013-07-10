@@ -1,13 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.org.guddi.domain;
 
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
-import javax.persistence.Basic;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,15 +16,15 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 05081364908
+ * @author Clovis Lemes Ferreira Junior
  */
+
 @Entity
 @Table
 @XmlRootElement
@@ -42,18 +38,15 @@ public class Servico implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @NotNull
-    @Column(nullable = false)
     private Long id;
 
     @Size(max = 50)
     @Column(length = 50)
     private String nome;
 
-    @Size(max = 500)
-    @Column(name="wsdl_Link", length = 500)
-    private String wsdlLink;
+    @Size(max = 1500)
+	@Column(length = 1500)
+	private String descricao;
 
     @JoinColumn(name = "id_descritor", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -162,20 +155,12 @@ public class Servico implements Serializable {
 		this.excecoes = excecoes;
 	}
 
-	/**
-     *
-     * @return
-     */
-    public String getWsdlLink() {
-		return wsdlLink;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	/**
-     *
-     * @param wsdlLink
-     */
-    public void setWsdlLink(String wsdlLink) {
-		this.wsdlLink = wsdlLink;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	@Override
