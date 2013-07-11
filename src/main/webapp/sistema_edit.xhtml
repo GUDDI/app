@@ -28,7 +28,7 @@
 			</p:toolbar>
 			
 			 <!-- Tabs -->
-	        <div class="widget">       
+	        <div class="widget first">       
 	            <ul class="tabs">
 	                <li><a href="#tab1">#{messages['sistema.label']}</a></li>
 	                <li><a href="#tab2">#{messages['sistema.label.descritores']}</a></li>
@@ -38,7 +38,7 @@
 	            <div class="tab_container">
 	                <div id="tab1" class="tab_content">
 						
-						<div class="rowElem">
+						<div class="rowElem noborder">
 							<h:outputLabel value="#{messages['sistema.label.id']}: " for="id"/>
 							<div class="formLeft">
 								<h:outputText id="id" value="#{sistemaEditMB.bean.id}" />
@@ -46,23 +46,7 @@
 							<div class="fix"></div>
 						</div>
 						
-						<div class="rowElem">
-							<h:outputLabel value="#{messages['sistema.label.orgao']}: " for="orgao"/>
-							<div class="formLeft">
-								<h:outputText value="#{sistemaEditMB.orgao.nome}" />
-							</div>
-							<div class="fix"></div>
-						</div>
-						
-						<div class="rowElem">
-							<h:outputLabel value="#{messages['sistema.label.nome']}: " for="nome"/>
-							<div class="formLeft">
-								<h:inputText id="nome" value="#{sistemaEditMB.bean.nome}" />
-							</div>
-							<div class="fix"></div>
-						</div>
-						
-						<div class="rowElem">
+						<div class="rowElem noborder">
 							<h:outputLabel value="#{messages['sistema.label.isPublico']}: " for="isPublico"/>
 							<div class="formLeft">
 								<h:selectOneMenu id="isPublico" value="#{sistemaEditMB.bean.isPublico}">
@@ -73,7 +57,21 @@
 							<div class="fix"></div>
 						</div>
 						
-						<div class="rowElem noborder"></div>
+						<div class="rowElem noborder">
+							<h:outputLabel value="#{messages['sistema.label.orgao']}: " for="orgao"/>
+							<div class="formLeft">
+								<h:outputText value="#{sistemaEditMB.orgao.nome}" />
+							</div>
+							<div class="fix"></div>
+						</div>
+						
+						<div class="rowElem noborder">
+							<h:outputLabel value="#{messages['sistema.label.nome']}: " for="nome"/>
+							<div class="formLeft">
+								<h:inputText id="nome" value="#{sistemaEditMB.bean.nome}" />
+							</div>
+							<div class="fix"></div>
+						</div>
 						
 	                </div>
 	                
@@ -82,17 +80,21 @@
 	                
 	                	<div class="rowElem noborder">
 							<h:outputLabel value="#{messages['sistema.label.tipo.descritor']}: " for="descritores"/>
-							<div class="formLeft">
-								<h:selectOneMenu id="descritores" value="#{sistemaEditMB.tipoDescritor}">
-									<f:selectItems value="#{sistemaEditMB.tipoDescritores}" />
-								</h:selectOneMenu>
-							</div>
-							
-							<div class="formLeft">								
-								<p:commandButton value="#{messages['sistema.label.descritores.adicionar']}" actionListener="#{sistemaEditMB.adicionaDescritor()}"
-									 			 icon="ui-icon-plus">
-									<f:ajax execute="@all"/>
-								</p:commandButton>
+							<div class="formLeft moreFields">
+								<ul>
+									<li>
+										<h:selectOneMenu id="descritores" value="#{sistemaEditMB.tipoDescritor}">
+											<f:selectItems value="#{sistemaEditMB.tipoDescritores}" />
+										</h:selectOneMenu>
+									</li>
+									<li class="sep"></li>
+									<li>
+										<p:commandButton value="#{messages['sistema.label.descritores.adicionar']}" actionListener="#{sistemaEditMB.adicionaDescritor()}"
+											 			 icon="ui-icon-plus">
+											<f:ajax execute="@all"/>
+										</p:commandButton>
+									</li>
+								</ul>
 							</div>
 							
 							<div class="fix"></div>
@@ -100,53 +102,55 @@
 						
 						<div class="rowElem noborder"></div>
 						
-						<!-- Toggles group -->
-		                <div class="widget">
+						<!-- Accordion -->
+		                <div class="widget first acc">
 		                
 		                	<c:forEach items="#{sistemaEditMB.bean.descritores}" var="descritor">
-		                		<div class="head closed">
-		                			<h5>
+		                		<div class="head">
+		                			<h5 class="iCog2">
 		                				#{descritor.nome} - #{descritor.tipo} #{messages['descritor.label.resumo.com']} ${fn:length(descritor.servicos)} #{messages['descritor.label.resumo.servicos']}
 		                			</h5>
 		                		</div>
-		                    	<div class="body">
+		                    	<div class="menu_body">
 		                    	
-		                    		<div class="rowElem">
-										<h:outputLabel value="#{messages['descritor.label.url']}: " for="descritorURL"/>
-										<div class="formLeft">
-											<h:inputText id="descritorURL" value="#{descritor.url}" />
+		                    		<div class="floatleft twoOne">
+		                    			<div class="rowElem noborder pb0">
+											<h:outputLabel value="#{messages['descritor.label.url']}: " for="descritorURL" styleClass="topLabel"/>
+											<div class="formBottom">
+												<h:inputText id="descritorURL" value="#{descritor.url}" />
+											</div>
+											<div class="fix"></div>
 										</div>
-										<div class="fix"></div>
-									</div>
-									
-									<div class="rowElem">
-										<h:outputLabel value="#{messages['descritor.label.marcacoes']}: " for="descritorMarcacoes"/>
-										<div class="formLeft">
-											<ol>
-												<c:forEach items="#{descritor.marcacoes}" var="marcacao">
-													<li>
-														<h:outputText value="#{marcacao.marcacao}" />
-													</li>
-												</c:forEach>
-											</ol>
+										
+										<div class="rowElem noborder pb0">
+											<h:outputLabel value="#{messages['descritor.label.marcacoes']}: " styleClass="topLabel"/>
+											<div class="formBottom">
+												
+												<h:inputText value="#{descritor.marcacoes}" />
+												
+											</div>
+											<div class="fix"></div>
 										</div>
-										<div class="fix"></div>
-									</div>
-									
-									<div class="rowElem">
-										<h:outputLabel value="#{messages['descritor.label.descricao']}: " for="descritorDescricao"/>
-										<div class="formLeft">
-											<h:inputTextarea id="descritorDescricao" value="#{descritor.descricao}" rows="10"/>
+		                    		</div>
+		                    		
+		                    		<div class="floatleft half">
+		                    			<div class="rowElem noborder pb0">
+											<h:outputLabel value="#{messages['descritor.label.descricao']}: " for="descritorDescricao" styleClass="topLabel"/>
+											<div class="formBottom">
+												<h:inputTextarea id="descritorDescricao" value="#{descritor.descricao}" rows="7"/>
+											</div>
+											<div class="fix"></div>
 										</div>
-										<div class="fix"></div>
-									</div>
-									
+		                    		</div>
+		                    		
+		                    		<div class="fix"></div>
+		                    	
 									
 									<!-- Listagem dos serviços -->
 									
-									<div class="widget">
+									<div class="widget first">
 										<div class="head">
-											<h5 class="iFrames">#{messages['servico.list.table.title']}</h5>
+											<h5 class="iList">#{messages['servico.list.table.title']}</h5>
 										</div>
 									
 										<c:if test="${not empty descritor.servicos}">
@@ -155,148 +159,198 @@
 					                    		<c:forEach items="#{descritor.servicos}" var="servico" varStatus="i">
 			                    					<li><a href="#tabServico#{i.index}">#{servico.nome}</a></li>
 					                    		</c:forEach>
+					                    		<li><a href="#tabServicoNovo">#{messages['descritor.label.adicionar']}</a></li>
 								            </ul>
 								            
 								            <div class="tab_container">
 								            	<c:forEach items="#{descritor.servicos}" var="servico" varStatus="i">
 				                					<div id="tabServico#{i.index}" class="tab_content">
 				                					
-				                						<div class="rowElem">
-															<h:outputLabel value="#{messages['servico.label.nome']}: " for="servicoNome"/>
-															<div class="formLeft">
-																<h:inputText id="servicoNome" value="#{servico.nome}" />
-															</div>
-															<div class="fix"></div>
-														</div>
-														
-														<div class="rowElem">
-															<h:outputLabel value="#{messages['servico.label.descricao']}: " for="servicoDescricao"/>
-															<div class="formLeft">
-																<h:inputTextarea id="servicoDescricao" value="#{servico.descricao}" rows="5" />
-															</div>
-															<div class="fix"></div>
-														</div>
-														
-														
-														<!-- Listagem de Atributos  -->
-														
-														
-														
-														<div class="widget">
-															<div class="head">
-																<h5 class="iFrames">#{messages['atributo.list.table.title']}</h5>
-															</div>
-														
-															<div class="rowElem">
-																<h:outputLabel value="#{messages['atributo.alt.nome']}:" for="atributoNome"/>
-																<div class="formLeft">
-																	<h:inputText id="atributoNome" value="#{sistemaEditMB.atributo.nome}" />
+				                					
+				                						<div class="floatleft twoOne">
+				                							<div class="rowElem noborder pb0">
+																<h:outputLabel value="#{messages['servico.label.nome']}: " for="servicoNome" styleClass="topLabel"/>
+																<div class="formBottom">
+																	<h:inputText id="servicoNome" value="#{servico.nome}" />
 																</div>
 																<div class="fix"></div>
 															</div>
 															
-															<div class="rowElem">
-																<h:outputLabel value="#{messages['atributo.alt.tipo']}:" for="atributoTipo"/>
-																<div class="formLeft">
-																	<h:selectOneMenu id="atributoTipo" value="#{sistemaEditMB.atributo.tipo}">
-																		<f:selectItem itemLabel="String" itemValue="String"/>
-																		<f:selectItem itemLabel="Integer" itemValue="Integer"/>
-																	</h:selectOneMenu>
+															<div class="rowElem noborder pb0">
+																<h:outputLabel value="#{messages['servico.label.descricao']}: " for="servicoDescricao" styleClass="topLabel"/>
+																<div class="formBottom">
+																	<h:inputTextarea id="servicoDescricao" value="#{servico.descricao}" rows="5" />
 																</div>
 																<div class="fix"></div>
 															</div>
-															
-															<div class="rowElem">
-																<h:outputLabel value=""/>
-																<div class="formLeft">
-																	<p:commandButton value="#{messages['sistema.label.descritores.adicionar']}"
-																		 			 icon="ui-icon-plus">
-																	</p:commandButton>
-																</div>
-																<div class="fix"></div>
-															</div>
-														
-															<p:dataTable id="servicoAtributos#{i.index}" var="atributo" value="#{servico.atributos}">
-						
-																<p:column sortBy="#{atributo.nome}">
-																	<f:facet name="header">#{messages['atributo.label.nome']}</f:facet>
-																	<h:outputText value="#{atributo.nome}" />
-																</p:column>
+				                						</div>
+				                					
+				                						
+									                	<div class="floatleft half" style="border: 1px solid #d5d5d5;">
+									                		
+									                		<ul class="tabs">
+							                    				<li class="activeTab"><a href="#tabServicoAtributos#{i.index}">#{messages['atributo.list.table.title']}</a></li>
+							                    				<li><a href="#tabServicoExcecoes#{i.index}">#{messages['excecao.list.table.title']}</a></li>
+												            </ul>
+									                		
+									                		<div class="tab_container">
+									                			
+									                			<!-- Listagem de Atributos  -->
+									                			
+									                			
+									                			<div id="tabServicoAtributos#{i.index}" class="tab_content">
+									                				
+									                				<p:dataTable id="servicoAtributos#{i.index}" var="atributo" value="#{servico.atributos}">
+								
+																		<p:column>
+																			<f:facet name="header">#{messages['atributo.label.nome']}</f:facet>
+																			<h:outputText value="#{atributo.nome}" />
+																		</p:column>
+																				
+																		<p:column>
+																			<f:facet name="header">#{messages['atributo.label.tipo']}</f:facet>
+																			<h:outputText value="#{atributo.tipo}" />
+																		</p:column>
 																		
-																<p:column sortBy="#{atributo.tipo}">
-																	<f:facet name="header">#{messages['atributo.label.tipo']}</f:facet>
-																	<h:outputText value="#{atributo.tipo}" />
-																</p:column>
+																		 <p:column style="width:4%">  
+																                <p:commandButton icon="ui-icon-circle-close" title="View">  
+																            </p:commandButton>  
+																        </p:column> 
+																				
+																	</p:dataTable>
+									                			
+									                				<div class="rowElem noborder">
+																		<h:outputLabel value="#{messages['atributo.alt.nome']}:" for="atributoNome"/>
+																		<div class="formLeft" style="width: 400px;">
+																			<h:inputText id="atributoNome" value="#{sistemaEditMB.atributo.nome}" />
+																		</div>
+																		<div class="fix"></div>
+																	</div>
+																	
+																	<div class="rowElem noborder">
+																		<h:outputLabel value="#{messages['atributo.alt.tipo']}:" for="atributoTipo"/>
+																		<div class="formLeft" style="width: 400px;">
+																			<h:selectOneMenu id="atributoTipo" value="#{sistemaEditMB.atributo.tipo}">
+																				<f:selectItem itemLabel="String" itemValue="String"/>
+																				<f:selectItem itemLabel="Integer" itemValue="Integer"/>
+																			</h:selectOneMenu>
+																		</div>
+																		<div class="fix"></div>
+																	</div>
+																	
+																	<div class="rowElem noborder">
+																		<h:outputLabel value=""/>
+																		<div class="formLeft" style="width: 400px;">
+																			<p:commandButton value="#{messages['sistema.label.descritores.adicionar']}"
+																				 			 icon="ui-icon-plus">
+																			</p:commandButton>
+																		</div>
+																		<div class="fix"></div>
+																	</div>
+																	
+									                			</div>
+									                			
+									                			
+									                			<!-- Listagem de Exceções -->
+									                			
+									                			<div id="tabServicoExcecoes#{i.index}" class="tab_content">
+									                				
+									                				<p:dataTable id="servicoExcecoes#{i.index}" var="excecao" value="#{servico.excecoes}">
+								
+																		<p:column>
+																			<f:facet name="header">#{messages['excecao.label.identificador']}</f:facet>
+																			<h:outputText value="#{excecao.identificador}" />
+																		</p:column>
+																				
+																		<p:column>
+																			<f:facet name="header">#{messages['excecao.label.descricao']}</f:facet>
+																			<h:outputText value="#{excecao.descricao}" />
+																		</p:column>
 																		
-															</p:dataTable>
-														</div>
+																		<p:column style="width:4%">  
+																                <p:commandButton icon="ui-icon-circle-close" title="View">  
+																            </p:commandButton>  
+																        </p:column> 
+																				
+																	</p:dataTable>
+									                			
+									                				<div class="rowElem noborder">
+																		<h:outputLabel value="#{messages['excecao.label.identificador']}:" for="excecaoIdentificador"/>
+																		<div class="formLeft" style="width: 400px;">
+																			<h:inputText id="excecaoIdentificador" value="#{sistemaEditMB.excecao.identificador}" />
+																		</div>
+																		<div class="fix"></div>
+																	</div>
+																	
+																	<div class="rowElem noborder">
+																		<h:outputLabel value="#{messages['excecao.label.descricao']}:" for="excecaoDescricao"/>
+																		<div class="formLeft" style="width: 400px;">
+																			<h:inputText id="excecaoDescricao" value="#{sistemaEditMB.excecao.descricao}" />
+																		</div>
+																		<div class="fix"></div>
+																	</div>
+																	
+																	<div class="rowElem noborder">
+																		<h:outputLabel value=""/>
+																		<div class="formLeft" style="width: 400px;">
+																			<p:commandButton value="#{messages['sistema.label.descritores.adicionar']}"
+																				 			 icon="ui-icon-plus">
+																			</p:commandButton>
+																		</div>
+																		<div class="fix"></div>
+																	</div>
+									                			</div>
+									                		</div>
+							                    		</div>
+							                    		
+							                    		<div class="fix"></div>
 														
-														
-														<!-- Listagem de Exceções -->
-														
-														<div class="widget">
-															<div class="head">
-																<h5 class="iFrames">#{messages['excecao.list.table.title']}</h5>
-															</div>
-															
-															<div class="rowElem">
-																<h:outputLabel value="#{messages['excecao.label.identificador']}:" for="excecaoIdentificador"/>
-																<div class="formLeft">
-																	<h:inputText id="excecaoIdentificador" value="#{sistemaEditMB.excecao.identificador}" />
-																</div>
-																<div class="fix"></div>
-															</div>
-															
-															<div class="rowElem">
-																<h:outputLabel value="#{messages['excecao.label.descricao']}:" for="excecaoDescricao"/>
-																<div class="formLeft">
-																	<h:inputText id="excecaoDescricao" value="#{sistemaEditMB.excecao.descricao}" />
-																</div>
-																<div class="fix"></div>
-															</div>
-															
-															<div class="rowElem">
-																<h:outputLabel value=""/>
-																<div class="formLeft">
-																	<p:commandButton value="#{messages['sistema.label.descritores.adicionar']}"
-																		 			 icon="ui-icon-plus">
-																	</p:commandButton>
-																</div>
-																<div class="fix"></div>
-															</div>
-														
-															<p:dataTable id="servicoExcecoes#{i.index}" var="excecao" value="#{servico.excecoes}">
-						
-																<p:column sortBy="#{excecao.identificador}">
-																	<f:facet name="header">#{messages['excecao.label.identificador']}</f:facet>
-																	<h:outputText value="#{excecao.identificador}" />
-																</p:column>
-																		
-																<p:column sortBy="#{excecao.descricao}">
-																	<f:facet name="header">#{messages['excecao.label.descricao']}</f:facet>
-																	<h:outputText value="#{excecao.descricao}" />
-																</p:column>
-																		
-															</p:dataTable>
-														</div>
 				                					</div>
 				                				</c:forEach>
 				                				
+				                				<div id="tabServicoNovo" class="tab_content">
+				                					
+			                						<div class="floatleft twoOne">
+			                							<div class="rowElem noborder pb0">
+															<h:outputLabel value="#{messages['servico.label.nome']}: " for="servicoNovoNome" styleClass="topLabel"/>
+															<div class="formBottom">
+																<h:inputText id="servicoNovo" value="" />
+															</div>
+															<div class="fix"></div>
+														</div>
+														
+														<div class="rowElem noborder pb0">
+															<h:outputLabel value="#{messages['servico.label.descricao']}: " for="servicoNovoDescricao" styleClass="topLabel"/>
+															<div class="formBottom">
+																<h:inputTextarea id="servicoNovoDescricao" value="" rows="5" />
+															</div>
+															<div class="fix"></div>
+														</div>
+														
+														<div class="rowElem noborder pb0">
+															<p:commandButton value="#{messages['sistema.label.descritores.salvar']}"
+																 			 icon="ui-icon-circle-check">
+																<f:ajax execute="@all"/>
+															</p:commandButton>
+														</div>
+														
+			                						</div>
+			                					
+						                    		<div class="fix"></div>
+													
+			                					</div>
 				                				
 			                				</div>
 								            
 								            <div class="fix"></div>
 								        </c:if>
 									</div>
-						            
 		                    	</div>
 		                    	
 		                	</c:forEach>
 		                </div>
 		                <div class="fix"></div>
-	                
 	                </div>
-	                
 	                
 	            </div>	
 	            <div class="fix"></div>	 
