@@ -15,7 +15,7 @@ $(function() {
 
 	$('.wizard').smartWizard({
 		selected: 0,  // Selected Step, 0 = first step   
-		keyNavigation: true, // Enable/Disable key navigation(left and right keys are used if enabled)
+		keyNavigation: true, // Enable/Disable key navigation(left and raight keys are used if enabled)
 		enableAllSteps: false,  // Enable/Disable all steps on first load
 		transitionEffect: 'slideleft', // Effect on navigation, none/fade/slide/slideleft
 		contentURL:null, // specifying content url enables ajax content loading
@@ -87,7 +87,8 @@ $(function() {
 	$('div.menu_body:eq(0)').show();
 	$('.acc .head:eq(0)').show().css({color:"#2B6893"});
 	
-	$(".acc .head").click(function() {	
+	$(".acc .head").click(function() {
+		alert('oi');
 		$(this).css({color:"#2B6893"}).next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("slow");
 		$(this).siblings().css({color:"#404040"});
 	});

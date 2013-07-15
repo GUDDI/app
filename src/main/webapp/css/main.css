@@ -340,7 +340,8 @@ html ul.tabs li.activeTab a { color: #797979; }
 
 /* ===== Widgets ===== */
 
-.half {width: 48%;}
+.coluna-30 {width: 28%;}
+.coluna-70 {width: 68%;}
 .twoOne { width: 358px; }
 .widget, .content .title, .count, .widget .num a, a.count1, .table, .breadCrumb, .earnings, .leftNav ul li a, .listData .cNote, .pages li a, .errorPage, .btn14, .btn55, .loginPanel, .customfile { -moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px; }
 

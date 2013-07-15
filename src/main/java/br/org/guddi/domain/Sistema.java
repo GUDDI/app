@@ -130,7 +130,7 @@ public class Sistema implements Serializable {
     	if(descritores == null){
     		return null;
     	}
-		return Collections.unmodifiableSet(descritores);
+		return descritores;
 	}
 
 
