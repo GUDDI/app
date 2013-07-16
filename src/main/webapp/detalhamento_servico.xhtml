@@ -6,24 +6,34 @@
 		<h:panelGroup layout="block">
 			<p:panel>
 				<f:facet name="header">
-					<h:outputText value="Detalhamento de Serviço" />
+					<h:form id="form_cadastro_back">
+					<h:commandLink  action="pesquisa_list.jsf" >
+                      <img src="images/icons/topnav/mainWebsite.png" alt="" />
+                    </h:commandLink>
+                    #{' '}
+					<h:outputText value="Detalhamento de Serviço - #{detalharPesquisaMB.bean.nome}" />
+					</h:form>
 				</f:facet>
 
 				<h:form id="form_cadastro">
 					<h:panelGroup styleClass="view_grid" >
 					
 						<h:panelGrid columns="2" styleClass="data_grid" columnClasses="col_label, col_value">
-							<h:outputText value="Serviço:* " />
-							<h:outputText id="servico" value="#{detalharPesquisaMB.bean.nome}" />
-							
-							<h:outputText value="Sistema:* " />
+							<h:outputText value="Sistema: " />
 							<h:outputText id="nomeSistema" value="#{detalharPesquisaMB.bean.descritor.sistema.nome}" />
 							
-							<h:outputText value="Órgão:* " />
+							<h:outputText value="Serviço: " />
+							<h:outputText id="servico" value="#{detalharPesquisaMB.bean.nome}" />
+							
+							<h:outputText value="Órgão: " />
 							<h:outputText id="nomeOrgao" value="#{detalharPesquisaMB.bean.descritor.sistema.orgao.nome}" />
 							
-							<h:outputText value="Descritor:* " />
+							<h:outputText value="Sumário: " />
+							<h:outputText id="sumario" value="#{detalharPesquisaMB.bean.descricao}" />
+
+							<h:outputText value="Descritor: " />
 							<h:outputText id="descritor" value="#{detalharPesquisaMB.bean.descritor.descricao}" />
+							
 						</h:panelGrid>
 
 						<h:panelGroup layout="block" styleClass="vspacer" />
