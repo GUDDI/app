@@ -1,8 +1,8 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.Set;
+import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -52,7 +52,7 @@ public class Sistema implements Serializable {
     private Orgao orgao;
 
 	@OneToMany(mappedBy = "sistema", fetch = FetchType.LAZY)
-    private Set<Descritor> descritores;
+    private List<Descritor> descritores;
 	
 	@Column(name="publico")
 	private Boolean isPublico = Boolean.TRUE;
@@ -126,10 +126,7 @@ public class Sistema implements Serializable {
      * @return
      */
     @XmlTransient
-	public Set<Descritor> getDescritores() {
-    	if(descritores == null){
-    		return null;
-    	}
+	public List<Descritor> getDescritores() {
 		return descritores;
 	}
 
@@ -138,7 +135,7 @@ public class Sistema implements Serializable {
      *
      * @param descritores
      */
-    public void setDescritores(Set<Descritor> descritores) {
+    public void setDescritores(List<Descritor> descritores) {
 		this.descritores = descritores;
 	}
 

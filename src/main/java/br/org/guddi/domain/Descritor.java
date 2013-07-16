@@ -1,8 +1,7 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -62,7 +62,7 @@ public class Descritor implements Serializable {
 	private Sistema sistema;
 
 	@OneToMany(mappedBy = "descritor", fetch = FetchType.LAZY)
-    private Set<Servico> servicos;
+    private List<Servico> servicos;
 
 	@ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "descritor_marcacao",
@@ -70,7 +70,10 @@ public class Descritor implements Serializable {
         @JoinColumn(name = "id_descritor", nullable = false, updatable = false)},
             inverseJoinColumns = {
         @JoinColumn(name = "id_marcacao", nullable = false, updatable = false)})
-    private Set<Marcacao> marcacoes;
+    private List<Marcacao> marcacoes;
+	
+	@Transient
+	private String marcacoesFormatado;
 
     /**
      *
@@ -121,18 +124,15 @@ public class Descritor implements Serializable {
      * @return
      */
     @XmlTransient
-	public Set<Servico> getServicos() {
-    	if(servicos == null){
-    		return null;
-    	}
-		return Collections.unmodifiableSet(servicos);
+	public List<Servico> getServicos() {
+		return servicos;
 	}
 
 	/**
      *
      * @param servicos
      */
-    public void setServicos(Set<Servico> servicos) {
+    public void setServicos(List<Servico> servicos) {
 		this.servicos = servicos;
 	}
 
@@ -158,18 +158,32 @@ public class Descritor implements Serializable {
      * @return
      */
     @XmlTransient
-    public Set<Marcacao> getMarcacoes() {
+    public List<Marcacao> getMarcacoes() {
+		return marcacoes;
+	}
+    
+    public String getMarcacoesFormatado() {
     	if(marcacoes == null){
-    		return null;
+    		return "";
     	}
-		return Collections.unmodifiableSet(marcacoes);
+    	
+    	StringBuffer sb = new StringBuffer();
+    	for(Marcacao marcacao : marcacoes){
+    		sb.append(marcacao.getMarcacao());
+    		sb.append(", ");
+    	}
+		return sb.toString();
+	}
+
+	public void setMarcacoesFormatado(String marcacoesFormatado) {
+		this.marcacoesFormatado = marcacoesFormatado;
 	}
 
 	/**
      *
      * @param marcacacoes
      */
-    public void setMarcacoes(Set<Marcacao> marcacacoes) {
+    public void setMarcacoes(List<Marcacao> marcacacoes) {
 		this.marcacoes = marcacacoes;
 	}
 

@@ -1,7 +1,6 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -127,7 +126,7 @@ public class Servico implements Serializable {
      */
     @XmlTransient
 	public List<Atributo> getAtributos() {
-		return Collections.unmodifiableList(atributos);
+		return atributos;
 	}
 
 	/**
@@ -144,7 +143,7 @@ public class Servico implements Serializable {
      */
     @XmlTransient
 	public List<Excecao> getExcecoes() {
-		return Collections.unmodifiableList(excecoes);
+		return excecoes;
 	}
 
 	/**

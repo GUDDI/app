@@ -1,7 +1,9 @@
 package br.org.guddi.view;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
@@ -14,6 +16,8 @@ import br.org.guddi.domain.Atributo;
 import br.org.guddi.domain.Descritor;
 import br.org.guddi.domain.DescritorType;
 import br.org.guddi.domain.Excecao;
+import br.org.guddi.domain.Marcacao;
+import br.org.guddi.domain.Servico;
 import br.org.guddi.domain.Sistema;
 import br.org.guddi.security.Identity;
 
@@ -42,22 +46,35 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 	@Inject
 	private Excecao excecao;
 	
+	private List<Descritor> descritores;
+	
 	private Descritor descritorNovo;
 	
 	private DescritorType tipoDescritor;
+	
+	private Servico servicoNovo;
 	
     public void adicionaDescritor() {
     	setDescritorNovo(new Descritor());
 		getDescritorNovo().setTipo(getTipoDescritor());
 		getDescritorNovo().setSistema(getBean());
 		
-		if(getBean().getDescritores() == null){
-			getBean().setDescritores(new HashSet<Descritor>());
-		}
-		
-		getBean().getDescritores().add(getDescritorNovo());
+		getDescritores().add(0, getDescritorNovo());
+		setServicoNovo(new Servico());
 	}
     
+    public void salvarDescritor() {
+    	sistemaBC.update(getBean());
+    }
+    
+	public Servico getServicoNovo() {
+		return servicoNovo;
+	}
+
+	public void setServicoNovo(Servico servicoNovo) {
+		this.servicoNovo = servicoNovo;
+	}
+
 	public Descritor getDescritorNovo() {
 		return descritorNovo;
 	}
@@ -93,10 +110,20 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
     public DescritorType [] getTipoDescritores(){
     	return DescritorType.values();
     }
+    
+	public List<Descritor> getDescritores() {
+		return descritores;
+	}
+
+	public void setDescritores(List<Descritor> descritores) {
+		this.descritores = descritores;
+	}
 
 	@Override
 	protected void handleLoad() {
 		setBean(this.sistemaBC.load(getId()));
+		setDescritores(new ArrayList<Descritor>(getBean().getDescritores()));
+		setServicoNovo(new Servico());
 	}
 
 	@Override
