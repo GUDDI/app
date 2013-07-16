@@ -1,16 +1,15 @@
 package br.org.guddi.persistence;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Query;
+
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 import br.org.guddi.domain.Pesquisa;
 import br.org.guddi.util.search.SearchFilter;
-
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.Query;
-
-import com.google.common.collect.Lists;
 
 /**
  *
