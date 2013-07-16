@@ -78,15 +78,6 @@ public class PesquisarMB extends AbstractPageBean {
 
             @Override
             public List<Pesquisa> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
-                /*
-                 logger.info("BEGIN: load");
-                 logger.warn("[first      ][" + first + "]");
-                 logger.warn("[pageSize   ][" + pageSize + "]");
-                 logger.warn("[sortField  ][" + sortField + "]");
-                 logger.warn("[sortOrder  ][" + sortOrder + "]");
-                 logger.warn("[filters    ][" + filters + "]");
-                 logger.warn("[searchParam         ][" + searchParam + "]");
-                 */
 
                 pesquisarBC.searhValidation(searchParam);
 

@@ -4,9 +4,13 @@ import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 import br.org.guddi.domain.Pesquisa;
 import br.org.guddi.util.search.SearchFilter;
+
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Query;
+
+import com.google.common.collect.Lists;
 
 /**
  *
@@ -24,13 +28,7 @@ public class PesquisaDAO extends JPACrud<Pesquisa, Long> {
      */
     public int count(String searchParam) {
 
-		StringBuilder sql = new StringBuilder("SELECT ct FROM guddi.fc_servico_localizar_total_registros( :search ) ct; ");
-
-		Query query = getEntityManager().createNativeQuery(sql.toString());
-
-		query.setParameter("search", filtarParam(searchParam));
-
-		Integer n = (Integer) query.getSingleResult();
+    	BigInteger n = (BigInteger) getQueryFromSearch(searchParam, null, true).getSingleResult();
 		if (n == null) {
 			return 0;
 		}
@@ -44,23 +42,10 @@ public class PesquisaDAO extends JPACrud<Pesquisa, Long> {
      * @return
      */
     public List<Pesquisa> search(String searchParam, SearchFilter parameters) {
-		StringBuilder sql = new StringBuilder("SELECT p.id_orgao, p.nome_orgao, p.id_sistema, p.nome_sistema, p.id_descritor, p.descricao_descritor, p.id_servico, p.nome_servico, p.wsdl_link_servico FROM guddi.fc_servico_localizar( :search , :firstResult, :maxResult) p ;  ");
 
-		Query query = getEntityManager().createNativeQuery(sql.toString());
+		List<Object[]> objList = getQueryFromSearch(searchParam, parameters, false).getResultList();
 
-		query.setParameter("search", filtarParam(searchParam)); //TODO Claro que ainda tenho que filtar isso
-
-		if (parameters != null) {
-			query.setParameter("firstResult", parameters.getFirst());
-			query.setParameter("maxResult", parameters.getPageSize());
-		} else {
-			query.setParameter("firstResult", 0);
-			query.setParameter("maxResult", 10);
-		}
-
-		List<Object[]> objList = query.getResultList();
-
-		List<Pesquisa> list = new ArrayList<Pesquisa>();
+		List<Pesquisa> list = new ArrayList<Pesquisa>(objList.size());
 		for (Object[] obj : objList) {
 
 			Pesquisa p = new Pesquisa();
@@ -76,20 +61,58 @@ public class PesquisaDAO extends JPACrud<Pesquisa, Long> {
 
 			p.setIdServico(Long.parseLong(obj[6].toString()));
 			p.setNomeServico((String) obj[7]);
-			p.setWsdlLink((String) obj[8]);
 
 			list.add(p);
 		}
 
-
-
 		return list;
 	}
+    
+    private Query getQueryFromSearch(String searchParam, SearchFilter parameters, Boolean isCount) {
+    	
+    	StringBuilder sql = new StringBuilder();
+    	
+    	if(isCount) {
+    		sql.append("SELECT COUNT(1) ");
+    	} else {
+    		sql.append("select distinct on (o.id,  s.id, d.id, ws.id) o.id as idOrgao, o.nome as nomeOrgao, s.id as idSistema, s.nome as nomeSistema, d.id as idDescritor, d.descricao as descritor, ws.id as idServico, ws.nome as nomeServico ");
+    	}
+    	
+    	sql.append("FROM guddi.servico ws ");
+    	sql.append(" LEFT JOIN guddi.descritor d ON d.id = ws.id_descritor ");
+    	sql.append(" LEFT JOIN guddi.sistema s ON s.id = d.id_sistema ");
+    	sql.append(" LEFT JOIN guddi.orgao o ON o.id = s.id_orgao ");
+    	
+    	
+    	sql.append("WHERE ws.nome ILIKE :searchParam ");
+		sql.append("   OR d.descricao ILIKE :searchParam ");
+		sql.append("   OR s.nome ILIKE :searchParam ");
+		sql.append("   OR o.nome ILIKE :searchParam ");
+    	
+		/*if(!isCount) {
+			sql.append("ORDER BY ws.nome, s.nome");
+		}*/
+		
+		
+		Query query = getEntityManager().createNativeQuery(sql.toString());
+		
+		query.setParameter("searchParam", filtarParam(searchParam)); //TODO Claro que ainda tenho que filtar isso
+
+		if (parameters != null) {
+			query.setFirstResult(parameters.getFirst());
+			query.setMaxResults(parameters.getPageSize());
+		} else {
+			query.setFirstResult(0);
+			query.setMaxResults(10);
+		}
+		
+    	return query; 
+    }
 
 	//TODO Claro que ainda tenho que filtar isso
 	private String filtarParam(String param) {
 
-		param = param.trim();
+		param = "%"+param.trim()+"%";
 
 		return param;
 	}
