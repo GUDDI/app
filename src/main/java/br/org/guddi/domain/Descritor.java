@@ -1,6 +1,7 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -168,10 +169,14 @@ public class Descritor implements Serializable {
     	}
     	
     	StringBuffer sb = new StringBuffer();
+    	
     	for(Marcacao marcacao : marcacoes){
+    		if(sb.length() > 0){
+    			sb.append(", ");
+    		}
     		sb.append(marcacao.getMarcacao());
-    		sb.append(", ");
     	}
+    	
 		return sb.toString();
 	}
 

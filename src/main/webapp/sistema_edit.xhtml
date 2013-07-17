@@ -160,6 +160,14 @@
 			                    		<div class="floatleft coluna-30">
 			                    		
 			                    			<div class="rowElem noborder pb0">
+												<h:outputLabel value="#{messages['descritor.label.nome']}: " styleClass="topLabel"/>
+												<div class="formBottom">
+													<h:inputText value="#{descritor.nome}" />
+												</div>
+												<div class="fix"></div>
+											</div>
+			                    		
+			                    			<div class="rowElem noborder pb0">
 												<h:outputLabel value="#{messages['descritor.label.url']}: " styleClass="topLabel"/>
 												<div class="formBottom">
 													<h:inputText value="#{descritor.url}" />
@@ -194,7 +202,7 @@
 			                    			<div class="rowElem noborder pb0">
 												<h:outputLabel value="#{messages['descritor.label.descricao']}: " styleClass="topLabel"/>
 												<div class="formBottom">
-													<h:inputTextarea value="#{descritor.descricao}" rows="9"/>
+													<h:inputTextarea value="#{descritor.descricao}" rows="12"/>
 												</div>
 												<div class="fix"></div>
 											</div>
