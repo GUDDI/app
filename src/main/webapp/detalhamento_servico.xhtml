@@ -38,11 +38,9 @@
 						<div class="formLeft">
 							<h:outputText id="nomeOrgao" value="#{detalharPesquisaMB.bean.descritor.sistema.orgao.nome}" />
 							#{' '}
-							
 							<h:commandLink onclick="dlgOrgao.show();return false;" >
                                 <img src="images/magnifier.png" alt="" />
                             </h:commandLink> 
-                            
 						</div>
 						<div class="fix"></div>
 					</div>
@@ -66,6 +64,22 @@
 						<h:outputLabel value="#{messages['servico.label.isPublico']}: " for="servicoPublico"/>
 						<div class="formLeft">
 							<h:outputText id="servicoPublico" value="#{detalharPesquisaMB.bean.descritor.sistema.isPublico ? 'Sim' : 'Não'}" />
+						</div>
+						<div class="fix"></div>
+					</div>
+					
+					<div class="rowElem">
+						<h:outputLabel value="#{messages['servico.label.tipo']}: " for="servicoTipo"/>
+						<div class="formLeft">
+							<h:outputText id="servicoTipo" value="#{detalharPesquisaMB.bean.descritor.tipo}" />
+						</div>
+						<div class="fix"></div>
+					</div>
+					
+					<div class="rowElem">
+						<h:outputLabel value="#{messages['servico.label.url']}: " for="servicoUrl"/>
+						<div class="formLeft">
+							<h:outputText id="servicoUrl" value="#{detalharPesquisaMB.bean.descritor.url}" />
 						</div>
 						<div class="fix"></div>
 					</div>
