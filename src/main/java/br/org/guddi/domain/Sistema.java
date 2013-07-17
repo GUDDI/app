@@ -43,8 +43,8 @@ public class Sistema implements Serializable {
     @Column(nullable = false)
     private Long id;
 
-	@Size(max = 20)
-    @Column(length = 20)
+	@Size(max = 100)
+    @Column(length = 100)
     private String nome;
 
 	@JoinColumn(name = "id_orgao", referencedColumnName = "id")

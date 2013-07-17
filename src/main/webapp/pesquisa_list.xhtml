@@ -18,7 +18,7 @@
 
         </h:form>
         <h:form id="result_form">
-            <h:panelGroup id="panel" rendered="#{pesquisarMB.rows > 0}">
+            <h:panelGroup id="panel" >
                 <p:dataTable id="list" value="#{pesquisarMB.lazyModel}"
                              var="item" rowIndexVar="index" lazy="true"
                              paginator="true" 
@@ -29,7 +29,8 @@
                              rowsPerPageTemplate="#{messages['p.data-table.rows-per-page-template']}"
                              paginatorTemplate="#{messages['p.data-table.paginator-template']}"
                              currentPageReportTemplate="#{messages['p.data-table.current-page-report-template']}"
-                             emptyMessage="#{messages['p.data-table.empty-message']}" >		
+                             emptyMessage="#{messages['p.data-table.empty-message']}" 
+                             rendered="#{pesquisarMB.lazyModel.rowCount == 0}">		
 				
 						<f:facet name="header" >  
 							<h:outputText value="#{messages['menu.servico']}" />

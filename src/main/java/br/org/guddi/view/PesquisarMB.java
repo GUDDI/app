@@ -42,7 +42,7 @@ public class PesquisarMB extends AbstractPageBean {
     public PesquisarMB() {
         super();
         first = 0;
-        rows = 10;
+        rows = 0;
     }
 
     /**
