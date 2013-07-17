@@ -129,10 +129,15 @@
                 <ui:insert name="crud"/>
             </div>
         </p:panel>
+		<p:panel>
+			<ui:insert name="body"/>
+        </p:panel>
+<!-- 
 
         <p:panel rendered="#{not securityContext.loggedIn}">
             <ui:insert name="body"/>
        	</p:panel>
+ -->
 
         <p:growl id="messages" globalOnly="true" />
 

@@ -19,7 +19,7 @@ public class PesquisarBC extends DelegateCrud<Pesquisa, Long, PesquisaDAO> {
 
 
 	/**
-     *
+     * Validacao da pesquisa.
      * @param searchParam
      */
     public void searhValidation(String searchParam) {
@@ -28,7 +28,7 @@ public class PesquisarBC extends DelegateCrud<Pesquisa, Long, PesquisaDAO> {
 
 
 	/**
-     *
+     * Contagem total do resultado para calculo da quantidade de paginas
      * @param searchParam
      * @return
      */
@@ -37,7 +37,7 @@ public class PesquisarBC extends DelegateCrud<Pesquisa, Long, PesquisaDAO> {
 	}
 
 	/**
-     *
+     * Recuperacao dos resultados
      * @param searchParam
      * @param filter
      * @return

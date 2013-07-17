@@ -951,3 +951,5 @@ li.plupload_droptext { background: transparent; text-align: center; vertical-ali
 .timepicker { width: 46px!important; }
 .timeEntry_control { vertical-align: middle; margin-left: -1px; margin-top: -2px; cursor: pointer; }
 * html .timeEntry_control { margin-top: -4px; }
+
+.icon_magnifier { background-image: url(../images/magnifier.png) !important; border-radius: 0; }

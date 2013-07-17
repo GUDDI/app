@@ -25,11 +25,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Atributo.findAll", query = "SELECT a FROM Atributo a"),
-    @NamedQuery(name = "Atributo.findById", query = "SELECT a FROM Atributo a WHERE a.id = :id"),
-    @NamedQuery(name = "Atributo.findByNome", query = "SELECT a FROM Atributo a WHERE a.nome = :nome"),
-    @NamedQuery(name = "Atributo.findByTipo", query = "SELECT a FROM Atributo a WHERE a.tipo = :tipo")})
-public class Atributo implements Serializable {
+    @NamedQuery(name = "Retorno.findAll", query = "SELECT r FROM Retorno r"),
+    @NamedQuery(name = "Retorno.findById", query = "SELECT r FROM Retorno r WHERE r.id = :id"),
+    @NamedQuery(name = "Retorno.findByTipo", query = "SELECT r FROM Retorno r WHERE r.tipo = :tipo"),
+    @NamedQuery(name = "Retorno.findByDescricao", query = "SELECT r FROM Retorno r WHERE r.descricao LIKE :descricao")})
+public class Retorno implements Serializable {
 
 	private static final long serialVersionUID = 7517355321528352171L;
 
@@ -40,33 +40,25 @@ public class Atributo implements Serializable {
     @Column(nullable = false)
     private Long id;
 
-    @Size(max = 20)
-    @Column(length = 20)
-    private String nome;
-
-    @Size(max = 10)
-    @Column(length = 10)
+    @Size(max = 100)
+    @Column(length = 100)
     private String tipo;
     
     @Size(max = 300)
     @Column(length = 300)
     private String descricao;
 
-    @JoinColumn(name = "id_servico", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Servico servico;
-
     /**
      *
      */
-    public Atributo() {
+    public Retorno() {
     }
 
     /**
      *
      * @param id
      */
-    public Atributo(Long id) {
+    public Retorno(Long id) {
         this.id = id;
     }
 
@@ -90,22 +82,6 @@ public class Atributo implements Serializable {
      *
      * @return
      */
-    public String getNome() {
-        return nome;
-    }
-
-    /**
-     *
-     * @param nome
-     */
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    /**
-     *
-     * @return
-     */
     public String getTipo() {
         return tipo;
     }
@@ -118,22 +94,6 @@ public class Atributo implements Serializable {
         this.tipo = tipo;
     }
 
-	/**
-     *
-     * @return
-     */
-    public Servico getServico() {
-		return servico;
-	}
-
-	/**
-     *
-     * @param servico
-     */
-    public void setServico(Servico servico) {
-		this.servico = servico;
-	}
-    
     /**
     *
     * @return
@@ -161,10 +121,10 @@ public class Atributo implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Atributo)) {
+        if (!(object instanceof Retorno)) {
             return false;
         }
-        Atributo other = (Atributo) object;
+        Retorno other = (Retorno) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

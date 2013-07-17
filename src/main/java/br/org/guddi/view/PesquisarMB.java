@@ -14,35 +14,30 @@ import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import org.slf4j.Logger;
 
-//@Named
-//@Controller
-//@ConversationScoped
-//@ViewController
-//@Named
-//@SessionScoped
 /**
  *
- * @author escritorio
+ * @author thiago.soares
  */
 @ViewController
 @PreviousView("./pesquisa_list.jsf")
 @NextView("./detalhamento_servico.jsf")
 public class PesquisarMB extends AbstractPageBean {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -7896379863254694834L;
+
+	@Inject
+    private Logger logger;
+    
     @Inject
     private PesquisarBC pesquisarBC;
+    
     private String searchParam;
-    private LazyDataModel<Pesquisa> lazyModel;
     private int first, rows;
-    //TODO sera o objeto com o detalhamento da consulta
-    //@Inject
-    //private Conversation conversation;
-    @Inject
-    private Logger logger;
+    private LazyDataModel<Pesquisa> lazyModel;
+
 
     /**
-     *
+     * Construtor padrão que reinicializa os parametros do paginador
      */
     public PesquisarMB() {
         super();
@@ -51,15 +46,17 @@ public class PesquisarMB extends AbstractPageBean {
     }
 
     /**
-     *
+     * Utilitario para limpar os creterios de pesquisa
      */
     public void clearSearch() {
         searchParam = "";
         lazyModel = null;
+        first = 0;
+        rows = 10;
     }
 
     /**
-     *
+     * Utilitário para buscar apenas o primeiro resultado de uma pesquisa
      */
     public void searchFirst() {
         first = 0;
@@ -67,16 +64,15 @@ public class PesquisarMB extends AbstractPageBean {
     }
 
     /**
-     *
+     * metodo responsavel pela busca do resultado
      */
     public void search() {
 
-        //beginConversation();
-
         lazyModel = new LazyDataModel<Pesquisa>() {
-            private static final long serialVersionUID = 1L;
+        	
+			private static final long serialVersionUID = -6541913048403958674L;
 
-            @Override
+			@Override
             public List<Pesquisa> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
 
                 pesquisarBC.searhValidation(searchParam);
@@ -92,6 +88,7 @@ public class PesquisarMB extends AbstractPageBean {
                     parameters.setFirst(first);
                     parameters.setPageSize(pageSize);
                     List<Pesquisa> list = pesquisarBC.search(searchParam, parameters);
+                    rows = list.size();
                     logger.info("END: load");
                     return list;
                 } else {
@@ -106,29 +103,11 @@ public class PesquisarMB extends AbstractPageBean {
      * @return
      */
     public String init() {
-        //beginConversation();
-        clear();
         clearSearch();
         searchFirst();
         return getPreviousView();
     }
 
-    /**
-     *
-     */
-    public void clear() {
-        //model = null;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String back() {
-        clear();
-        search();
-        return getPreviousView();
-    }
 
     /**
      *

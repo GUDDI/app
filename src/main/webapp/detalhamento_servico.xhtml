@@ -3,99 +3,215 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="body">
-		<h:panelGroup layout="block">
-			<p:panel>
-				<f:facet name="header">
-					<h:form id="form_cadastro_back">
-					<h:commandLink  action="pesquisa_list.jsf" >
-                      <img src="images/icons/topnav/mainWebsite.png" alt="" />
-                    </h:commandLink>
-                    #{' '}
-					<h:outputText value="Detalhamento de Serviço - #{detalharPesquisaMB.bean.nome}" />
-					</h:form>
-				</f:facet>
+		
+		<h:form prependId="false" styleClass="mainForm">
 
-				<h:form id="form_cadastro">
-					<h:panelGroup styleClass="view_grid" >
-					
-						<h:panelGrid columns="2" styleClass="data_grid" columnClasses="col_label, col_value">
-							<h:outputText value="Sistema: " />
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.back']}" action="/pesquisa_list.jsf" icon="ui-icon-circle-arrow-w"
+						immediate="true" ajax="false"/>
+				</p:toolbarGroup>
+			</p:toolbar>
+			
+			<fieldset>
+				<div class="widget first">
+				
+					<div class="head">
+						<h5 class="iList">#{messages['servico.label.detalhamento']} - #{detalharPesquisaMB.bean.nome}</h5>
+					</div>
+					<div class="rowElem">
+						<h:outputLabel value="#{messages['sistema.label']}: " for="nomeSistema"/>
+						<div class="formLeft">
 							<h:outputText id="nomeSistema" value="#{detalharPesquisaMB.bean.descritor.sistema.nome}" />
-							
-							<h:outputText value="Serviço: " />
-							<h:outputText id="servico" value="#{detalharPesquisaMB.bean.nome}" />
-							
-							<h:outputText value="Órgão: " />
+						</div>
+						<div class="fix"></div>
+					</div>
+					<div class="rowElem">
+						<h:outputLabel value="#{messages['servico.label']}: " for="nomeServico"/>
+						<div class="formLeft">
+							<h:outputText id="nomeServico" value="#{detalharPesquisaMB.bean.nome}" />
+						</div>
+						<div class="fix"></div>
+					</div>
+					<div class="rowElem">
+						<h:outputLabel value="#{messages['orgao.label']}: " for="nomeOrgao"/>
+						<div class="formLeft">
 							<h:outputText id="nomeOrgao" value="#{detalharPesquisaMB.bean.descritor.sistema.orgao.nome}" />
+							#{' '}
 							
-							<h:outputText value="Sumário: " />
+							<h:commandLink onclick="dlgOrgao.show();return false;" >
+                                <img src="images/magnifier.png" alt="" />
+                            </h:commandLink> 
+                            
+						</div>
+						<div class="fix"></div>
+					</div>
+					<div class="rowElem">
+						<h:outputLabel value="#{messages['label.sumario']}: " for="sumario"/>
+						<div class="formLeft">
 							<h:outputText id="sumario" value="#{detalharPesquisaMB.bean.descricao}" />
-
-							<h:outputText value="Descritor: " />
+						</div>
+						<div class="fix"></div>
+					</div>
+					
+					<div class="rowElem">
+						<h:outputLabel value="#{messages['descritor.label']}: " for="descritor"/>
+						<div class="formLeft">
 							<h:outputText id="descritor" value="#{detalharPesquisaMB.bean.descritor.descricao}" />
-							
-						</h:panelGrid>
-
-						<h:panelGroup layout="block" styleClass="vspacer" />
-						
-						<p:fieldset legend="Atributos" toggleable="true">
-							<h:panelGrid columns="2" styleClass="data_grid" columnClasses="col_label, col_value">
-							
-								<p:dataTable id="list_atributos"
-											 value="#{detalharPesquisaMB.bean.atributos}"
-											 var="item" rowIndexVar="index"
-											 emptyMessage="#{messages['p.data-table.empty-message']}">
+						</div>
+						<div class="fix"></div>
+					</div>
+					
+					<div class="rowElem">
+						<h:outputLabel value="#{messages['servico.label.isPublico']}: " for="servicoPublico"/>
+						<div class="formLeft">
+							<h:outputText id="servicoPublico" value="#{detalharPesquisaMB.bean.descritor.sistema.isPublico ? 'Sim' : 'Não'}" />
+						</div>
+						<div class="fix"></div>
+					</div>
+					
+					
+				</div>
+			
+				<div class="widget first">
 				
-									<p:column>
-										<f:facet name="header">
-											<h:outputText value="Nome" />
-										</f:facet>
-										<h:outputText value="#{item.nome}" />
-									</p:column>
-									
-									<p:column>
-										<f:facet name="header">
-											<h:outputText value="Tipo" />
-										</f:facet>
-										<h:outputText value="#{item.tipo}" />
-									</p:column>
-								</p:dataTable>
-							
-							</h:panelGrid>
-							
-						</p:fieldset>
-						
-						<p:fieldset legend="Excessões" toggleable="true">
-							<h:panelGrid columns="2" styleClass="data_grid" columnClasses="col_label, col_value">
-							
-								<p:dataTable id="list_excessoes"
-											 value="#{detalharPesquisaMB.bean.excecoes}"
-											 var="item" rowIndexVar="index"
-											 emptyMessage="#{messages['p.data-table.empty-message']}">
+					<div class="head">
+						<h5 class="iList">Atributos</h5>
+					</div>
+			
+					<h:panelGrid columns="2" styleClass="data_grid" columnClasses="col_label, col_value" >
+						<p:dataTable id="list_atributos"
+									 value="#{detalharPesquisaMB.bean.atributos}"
+								     var="item" rowIndexVar="index"
+									 emptyMessage="#{messages['p.data-table.empty-message']}">
+			
+								<p:column width="150">
+									<f:facet name="header">
+										<h:outputText value="Nome" />
+									</f:facet>
+									<h:outputText value="#{item.nome}" />
+								</p:column>
+								<p:column width="100">
+									<f:facet name="header">
+										<h:outputText value="Tipo" />
+									</f:facet>
+									<h:outputText value="#{item.tipo}" />
+								</p:column>
+								<p:column width="500">
+									<f:facet name="header">
+										<h:outputText value="Descrição" />
+									</f:facet>
+									<h:outputText value="#{item.descricao}" />
+								</p:column>
+						</p:dataTable>
+					</h:panelGrid>
+				</div>
+			
+				<div class="widget first">
 				
-									<p:column>
-										<f:facet name="header">
-											<h:outputText value="Nome" />
-										</f:facet>
-										<h:outputText value="#{item.identificador}" />
-									</p:column>
-									
-									<p:column>
-										<f:facet name="header">
-											<h:outputText value="Tipo" />
-										</f:facet>
-										<h:outputText value="#{item.descricao}" />
-									</p:column>
-								</p:dataTable>
-							
-							</h:panelGrid>
-							
-						</p:fieldset>
-						
-
-					</h:panelGroup>
-				</h:form>
-			</p:panel>
-		</h:panelGroup>
+					<div class="head">
+						<h5 class="iList">Excessões</h5>
+					</div>
+			
+					<h:panelGrid columns="2" styleClass="data_grid" columnClasses="col_label, col_value">
+						<p:dataTable id="list_excessoes"
+									 value="#{detalharPesquisaMB.bean.excecoes}"
+									 var="item" rowIndexVar="index"
+									 emptyMessage="#{messages['p.data-table.empty-message']}">
+			
+								<p:column width="270">
+									<f:facet name="header">
+										<h:outputText value="identificador" />
+									</f:facet>
+									<h:outputText value="#{item.identificador}" />
+								</p:column>
+								<p:column width="500">
+									<f:facet name="header">
+										<h:outputText value="Descrição" />
+									</f:facet>
+									<h:outputText value="#{item.descricao}" />
+								</p:column>
+						</p:dataTable>
+					</h:panelGrid>
+				</div>
+				
+				<div class="widget first">
+				
+					<div class="head">
+						<h5 class="iList">Retorno</h5>
+					</div>
+					
+					<div class="rowElem">
+						<h:outputLabel value="Tipo do Retorno: " for="tipoRetorno"/>
+						<div class="formLeft">
+							<h:outputText id="tipoRetorno" value="List" />
+						</div>
+						<div class="fix"></div>
+					</div>
+					
+					<div class="rowElem">
+						<h:outputLabel value="Descrição do Retorno: " for="descricaoRetorno"/>
+						<div class="formLeft">
+							<h:outputText id="descricaoRetorno" value="Lista de objetos será retornada" />
+						</div>
+						<div class="fix"></div>
+					</div>
+				</div>
+			</fieldset>
+			
+			<p:dialog id="modalDialog" header="Órgão" widgetVar="dlgOrgao" modal="true" height="300">  
+	    		
+	    			<div class="rowElem">
+						<h:outputLabel value="Nome: " for="m_nomeOrgao"/>
+						<div class="formBottom">
+							<h:outputText id="m_nomeOrgao" value="#{detalharPesquisaMB.bean.descritor.sistema.orgao.nome}" />
+						</div>
+						<div class="fix"></div>
+					</div>
+					
+					<div class="rowElem">
+						<h:outputLabel value="Sigla: " for="m_siglaOrgao"/>
+						<div class="formBottom">
+							<h:outputText id="m_siglaOrgao" value="#{detalharPesquisaMB.bean.descritor.sistema.orgao.sigla}" />
+						</div>
+						<div class="fix"></div>
+					</div>
+					
+					<div class="rowElem">
+						<h:outputLabel value="Site: " for="m_urlOrgao"/>
+						<div class="formBottom">
+							<h:outputText id="m_urlOrgao" value="#{detalharPesquisaMB.bean.descritor.sistema.orgao.url}" />
+						</div>
+						<div class="fix"></div>
+					</div>
+					
+					<div class="rowElem">
+						<h:outputLabel value="E-mail: " for="m_emailOrgao"/>
+						<div class="formRight">
+							<h:outputText id="m_emailOrgao" value="#{detalharPesquisaMB.bean.descritor.sistema.orgao.email}" />
+						</div>
+						<div class="fix"></div>
+					</div>
+					
+					<div class="rowElem">
+						<h:outputLabel value="Contato: " for="m_contatoOrgao"/>
+						<div class="formRight">
+							<h:outputText id="m_contatoOrgao" value="#{detalharPesquisaMB.bean.descritor.sistema.orgao.nomeContato}" />
+						</div>
+						<div class="fix"></div>
+					</div>
+					
+					<div class="rowElem">
+						<h:outputLabel value="Endereço: " for="m_enderecoOrgao"/>
+						<div class="formRight">
+							<h:outputText id="m_enderecoOrgao" value="#{detalharPesquisaMB.bean.descritor.sistema.orgao.endereco}" />
+						</div>
+						<div class="fix"></div>
+					</div>
+			</p:dialog>
+			
+		</h:form>
+		
+		
 	</ui:define>
 </ui:composition>
