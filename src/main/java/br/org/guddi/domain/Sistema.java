@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -51,7 +52,7 @@ public class Sistema implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Orgao orgao;
 
-	@OneToMany(mappedBy = "sistema", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "sistema", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Descritor> descritores;
 	
 	@Column(name="publico")

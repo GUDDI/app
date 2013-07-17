@@ -10,6 +10,7 @@ import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
+import br.org.guddi.business.MarcacaoBC;
 import br.org.guddi.business.OrgaoBC;
 import br.org.guddi.business.SistemaBC;
 import br.org.guddi.domain.Atributo;
@@ -36,6 +37,9 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 
 	@Inject
 	private OrgaoBC orgaoBC;
+	
+	@Inject
+	private MarcacaoBC marcacaoBC;
 
 	@Inject
 	private Identity identity;
@@ -63,7 +67,17 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 		setServicoNovo(new Servico());
 	}
     
+    @Transactional
     public void salvarDescritor() {
+    	
+    	for(Descritor descritor : getDescritores()){
+    		if(!descritor.getMarcacoesFormatado().isEmpty()){
+    			
+    		}
+    	}
+    	
+    	getBean().setDescritores(getDescritores());
+    	
     	sistemaBC.update(getBean());
     }
     
