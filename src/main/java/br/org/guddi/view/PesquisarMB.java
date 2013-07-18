@@ -68,7 +68,7 @@ public class PesquisarMB extends AbstractPageBean {
      */
     public void search() {
 
-        lazyModel = new LazyDataModel<Pesquisa>() {
+    	lazyModel = new LazyDataModel<Pesquisa>() {
         	
 			private static final long serialVersionUID = -6541913048403958674L;
 

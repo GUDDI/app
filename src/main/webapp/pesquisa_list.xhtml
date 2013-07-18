@@ -30,7 +30,7 @@
                              paginatorTemplate="#{messages['p.data-table.paginator-template']}"
                              currentPageReportTemplate="#{messages['p.data-table.current-page-report-template']}"
                              emptyMessage="#{messages['p.data-table.empty-message']}" 
-                             rendered="#{pesquisarMB.lazyModel.rowCount == 0}">		
+                             rendered="#{pesquisarMB.lazyModel ne null}">		
 				
 						<f:facet name="header" >  
 							<h:outputText value="#{messages['menu.servico']}" />

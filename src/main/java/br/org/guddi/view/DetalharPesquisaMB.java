@@ -10,7 +10,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author escritorio
+ * @author thiago.soares
  */
 @ViewController
 @PreviousView("./pesquisa_list.jsf")
@@ -39,8 +39,6 @@ public class DetalharPesquisaMB extends AbstractEditPageBean<Servico, Long> {
      * @return
      */
     public String detalharServico() {
-
-
 
 		return getNextView();
 	}
