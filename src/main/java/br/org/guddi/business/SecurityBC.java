@@ -9,6 +9,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.lifecycle.Startup;
+import br.gov.frameworkdemoiselle.mail.Mail;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.org.guddi.domain.Recurso;
 import br.org.guddi.persistence.RecursoDAO;
@@ -23,11 +24,11 @@ import br.org.guddi.security.Resources;
 public class SecurityBC {
 
     @Inject
+    private Mail mailer;
+    @Inject
     private RecursoDAO recursoDAO;
-    
     @Inject
     private UsuarioDAO usuarioDAO;
-
 
     /**
      *
@@ -62,7 +63,17 @@ public class SecurityBC {
      * @param senhanova
      */
     public void alteraSenha(String aminesia, String senhaatual, String senhanova) {
-        System.out.println(aminesia+" - "+senhaatual+" - "+senhanova);
-        usuarioDAO.UpdatePassWithAminesia( aminesia,  senhaatual,  senhanova);
+        System.out.println(aminesia + " - " + senhaatual + " - " + senhanova);
+        usuarioDAO.UpdatePassWithAminesia(aminesia, senhaatual, senhanova);
+    }
+
+    public void send() {
+        mailer
+                .to("somebody@somewhere.com")
+                .from("somebody@from.com")
+                .body().text("Email 1")
+                .attach().url("http://www.frameworkdemoiselle.gov.br/ultimas-noticias/chancelaSerpro.jpg", "logo.jpg").inline()
+                .subject("Subject 1")
+                .send();
     }
 }
