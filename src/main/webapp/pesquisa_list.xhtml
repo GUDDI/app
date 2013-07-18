@@ -12,47 +12,89 @@
                                  title="Pesquisar"
                                  icon="ui-icon-search"
                                  action="#{pesquisarMB.search()}"
-                                 update=":result_form:panel" />
+                                 update=":result_form" />
 
             </div>
 
         </h:form>
         <h:form id="result_form">
-            <h:panelGroup id="panel" >
-                <p:dataTable id="list" value="#{pesquisarMB.lazyModel}"
-                             var="item" rowIndexVar="index" lazy="true"
-                             paginator="true" 
-                             paginatorPosition="#{messages['p.data-table.paginator-position']}"
-                             first="#{pesquisarMB.first}"
-                             rows="#{pesquisarMB.rows}" 
-                             pageLinks="#{messages['p.data-table.page-links']}"
-                             rowsPerPageTemplate="#{messages['p.data-table.rows-per-page-template']}"
-                             paginatorTemplate="#{messages['p.data-table.paginator-template']}"
-                             currentPageReportTemplate="#{messages['p.data-table.current-page-report-template']}"
-                             emptyMessage="#{messages['p.data-table.empty-message']}" 
-                             rendered="#{pesquisarMB.lazyModel ne null}">		
+	        	<script type="text/javascript">
+	        		//====== Tabs =========//
+					$.fn.simpleTabs = function(){ 
+						
+						//Default Action
+						$(this).find(".tab_content").hide(); //Hide all content
+						$(this).find("ul.tabs li:first").addClass("activeTab").show(); //Activate first tab
+						$(this).find(".tab_content:first").show(); //Show first tab content
+					
+						//On Click Event
+						$("ul.tabs li").click(function() {
+							$(this).parent().parent().find("ul.tabs li").removeClass("activeTab"); //Remove any "active" class
+							$(this).addClass("activeTab"); //Add "active" class to selected tab
+							$(this).parent().parent().find(".tab_content").hide(); //Hide all tab content
+							var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+							$(activeTab).show(); //Fade in the active content
+							return false;
+						});
+					
+					};//end function
+					
+					$("div[class^='widget']").simpleTabs();
+					
+				</script>
+	        	 <!-- Tabs -->
+		        <div class="widget first">       
+		            <ul class="tabs">
+		                <li><a href="#tab1">#{messages['pesquisa.label.local']}</a></li>
+		                <li style="width: 100px;">
+		                	<img src="images/loaders/loader6.gif" alt="" class="p12" style="float: left;"/>
+		                	<a href="#tab2">#{messages['pesquisa.label.remoto']}</a>
+		                </li>
+		            </ul>
+		            
+		            <!-- Aba do Pesquisa Local -->
+		            <div class="tab_container">
+		                <div id="tab1" class="tab_content">
+							
+							
+			                <p:dataTable id="list" value="#{pesquisarMB.lazyModel}"
+			                             var="item" rowIndexVar="index" lazy="true"
+			                             paginator="true" 
+			                             paginatorPosition="#{messages['p.data-table.paginator-position']}"
+			                             first="#{pesquisarMB.first}"
+			                             rows="#{pesquisarMB.rows}" 
+			                             pageLinks="#{messages['p.data-table.page-links']}"
+			                             rowsPerPageTemplate="#{messages['p.data-table.rows-per-page-template']}"
+			                             paginatorTemplate="#{messages['p.data-table.paginator-template']}"
+			                             currentPageReportTemplate="#{messages['p.data-table.current-page-report-template']}"
+			                             emptyMessage="#{messages['p.data-table.empty-message']}" 
+			                             rendered="#{pesquisarMB.lazyModel ne null}">		
+							
+				                    <p:column>
 				
-						<f:facet name="header" >  
-							<h:outputText value="#{messages['menu.servico']}" />
-	        			</f:facet>
-        			  
-	                    <p:column>
-	
-	                        <h:commandLink action="#{detalharPesquisaMB.detalharServico}" value="#{item.nomeServico}" 
-	                                       style="font-size: medium; color: #1122CC; cursor: pointer;">
-	                            <f:param name="id" value="#{item.idServico}" />
-	                        </h:commandLink>
-	                        <br/>
-	                        <div style="font-size: 0.9em; padding: 5px 10px;">
-	                            <h:outputText value="#{item.nomeSistema}" /> (<h:outputText value="#{item.nomeOrgao}" />)
-	                            <br/>
-	                            <h:outputText value="#{item.nomeDescritor}" />
-	                        </div>
-	
-	                    </p:column>
-
-                </p:dataTable>	
-            </h:panelGroup>
+				                        <h:commandLink action="#{detalharPesquisaMB.detalharServico}" value="#{item.nomeServico}" 
+				                                       style="font-size: medium; color: #1122CC; cursor: pointer;">
+				                            <f:param name="id" value="#{item.idServico}" />
+				                        </h:commandLink>
+				                        <br/>
+				                        <div style="font-size: 0.9em; padding: 5px 10px;">
+				                            <h:outputText value="#{item.nomeSistema}" /> (<h:outputText value="#{item.nomeOrgao}" />)
+				                            <br/>
+				                            <h:outputText value="#{item.nomeDescritor}" />
+				                        </div>
+				
+				                    </p:column>
+			
+			                </p:dataTable>	
+							
+		                </div>
+		                
+		                <!-- Aba do Pesquisa Remoto -->
+		                <div id="tab2" class="tab_content">
+		                	tewtwe
+		                </div>
+		            </div>
+		        </div>
         </h:form>
 
     </ui:define>
