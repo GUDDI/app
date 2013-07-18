@@ -42,7 +42,7 @@ public class PesquisarMB extends AbstractPageBean {
     public PesquisarMB() {
         super();
         first = 0;
-        rows = 0;
+        rows = 10;
     }
 
     /**
@@ -79,6 +79,7 @@ public class PesquisarMB extends AbstractPageBean {
 
                 int count = pesquisarBC.count(searchParam);
                 lazyModel.setRowCount(count);
+                
                 if (count > 0) {
                     if (first > count) {
                         // Go to last page
@@ -88,7 +89,7 @@ public class PesquisarMB extends AbstractPageBean {
                     parameters.setFirst(first);
                     parameters.setPageSize(pageSize);
                     List<Pesquisa> list = pesquisarBC.search(searchParam, parameters);
-                    rows = list.size();
+                    
                     logger.info("END: load");
                     return list;
                 } else {

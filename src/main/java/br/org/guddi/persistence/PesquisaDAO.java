@@ -13,7 +13,7 @@ import br.org.guddi.util.search.SearchFilter;
 
 /**
  *
- * @author escritorio
+ * @author thiago.soares
  */
 @PersistenceController
 public class PesquisaDAO extends JPACrud<Pesquisa, Long> {
@@ -87,6 +87,9 @@ public class PesquisaDAO extends JPACrud<Pesquisa, Long> {
 		sql.append("   OR d.descricao ILIKE :searchParam ");
 		sql.append("   OR s.nome ILIKE :searchParam ");
 		sql.append("   OR o.nome ILIKE :searchParam ");
+		sql.append("   OR EXISTS ( ");
+		sql.append("   SELECT dm.id_descritor FROM guddi.descritor_marcacao dm JOIN guddi.marcacao m ON m.id = dm.id_marcacao WHERE dm.id_descritor = d.id AND m.marcacao ILIKE :searchParam ");
+		sql.append("   )");
     	
 		/*if(!isCount) {
 			sql.append("ORDER BY ws.nome, s.nome");

@@ -174,7 +174,7 @@
 				</div>
 			</fieldset>
 			
-			<p:dialog id="modalDialog" header="Órgão" widgetVar="dlgOrgao" modal="true" height="300">  
+			<p:dialog id="modalDialog" header="Órgão" widgetVar="dlgOrgao" modal="true" height="300" width="500">  
 	    		
 	    			<div class="rowElem">
 						<h:outputLabel value="Nome: " for="m_nomeOrgao"/>
@@ -202,7 +202,7 @@
 					
 					<div class="rowElem">
 						<h:outputLabel value="E-mail: " for="m_emailOrgao"/>
-						<div class="formRight">
+						<div class="formBottom">
 							<h:outputText id="m_emailOrgao" value="#{detalharPesquisaMB.bean.descritor.sistema.orgao.email}" />
 						</div>
 						<div class="fix"></div>
@@ -210,7 +210,7 @@
 					
 					<div class="rowElem">
 						<h:outputLabel value="Contato: " for="m_contatoOrgao"/>
-						<div class="formRight">
+						<div class="formBottom">
 							<h:outputText id="m_contatoOrgao" value="#{detalharPesquisaMB.bean.descritor.sistema.orgao.nomeContato}" />
 						</div>
 						<div class="fix"></div>
@@ -218,7 +218,7 @@
 					
 					<div class="rowElem">
 						<h:outputLabel value="Endereço: " for="m_enderecoOrgao"/>
-						<div class="formRight">
+						<div class="formBottom">
 							<h:outputText id="m_enderecoOrgao" value="#{detalharPesquisaMB.bean.descritor.sistema.orgao.endereco}" />
 						</div>
 						<div class="fix"></div>
