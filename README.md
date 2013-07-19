@@ -8,6 +8,7 @@
   ga('send', 'pageview');
 
 </script>
+
 #GUDDI APP
  
 

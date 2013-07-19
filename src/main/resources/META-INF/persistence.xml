@@ -44,7 +44,9 @@
     <class>br.org.guddi.domain.Usuario</class>
     <shared-cache-mode>ALL</shared-cache-mode>
     
-    <properties>
+   		<class>br.org.guddi.domain.Sistema</class>
+		
+		<properties>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.user" value="thiago.soares"/>
       <property name="javax.persistence.jdbc.password" value="844246"/>

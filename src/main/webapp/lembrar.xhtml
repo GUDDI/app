@@ -14,18 +14,18 @@
                             <label for="req1">#{messages['login.usuario']} :</label>
                             <div class="loginInput">
                                 <p:inputText id="email"
-                                             value="#{identity.usuario}"
+                                             value="#{aminesiaMB.email}"
                                              size="30" maxlength="30" autocomplete="off" />
                             </div>
                             <div class="fix"></div>
                         </div>
                         <div class="loginRow">
                             <p:commandButton id="login_button"
-                                             value="#{messages['button.login']}"
-                                             action="#{identity.login}"
+                                             value="#{messages['button.lembrar']}"
+                                             action="#{aminesiaMB.lembrar()}"
                                              styleClass="submitForm"
                                              ajax="false" />
-                            <div class="fix"></div>
+                           
                         </div>
                     </fieldset>
                 </h:form>

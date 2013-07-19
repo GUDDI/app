@@ -1,0 +1,61 @@
+
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/main_mobile.xhtml" contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+	<pm:page title="Edição de sistema">
+	
+			<!-- Main View -->
+			<pm:view id="main">
+			
+				<pm:header title="Edição de sistema" swatch="b">
+					<f:facet name="left">
+						<p:button style="width:10; height:30; border:1px solid #000;" 
+							value="#{messages['button.back']}" icon="back"
+							href="#{sistemaEditMB.previousView}"/>
+					</f:facet>
+					<f:facet name="right">
+						<p:button value="#{messages['main.app.title']}" icon="home"
+									 href="./navigator.jsf"/>
+					 </f:facet>
+				</pm:header>
+			
+				<pm:content>
+					<h:form>
+										
+					<h:outputText id="id"  label="#{messages['sistema.label.id']}: "
+					value="#{sistemaEditMB.bean.id}"/>
+					
+					
+					<p:inputText id="nome"  label="#{messages['sistema.label.nome']}: "
+						value="#{sistemaEditMB.bean.nome}" required="true"/>					
+					
+					<p:inputText id="orgao"  label="#{messages['sistema.label.orgao']}: "
+						value="#{sistemaEditMB.bean.orgao}" required="true"/>					
+					
+					<p:inputText id="descritores"  label="#{messages['sistema.label.descritores']}: "
+						value="#{sistemaEditMB.bean.descritores}" required="true"/>					
+					
+					<p:inputText id="isPublico"  label="#{messages['sistema.label.isPublico']}: "
+						value="#{sistemaEditMB.bean.isPublico}" required="true"/>					
+										
+					<pm:buttonGroup orientation="horizontal" >
+						<p:commandButton value="#{messages['button.save']}"
+							action="#{sistemaEditMB.update}" icon="check"
+							iconPosition="center" />
+						<p:commandButton value="#{messages['button.delete']}"
+							action="#{sistemaEditMB.delete}"
+							rendered="#{sistemaEditMB.updateMode}" icon="delete"
+							iconPosition="center" />
+					</pm:buttonGroup>
+										
+					</h:form>
+				</pm:content>
+			</pm:view>
+		</pm:page>
+	
+</f:view>

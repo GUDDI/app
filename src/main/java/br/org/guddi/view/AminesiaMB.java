@@ -1,6 +1,9 @@
 package br.org.guddi.view;
 
 import br.gov.frameworkdemoiselle.annotation.NextView;
+import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.message.MessageContext;
+import br.gov.frameworkdemoiselle.message.SeverityType;
 
 import javax.inject.Inject;
 
@@ -9,6 +12,8 @@ import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.org.guddi.business.SecurityBC;
 import br.org.guddi.domain.Usuario;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,11 +23,15 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ViewController
 @NextView("./index.jsf")
+@PreviousView("./login.jsf")
 public class AminesiaMB extends AbstractEditPageBean<Usuario, Long> {
 
     private static final long serialVersionUID = 1L;
     @Inject
     private SecurityBC securityBC;
+    @Inject
+    private MessageContext messageContext;
+    private String email;
     private String aminesia;
     private String senhaatual;
     private String senhanova;
@@ -44,6 +53,17 @@ public class AminesiaMB extends AbstractEditPageBean<Usuario, Long> {
         return null;
     }
 
+    public String lembrar() {
+        try {
+            securityBC.enviarMensagemLembrandoSenha(email);
+            messageContext.add("Lembrete enviado para seu e-mail", SeverityType.INFO);
+        } catch (Exception ex) {
+            messageContext.add(ex.getMessage(), SeverityType.ERROR);
+            return null;
+        }
+        return getPreviousView();
+    }
+
     /**
      *
      * @return
@@ -51,15 +71,21 @@ public class AminesiaMB extends AbstractEditPageBean<Usuario, Long> {
     @Override
     @Transactional
     public String update() {
-        if (aminesia == null){
-            return getNextView();
+        try {
+            if (aminesia == null) {
+                return getPreviousView();
+            }
+            if (senhanova.equals(senharepetida)) {
+                this.securityBC.alteraSenha(aminesia, senhaatual, senhanova);
+            } else {
+                messageContext.add("Pegar do propertie - Nova senha não conincide", SeverityType.ERROR);
+                return null;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(AminesiaMB.class.getName()).log(Level.SEVERE, null, ex);
+            messageContext.add(ex.getMessage(), SeverityType.ERROR);
+            return null;
         }
-        if (senhanova.equals(senharepetida)) {
-            this.securityBC.alteraSenha(aminesia, senhaatual, senhanova);
-        } else {
-            new Exception("Senha não confere");
-        }
-
         return getNextView();
     }
 
@@ -141,5 +167,13 @@ public class AminesiaMB extends AbstractEditPageBean<Usuario, Long> {
      */
     public void setSenharepetida(String senharepetida) {
         this.senharepetida = senharepetida;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

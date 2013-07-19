@@ -1,5 +1,6 @@
 package br.org.guddi.persistence;
 
+import br.gov.frameworkdemoiselle.message.SeverityType;
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 import br.org.guddi.domain.Usuario;
@@ -23,6 +24,14 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
     public Usuario findByUserName(String usuario) {
         try {
             return (Usuario) getEntityManager().createNamedQuery("Usuario.findByUsuario").setParameter("usuario", usuario).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
+    public Usuario findByEmail(String email) {
+        try {
+            return (Usuario) getEntityManager().createNamedQuery("Usuario.findByEmail").setParameter("email", email).getSingleResult();
         } catch (NoResultException e) {
             return null;
         }
@@ -60,7 +69,7 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
      * @param usuario
      * @return
      */
-    public void UpdatePassWithAminesia(String aminesia, String senhaatual, String senhanova) {
+    public void UpdatePassWithAminesia(String aminesia, String senhaatual, String senhanova) throws Exception {
         try {
             Usuario usu = (Usuario) getEntityManager().createNamedQuery("Usuario.findByAminesia").setParameter("aminesia", aminesia).getSingleResult();
             if (usu != null && usu.getSenha().equals(senhaatual)) {
@@ -68,10 +77,12 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
                 usu.setSenha(CriptografiaUtil.getCodigoMd5(senhanova));
                 update(usu); 
             }else{
-                new Exception("Senha atual inválida");
+                 throw new Exception("Pegar mensagem do propertie - Senha atual inválida");
             }
         } catch (NoResultException e) {
            throw e;
         }
     }
+    
+   
 }

@@ -11,9 +11,12 @@ import javax.inject.Inject;
 import br.gov.frameworkdemoiselle.lifecycle.Startup;
 import br.gov.frameworkdemoiselle.mail.Mail;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
+import br.org.guddi.constant.MailConfig;
 import br.org.guddi.domain.Recurso;
+import br.org.guddi.domain.Usuario;
 import br.org.guddi.persistence.RecursoDAO;
 import br.org.guddi.persistence.UsuarioDAO;
+import br.org.guddi.security.Identity;
 import br.org.guddi.security.Resources;
 
 /**
@@ -29,6 +32,8 @@ public class SecurityBC {
     private RecursoDAO recursoDAO;
     @Inject
     private UsuarioDAO usuarioDAO;
+    @Inject
+    private MailConfig mailConfig;
 
     /**
      *
@@ -62,18 +67,20 @@ public class SecurityBC {
      * @param senhaatual
      * @param senhanova
      */
-    public void alteraSenha(String aminesia, String senhaatual, String senhanova) {
-        System.out.println(aminesia + " - " + senhaatual + " - " + senhanova);
+    public void alteraSenha(String aminesia, String senhaatual, String senhanova) throws Exception {
         usuarioDAO.UpdatePassWithAminesia(aminesia, senhaatual, senhanova);
     }
 
-    public void send() {
-        mailer
-                .to("somebody@somewhere.com")
-                .from("somebody@from.com")
-                .body().text("Email 1")
-                .attach().url("http://www.frameworkdemoiselle.gov.br/ultimas-noticias/chancelaSerpro.jpg", "logo.jpg").inline()
-                .subject("Subject 1")
-                .send();
+    public void enviarMensagemLembrandoSenha(String destinatario) throws Exception {
+        Usuario usu = usuarioDAO.findByEmail(destinatario);
+        if (usu != null) {
+//            mailer.to(destinatario)
+//                    .from(mailConfig.getRemetente())
+//                    .body().text(mailConfig.getUrl()+usu.getAminesia())
+//                    .subject(mailConfig.getAssunto())
+//                    .send();
+        }else{
+            throw new Exception("E-mail não cadastrado");
+        }
     }
 }

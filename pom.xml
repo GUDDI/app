@@ -28,7 +28,14 @@
     </repository>  
 </repositories>
 
-    <dependencies>
+    <dependencies>		
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces-mobile</artifactId>
+			<version>0.9.3</version>
+		</dependency>
+		
+		
     
         <dependency>
             <groupId>br.gov.frameworkdemoiselle</groupId>
