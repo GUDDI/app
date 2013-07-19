@@ -465,6 +465,8 @@ html ul.tabs li.activeTab a { color: #797979; }
 .rowElem > label { padding: 15px 0; width: 130px; }
 .rowElem .topLabel { padding: 5px 12px 12px 0; }
 
+.formCenter {width: 100%; margin: 12px 12px 12px 0px; text-align: center;}
+
 #valid input { position: relative; }
 
 
