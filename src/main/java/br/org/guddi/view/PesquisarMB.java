@@ -1,18 +1,23 @@
 package br.org.guddi.view;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
+import org.slf4j.Logger;
+
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractPageBean;
 import br.org.guddi.business.PesquisarBC;
 import br.org.guddi.domain.Pesquisa;
+import br.org.guddi.domain.PesquisaFake;
 import br.org.guddi.util.search.SearchFilter;
-import java.util.List;
-import java.util.Map;
-import javax.inject.Inject;
-import org.primefaces.model.LazyDataModel;
-import org.primefaces.model.SortOrder;
-import org.slf4j.Logger;
 
 /**
  *
@@ -34,6 +39,7 @@ public class PesquisarMB extends AbstractPageBean {
     private String searchParam;
     private int first, rows;
     private LazyDataModel<Pesquisa> lazyModel;
+    private List<PesquisaFake> listRemotoFake;
 
 
     /**
@@ -51,6 +57,7 @@ public class PesquisarMB extends AbstractPageBean {
     public void clearSearch() {
         searchParam = "";
         lazyModel = null;
+        listRemotoFake = null;
         first = 0;
         rows = 10;
     }
@@ -97,6 +104,7 @@ public class PesquisarMB extends AbstractPageBean {
                 }
             }
         };
+        
     }
 
     /**
@@ -133,8 +141,9 @@ public class PesquisarMB extends AbstractPageBean {
     public void setSearchParam(String searchParam) {
         this.searchParam = searchParam;
     }
-
-    /**
+    
+    
+	/**
      *
      * @param lazyModel
      */
@@ -173,4 +182,26 @@ public class PesquisarMB extends AbstractPageBean {
     public void setRows(int rows) {
         this.rows = rows;
     }
+
+	public List<PesquisaFake> getListRemotoFake() {
+		List<PesquisaFake> resultado = new ArrayList<PesquisaFake>();
+        
+        PesquisaFake pesquisa1 = new PesquisaFake("Ministério da Saúde", "http://guddi.saude.gov.br/", 13);
+        PesquisaFake pesquisa2 = new PesquisaFake("Secretaria da Saúde do Paraná", "http://guddi.saude.pr.gov.br/", 3);
+        PesquisaFake pesquisa3 = new PesquisaFake("Secretaria da Saúde de Santa Catarina", "http://guddi.saude.sc.gov.br/", 5);
+        PesquisaFake pesquisa4 = new PesquisaFake("Secretaria Municipal da Saúde de Curitiba", "http://guddi.saude.curitiba.gov.br/", 1);
+        
+        resultado.add(pesquisa1);
+        resultado.add(pesquisa2);
+        resultado.add(pesquisa3);
+        resultado.add(pesquisa4);
+        
+        return resultado;
+	}
+
+	public void setListRemotoFake(List<PesquisaFake> listRemotoFake) {
+		this.listRemotoFake = listRemotoFake;
+	}
+    
+    
 }
