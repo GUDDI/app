@@ -74,16 +74,49 @@
 			                             emptyMessage="#{messages['p.data-table.empty-message']}" 
 			                             >		
 							
-				                    <p:column>
-				
-				                        <h:commandLink action="#{detalharPesquisaMB.detalharServico}" value="#{item.nomeServico}" 
+				                    <p:column rendered="false">
+					
+				                        <h:commandLink action="#{detalharPesquisaMB.detalharServico}" 
 				                                       style="font-size: medium; color: #2B6893; cursor: pointer;">
 				                            <f:param name="id" value="#{item.idServico}" />
+				                            
+				                            <h:outputText value="#{item.nomeOrgao}" />
+				                            <h:outputText value="#{item.nomeSistema}" /> 
+				                            <h:outputText value="#{item.nomeServico}" />
 				                        </h:commandLink>
 				                        <br/>
 				                        <div style="font-size: 0.9em; padding: 5px 10px;">
-				                            <h:outputText value="#{item.nomeSistema}" /> (<h:outputText value="#{item.nomeOrgao}" />)
 				                            <br/>
+				                            <h:outputText value="#{item.nomeDescritor}" />
+				                        </div>
+				
+				                    </p:column>
+				                    
+				                    <p:column>
+				                    
+				                    	<h:commandLink action="#{detalharPesquisaMB.detalharServico}" 
+				                    	               value="#{item.nomeOrgao} - #{item.nomeSistema} "
+				                                       style="font-size: medium; color: #2B6893; cursor: pointer;">
+				                                       
+				                            <f:param name="id" value="#{item.idServico}" />           
+				                        </h:commandLink>
+										<div style="font-size: 1.5em; padding: 4px 10px; color: #2B6893;">
+										
+											<h:commandLink action="#{detalharPesquisaMB.detalharServico}" 
+				                    	               value="Serviço : #{item.nomeServico}"
+				                                       style="font-size: medium; color: #2B6893; cursor: pointer;">
+				                                       
+					                            <f:param name="id" value="#{item.idServico}" />           
+					                        </h:commandLink>
+										
+										</div>				                        
+				                        <div style="font-size: 0.9em; padding: 4px 10px;">
+				                            <h:outputText value="URL : " /> 
+				                            <h:outputLink value="#{item.url}">
+				                            	<h:outputText value="#{item.url}" />
+				                            </h:outputLink>
+				                            <br/>
+				                            <h:outputText value="Descrição : " />
 				                            <h:outputText value="#{item.nomeDescritor}" />
 				                        </div>
 				

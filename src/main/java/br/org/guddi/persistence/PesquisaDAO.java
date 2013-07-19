@@ -60,6 +60,8 @@ public class PesquisaDAO extends JPACrud<Pesquisa, Long> {
 
 			p.setIdServico(Long.parseLong(obj[6].toString()));
 			p.setNomeServico((String) obj[7]);
+			
+			p.setUrl((String) obj[8]);
 
 			list.add(p);
 		}
@@ -74,7 +76,7 @@ public class PesquisaDAO extends JPACrud<Pesquisa, Long> {
     	if(isCount) {
     		sql.append("SELECT COUNT(1) ");
     	} else {
-    		sql.append("select distinct on (o.id,  s.id, d.id, ws.id) o.id as idOrgao, o.nome as nomeOrgao, s.id as idSistema, s.nome as nomeSistema, d.id as idDescritor, d.descricao as descritor, ws.id as idServico, ws.nome as nomeServico ");
+    		sql.append("select distinct on (o.id,  s.id, d.id, ws.id) o.id as idOrgao, o.nome as nomeOrgao, s.id as idSistema, s.nome as nomeSistema, d.id as idDescritor, d.descricao as descritor, ws.id as idServico, ws.nome as nomeServico, d.url ");
     	}
     	
     	sql.append("FROM guddi.servico ws ");
