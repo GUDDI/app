@@ -265,6 +265,7 @@
 										                		<ul class="tabs">
 								                    				<li class="activeTab"><a href="#tabServicoAtributosS#{servico.id}A#{contadorServico.index}">#{messages['atributo.list.table.title']}</a></li>
 								                    				<li><a href="#tabServicoExcecoesS#{servico.id}E#{contadorServico.index}">#{messages['excecao.list.table.title']}</a></li>
+								                    				<li><a href="#tabServicoRetornoS#{servico.id}E#{contadorServico.index}">#{messages['servico.retorno.table.title']}</a></li>
 													            </ul>
 										                		
 										                		<div class="tab_container">
@@ -373,6 +374,20 @@
 																			<div class="fix"></div>
 																		</div>
 										                			</div>
+										                			
+										                			<!-- Tipo do retorno do servico -->
+										                			<div id="tabServicoRetornoS#{servico.id}E#{contadorServico.index}" class="tab_content">
+										                			
+										                				<div class="rowElem noborder">
+																			<h:outputLabel value="#{messages['servico.retorno.label']}:" for="retornoTipo"/>
+																			<div class="formLeft" style="width: 400px;">
+																				<h:inputText id="retornoTipo" value="#{sistemaEditMB.servicoNovo.tipoRetorno}" />
+																			</div>
+																			<div class="fix"></div>
+																		</div>
+																		
+										                			</div>
+										                			
 										                		</div>
 								                    		</div>
 								                    		<div class="fix"></div>

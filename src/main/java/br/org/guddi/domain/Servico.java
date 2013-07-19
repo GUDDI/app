@@ -47,9 +47,9 @@ public class Servico implements Serializable {
 	@Column(length = 1500)
 	private String descricao;
     
-    @JoinColumn(name = "id_retorno", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Retorno retorno;
+    @Size(max = 100)
+	@Column(name = "tipo_retorno", length = 100)
+    private String tipoRetorno;
     
     @JoinColumn(name = "id_descritor", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -162,22 +162,30 @@ public class Servico implements Serializable {
     *
     * @return
     */
-	public Retorno getRetorno() {
-		return retorno;
+	public String getTipoRetorno() {
+		return tipoRetorno;
 	}
 
 	/**
     *
-    * @param retorno
+    * @param tipoRetorno
     */
-	public void setRetorno(Retorno retorno) {
-		this.retorno = retorno;
+	public void setTipoRetorno(String tipoRetorno) {
+		this.tipoRetorno = tipoRetorno;
 	}
 
+	/**
+    *
+    * @return
+    */
 	public String getDescricao() {
 		return descricao;
 	}
-
+	
+	/**
+    *
+    * @param descricao
+    */
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
