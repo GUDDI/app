@@ -3,21 +3,24 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
     <ui:define name="body">
-        <h:form id="pesquisa_form">
-            <div style="heigth: 100px; text-align: center; padding-top: 40px;">
-                
-                <h:inputText autocomplete="true" label="Pesquisar:" value="#{pesquisarMB.searchParam}" />
-                <p:commandButton id="search_button"
-                                 value="Pesquisar"
-                                 title="Pesquisar"
-                                 icon="ui-icon-search"
-                                 action="#{pesquisarMB.search()}"
-                                 update=":result_form" />
-
-            </div>
-
+        <h:form id="pesquisa_form" styleClass="mainForm">
+        
+        	<div class="formCenter">
+				 <h:inputText autocomplete="true" label="Pesquisar:" value="#{pesquisarMB.searchParam}" style="width: 300px;"/>
+				 <span class="sep"></span>
+				 <span class="sep"></span>
+				 <p:commandButton id="search_button"
+                               value="Pesquisar"
+                               title="Pesquisar"
+                               icon="ui-icon-search"
+                               action="#{pesquisarMB.search()}"
+                               update=":result_form" />
+			</div>
+			<div class="fix"></div>
+        
         </h:form>
-        <h:form id="result_form">
+        <h:form id="result_form" styleClass="mainForm">
+        	<h:panelGroup rendered="#{pesquisarMB.lazyModel ne null}">
 	        	<script type="text/javascript">
 	        		//====== Tabs =========//
 					$.fn.simpleTabs = function(){ 
@@ -40,13 +43,14 @@
 					};//end function
 					
 					$("div[class^='widget']").simpleTabs();
-					
+
 				</script>
-	        	 <!-- Tabs -->
+				
+	        	<!-- Tabs -->
 		        <div class="widget first">       
 		            <ul class="tabs">
 		                <li><a href="#tab1">#{messages['pesquisa.label.local']}</a></li>
-		                <li style="width: 100px;">
+		                <li style="width: 105px;">
 		                	<img src="images/loaders/loader6.gif" alt="" class="p12" style="float: left;"/>
 		                	<a href="#tab2">#{messages['pesquisa.label.remoto']}</a>
 		                </li>
@@ -68,18 +72,51 @@
 			                             paginatorTemplate="#{messages['p.data-table.paginator-template']}"
 			                             currentPageReportTemplate="#{messages['p.data-table.current-page-report-template']}"
 			                             emptyMessage="#{messages['p.data-table.empty-message']}" 
-			                             rendered="#{pesquisarMB.lazyModel ne null}">		
+			                             >		
 							
-				                    <p:column>
-				
-				                        <h:commandLink action="#{detalharPesquisaMB.detalharServico}" value="#{item.nomeServico}" 
-				                                       style="font-size: medium; color: #1122CC; cursor: pointer;">
+				                    <p:column rendered="false">
+					
+				                        <h:commandLink action="#{detalharPesquisaMB.detalharServico}" 
+				                                       style="font-size: medium; color: #2B6893; cursor: pointer;">
 				                            <f:param name="id" value="#{item.idServico}" />
+				                            
+				                            <h:outputText value="#{item.nomeOrgao}" />
+				                            <h:outputText value="#{item.nomeSistema}" /> 
+				                            <h:outputText value="#{item.nomeServico}" />
 				                        </h:commandLink>
 				                        <br/>
 				                        <div style="font-size: 0.9em; padding: 5px 10px;">
-				                            <h:outputText value="#{item.nomeSistema}" /> (<h:outputText value="#{item.nomeOrgao}" />)
 				                            <br/>
+				                            <h:outputText value="#{item.nomeDescritor}" />
+				                        </div>
+				
+				                    </p:column>
+				                    
+				                    <p:column>
+				                    
+				                    	<h:commandLink action="#{detalharPesquisaMB.detalharServico}" 
+				                    	               value="#{item.nomeOrgao} - #{item.nomeSistema} "
+				                                       style="font-size: medium; color: #2B6893; cursor: pointer;">
+				                                       
+				                            <f:param name="id" value="#{item.idServico}" />           
+				                        </h:commandLink>
+										<div style="font-size: 1.5em; padding: 4px 10px; color: #2B6893;">
+										
+											<h:commandLink action="#{detalharPesquisaMB.detalharServico}" 
+				                    	               value="Serviço : #{item.nomeServico}"
+				                                       style="font-size: medium; color: #2B6893; cursor: pointer;">
+				                                       
+					                            <f:param name="id" value="#{item.idServico}" />           
+					                        </h:commandLink>
+										
+										</div>				                        
+				                        <div style="font-size: 0.9em; padding: 4px 10px;">
+				                            <h:outputText value="URL : " /> 
+				                            <h:outputLink value="#{item.url}">
+				                            	<h:outputText value="#{item.url}" />
+				                            </h:outputLink>
+				                            <br/>
+				                            <h:outputText value="Descrição : " />
 				                            <h:outputText value="#{item.nomeDescritor}" />
 				                        </div>
 				
@@ -91,10 +128,39 @@
 		                
 		                <!-- Aba do Pesquisa Remoto -->
 		                <div id="tab2" class="tab_content">
-		                	tewtwe
+		                
+		                
+		                	<p:dataTable id="listRemoto" value="#{pesquisarMB.listRemotoFake}"
+	                             var="item" 
+	                             emptyMessage="#{messages['p.data-table.empty-message']}" 
+	                             >		
+							
+				                    <p:column>
+				
+				                        <h:outputText value="#{item.nomeOrgao}" 
+				                                       style="font-size: medium; color: #2B6893; cursor: pointer;"/>
+				                        <br/>
+				                        <div style="font-size: 0.9em; padding: 5px 10px;">
+				                            <h:outputText value="URL : " /> 
+				                            <h:outputLink value="#{item.link}">
+				                            	<h:outputText value="#{item.link}" />
+				                            </h:outputLink>
+				                            <br/>
+				                            <h:outputText value="Ocorrências : " />
+				                            <h:outputText value="#{item.quantidadeOcorrencias}" />
+				                        </div>
+				
+				                    </p:column>
+			
+			                </p:dataTable>	
+		                
+		                	<img src="images/loaders/loader6.gif" alt="" class="p12" style="float: left;"/>
+							
 		                </div>
 		            </div>
+		            <div class="fix"></div>	
 		        </div>
+			</h:panelGroup>
         </h:form>
 
     </ui:define>

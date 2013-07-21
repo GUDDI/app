@@ -13,7 +13,6 @@
     <class>br.org.guddi.domain.Servico</class>
     <class>br.org.guddi.domain.Usuario</class>
     <class>br.org.guddi.domain.Recurso</class>
-    <class>br.org.guddi.domain.Retorno</class>
     <!-- 
     <class>br.org.guddi.domain.Pesquisa</class>
      -->

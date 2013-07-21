@@ -16,7 +16,7 @@ public class Pesquisa implements Serializable {
 
 	private String nomeServico;
 
-	private String wsdlLink;
+	private String url;
 
 	private Long idDescritor;
 
@@ -100,20 +100,21 @@ public class Pesquisa implements Serializable {
 		this.nomeServico = nomeServico;
 	}
 
-	/**
-     *
-     * @return
-     */
-    public String getWsdlLink() {
-		return wsdlLink;
+
+    /**
+    *
+    * @return
+    */
+	public String getUrl() {
+		return url;
 	}
 
 	/**
-     *
-     * @param wsdlLink
-     */
-    public void setWsdlLink(String wsdlLink) {
-		this.wsdlLink = wsdlLink;
+    *
+    * @param url
+    */
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	/**
