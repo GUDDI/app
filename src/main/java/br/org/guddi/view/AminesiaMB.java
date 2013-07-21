@@ -76,7 +76,7 @@ public class AminesiaMB extends AbstractEditPageBean<Usuario, Long> {
                 return getPreviousView();
             }
             if (senhanova.equals(senharepetida)) {
-                this.securityBC.alteraSenha(aminesia, senhaatual, senhanova);
+                this.securityBC.alteraSenha(aminesia, senhanova);
             } else {
                 messageContext.add("Pegar do propertie - Nova senha não conincide", SeverityType.ERROR);
                 return null;

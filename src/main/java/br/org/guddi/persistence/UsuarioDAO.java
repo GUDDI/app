@@ -69,11 +69,10 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
      * @param usuario
      * @return
      */
-    public void UpdatePassWithAminesia(String aminesia, String senhaatual, String senhanova) throws Exception {
+    public void UpdatePassWithAminesia(String aminesia, String senhanova) throws Exception {
         try {
             Usuario usu = (Usuario) getEntityManager().createNamedQuery("Usuario.findByAminesia").setParameter("aminesia", aminesia).getSingleResult();
-            if (usu != null && usu.getSenha().equals(senhaatual)) {
-                usu.setAminesia(CriptografiaUtil.getCodigoMd5(""+System.currentTimeMillis()));
+            if (usu != null) {
                 usu.setSenha(CriptografiaUtil.getCodigoMd5(senhanova));
                 update(usu); 
             }else{

@@ -34,7 +34,7 @@ public class MyAuthenticator implements Authenticator {
         if (user == null) {
             throw new AuthenticationException("O login falhou.");
         } else {
-            if (user.getSenha().equals(user.getAminesia().substring(21, 27))) {
+            if (!user.getAminesia().isEmpty() && user.getSenha().equals(user.getAminesia().substring(21, 27))) {
                 throw new AuthenticationException("Você deve alterar sua senha apartir do email que o sistema mandou");
             }
             if (!user.getSenha().equals(CriptografiaUtil.getCodigoMd5(identity.getPassword()))) {

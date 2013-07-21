@@ -18,6 +18,7 @@ import br.org.guddi.persistence.RecursoDAO;
 import br.org.guddi.persistence.UsuarioDAO;
 import br.org.guddi.security.Identity;
 import br.org.guddi.security.Resources;
+import br.org.guddi.util.CriptografiaUtil;
 
 /**
  *
@@ -67,18 +68,28 @@ public class SecurityBC {
      * @param senhaatual
      * @param senhanova
      */
-    public void alteraSenha(String aminesia, String senhaatual, String senhanova) throws Exception {
-        usuarioDAO.UpdatePassWithAminesia(aminesia, senhaatual, senhanova);
+    public void alteraSenha(String aminesia, String senhanova) throws Exception {
+        usuarioDAO.UpdatePassWithAminesia(aminesia, senhanova);
     }
 
     public void enviarMensagemLembrandoSenha(String destinatario) throws Exception {
         Usuario usu = usuarioDAO.findByEmail(destinatario);
+        String senha = CriptografiaUtil.getCodigoMd5(""+System.currentTimeMillis());
+        usu.setAminesia(senha);
+        usu.setSenha(senha.substring(21, 27));
+        usuarioDAO.update(usu);
+        StringBuffer texto = new StringBuffer();
+        texto.append(" O sistema GUDDI gerou uma nova senha para você ");
+        texto.append(" sua senha é: "+usu.getSenha());
+        texto.append(" siga o link e altere sua senha: "+mailConfig.getUrl()+usu.getAminesia());
+        
+        
         if (usu != null) {
-//            mailer.to(destinatario)
-//                    .from(mailConfig.getRemetente())
-//                    .body().text(mailConfig.getUrl()+usu.getAminesia())
-//                    .subject(mailConfig.getAssunto())
-//                    .send();
+            mailer.to(destinatario)
+                    .from(mailConfig.getRemetente())
+                    .body().text(texto.toString())
+                    .subject(mailConfig.getAssunto())
+                    .send();
         }else{
             throw new Exception("E-mail não cadastrado");
         }
