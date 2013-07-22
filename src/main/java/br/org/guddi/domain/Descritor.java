@@ -1,9 +1,9 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
-import java.util.Iterator;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -62,7 +62,7 @@ public class Descritor implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Sistema sistema;
 
-	@OneToMany(mappedBy = "descritor", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "descritor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Servico> servicos;
 
 	@ManyToMany(fetch = FetchType.LAZY)
@@ -164,17 +164,24 @@ public class Descritor implements Serializable {
 	}
     
     public String getMarcacoesFormatado() {
-    	if(marcacoes == null){
+    	if(marcacoes == null && marcacoesFormatado == null){
     		return "";
     	}
     	
     	StringBuffer sb = new StringBuffer();
     	
-    	for(Marcacao marcacao : marcacoes){
-    		if(sb.length() > 0){
-    			sb.append(", ");
+    	if(marcacoes != null && !marcacoes.isEmpty()){
+	    	for(Marcacao marcacao : marcacoes){
+	    		if(sb.length() > 0){
+	    			sb.append(", ");
+	    		}
+	    		sb.append(marcacao.getMarcacao());
+	    	}
+    	}
+    	else{
+    		if(marcacoesFormatado != null && !marcacoesFormatado.isEmpty()){
+    			return marcacoesFormatado;
     		}
-    		sb.append(marcacao.getMarcacao());
     	}
     	
 		return sb.toString();

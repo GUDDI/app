@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="crud">
-		<h:form prependId="true" styleClass="mainForm">
+		<h:form prependId="true" styleClass="mainForm" id="form">
 
 			<p:toolbar>
 				<p:toolbarGroup align="left">
@@ -77,6 +77,14 @@
 	                
 	                <!-- Aba dos Descritores -->
 	                <div id="tab2" class="tab_content">
+	                
+	                	<div class="rowElem noborder">
+							<h:outputLabel value="#{messages['sistema.label.nome']}: "/>
+							<div class="formLeft">
+								<h:outputText value="#{sistemaEditMB.bean.nome}" />
+							</div>
+							<div class="fix"></div>
+						</div>
 	                
 	                	<div class="rowElem noborder">
 							<h:outputLabel value="#{messages['sistema.label.tipo.descritor']}: " for="descritores"/>
@@ -186,12 +194,12 @@
 											<div class="rowElem noborder pb0">
 												
 												<p:commandButton value="#{messages['sistema.label.descritores.salvar']}" action="#{sistemaEditMB.salvarDescritor()}"
-													 			 icon="ui-icon-circle-check">
+													 			 icon="ui-icon-circle-check" update=":form:listaDescritores">
 													<f:ajax execute="@form"/>
 												</p:commandButton>
 												
-												<p:commandButton value="#{messages['sistema.label.descritores.excluir']}" rendered="${descritor.id != null}"
-													 			 icon="ui-icon-trash">
+												<p:commandButton value="#{messages['sistema.label.descritores.excluir']}" action="#{sistemaEditMB.removerDescritor(descritor)}" rendered="${descritor.id != null}"
+													 			 icon="ui-icon-trash" update=":form:listaDescritores">
 													<f:ajax execute="@form"/>
 												</p:commandButton>
 											</div>
@@ -210,12 +218,12 @@
 			                    		
 			                    		<div class="fix"></div>
 			                    		
-			                    		<h:panelGroup rendered="#{descritor.id != null}">
+			                    		<h:panelGroup id="listaServicos" rendered="#{descritor.id != null}">
 			                    	
 											<!-- Listagem dos serviços -->
 											<div class="widget first">
 												<div class="head">
-													<h5 class="iList">#{messages['servico.list.table.title']}</h5>
+													<h5 class="iList">#{messages['servico.list.table.title']} [ #{descritor.nome} ]</h5>
 												</div>
 											
 												<!-- Abas de Serviços -->

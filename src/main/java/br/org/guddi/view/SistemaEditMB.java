@@ -3,7 +3,6 @@ package br.org.guddi.view;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
@@ -72,13 +71,43 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
     	
     	for(Descritor descritor : getDescritores()){
     		if(!descritor.getMarcacoesFormatado().isEmpty()){
+
+    			descritor.setMarcacoes(new ArrayList<Marcacao>());
     			
+    			String[] marcacoes = descritor.getMarcacoesFormatado().split(",");
+    			
+    			for(String marcacaoStr : marcacoes){
+    				if(!marcacaoStr.isEmpty()){
+	    				Marcacao marcacao = marcacaoBC.findByMarcacao(marcacaoStr.trim());
+	    				if(marcacao == null){
+	    					marcacao = new Marcacao();
+	    					marcacao.setMarcacao(marcacaoStr.trim());
+	    					marcacaoBC.insert(marcacao);
+	    				}
+	    				
+	    				descritor.getMarcacoes().add(marcacao);
+    				}
+    			}
     		}
     	}
     	
-    	getBean().setDescritores(getDescritores());
+    	getBean().getDescritores().clear();
+    	getBean().getDescritores().addAll(getDescritores());
     	
     	sistemaBC.update(getBean());
+    	
+    	getBean().setDescritores(sistemaBC.load(getId()).getDescritores());
+    	
+		setDescritores(new ArrayList<Descritor>(getBean().getDescritores()));
+    }
+    
+    @Transactional
+    public void removerDescritor(Descritor descritor){
+    	
+    	getBean().getDescritores().remove(descritor);
+    	sistemaBC.update(getBean());
+    	
+    	handleLoad();
     }
     
 	public Servico getServicoNovo() {

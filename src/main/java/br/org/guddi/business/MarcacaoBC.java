@@ -17,5 +17,16 @@ public class MarcacaoBC extends DelegateCrud<Marcacao, Long, MarcacaoDAO> {
 
 	private static final long serialVersionUID = 1L;
 
+	@RequiredRole(value = {IRoles.ADMINISTRATOR, IRoles.MANAGER})
+	public Marcacao findByMarcacao(String marcacao) {
+		return getDelegate().findByMarcacao(marcacao);
+	}
+
+	@Override
+	@RequiredRole(value = {IRoles.ADMINISTRATOR, IRoles.MANAGER})
+	public void insert(Marcacao bean) {
+		super.insert(bean);
+	}
+
 
 }
