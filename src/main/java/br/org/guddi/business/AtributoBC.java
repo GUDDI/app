@@ -12,7 +12,7 @@ import br.org.guddi.security.IRoles;
  * @author escritorio
  */
 @BusinessController
-@RequiredRole(value = IRoles.ADMINISTRATOR)
+@RequiredRole(value = IRoles.MANAGER)
 public class AtributoBC extends DelegateCrud<Atributo, Long, AtributoDAO> {
 
 	private static final long serialVersionUID = 1L;

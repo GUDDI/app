@@ -3,7 +3,6 @@ package br.org.guddi.domain;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -56,10 +55,10 @@ public class Servico implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Descritor descritor;
 
-    @OneToMany(mappedBy = "servico", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "servico", fetch = FetchType.LAZY)
     private List<Atributo> atributos;
 
-    @OneToMany(mappedBy = "servico", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "servico", fetch = FetchType.LAZY)
     private List<Excecao> excecoes;
 
     /**

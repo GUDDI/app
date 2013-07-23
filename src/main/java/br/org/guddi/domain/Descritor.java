@@ -3,7 +3,6 @@ package br.org.guddi.domain;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -62,7 +61,7 @@ public class Descritor implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Sistema sistema;
 
-	@OneToMany(mappedBy = "descritor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "descritor", fetch = FetchType.LAZY)
     private List<Servico> servicos;
 
 	@ManyToMany(fetch = FetchType.LAZY)
