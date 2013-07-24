@@ -67,6 +67,8 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 	
 	private Integer abaDescritorAtual = 0;
 	
+	private Integer abaServicoAtual = 0;
+	
 	private List<Descritor> descritores;
 	
 	private DescritorType tipoDescritor;
@@ -78,6 +80,7 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 		
 		getDescritores().add(descritor);
 		setAbaDescritorAtual(getDescritores().size() - 1);
+		setAbaServicoAtual(new Integer(0));
 	}
     
     @Transactional
@@ -132,6 +135,7 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 			
 			if(!existeServicoNovo){
 				descritor.getServicos().add(new Servico());
+				setAbaServicoAtual(descritor.getServicos().size() - 2);
 			}
     	}
 	}
@@ -275,5 +279,12 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 		this.abaDescritorAtual = abaDescritorAtual;
 	}
 
+	public Integer getAbaServicoAtual() {
+		return abaServicoAtual;
+	}
+
+	public void setAbaServicoAtual(Integer abaServicoAtual) {
+		this.abaServicoAtual = abaServicoAtual;
+	}
 
 }

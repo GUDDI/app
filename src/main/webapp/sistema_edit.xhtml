@@ -188,7 +188,7 @@
 												</div>
 											
 												<!-- Abas de Serviços -->
-												<ul class="tabs">
+												<ul class="tabsServicos">
 													<ui:repeat var="servico" value="#{descritor.servicos}" varStatus="contadorServico">
 				                    					<li><a href="#tabServicoD#{descritor.id}S#{contadorServico.index}">#{servico.id == null ? messages['descritor.label.servico.adicionar'] : servico.nome}</a></li>
 						                    		</ui:repeat>
@@ -196,7 +196,7 @@
 									            
 									            <div class="tab_container">
 									            	<ui:repeat id="servicoRepeat" var="servico" value="#{descritor.servicos}" varStatus="contadorServico">
-					                					<div id="tabServicoD#{descritor.id}S#{contadorServico.index}" class="tab_content">
+					                					<div id="tabServicoD#{descritor.id}S#{contadorServico.index}" class="tab_content_servicos">
 					                					
 					                						<div class="floatleft coluna-30">
 					                							<div class="rowElem noborder pb0">
@@ -233,7 +233,7 @@
 					                					
 											                	<div class="floatleft coluna-70" style="border: 1px solid #d5d5d5;">
 											                		
-											                		<ul class="tabs">
+											                		<ul class="tabsComplementar">
 									                    				<li class="activeTab"><a href="#tabServicoAtributosS#{servico.id}A#{contadorServico.index}">#{messages['atributo.list.table.title']}</a></li>
 									                    				<li><a href="#tabServicoExcecoesS#{servico.id}E#{contadorServico.index}">#{messages['excecao.list.table.title']}</a></li>
 									                    				<li><a href="#tabServicoRetornoS#{servico.id}E#{contadorServico.index}">#{messages['servico.retorno.table.title']}</a></li>
@@ -243,7 +243,7 @@
 											                			
 											                			<!-- Listagem de Atributos  -->
 											                			
-											                			<div id="tabServicoAtributosS#{servico.id}A#{contadorServico.index}" class="tab_content">
+											                			<div id="tabServicoAtributosS#{servico.id}A#{contadorServico.index}" class="tab_content_complementar">
 											                				
 											                				<p:dataTable id="servicoAtributosS#{servico.id}A#{contadorServico.index}" var="atributo" value="#{servico.atributos}">
 										
@@ -298,7 +298,7 @@
 											                			
 											                			<!-- Listagem de Exceções -->
 											                			
-											                			<div id="tabServicoExcecoesS#{servico.id}E#{contadorServico.index}" class="tab_content">
+											                			<div id="tabServicoExcecoesS#{servico.id}E#{contadorServico.index}" class="tab_content_complementar">
 											                				
 											                				<p:dataTable id="servicoExcecoes" var="excecao" value="#{servico.excecoes}">
 										
@@ -347,7 +347,7 @@
 											                			</div>
 											                			
 											                			<!-- Tipo do retorno do servico -->
-											                			<div id="tabServicoRetornoS#{servico.id}E#{contadorServico.index}" class="tab_content">
+											                			<div id="tabServicoRetornoS#{servico.id}E#{contadorServico.index}" class="tab_content_complementar">
 											                			
 											                				<div class="rowElem noborder">
 																				<h:outputLabel value="#{messages['servico.retorno.label']}:" for="retornoTipo"/>
@@ -391,21 +391,52 @@
 									$(".acc .head").click(function() {
 										$(this).css({color:"#2B6893"}).next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("slow");
 										$(this).siblings().css({color:"#404040"});
+
+										$(this).next("div.menu_body").find(".tab_content_servicos").hide(); //Hide all content
+										$(this).next("div.menu_body").find("ul.tabsServicos li:eq(0)").addClass("activeTab").show(); //Activate first tab
+										$(this).next("div.menu_body").find(".tab_content_servicos:eq(0)").show(); //Show first tab content
+
+										$(this).next("div.menu_body").find(".tab_content_servicos").find(".tab_content_complementar").hide(); //Hide all content
+										$(this).next("div.menu_body").find(".tab_content_servicos").find("ul.tabsComplementar li:eq(0)").addClass("activeTab").show(); //Activate first tab
+										$(this).next("div.menu_body").find(".tab_content_servicos").find(".tab_content_complementar:eq(0)").show(); //Show first tab content
+										
 									});
 
 									//====== Tabs =========//
 									$.fn.simpleTabs = function(){ 
 										
 										//Default Action
-										$(this).find(".acc .tab_content").hide(); //Hide all content
-										//$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) ul.tabs li:first").addClass("activeTab").show(); //Activate first tab
-										//$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) .tab_content:first").show(); //Show first tab content
-									
+										$(this).find(".acc .tab_content_servicos").hide(); //Hide all content
+										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) ul.tabsServicos li:eq(#{sistemaEditMB.abaServicoAtual})").addClass("activeTab").show();
+										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) .tab_content_servicos:eq(#{sistemaEditMB.abaServicoAtual})").show();
+
+										$(this).find(".acc .tab_content_complementar").hide(); //Hide all content
+										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) ul.tabsServicos li:eq(#{sistemaEditMB.abaServicoAtual}) ul.tabsComplementar li:first").addClass("activeTab").show(); //Activate first tab
+										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) .tab_content_servicos:eq(#{sistemaEditMB.abaServicoAtual}) .tab_content_complementar:first").show(); //Show first tab content
+
+										
+										
 										//On Click Event
-										$(".acc ul.tabs li").click(function() {
-											$(this).parent().parent().find("ul.tabs li").removeClass("activeTab"); //Remove any "active" class
+										$(".acc ul.tabsServicos li").click(function() {
+											$(this).parent().parent().find("ul.tabsServicos li").removeClass("activeTab"); //Remove any "active" class
 											$(this).addClass("activeTab"); //Add "active" class to selected tab
-											$(this).parent().parent().find(".tab_content").hide(); //Hide all tab content
+											$(this).parent().parent().find(".tab_content_servicos").hide(); //Hide all tab content
+											var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+											$(activeTab).show(); //Fade in the active content
+
+											$(this).parent().find(".tab_content_servicos").find("ul.tabsComplementar li").removeClass("activeTab"); //Remove any "active" class
+											$(this).parent().find(".tab_content_servicos").find(".tab_content_complementar").hide(); //Hide all tab content
+											$(this).parent().find(".tab_content_servicos").find("ul.tabsComplementar li:first").addClass("activeTab").show(); //Activate first tab
+											$(this).parent().parent().find(".tab_content_servicos").find(".tab_content_complementar:first").show(); //Show first tab content
+											
+											return false;
+										});
+
+										//On Click Event
+										$(".acc ul.tabsComplementar li").click(function() {
+											$(this).parent().parent().find("ul.tabsComplementar li").removeClass("activeTab"); //Remove any "active" class
+											$(this).addClass("activeTab"); //Add "active" class to selected tab
+											$(this).parent().parent().find(".tab_content_complementar").hide(); //Hide all tab content
 											var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
 											$(activeTab).show(); //Fade in the active content
 											return false;
