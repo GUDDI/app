@@ -207,6 +207,14 @@
 																	<div class="fix"></div>
 																</div>
 																
+																<div class="rowElem noborder">
+																	<h:outputLabel value="#{messages['servico.retorno.label']}:" for="retornoTipo"/>
+																	<div class="formBottom">
+																		<h:inputText id="retornoTipo" value="#{servico.tipoRetorno}" />
+																	</div>
+																	<div class="fix"></div>
+																</div>
+																
 																<div class="rowElem noborder pb0">
 																	<h:outputLabel value="#{messages['servico.label.descricao']}: " for="servicoDescricao" styleClass="topLabel"/>
 																	<div class="formBottom">
@@ -216,7 +224,12 @@
 																</div>
 																
 																<div class="rowElem noborder pb0">
-																	<p:commandButton value="#{messages['servico.label.salvar']}" action="#{sistemaEditMB.salvarServico(descritor)}"
+																	<p:commandButton value="#{messages['servico.label.salvar']}" action="#{sistemaEditMB.salvarServico(descritor)}" rendered="#{servico.id == null}"
+																	 			 icon="ui-icon-circle-check" update=":form:listaDescritores">
+																		<f:ajax execute="@form" immediate="false"/>
+																	</p:commandButton>
+																	
+																	<p:commandButton value="#{messages['servico.label.salvar']}" action="#{sistemaEditMB.atualizarServico(servico)}" rendered="#{servico.id != null}"
 																	 			 icon="ui-icon-circle-check" update=":form:listaDescritores">
 																		<f:ajax execute="@form" immediate="false"/>
 																	</p:commandButton>
@@ -237,7 +250,6 @@
 											                		<ul class="tabsComplementar">
 									                    				<li><a href="#tabServicoAtributosS#{servico.id}A#{contadorServico.index}">#{messages['atributo.list.table.title']}</a></li>
 									                    				<li><a href="#tabServicoExcecoesS#{servico.id}E#{contadorServico.index}">#{messages['excecao.list.table.title']}</a></li>
-									                    				<li><a href="#tabServicoRetornoS#{servico.id}E#{contadorServico.index}">#{messages['servico.retorno.table.title']}</a></li>
 														            </ul>
 											                		
 											                		<div class="tab_container">
@@ -246,53 +258,80 @@
 											                			
 											                			<div id="tabServicoAtributosS#{servico.id}A#{contadorServico.index}" class="tab_content_complementar">
 											                				
-											                				<p:dataTable id="servicoAtributosS#{servico.id}A#{contadorServico.index}" var="atributo" value="#{servico.atributos}">
+											                				<p:dataTable id="servicoAtributosS#{servico.id}A#{contadorServico.index}" var="atributo" value="#{servico.atributos}"
+											                							 rendered="#{fn:length(servico.atributos) > 1}">
 										
-																				<p:column>
+																				<p:column rendered="#{atributo.id != null}">
 																					<f:facet name="header">#{messages['atributo.label.nome']}</f:facet>
 																					<h:outputText value="#{atributo.nome}" />
 																				</p:column>
 																						
-																				<p:column>
+																				<p:column rendered="#{atributo.id != null}">
 																					<f:facet name="header">#{messages['atributo.label.tipo']}</f:facet>
 																					<h:outputText value="#{atributo.tipo}" />
 																				</p:column>
 																				
-																				 <p:column style="width:4%">  
-																		                <p:commandButton icon="ui-icon-circle-close" title="View">  
-																		            </p:commandButton>  
+																				<p:column rendered="#{atributo.id != null}">
+																					<f:facet name="header">#{messages['atributo.label.descricao']}</f:facet>
+																					<h:outputText value="#{atributo.descricao}" />
+																				</p:column>
+																				
+																				<p:column style="width:4%" rendered="#{atributo.id != null}">  
+																				
+																					<p:commandButton action="#{sistemaEditMB.removerAtributo(servico, atributo)}"
+																					 			 icon="ui-icon-circle-close" update=":form:listaDescritores">
+																						<f:ajax execute="@form" immediate="true"/>
+																					</p:commandButton>
+																					
 																		        </p:column> 
 																						
 																			</p:dataTable>
 											                			
-											                				<div class="rowElem noborder">
-																				<h:outputLabel value="#{messages['atributo.alt.nome']}:" for="atributoNomeNovo"/>
-																				<div class="formLeft">
-																					<h:inputText id="atributoNomeNovo" value="#{sistemaEditMB.atributo.nome}" />
-																				</div>
-																				<div class="fix"></div>
-																			</div>
+											                				<ui:repeat var="atributoNovo" value="#{servico.atributos}" >
+											                				
+											                					<h:panelGroup rendered="#{atributoNovo.id == null}">
+											                			
+													                				<div class="rowElem noborder">
+																						<h:outputLabel value="#{messages['atributo.alt.nome']}:" for="atributoNomeNovo"/>
+																						<div class="formLeft">
+																							<h:inputText id="atributoNomeNovo" value="#{atributoNovo.nome}" />
+																						</div>
+																						<div class="fix"></div>
+																					</div>
+																					
+																					<div class="rowElem noborder">
+																						<h:outputLabel value="#{messages['atributo.alt.descricao']}:" for="atributoDescricaoNovo"/>
+																						<div class="formLeft">
+																							<h:inputText id="atributoDescricaoNovo" value="#{atributoNovo.descricao}" />
+																						</div>
+																						<div class="fix"></div>
+																					</div>
+																					
+																					<div class="rowElem noborder">
+																						<h:outputLabel value="#{messages['atributo.alt.tipo']}:" for="atributoTipoNovo"/>
+																						<div class="formLeft">
+																							<h:selectOneMenu id="atributoTipoNovo" value="#{atributoNovo.tipo}">
+																								<f:selectItem itemLabel="String" itemValue="String"/>
+																								<f:selectItem itemLabel="Integer" itemValue="Integer"/>
+																							</h:selectOneMenu>
+																						</div>
+																						<div class="fix"></div>
+																					</div>
+																					
+																					<div class="rowElem noborder">
+																						<h:outputLabel value=""/>
+																						<div class="formLeft">
+																							<p:commandButton value="#{messages['servico.label.atributos.adicionar']}" action="#{sistemaEditMB.salvarAtributo(servico, atributoNovo)}"
+																							 			 icon="ui-icon-plus" update=":form:listaDescritores">
+																								<f:ajax execute="@form" immediate="false"/>
+																							</p:commandButton>
 																			
-																			<div class="rowElem noborder">
-																				<h:outputLabel value="#{messages['atributo.alt.tipo']}:" for="atributoTipoNovo"/>
-																				<div class="formLeft">
-																					<h:selectOneMenu id="atributoTipoNovo" value="#{sistemaEditMB.atributo.tipo}">
-																						<f:selectItem itemLabel="String" itemValue="String"/>
-																						<f:selectItem itemLabel="Integer" itemValue="Integer"/>
-																					</h:selectOneMenu>
-																				</div>
-																				<div class="fix"></div>
-																			</div>
-																			
-																			<div class="rowElem noborder">
-																				<h:outputLabel value=""/>
-																				<div class="formLeft">
-																					<p:commandButton value="#{messages['sistema.label.descritores.adicionar']}"
-																						 			 icon="ui-icon-plus">
-																					</p:commandButton>
-																				</div>
-																				<div class="fix"></div>
-																			</div>
+																						</div>
+																						<div class="fix"></div>
+																					</div>
+																					
+																				</h:panelGroup>
+																			</ui:repeat>
 																			
 											                			</div>
 											                			
@@ -301,63 +340,62 @@
 											                			
 											                			<div id="tabServicoExcecoesS#{servico.id}E#{contadorServico.index}" class="tab_content_complementar">
 											                				
-											                				<p:dataTable id="servicoExcecoes" var="excecao" value="#{servico.excecoes}">
+											                				<p:dataTable id="servicoExcecoes" var="excecao" value="#{servico.excecoes}"
+											                							 rendered="#{fn:length(servico.excecoes) > 1}">
 										
-																				<p:column>
+																				<p:column rendered="#{excecao.id != null}">
 																					<f:facet name="header">#{messages['excecao.label.identificador']}</f:facet>
 																					<h:outputText value="#{excecao.identificador}" />
 																				</p:column>
 																						
-																				<p:column>
+																				<p:column rendered="#{excecao.id != null}">
 																					<f:facet name="header">#{messages['excecao.label.descricao']}</f:facet>
 																					<h:outputText value="#{excecao.descricao}" />
 																				</p:column>
 																				
-																				<p:column style="width:4%">  
-																		                <p:commandButton icon="ui-icon-circle-close" title="View">  
-																		            </p:commandButton>  
+																				<p:column style="width:4%" rendered="#{excecao.id != null}">  
+																		            <p:commandButton action="#{sistemaEditMB.removerExcecao(servico, excecao)}"
+																					 			 icon="ui-icon-circle-close" update=":form:listaDescritores">
+																						<f:ajax execute="@form" immediate="true"/>
+																					</p:commandButton> 
 																		        </p:column> 
 																						
 																			</p:dataTable>
-											                			
-											                				<div class="rowElem noborder">
-																				<h:outputLabel value="#{messages['excecao.label.identificador']}:" for="excecaoIdentificadorNovo"/>
-																				<div class="formLeft" style="width: 400px;">
-																					<h:inputText id="excecaoIdentificadorNovo" value="#{sistemaEditMB.excecao.identificador}" />
-																				</div>
-																				<div class="fix"></div>
-																			</div>
 																			
-																			<div class="rowElem noborder">
-																				<h:outputLabel value="#{messages['excecao.label.descricao']}:" for="excecaoDescricaoNovo"/>
-																				<div class="formLeft" style="width: 400px;">
-																					<h:inputText id="excecaoDescricaoNovo" value="#{sistemaEditMB.excecao.descricao}" />
-																				</div>
-																				<div class="fix"></div>
-																			</div>
-																			
-																			<div class="rowElem noborder">
-																				<h:outputLabel value=""/>
-																				<div class="formLeft" style="width: 400px;">
-																					<p:commandButton value="#{messages['sistema.label.descritores.adicionar']}"
-																						 			 icon="ui-icon-plus">
-																					</p:commandButton>
-																				</div>
-																				<div class="fix"></div>
-																			</div>
-											                			</div>
-											                			
-											                			<!-- Tipo do retorno do servico -->
-											                			<div id="tabServicoRetornoS#{servico.id}E#{contadorServico.index}" class="tab_content_complementar">
-											                			
-											                				<div class="rowElem noborder">
-																				<h:outputLabel value="#{messages['servico.retorno.label']}:" for="retornoTipo"/>
-																				<div class="formLeft" style="width: 400px;">
-																					<h:inputText id="retornoTipo" value="#{servico.tipoRetorno}" />
-																				</div>
-																				<div class="fix"></div>
-																			</div>
-																			
+																			<ui:repeat var="excecaoNova" value="#{servico.excecoes}" >
+											                				
+											                					<h:panelGroup rendered="#{excecaoNova.id == null}">
+													                			
+													                				<div class="rowElem noborder">
+																						<h:outputLabel value="#{messages['excecao.label.identificador']}:" for="excecaoIdentificadorNovo"/>
+																						<div class="formLeft" style="width: 400px;">
+																							<h:inputText id="excecaoIdentificadorNovo" value="#{excecaoNova.identificador}" />
+																						</div>
+																						<div class="fix"></div>
+																					</div>
+																					
+																					<div class="rowElem noborder">
+																						<h:outputLabel value="#{messages['excecao.label.descricao']}:" for="excecaoDescricaoNovo"/>
+																						<div class="formLeft" style="width: 400px;">
+																							<h:inputText id="excecaoDescricaoNovo" value="#{excecaoNova.descricao}" />
+																						</div>
+																						<div class="fix"></div>
+																					</div>
+																					
+																					<div class="rowElem noborder">
+																						<h:outputLabel value=""/>
+																						<div class="formLeft">
+																						
+																							<p:commandButton value="#{messages['servico.label.atributos.adicionar']}" action="#{sistemaEditMB.salvarExcecao(servico, excecaoNova)}"
+																							 			 icon="ui-icon-plus" update=":form:listaDescritores">
+																								<f:ajax execute="@form" immediate="false"/>
+																							</p:commandButton>
+																							
+																						</div>
+																						<div class="fix"></div>
+																					</div>
+																				</h:panelGroup>
+																			</ui:repeat>
 											                			</div>
 											                			
 											                		</div>
@@ -415,8 +453,8 @@
 
 										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) .tab_content_servicos .tab_content_complementar").hide(); //Hide all content
 										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) .tab_content_servicos:eq(#{sistemaEditMB.abaServicoAtual}) ul.tabsComplementar li").removeClass("activeTab");
-										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) .tab_content_servicos:eq(#{sistemaEditMB.abaServicoAtual}) ul.tabsComplementar li:eq(0)").addClass("activeTab").show(); //Activate first tab
-										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) .tab_content_servicos:eq(#{sistemaEditMB.abaServicoAtual}) .tab_content_complementar:eq(0)").show(); //Show first tab content
+										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) .tab_content_servicos:eq(#{sistemaEditMB.abaServicoAtual}) ul.tabsComplementar li:eq(#{sistemaEditMB.abaComplementarAtual})").addClass("activeTab").show(); //Activate first tab
+										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) .tab_content_servicos:eq(#{sistemaEditMB.abaServicoAtual}) .tab_content_complementar:eq(#{sistemaEditMB.abaComplementarAtual})").show(); //Show first tab content
 
 										//On Click Event
 										$(".acc ul.tabsServicos li").click(function() {
