@@ -52,7 +52,7 @@ public class Sistema implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Orgao orgao;
 
-	@OneToMany(mappedBy = "sistema", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "sistema", fetch = FetchType.LAZY)
     private List<Descritor> descritores;
 	
 	@Column(name="publico")

@@ -107,16 +107,23 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
     			}
     		}
     		
+    		if(descritor.getId() == null){
+    			descritorBC.insert(descritor);
+    		}
+    		else{
+    			descritorBC.update(descritor);
+    		}
     	}
     	
-    	getBean().getDescritores().clear();
-    	getBean().getDescritores().addAll(getDescritores());
+    	//getBean().getDescritores().clear();
+    	//getBean().getDescritores().addAll(getDescritores());
     	
-    	sistemaBC.update(getBean());
+    	//sistemaBC.update(getBean());
     	
-    	getBean().setDescritores(sistemaBC.load(getId()).getDescritores());
+    	//getBean().setDescritores(sistemaBC.load(getId()).getDescritores());
     	
-		setDescritores(new ArrayList<Descritor>(getBean().getDescritores()));
+		//setDescritores(new ArrayList<Descritor>(getBean().getDescritores()));
+    	adicionarNovoServico();
     }
     
     private void adicionarNovoServico() {
@@ -169,17 +176,19 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 		}
 		
 		getBean().getDescritores().remove(descritor);
+		getDescritores().remove(descritor);
 		descritorBC.delete(descritor.getId());
 		
-		sistemaBC.update(getBean());
+		//sistemaBC.update(getBean());
 		
-		getBean().setDescritores(sistemaBC.load(getId()).getDescritores());
+		//getBean().setDescritores(sistemaBC.load(getId()).getDescritores());
     	
-		setDescritores(new ArrayList<Descritor>(getBean().getDescritores()));
+		//setDescritores(new ArrayList<Descritor>(getBean().getDescritores()));
+		adicionarNovoServico();
     }
     
     @Transactional
-    public void adicionarServico(Descritor descritor){
+    public void salvarServico(Descritor descritor){
     	
     	for(Servico servico : descritor.getServicos()){
     		//Novo serviço
@@ -192,8 +201,6 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
     		}
     	}
     	
-		setDescritores(new ArrayList<Descritor>(sistemaBC.load(getId()).getDescritores()));
-		
 		int posicao = 0;
 		for(Descritor desc: getDescritores()){
 			if(desc.getId() != null){
@@ -204,6 +211,39 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 			posicao++;
 		}
     	
+		adicionarNovoServico();
+    }
+    
+    @Transactional
+    public void removerServico(Servico servico){
+    	
+    	if(servico.getAtributos() != null){
+			for(Atributo atributo : servico.getAtributos()){
+				atributoBC.delete(atributo.getId());
+			}
+			servico.getAtributos().clear();
+		}
+		
+		if(servico.getExcecoes() != null){
+			for(Excecao excecao : servico.getExcecoes()){
+				excecaoBC.delete(excecao.getId());
+			}
+			servico.getExcecoes().clear();
+		}
+		
+		Integer posicao = new Integer(0);
+		
+		for(Descritor descritor : getDescritores()){
+			if(descritor.getServicos().remove(servico)){
+				setAbaDescritorAtual(posicao);
+				setAbaServicoAtual(new Integer(0));
+			}
+			posicao++;
+		}
+		
+		servicoBC.delete(servico.getId());
+		
+		adicionarNovoServico();
     }
     
 	public Atributo getAtributo() {

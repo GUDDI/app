@@ -216,13 +216,14 @@
 																</div>
 																
 																<div class="rowElem noborder pb0">
-																	<p:commandButton value="#{messages['servico.label.salvar']}" action="#{sistemaEditMB.adicionarServico(descritor)}"
+																	<p:commandButton value="#{messages['servico.label.salvar']}" action="#{sistemaEditMB.salvarServico(descritor)}"
 																	 			 icon="ui-icon-circle-check" update=":form:listaDescritores">
 																		<f:ajax execute="@form" immediate="false"/>
 																	</p:commandButton>
 																	
 																	<p:commandButton value="#{messages['servico.label.excluir']}" rendered="#{servico.id != null}"
-																		 			 icon="ui-icon-trash">
+																					 action="#{sistemaEditMB.removerServico(servico)}"
+																		 			 icon="ui-icon-trash" update=":form:listaDescritores">
 																		<f:ajax execute="@form"/>
 																	</p:commandButton>
 																</div>
@@ -234,7 +235,7 @@
 											                	<div class="floatleft coluna-70" style="border: 1px solid #d5d5d5;">
 											                		
 											                		<ul class="tabsComplementar">
-									                    				<li class="activeTab"><a href="#tabServicoAtributosS#{servico.id}A#{contadorServico.index}">#{messages['atributo.list.table.title']}</a></li>
+									                    				<li><a href="#tabServicoAtributosS#{servico.id}A#{contadorServico.index}">#{messages['atributo.list.table.title']}</a></li>
 									                    				<li><a href="#tabServicoExcecoesS#{servico.id}E#{contadorServico.index}">#{messages['excecao.list.table.title']}</a></li>
 									                    				<li><a href="#tabServicoRetornoS#{servico.id}E#{contadorServico.index}">#{messages['servico.retorno.table.title']}</a></li>
 														            </ul>
@@ -393,10 +394,12 @@
 										$(this).siblings().css({color:"#404040"});
 
 										$(this).next("div.menu_body").find(".tab_content_servicos").hide(); //Hide all content
+										$(this).next("div.menu_body").find("ul.tabsServicos li").removeClass("activeTab");
 										$(this).next("div.menu_body").find("ul.tabsServicos li:eq(0)").addClass("activeTab").show(); //Activate first tab
 										$(this).next("div.menu_body").find(".tab_content_servicos:eq(0)").show(); //Show first tab content
 
 										$(this).next("div.menu_body").find(".tab_content_servicos").find(".tab_content_complementar").hide(); //Hide all content
+										$(this).next("div.menu_body").find(".tab_content_servicos").find("ul.tabsComplementar li").removeClass("activeTab");
 										$(this).next("div.menu_body").find(".tab_content_servicos").find("ul.tabsComplementar li:eq(0)").addClass("activeTab").show(); //Activate first tab
 										$(this).next("div.menu_body").find(".tab_content_servicos").find(".tab_content_complementar:eq(0)").show(); //Show first tab content
 										
@@ -410,12 +413,11 @@
 										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) ul.tabsServicos li:eq(#{sistemaEditMB.abaServicoAtual})").addClass("activeTab").show();
 										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) .tab_content_servicos:eq(#{sistemaEditMB.abaServicoAtual})").show();
 
-										$(this).find(".acc .tab_content_complementar").hide(); //Hide all content
-										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) ul.tabsServicos li:eq(#{sistemaEditMB.abaServicoAtual}) ul.tabsComplementar li:first").addClass("activeTab").show(); //Activate first tab
-										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) .tab_content_servicos:eq(#{sistemaEditMB.abaServicoAtual}) .tab_content_complementar:first").show(); //Show first tab content
+										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) .tab_content_servicos .tab_content_complementar").hide(); //Hide all content
+										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) .tab_content_servicos:eq(#{sistemaEditMB.abaServicoAtual}) ul.tabsComplementar li").removeClass("activeTab");
+										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) .tab_content_servicos:eq(#{sistemaEditMB.abaServicoAtual}) ul.tabsComplementar li:eq(0)").addClass("activeTab").show(); //Activate first tab
+										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) .tab_content_servicos:eq(#{sistemaEditMB.abaServicoAtual}) .tab_content_complementar:eq(0)").show(); //Show first tab content
 
-										
-										
 										//On Click Event
 										$(".acc ul.tabsServicos li").click(function() {
 											$(this).parent().parent().find("ul.tabsServicos li").removeClass("activeTab"); //Remove any "active" class
@@ -424,9 +426,9 @@
 											var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
 											$(activeTab).show(); //Fade in the active content
 
-											$(this).parent().find(".tab_content_servicos").find("ul.tabsComplementar li").removeClass("activeTab"); //Remove any "active" class
-											$(this).parent().find(".tab_content_servicos").find(".tab_content_complementar").hide(); //Hide all tab content
-											$(this).parent().find(".tab_content_servicos").find("ul.tabsComplementar li:first").addClass("activeTab").show(); //Activate first tab
+											$(this).parent().parent().find(".tab_content_servicos").find("ul.tabsComplementar li").removeClass("activeTab"); //Remove any "active" class
+											$(this).parent().parent().find(".tab_content_servicos").find(".tab_content_complementar").hide(); //Hide all tab content
+											$(this).parent().parent().find(".tab_content_servicos").find("ul.tabsComplementar li:first").addClass("activeTab").show(); //Activate first tab
 											$(this).parent().parent().find(".tab_content_servicos").find(".tab_content_complementar:first").show(); //Show first tab content
 											
 											return false;
