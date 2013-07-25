@@ -269,6 +269,11 @@
 			// Calculate the height if necessary, less elements that the default height
 			//show the ul to calculate the block, if ul is not displayed li height value is 0
 			$ul.css({display:'block',visibility:'hidden'});
+			
+			if($('li:first',$ul).height() == 0){
+				$('li:first',$ul).css("height", 24);
+			}
+			
 			var iSelectHeight = ($('li',$ul).length)*($('li:first',$ul).height());//+1 else bug ff
 			(iSelectHeight < $ul.height()) && $ul.css({height:iSelectHeight,'overflow':'hidden'});//hidden else bug with ff
 			$ul.css({display:'none',visibility:'visible'});

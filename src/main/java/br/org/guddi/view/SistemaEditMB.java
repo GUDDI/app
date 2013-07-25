@@ -1,6 +1,7 @@
 package br.org.guddi.view;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -74,48 +75,96 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
     	descritor.setTipo(getTipoDescritor());
     	descritor.setSistema(getBean());
 		
-		getDescritores().add(descritor);
-		setAbaDescritorAtual(getDescritores().size() - 1);
-		setAbaServicoAtual(new Integer(0));
-		setAbaComplementarAtual(new Integer(0));
-	}
-    
-    @Transactional
-    public void salvarDescritor() {
+    	if(getDescritores() == null){
+    		setDescritores(new ArrayList<Descritor>());
+    	}
     	
-    	for(Descritor descritor : getDescritores()){
-    		if(!descritor.getMarcacoesFormatado().isEmpty()){
-
-    			descritor.setMarcacoes(new ArrayList<Marcacao>());
-    			
-    			String[] marcacoes = descritor.getMarcacoesFormatado().split(",");
-    			
-    			for(String marcacaoStr : marcacoes){
-    				if(!marcacaoStr.isEmpty()){
-	    				Marcacao marcacao = marcacaoBC.findByMarcacao(marcacaoStr.trim());
-	    				if(marcacao == null){
-	    					marcacao = new Marcacao();
-	    					marcacao.setMarcacao(marcacaoStr.trim());
-	    					marcacaoBC.insert(marcacao);
-	    				}
-	    				
-	    				descritor.getMarcacoes().add(marcacao);
-    				}
-    			}
-    		}
-    		
-    		if(descritor.getId() == null){
-    			descritorBC.insert(descritor);
-    		}
-    		else{
-    			descritorBC.update(descritor);
+    	
+    	Boolean existeDescritorNovo = Boolean.FALSE;
+    	for(Descritor descritorNovo : getDescritores()){
+    		if(descritorNovo.getId() == null){
+    			existeDescritorNovo = Boolean.TRUE;
     		}
     	}
     	
+    	if(!existeDescritorNovo){
+    		getDescritores().add(descritor);
+    		setAbaDescritorAtual(getDescritores().size() - 1);
+    		setAbaServicoAtual(new Integer(0));
+    		setAbaComplementarAtual(new Integer(0));
+    	}
+	}
+    
+    @Transactional
+    public void salvarDescritor(Descritor descritor) {
+    	
+		if(!descritor.getMarcacoesFormatado().isEmpty()){
+
+			descritor.setMarcacoes(new ArrayList<Marcacao>());
+			
+			String[] marcacoes = descritor.getMarcacoesFormatado().split(",");
+			
+			for(String marcacaoStr : marcacoes){
+				if(!marcacaoStr.isEmpty()){
+    				Marcacao marcacao = marcacaoBC.findByMarcacao(marcacaoStr.trim());
+    				if(marcacao == null){
+    					marcacao = new Marcacao();
+    					marcacao.setMarcacao(marcacaoStr.trim());
+    					marcacaoBC.insert(marcacao);
+    				}
+    				
+    				descritor.getMarcacoes().add(marcacao);
+				}
+			}
+		}
+		
+		if(descritor.getId() == null){
+			descritorBC.insert(descritor);
+		}
+		else{
+			descritorBC.update(descritor);
+		}
+		
+		ajustarAbas(descritor, null);
+		
     	adicionarNovoServico();
     }
     
-    private void adicionarNovoServico() {
+    private void ajustarAbas(Descritor descritor, Servico servico) {
+		
+    	int posicaoDescritor = 0;
+		for(Descritor desc: getDescritores()){
+			if(desc.getId() != null){
+				if(desc.getId().equals(descritor.getId())){
+					setAbaDescritorAtual(posicaoDescritor);
+					break;
+				}
+			}
+			posicaoDescritor++;
+		}
+		
+		if(servico != null){
+						
+			Integer posicaoServico = new Integer(0);
+			for(Servico serv : descritor.getServicos()){
+				if(serv.getId() != null){
+					if(serv.getId().equals(servico.getId())){
+						setAbaServicoAtual(posicaoServico);
+						break;
+					}
+				}
+				posicaoServico++;
+			}
+		}
+		else{
+			setAbaServicoAtual(new Integer(0));
+		}
+		
+		setAbaComplementarAtual(new Integer(0));
+		
+	}
+
+	private void adicionarNovoServico() {
     	for(Descritor descritor : getDescritores()){
 	    	if(descritor.getServicos() == null){
 				descritor.setServicos(new ArrayList<Servico>());
@@ -197,7 +246,6 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 			descritor.getServicos().clear();
 		}
 		
-		getBean().getDescritores().remove(descritor);
 		getDescritores().remove(descritor);
 		descritorBC.delete(descritor.getId());
 		
@@ -212,7 +260,6 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
     		//Novo serviço
     		if(servico.getId() == null){
     			servico.setDescritor(descritor);
-    			
     			servicoBC.insert(servico);
     		}
     		else{
@@ -220,17 +267,8 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
     		}
     	}
     	
-		int posicao = 0;
-		for(Descritor desc: getDescritores()){
-			if(desc.getId() != null){
-				if(desc.getId().equals(descritor.getId())){
-					setAbaDescritorAtual(posicao);
-					setAbaComplementarAtual(new Integer(0));
-				}
-			}
-			posicao++;
-		}
-    	
+		ajustarAbas(descritor, null);
+		
 		adicionarNovoServico();
     }
     
@@ -239,27 +277,8 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
     		
 		servicoBC.update(servico);
     	
-		int posicao = 0;
-		for(Descritor desc: getDescritores()){
-			if(desc.getId() != null){
-				if(desc.getId().equals(servico.getDescritor().getId())){
-					setAbaDescritorAtual(posicao);
-					
-					Integer posicaoServico = new Integer(0);
-					for(Servico serv : desc.getServicos()){
-						if(serv.getId() != null){
-							if(serv.getId().equals(servico.getId())){
-								setAbaServicoAtual(posicaoServico);
-							}
-						}
-						posicaoServico++;
-					}
-				}
-			}
-			posicao++;
-		}
-    	
-		setAbaComplementarAtual(new Integer(0));
+		ajustarAbas(servico.getDescritor(), servico);
+		
     }
     
     @Transactional
@@ -281,16 +300,7 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 			servico.getExcecoes().clear();
 		}
 		
-		Integer posicao = new Integer(0);
-		
-		for(Descritor descritor : getDescritores()){
-			if(descritor.getServicos().remove(servico)){
-				setAbaDescritorAtual(posicao);
-				setAbaServicoAtual(new Integer(0));
-				setAbaComplementarAtual(new Integer(0));
-			}
-			posicao++;
-		}
+		ajustarAbas(servico.getDescritor(), servico);
 		
 		servicoBC.delete(servico.getId());
 		
@@ -310,28 +320,7 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
     	
     	servico.getAtributos().add(new Atributo());
     	
-    	Integer posicao = new Integer(0);
-		
-		for(Descritor descritor : getDescritores()){
-			if(descritor.getId().equals(servico.getDescritor().getId())){
-				setAbaDescritorAtual(posicao);
-				
-				Integer posicaoServico = new Integer(0);
-				
-				for(Servico serv : descritor.getServicos()){
-					if(serv.getId().equals(servico.getId())){
-						setAbaServicoAtual(posicaoServico);
-						break;
-					}
-					posicaoServico++;
-				}
-				
-				break;
-			}
-			posicao++;
-		}
-		
-		setAbaComplementarAtual(new Integer(0));
+    	ajustarAbas(servico.getDescritor(), servico);
     }
     
     @Transactional
@@ -340,28 +329,7 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
     	servico.getAtributos().remove(atributo);
     	atributoBC.delete(atributo.getId());
     	
-    	Integer posicao = new Integer(0);
-		
-		for(Descritor descritor : getDescritores()){
-			if(descritor.getId().equals(servico.getDescritor().getId())){
-				setAbaDescritorAtual(posicao);
-				
-				Integer posicaoServico = new Integer(0);
-				
-				for(Servico serv : descritor.getServicos()){
-					if(serv.getId().equals(servico.getId())){
-						setAbaServicoAtual(posicaoServico);
-						break;
-					}
-					posicaoServico++;
-				}
-				
-				break;
-			}
-			posicao++;
-		}
-		
-		setAbaComplementarAtual(new Integer(0));
+    	ajustarAbas(servico.getDescritor(), servico);
     }
     
     @Transactional
@@ -377,26 +345,7 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
     	
     	servico.getExcecoes().add(new Excecao());
     	
-    	Integer posicao = new Integer(0);
-		
-		for(Descritor descritor : getDescritores()){
-			if(descritor.getId().equals(servico.getDescritor().getId())){
-				setAbaDescritorAtual(posicao);
-				
-				Integer posicaoServico = new Integer(0);
-				
-				for(Servico serv : descritor.getServicos()){
-					if(serv.getId().equals(servico.getId())){
-						setAbaServicoAtual(posicaoServico);
-						break;
-					}
-					posicaoServico++;
-				}
-				
-				break;
-			}
-			posicao++;
-		}
+    	ajustarAbas(servico.getDescritor(), servico);
 		
 		setAbaComplementarAtual(new Integer(1));
     }
@@ -407,26 +356,7 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
     	servico.getExcecoes().remove(excecao);
     	excecaoBC.delete(excecao.getId());
     	
-    	Integer posicao = new Integer(0);
-		
-		for(Descritor descritor : getDescritores()){
-			if(descritor.getId().equals(servico.getDescritor().getId())){
-				setAbaDescritorAtual(posicao);
-				
-				Integer posicaoServico = new Integer(0);
-				
-				for(Servico serv : descritor.getServicos()){
-					if(serv.getId().equals(servico.getId())){
-						setAbaServicoAtual(posicaoServico);
-						break;
-					}
-					posicaoServico++;
-				}
-				
-				break;
-			}
-			posicao++;
-		}
+    	ajustarAbas(servico.getDescritor(), servico);
 		
 		setAbaComplementarAtual(new Integer(1));
     }
@@ -462,24 +392,74 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 	@Override
 	@Transactional
 	public String delete() {
-		//this.sistemaBC.delete(getId());
+		
+		if(getDescritores() != null){
+			Iterator<Descritor> itDescritor = getDescritores().iterator();
+			
+			while(itDescritor.hasNext()){
+			
+				Descritor descritor = itDescritor.next();
+				
+				if(descritor.getId() != null){
+				
+					if(descritor.getServicos() != null){
+						
+						Iterator<Servico> itServico = descritor.getServicos().iterator();
+						while(itServico.hasNext()){
+							
+							Servico servico = itServico.next();
+								
+							if(servico.getId() != null){
+								if(servico.getAtributos() != null){
+									for(Atributo atributo : servico.getAtributos()){
+										if(atributo.getId() != null){
+											atributoBC.delete(atributo.getId());
+										}
+									}
+									servico.getAtributos().clear();
+								}
+								
+								if(servico.getExcecoes() != null){
+									for(Excecao excecao : servico.getExcecoes()){
+										if(excecao.getId() != null){
+											excecaoBC.delete(excecao.getId());
+										}
+									}
+									servico.getExcecoes().clear();
+								}
+								
+								servicoBC.delete(servico.getId());
+							}
+						}
+						
+						descritor.getServicos().clear();
+					}
+					
+					descritorBC.delete(descritor.getId());
+				}
+			}
+		}
+		
+		this.sistemaBC.delete(getBean().getId());
 		return getPreviousView();
 	}
 
 	@Override
 	@Transactional
 	public String insert() {
+		getBean().setOrgao(orgaoBC.load(identity.getOrgao()));
 		this.sistemaBC.insert(getBean());
-		return getPreviousView();
+		return "";
 	}
 
 	@Override
 	@Transactional
 	public String update() {
+		getBean().setOrgao(orgaoBC.load(identity.getOrgao()));
 		this.sistemaBC.update(getBean());
-		return getPreviousView();
+		return "";
 	}
-
+	
 	public Integer getAbaDescritorAtual() {
 		return abaDescritorAtual;
 	}

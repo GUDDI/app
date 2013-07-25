@@ -16,7 +16,10 @@ import javax.validation.constraints.NotNull;
  */
 @Embeddable
 public class UsuarioRecursoPK implements Serializable {
-    @Basic(optional = false)
+	
+	private static final long serialVersionUID = -1849399048118149823L;
+	
+	@Basic(optional = false)
     @NotNull
     @Column(name = "id_usuario", nullable = false)
     private Long idUsuario;

@@ -9,24 +9,30 @@
 
 			<p:toolbar>
 				<p:toolbarGroup align="left">
+				
 					<p:commandButton value="#{messages['button.save']}" action="#{sistemaEditMB.insert}"
-						rendered="#{!sistemaEditMB.updateMode}" ajax="false" icon="ui-icon-disk"/>
+									 rendered="#{sistemaEditMB.bean.id == null}" ajax="false" icon="ui-icon-disk"
+									 update="@form">
+						<f:ajax execute="@form"/>
+					</p:commandButton>
 						
 					<p:commandButton value="#{messages['button.save']}" action="#{sistemaEditMB.update}"
-						rendered="#{sistemaEditMB.updateMode}" ajax="false" icon="ui-icon-disk"/>
+									 rendered="#{sistemaEditMB.bean.id != null}" ajax="false" icon="ui-icon-disk"/>
 						
 					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-						rendered="#{sistemaEditMB.updateMode}" type="button" immediate="true" ajax="false" icon="ui-icon-trash"/>
+									 rendered="#{sistemaEditMB.bean.id != null}" type="button" immediate="true" ajax="false" icon="ui-icon-trash"/>
 						
 					<p:commandButton value="#{messages['button.back']}" action="sistema_list.jsf" icon="ui-icon-circle-arrow-w"
 									 immediate="true" ajax="false"/>
 						
 					<p:confirmDialog message="#{messages['label.confirm.delete']}" 
-						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
-						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{sistemaEditMB.delete}" immediate="true"
-							/>
+									 header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+									 
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{sistemaEditMB.delete}" immediate="true"/>
 						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+						
 					</p:confirmDialog>
+					
 				</p:toolbarGroup>
 			</p:toolbar>
 			
@@ -34,7 +40,11 @@
 	        <div class="widget first">       
 	            <ul class="tabs">
 	                <li><a href="#tab1">#{messages['sistema.label']}</a></li>
-	                <li><a href="#tab2">#{messages['sistema.label.descritores']}</a></li>
+	                
+	                <h:panelGroup rendered="#{sistemaEditMB.bean.id != null}">
+	                	<li><a href="#tab2">#{messages['sistema.label.descritores']}</a></li>
+	                </h:panelGroup>
+	                
 	            </ul>
 	            
 	            <!-- Aba do Sistema -->
@@ -63,7 +73,7 @@
 						<div class="rowElem noborder">
 							<h:outputLabel value="#{messages['sistema.label.orgao']}: " for="orgao"/>
 							<div class="formLeft">
-								<h:outputText value="#{sistemaEditMB.bean.orgao.nome}" />
+								<h:outputText value="#{sistemaEditMB.updateMode ? sistemaEditMB.bean.orgao.nome : identity.nomeorgao}" />
 							</div>
 							<div class="fix"></div>
 						</div>
@@ -154,7 +164,7 @@
 											
 											<div class="rowElem noborder pb0">
 												
-												<p:commandButton value="#{messages['sistema.label.descritores.salvar']}" action="#{sistemaEditMB.salvarDescritor()}"
+												<p:commandButton value="#{messages['sistema.label.descritores.salvar']}" action="#{sistemaEditMB.salvarDescritor(descritor)}"
 													 			 icon="ui-icon-circle-check" update=":form:listaDescritores">
 													<f:ajax execute="@form"/>
 												</p:commandButton>
@@ -290,6 +300,26 @@
 											                				<ui:repeat var="atributoNovo" value="#{servico.atributos}" >
 											                				
 											                					<h:panelGroup rendered="#{atributoNovo.id == null}">
+											                					
+											                						<div class="rowElem noborder">
+																						<h:outputLabel value="#{messages['atributo.alt.tipo']}:" for="atributoTipoNovo"/>
+																						<div class="formLeft">
+																							<h:selectOneMenu id="atributoTipoNovo" value="#{atributoNovo.tipo}" style="width: 100px;">
+																								<f:selectItem itemLabel="String" itemValue="String"/>
+																								<f:selectItem itemLabel="Boolean" itemValue="Boolean"/>
+																								<f:selectItem itemLabel="Integer" itemValue="Integer"/>
+																								<f:selectItem itemLabel="Float" itemValue="Float"/>
+																								<f:selectItem itemLabel="Double" itemValue="Double"/>
+																								<f:selectItem itemLabel="Long" itemValue="Long"/>
+																								<f:selectItem itemLabel="Short" itemValue="Short"/>
+																								<f:selectItem itemLabel="Byte" itemValue="Byte"/>
+																								<f:selectItem itemLabel="Date Time" itemValue="Date Time"/>
+																								<f:selectItem itemLabel="Date" itemValue="Date"/>
+																								<f:selectItem itemLabel="Time" itemValue="Time"/>
+																							</h:selectOneMenu>
+																						</div>
+																						<div class="fix"></div>
+																					</div>
 											                			
 													                				<div class="rowElem noborder">
 																						<h:outputLabel value="#{messages['atributo.alt.nome']}:" for="atributoNomeNovo"/>
@@ -303,17 +333,6 @@
 																						<h:outputLabel value="#{messages['atributo.alt.descricao']}:" for="atributoDescricaoNovo"/>
 																						<div class="formLeft">
 																							<h:inputText id="atributoDescricaoNovo" value="#{atributoNovo.descricao}" />
-																						</div>
-																						<div class="fix"></div>
-																					</div>
-																					
-																					<div class="rowElem noborder">
-																						<h:outputLabel value="#{messages['atributo.alt.tipo']}:" for="atributoTipoNovo"/>
-																						<div class="formLeft">
-																							<h:selectOneMenu id="atributoTipoNovo" value="#{atributoNovo.tipo}">
-																								<f:selectItem itemLabel="String" itemValue="String"/>
-																								<f:selectItem itemLabel="Integer" itemValue="Integer"/>
-																							</h:selectOneMenu>
 																						</div>
 																						<div class="fix"></div>
 																					</div>
