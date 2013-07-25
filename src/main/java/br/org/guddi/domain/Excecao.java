@@ -37,7 +37,7 @@ public class Excecao implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-	@Size(min=1, max = 20)
+	@Size(max = 20)
     @Column(length = 20)
 	@NotNull
     private String identificador;

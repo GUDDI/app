@@ -126,9 +126,11 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 		
 		if(descritor.getId() == null){
 			descritorBC.insert(descritor);
+			messageContext.add("{descritor-insert-ok}", descritor.getNome());
 		}
 		else{
 			descritorBC.update(descritor);
+			messageContext.add("{descritor-update-ok}", descritor.getNome());
 		}
 		
 		ajustarAbas(descritor, null);
@@ -282,7 +284,7 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
     public void atualizarServico(Servico servico){
     		
 		servicoBC.update(servico);
-    	
+		
 		ajustarAbas(servico.getDescritor(), servico);
 		
     }
@@ -327,6 +329,7 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
     	servico.getAtributos().add(new Atributo());
     	
     	ajustarAbas(servico.getDescritor(), servico);
+    	
     }
     
     @Transactional
@@ -447,6 +450,9 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 		}
 		
 		this.sistemaBC.delete(getBean().getId());
+		
+		messageContext.add("{sistema-delete-ok}", getBean().getNome());
+		
 		return getPreviousView();
 	}
 
@@ -455,6 +461,9 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 	public String insert() {
 		getBean().setOrgao(orgaoBC.load(identity.getOrgao()));
 		this.sistemaBC.insert(getBean());
+		
+		messageContext.add("{sistema-insert-ok}", getBean().getNome());
+		
 		return "";
 	}
 
@@ -463,6 +472,9 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 	public String update() {
 		getBean().setOrgao(orgaoBC.load(identity.getOrgao()));
 		this.sistemaBC.update(getBean());
+		
+		messageContext.add("{sistema-update-ok}", getBean().getNome());
+		
 		return "";
 	}
 	

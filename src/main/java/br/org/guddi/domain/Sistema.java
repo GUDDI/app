@@ -39,7 +39,7 @@ public class Sistema implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-	@Size(min=1, max = 100)
+	@Size(max = 100)
     @Column(length = 100)
 	@NotNull
     private String nome;

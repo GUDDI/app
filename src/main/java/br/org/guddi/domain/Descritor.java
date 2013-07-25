@@ -43,12 +43,12 @@ public class Descritor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-	@Size(min=1, max = 256)
+	@Size(max = 256)
 	@Column(length = 256)
 	@NotNull
 	private String url;
 	
-	@Size(min=1, max = 35)
+	@Size(max = 35)
 	@Column(length = 35)
 	@NotNull
 	private String nome;

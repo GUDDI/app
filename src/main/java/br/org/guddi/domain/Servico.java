@@ -40,7 +40,7 @@ public class Servico implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(min=1, max = 50)
+    @Size(max = 50)
     @Column(length = 50)
     @NotNull
     private String nome;
