@@ -46,8 +46,8 @@ public class Descritor implements Serializable {
 	@Column(length = 256)
 	private String url;
 	
-	@Size(max = 25)
-	@Column(length = 25)
+	@Size(max = 35)
+	@Column(length = 35)
 	private String nome;
 	
 	@Size(max = 1500)

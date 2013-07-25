@@ -36,12 +36,12 @@ public class Atributo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(max = 20)
-    @Column(length = 20)
+    @Size(max = 50)
+    @Column(length = 50)
     private String nome;
 
-    @Size(max = 10)
-    @Column(length = 10)
+    @Size(max = 50)
+    @Column(length = 50)
     private String tipo;
     
     @Size(max = 300)
