@@ -1,6 +1,7 @@
 package br.org.guddi.view;
 
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.message.MessageContext;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
@@ -20,44 +21,39 @@ public class MarcacaoEditMB extends AbstractEditPageBean<Marcacao, Long> {
 
 	@Inject
 	private MarcacaoBC marcacaoBC;
+	
+	@Inject
+	private MessageContext messageContext;
 
-	/**
-     *
-     * @return
-     */
     @Override
 	public String delete() {
     	throw new UnsupportedOperationException();
 	}
 
-	/**
-     *
-     * @return
-     */
     @Override
 	@Transactional
 	public String insert() {
 		this.marcacaoBC.insert(getBean());
+		
+		messageContext.add("{marcacao-insert-ok}", getBean().getMarcacao());
+		
 		return getPreviousView();
 	}
 
-	/**
-     *
-     * @return
-     */
     @Override
 	@Transactional
 	public String update() {
 		this.marcacaoBC.update(getBean());
+		
+		messageContext.add("{marcacao-update-ok}", getBean().getMarcacao());
+		
 		return getPreviousView();
 	}
 
-	/**
-     *
-     */
     @Override
 	protected void handleLoad() {
 		setBean(this.marcacaoBC.load(getId()));
 	}
+    
 
 }
