@@ -20,6 +20,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -42,12 +43,14 @@ public class Descritor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-	@Size(max = 256)
+	@Size(min=1, max = 256)
 	@Column(length = 256)
+	@NotNull
 	private String url;
 	
-	@Size(max = 35)
+	@Size(min=1, max = 35)
 	@Column(length = 35)
+	@NotNull
 	private String nome;
 	
 	@Size(max = 1500)

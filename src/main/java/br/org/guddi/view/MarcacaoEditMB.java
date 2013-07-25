@@ -1,7 +1,9 @@
 package br.org.guddi.view;
 
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.exception.ExceptionHandler;
 import br.gov.frameworkdemoiselle.message.MessageContext;
+import br.gov.frameworkdemoiselle.message.SeverityType;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
@@ -53,6 +55,11 @@ public class MarcacaoEditMB extends AbstractEditPageBean<Marcacao, Long> {
     @Override
 	protected void handleLoad() {
 		setBean(this.marcacaoBC.load(getId()));
+	}
+    
+    @ExceptionHandler
+	private void tratarExcecao(Exception e){
+		messageContext.add("{guddi.erro.generico}", SeverityType.ERROR);
 	}
     
 

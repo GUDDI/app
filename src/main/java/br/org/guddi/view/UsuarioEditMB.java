@@ -5,7 +5,9 @@ import java.util.HashMap;
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.exception.ExceptionHandler;
 import br.gov.frameworkdemoiselle.message.MessageContext;
+import br.gov.frameworkdemoiselle.message.SeverityType;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
@@ -34,10 +36,6 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
 	@Inject
 	private Orgao orgao;
 	
-	/**
-     *
-     * @return
-     */
     @Override
 	@Transactional
 	public String delete() {
@@ -46,7 +44,7 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
     
     @Transactional
     public String ativar(){
-    	getBean().setIsAtivo(Boolean.TRUE);
+		getBean().setIsAtivo(Boolean.TRUE);
     	this.usuarioBC.update(getBean());
     	
     	messageContext.add("{usuario-ativo-ok}");
@@ -64,10 +62,6 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
     	return getPreviousView();
     }
 	
-	/**
-     *
-     * @return
-     */
     @Override
 	@Transactional
 	public String insert() {
@@ -80,33 +74,22 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
 		this.usuarioBC.insert(getBean());
 		
 		messageContext.add("{usuario-insert-ok}", getBean().getUsuario());
-		
+    	
 		return getPreviousView();
 	}
 	
-	/**
-     *
-     * @return
-     */
     @Override
 	@Transactional
 	public String update() {
     	throw new UnsupportedOperationException();
 	}
 	
-	/**
-     *
-     */
     @Override
 	protected void handleLoad() {
 		setBean(this.usuarioBC.load(getId()));
 		setOrgao(getBean().getOrgao());
 	}
 
-	/**
-     *
-     * @return
-     */
     public HashMap<Short, String> getPapeis(){
 		return Roles.getRolesListAsMap();
 	}
@@ -117,6 +100,11 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
 
 	public void setOrgao(Orgao orgao) {
 		this.orgao = orgao;
+	}
+	
+	@ExceptionHandler
+	private void tratarExcecao(Exception e){
+		messageContext.add("{guddi.erro.generico}", SeverityType.ERROR);
 	}
     
 

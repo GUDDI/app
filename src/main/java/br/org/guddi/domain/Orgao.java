@@ -37,7 +37,7 @@ public class Orgao implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(max = 50)
+    @Size(min=1, max = 50)
     @Column(length = 50)
     private String nome;
 

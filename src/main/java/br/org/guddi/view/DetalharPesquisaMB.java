@@ -23,73 +23,40 @@ public class DetalharPesquisaMB extends AbstractEditPageBean<Servico, Long> {
 	private ServicoBC servicoBC;
 
 	private Long idServico;
-
-	/**
-     *
-     */
     @Override
 	protected void handleLoad() {
 
 		setBean(servicoBC.load(getId()));
 
 	}
-
-	/**
-     *
-     * @return
-     */
     public String detalharServico() {
 
 		return getNextView();
 	}
 
 
-	/**
-     *
-     * @return
-     */
     public Long getIdServico() {
 		return idServico;
 	}
 
-	/**
-     *
-     * @param idServico
-     */
     public void setIdServico(Long idServico) {
 		this.idServico = idServico;
 	}
 
 
-	/**
-     *
-     * @return
-     */
     @Override
 	public String delete() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
-
-	/**
-     *
-     * @return
-     */
     @Override
 	public String insert() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 
-	/**
-     *
-     * @return
-     */
     @Override
 	public String update() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

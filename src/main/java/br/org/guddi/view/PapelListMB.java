@@ -14,13 +14,8 @@ public class PapelListMB {
 	
 	private List<String> resultList;
 	
-	/**
-     *
-     * @return
-     */
     protected List<String> getResultList() {
 		this.resultList = Roles.getRolesList();
-		
 		return this.resultList;
 	}
 

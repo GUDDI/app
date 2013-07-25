@@ -1,15 +1,15 @@
 package br.org.guddi.view;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
-import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.org.guddi.business.UsuarioBC;
 import br.org.guddi.domain.Usuario;
-import java.util.Iterator;
-import java.util.List;
-import javax.inject.Inject;
 
 /**
  *
@@ -34,23 +34,5 @@ public class UsuarioListMB extends AbstractListPageBean<Usuario, Long> {
 		return this.usuarioBC.findAll();
 	}
 
-	/**
-     *
-     * @return
-     */
-    @Transactional
-	public String deleteSelection() {
-		boolean delete;
-		for (Iterator<Long> iter = getSelection().keySet().iterator(); iter.hasNext();) {
-			Long id = iter.next();
-			delete = getSelection().get(id);
-			if (delete) {
-				usuarioBC.delete(id);
-				iter.remove();
-			}
-		}
-		return getPreviousView();
-	}
-   
 
 }

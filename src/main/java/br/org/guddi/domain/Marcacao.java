@@ -31,7 +31,7 @@ public class Marcacao implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-	@Size(max = 15)
+	@Size(min=1, max = 15)
     @Column(length = 15)
     private String marcacao;
 

@@ -39,31 +39,31 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column()
     @NotNull
     private Short papel = 0;
     
-    @Size(max = 50)
+    @Size(min=3, max = 50)
     @Column(length = 50)
     @NotNull
     private String nome;
     
-    @Size(max = 64)
+    @Size(min=5, max = 64)
     @Column(length = 64)
     @NotNull
     private String email;
     
-    @Size(max = 64)
+    @Size(min=3, max = 64)
     @Column(length = 64)
     @NotNull
     private String aminesia;
     
-    @Size(max = 30)
+    @Size(min=3, max = 30)
     @Column(length = 30)
     @NotNull
     private String usuario;
     
-    @Size(max = 32)
+    @Size(min=3, max = 32)
     @Column(length = 32)
     @NotNull
     private String senha;

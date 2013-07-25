@@ -7,6 +7,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.exception.ExceptionHandler;
+import br.gov.frameworkdemoiselle.message.MessageContext;
+import br.gov.frameworkdemoiselle.message.SeverityType;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
@@ -69,6 +72,9 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 	private List<Descritor> descritores;
 	
 	private DescritorType tipoDescritor;
+	
+	@Inject
+	private MessageContext messageContext;
 	
     public void adicionaDescritor() {
     	Descritor descritor = new Descritor();
@@ -482,6 +488,11 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 
 	public void setAbaComplementarAtual(Integer abaComplementarAtual) {
 		this.abaComplementarAtual = abaComplementarAtual;
+	}
+	
+	@ExceptionHandler
+	private void tratarExcecao(Exception e){
+		messageContext.add("{guddi.erro.generico}", SeverityType.ERROR);
 	}
 
 }
