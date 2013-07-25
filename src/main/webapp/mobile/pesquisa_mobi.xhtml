@@ -14,9 +14,8 @@
 
             <pm:header title="Pesquisa Serviços" swatch="b">
                 <f:facet name="left">
-                    <p:button style="width:10; height:30; border:1px solid #000;" 
-                              value="#{messages['button.back']}" icon="back"
-                              href="#{sistemaEditMB.previousView}"/>
+                    <p:button value="#{messages['button.back']}" icon="back"
+                              href="./navigator.jsf"/>
                 </f:facet>
                 <f:facet name="right">
                     <p:button value="#{messages['main.app.title']}" icon="home"
@@ -27,47 +26,27 @@
             <pm:content>
                 <h:form>
 
-                    <h:outputText id="id"  label="#{messages['sistema.label.id']}: "
-                                  value="#{sistemaEditMB.bean.id}"/>
-
-
-                    <p:inputText id="nome"  label="#{messages['sistema.label.nome']}: "
-                                 value="#{sistemaEditMB.bean.nome}" required="true"/>					
-
-                    <p:inputText id="orgao"  label="#{messages['sistema.label.orgao']}: "
-                                 value="#{sistemaEditMB.bean.orgao}" required="true"/>					
-
-                    <p:inputText id="descritores"  label="#{messages['sistema.label.descritores']}: "
-                                 value="#{sistemaEditMB.bean.descritores}" required="true"/>					
-
-                    <p:inputText id="isPublico"  label="#{messages['sistema.label.isPublico']}: "
-                                 value="#{sistemaEditMB.bean.isPublico}" required="true"/>					
+                    <h:inputText autocomplete="true" label="Pesquisar:" value="#{pesquisarMB.searchParam}"/>
 
                     <pm:buttonGroup orientation="horizontal" >
-                        <p:commandButton value="#{messages['button.save']}"
-                                         action="#{sistemaEditMB.update}" icon="check"
-                                         iconPosition="center" />
-                        <p:commandButton value="#{messages['button.delete']}"
-                                         action="#{sistemaEditMB.delete}"
-                                         rendered="#{sistemaEditMB.updateMode}" icon="delete"
-                                         iconPosition="center" />
+                        <p:commandButton id="search_button"
+                                         value="Pesquisar"
+                                         title="Pesquisar"
+                                         icon="ui-icon-search"
+                                         action="#{pesquisarMB.gerartListRemotoFake()}"
+                                         update="ListMobi"/>
                     </pm:buttonGroup>
+
+                    <p:separator />
+
+                    <p:dataList id="ListMobi" rows="6" paginator="true" value="#{pesquisarMB.mobiListRemotoFake}" var="fake" lazy="true">
+                        <f:attribute name="paginatorText" value="Consultas" />                        
+                        #{fake.nomeOrgao} - #{fake.link}  - #{fake.quantidadeOcorrencias}
+                    </p:dataList>
 
                 </h:form>
             </pm:content>
-        </pm:view>
-        <!-- NavBar -->
-        <pm:view id="navbar">
-            <pm:header title="NavBar">
-                <f:facet name="left"><p:button value="Back" icon="back" onclick="PrimeFaces.back()"/></f:facet>
-                <pm:navBar>
-                    <p:button value="Home" icon="home" href="#main?reverse=true" styleClass="ui-btn-active ui-state-persist"/>
-                    <p:button value="Info" icon="info" href="#main?reverse=true" />
-                    <p:button value="Search" icon="search" href="#main?reverse=true" />
-                </pm:navBar>
-            </pm:header>
-
-            <pm:content>
+<!--            <pm:footer>
                 <pm:navBar>
                     <p:button value="Home" icon="home" href="#main?reverse=true" styleClass="ui-btn-active ui-state-persist"/>
                     <p:button value="Info" icon="info" href="#main?reverse=true" />
@@ -75,7 +54,7 @@
                     <p:button value="Favs" icon="star" href="#main?reverse=true" />
                     <p:button value="Setup" icon="gear" href="#main?reverse=true" />
                 </pm:navBar>
-            </pm:content>
+            </pm:footer>-->
         </pm:view>
     </pm:page>
 

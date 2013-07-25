@@ -28,19 +28,16 @@ import br.org.guddi.util.search.SearchFilter;
 @NextView("./detalhamento_servico.jsf")
 public class PesquisarMB extends AbstractPageBean {
 
-	private static final long serialVersionUID = -7896379863254694834L;
-
-	@Inject
+    private static final long serialVersionUID = -7896379863254694834L;
+    @Inject
     private Logger logger;
-    
     @Inject
     private PesquisarBC pesquisarBC;
-    
     private String searchParam;
     private int first, rows;
     private LazyDataModel<Pesquisa> lazyModel;
     private List<PesquisaFake> listRemotoFake;
-
+    private List<PesquisaFake> mobiListRemotoFake;
 
     /**
      * Construtor padrão que reinicializa os parametros do paginador
@@ -75,18 +72,17 @@ public class PesquisarMB extends AbstractPageBean {
      */
     public void search() {
 
-    	lazyModel = new LazyDataModel<Pesquisa>() {
-        	
-			private static final long serialVersionUID = -6541913048403958674L;
+        lazyModel = new LazyDataModel<Pesquisa>() {
+            private static final long serialVersionUID = -6541913048403958674L;
 
-			@Override
+            @Override
             public List<Pesquisa> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
 
                 pesquisarBC.searhValidation(searchParam);
 
                 int count = pesquisarBC.count(searchParam);
                 lazyModel.setRowCount(count);
-                
+
                 if (count > 0) {
                     if (first > count) {
                         // Go to last page
@@ -96,7 +92,7 @@ public class PesquisarMB extends AbstractPageBean {
                     parameters.setFirst(first);
                     parameters.setPageSize(pageSize);
                     List<Pesquisa> list = pesquisarBC.search(searchParam, parameters);
-                    
+
                     logger.info("END: load");
                     return list;
                 } else {
@@ -104,7 +100,7 @@ public class PesquisarMB extends AbstractPageBean {
                 }
             }
         };
-        
+
     }
 
     /**
@@ -116,7 +112,6 @@ public class PesquisarMB extends AbstractPageBean {
         searchFirst();
         return getPreviousView();
     }
-
 
     /**
      *
@@ -141,9 +136,8 @@ public class PesquisarMB extends AbstractPageBean {
     public void setSearchParam(String searchParam) {
         this.searchParam = searchParam;
     }
-    
-    
-	/**
+
+    /**
      *
      * @param lazyModel
      */
@@ -183,25 +177,36 @@ public class PesquisarMB extends AbstractPageBean {
         this.rows = rows;
     }
 
-	public List<PesquisaFake> getListRemotoFake() {
-		List<PesquisaFake> resultado = new ArrayList<PesquisaFake>();
-        
+    public List<PesquisaFake> getListRemotoFake() {
+        List<PesquisaFake> resultado = new ArrayList<PesquisaFake>();
+
         PesquisaFake pesquisa1 = new PesquisaFake("Ministério da Saúde", "http://guddi.saude.gov.br/", 13);
         PesquisaFake pesquisa2 = new PesquisaFake("Secretaria da Saúde do Paraná", "http://guddi.saude.pr.gov.br/", 3);
         PesquisaFake pesquisa3 = new PesquisaFake("Secretaria da Saúde de Santa Catarina", "http://guddi.saude.sc.gov.br/", 5);
         PesquisaFake pesquisa4 = new PesquisaFake("Secretaria Municipal da Saúde de Curitiba", "http://guddi.saude.curitiba.gov.br/", 1);
-        
+
         resultado.add(pesquisa1);
         resultado.add(pesquisa2);
         resultado.add(pesquisa3);
         resultado.add(pesquisa4);
-        
-        return resultado;
-	}
 
-	public void setListRemotoFake(List<PesquisaFake> listRemotoFake) {
-		this.listRemotoFake = listRemotoFake;
-	}
-    
-    
+        return resultado;
+    }
+
+    public List<PesquisaFake> gerartListRemotoFake() {
+
+        return getListRemotoFake();
+    }
+
+    public void setListRemotoFake(List<PesquisaFake> listRemotoFake) {
+        this.listRemotoFake = listRemotoFake;
+    }
+
+    public List<PesquisaFake> getMobiListRemotoFake() {
+        return mobiListRemotoFake;
+    }
+
+    public void setMobiListRemotoFake(List<PesquisaFake> mobiListRemotoFake) {
+        this.mobiListRemotoFake = mobiListRemotoFake;
+    }
 }

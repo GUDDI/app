@@ -1,37 +1,52 @@
 <html xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
-	xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<f:view contentType="text/html" locale="#currentLocale" />
+    <f:view contentType="text/html" locale="#currentLocale" />
 
-<h:head>
-	<title>#{messages['main.app.title']}</title>
-	<link type="text/css" rel="stylesheet" href="css/styles.css" />
-        <script type="text/javascript" src="../js/guddi.js"></script>
-</h:head>
+    <h:head>
+        <title>#{messages['main.app.title']}</title>
+        <link type="text/css" rel="stylesheet" href="css/styles.css" />
+        <script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-<h:body style="background-color:#f1f1f1">
-	<table style="width: 100%">
-		<tr>
-			<td height="70" align="left"><a href="index.jsf"><img src="images/logo.png" border="0" /></a></td>
-		</tr>
-		<tr valign="top">
-			<td height="400"><ui:insert name="body" /></td>
-		</tr>
-		<tr align="center">
-			<td height="20" align="center" class="text-input">#{messages['main.footer.text']}</td>
-		</tr>
-	</table>
+            ga('create', 'UA-42108725-2', 'sourceforge.net');
+            ga('send', 'pageview');
+        </script> 
+    </h:head>
 
-	<p:growl id="messages" globalOnly="true" />
+    <h:body style="background-color:#f1f1f1">
+        <table style="width: 100%">
+            <tr>
+                <td height="70" align="left"><a href="index.jsf"><img src="images/logo.png" border="0" /></a></td>
+            </tr>
+            <tr valign="top">
+                <td height="400"><ui:insert name="body" /></td>
+            </tr>
+            <tr align="center">
+                <td height="20" align="center" class="text-input">#{messages['main.footer.text']}</td>
+            </tr>
+        </table>
 
-	<p:ajaxStatus style="width:16px;height:16px;">
-		<f:facet name="start">
-		</f:facet>
+        <p:growl id="messages" globalOnly="true" />
 
-		<f:facet name="complete">
-			<h:outputText value="" />
-		</f:facet>
-	</p:ajaxStatus>
-	<link type="text/css" rel="stylesheet" href="css/aristo/skin.css" />
-</h:body>
+        <p:ajaxStatus style="width:16px;height:16px;">
+            <f:facet name="start">
+            </f:facet>
+
+            <f:facet name="complete">
+                <h:outputText value="" />
+            </f:facet>
+        </p:ajaxStatus>
+        <link type="text/css" rel="stylesheet" href="css/bootstrap/skin.css" />
+    </h:body>
 </html>
