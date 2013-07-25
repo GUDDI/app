@@ -5,6 +5,7 @@ import java.util.HashMap;
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.message.MessageContext;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
@@ -23,6 +24,9 @@ import br.org.guddi.util.CriptografiaUtil;
 public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
 
 	private static final long serialVersionUID = 1L;
+	
+	@Inject
+	private MessageContext messageContext;
 	
 	@Inject
 	private UsuarioBC usuarioBC;
@@ -45,6 +49,8 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
     	getBean().setIsAtivo(Boolean.TRUE);
     	this.usuarioBC.update(getBean());
     	
+    	messageContext.add("{usuario-ativo-ok}");
+    	
     	return getPreviousView();
     }
     
@@ -52,6 +58,8 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
     public String inativar(){
     	getBean().setIsAtivo(Boolean.FALSE);
     	this.usuarioBC.update(getBean());
+    	
+    	messageContext.add("{usuario-inativo-ok}");
     	
     	return getPreviousView();
     }
@@ -70,6 +78,9 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
         getBean().setIsAtivo(Boolean.FALSE);
         
 		this.usuarioBC.insert(getBean());
+		
+		messageContext.add("{usuario-insert-ok}", getBean().getUsuario());
+		
 		return getPreviousView();
 	}
 	
@@ -80,8 +91,7 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
     @Override
 	@Transactional
 	public String update() {
-		this.usuarioBC.update(getBean());
-		return getPreviousView();
+    	throw new UnsupportedOperationException();
 	}
 	
 	/**
