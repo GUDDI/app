@@ -5,7 +5,7 @@
 
 	<ui:define name="crud">
 	
-		<h:form prependId="false" styleClass="mainForm">
+		<h:form prependId="false" styleClass="mainForm" id="valid">
 
 			<p:toolbar>
 				<p:toolbarGroup align="left">
@@ -15,8 +15,7 @@
 					<p:commandButton value="#{messages['button.save']}" action="#{marcacaoEditMB.update}"
 						rendered="#{marcacaoEditMB.updateMode}" ajax="false" icon="ui-icon-disk"/>
 						
-					<p:commandButton value="#{messages['button.back']}" action="marcacao_list.jsf" icon="ui-icon-circle-arrow-w"
-						immediate="true" ajax="false"/>
+					<p:button value="#{messages['button.back']}" href="marcacao_list.jsf" icon="ui-icon-circle-arrow-w"/>
 						
 				</p:toolbarGroup>
 			</p:toolbar>
@@ -28,7 +27,7 @@
 						<h5 class="iList">#{messages['marcacao.label']}</h5>
 					</div>
 					
-					<div class="rowElem">
+					<div class="rowElem noborder">
 						<h:outputLabel value="#{messages['marcacao.label.id']}: " for="id"/>
 						<div class="formLeft">
 							<h:outputText id="id" value="#{marcacaoEditMB.bean.id}" />
@@ -36,10 +35,11 @@
 						<div class="fix"></div>
 					</div>
 					
-					<div class="rowElem">
+					<div class="rowElem noborder">
 						<h:outputLabel value="#{messages['marcacao.label.marcacao']}: " for="marcacao"/>
 						<div class="formLeft">
-							<h:inputText id="marcacao" value="#{marcacaoEditMB.bean.marcacao}" title="#{messages['marcacao.alt.marcacao']}" />
+							<h:inputText id="marcacao" value="#{marcacaoEditMB.bean.marcacao}" title="#{messages['marcacao.alt.marcacao']}" 
+										 styleClass="validate[required,minSize[1],maxSize[15]]"/>
 						</div>
 						<div class="fix"></div>
 					</div>

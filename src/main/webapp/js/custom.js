@@ -359,7 +359,7 @@ $(function() {
 	
 	//===== Form validation engine =====//
 
-	$("#valid").validationEngine();
+	$("#valid").validationEngine({promptPosition : "topRight", scroll: true});
 	
 	//===== Datepickers =====//
 
