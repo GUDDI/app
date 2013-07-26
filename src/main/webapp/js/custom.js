@@ -359,9 +359,8 @@ $(function() {
 	
 	//===== Form validation engine =====//
 
-	//$("#valid").validationEngine();
+	$("#valid").validationEngine();
 	
-
 	//===== Datepickers =====//
 
 	/*
