@@ -24,7 +24,10 @@
 						
 						<p:column style="width:5%;" sortBy="#{bean.id}">
 							<f:facet name="header">#{messages['sistema.label.id']}</f:facet>
-							<h:outputText value="#{bean.id}" />
+							<h:commandLink action="#{sistemaListMB.getNextView}" actionListener="#{sistemaListMB.clear}">
+								<h:outputText value="#{bean.id}" />
+								<f:param name="id" value="#{bean.id}" />
+							</h:commandLink>
 						</p:column>
 								
 						<p:column sortBy="#{bean.nome}">
