@@ -1,8 +1,8 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.Set;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -42,10 +42,10 @@ public class Orgao implements Serializable {
     private String nome;
 
     @OneToMany(mappedBy = "orgao", fetch = FetchType.LAZY)
-    private Set<Sistema> sistemas;
+    private List<Sistema> sistemas;
 
     @OneToMany(mappedBy = "orgao", fetch = FetchType.LAZY)
-    private Set<Usuario> usuarios;
+    private List<Usuario> usuarios;
     
     @Column(length=100)
     private String url;
@@ -123,18 +123,15 @@ public class Orgao implements Serializable {
      * @return
      */
     @XmlTransient
-    public Set<Sistema> getSistemas() {
-    	if(sistemas == null){
-    		return null;
-    	}
-        return Collections.unmodifiableSet(sistemas);
+    public List<Sistema> getSistemas() {
+        return sistemas;
     }
 
     /**
      *
      * @param sistemas
      */
-    public void setSistemas(Set<Sistema> sistemas) {
+    public void setSistemas(List<Sistema> sistemas) {
         this.sistemas = sistemas;
     }
 
@@ -143,18 +140,15 @@ public class Orgao implements Serializable {
      * @return
      */
     @XmlTransient
-    public Set<Usuario> getUsuarios() {
-    	if(usuarios == null){
-    		return null;
-    	}
-        return Collections.unmodifiableSet(usuarios);
+    public List<Usuario> getUsuarios() {
+        return usuarios;
     }
 
     /**
      *
      * @param usuarios
      */
-    public void setUsuarios(Set<Usuario> usuarios) {
+    public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
     

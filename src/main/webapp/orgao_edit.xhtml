@@ -1,11 +1,10 @@
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:c="http://java.sun.com/jsp/jstl/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
     <ui:define name="crud">
-        <h:form prependId="false" styleClass="mainForm" acceptcharset="UTF-8" >
+        <h:form prependId="false" styleClass="mainForm" id="valid">
 
             <p:toolbar>
                 <p:toolbarGroup align="left">
@@ -15,8 +14,7 @@
                     <p:commandButton value="#{messages['button.save']}" action="#{orgaoEditMB.update}"
                                      rendered="#{orgaoEditMB.updateMode}" ajax="false" icon="ui-icon-disk"/>
                                      
-                    <p:commandButton value="#{messages['button.back']}" action="orgao_list.jsf" icon="ui-icon-circle-arrow-w"
-									 immediate="true" ajax="false"/>
+                    <p:button href="orgao_list.jsf" value="#{messages['button.back']}" icon="ui-icon-circle-arrow-w"/>
                                      
                 </p:toolbarGroup>
             </p:toolbar>
@@ -27,7 +25,7 @@
 						<h5 class="iList">#{messages['orgao.label']}</h5>
 					</div>
 					
-					<div class="rowElem">
+					<div class="rowElem noborder">
 						<h:outputLabel value="#{messages['orgao.label.id']}: " for="id"/>
 						<div class="formLeft">
 							 <h:outputText id="id" value="#{orgaoEditMB.bean.id}" />
@@ -35,102 +33,111 @@
 						<div class="fix"></div>
 					</div>
 					
-					<div class="rowElem">
+					<div class="rowElem noborder">
 						<h:outputLabel value="#{messages['orgao.label.nome']}: " for="nome" />
 						<div class="formLeft">
-							 <h:inputText id="nome" value="#{orgaoEditMB.bean.nome}" title="#{messages['orgao.alt.nome']}" />
+							 <h:inputText id="nome" value="#{orgaoEditMB.bean.nome}" title="#{messages['orgao.alt.nome']}" 
+							 			  styleClass="validate[required,minSize[1],maxSize[50]]"/>
 						</div>
 						<div class="fix"></div>
 					</div>
 					
-					<div class="rowElem">
+					<div class="rowElem noborder">
 						<h:outputLabel value="#{messages['orgao.alt.sistemas']}: " />
 						<div class="formLeft">
 							<ol>
-								<c:forEach items="#{orgaoEditMB.bean.sistemas}" var="sistema">
+								<ui:repeat var="sistema" value="#{orgaoEditMB.bean.sistemas}">
 									<li>
 										<h:outputText value="#{sistema.nome}" />
 									</li>
-								</c:forEach>
+								</ui:repeat>
 							</ol>
 						</div>
 						<div class="fix"></div>
 					</div>
 					
-					<div class="rowElem">
+					<div class="rowElem noborder">
 						<h:outputLabel value="#{messages['orgao.label.usuarios']}: "/>
 						<div class="formLeft">
 							<ol>
-								<c:forEach items="#{orgaoEditMB.bean.usuarios}" var="usuario">
+								<ui:repeat var="usuario" value="#{orgaoEditMB.bean.usuarios}">
 									<li>
 										<h:outputText value="#{usuario.nome} [#{usuario.usuario}]" />
 									</li>
-								</c:forEach>
+								</ui:repeat>
 							</ol>
 						</div>
 						<div class="fix"></div>
 					</div>
 					
-					<div class="rowElem">
+					<div class="rowElem noborder">
 						<h:outputLabel value="#{messages['orgao.label.url']}: " for="url" />
 						<div class="formLeft">
-							 <h:inputText id="url" value="#{orgaoEditMB.bean.url}" title="#{messages['orgao.alt.url']}" />
+							 <h:inputText id="url" value="#{orgaoEditMB.bean.url}" title="#{messages['orgao.alt.url']}" 
+							 			  styleClass="validate[required,maxSize[100],custom[url]]"/>
 						</div>
 						<div class="fix"></div>
 					</div>
 					
-					<div class="rowElem">
+					<div class="rowElem noborder">
 						<h:outputLabel value="#{messages['orgao.label.sigla']}: " for="sigla" />
 						<div class="formLeft">
-							 <h:inputText id="sigla" value="#{orgaoEditMB.bean.sigla}" title="#{messages['orgao.alt.sigla']}" />
+							 <h:inputText id="sigla" value="#{orgaoEditMB.bean.sigla}" title="#{messages['orgao.alt.sigla']}" 
+							 			  styleClass="validate[required,maxSize[10]]"/>
 						</div>
 						<div class="fix"></div>
 					</div>
 					
-					<div class="rowElem">
+					<div class="rowElem noborder">
 						<h:outputLabel value="#{messages['orgao.label.razao.social']}: " for="razaoSocial" />
 						<div class="formLeft">
-							 <h:inputText id="razaoSocial" value="#{orgaoEditMB.bean.razaoSocial}" title="#{messages['orgao.alt.razao.social']}" />
+							 <h:inputText id="razaoSocial" value="#{orgaoEditMB.bean.razaoSocial}" title="#{messages['orgao.alt.razao.social']}" 
+							 			  styleClass="validate[required,maxSize[50]]"/>
 						</div>
 						<div class="fix"></div>
 					</div>
 					
-					<div class="rowElem">
+					<div class="rowElem noborder">
 						<h:outputLabel value="#{messages['orgao.label.codigo']}: " for="codigo" />
 						<div class="formLeft">
-							 <h:inputText id="codigo" value="#{orgaoEditMB.bean.codigo}" title="#{messages['orgao.alt.codigo']}" />
+							 <h:inputText id="codigo" value="#{orgaoEditMB.bean.codigo}" title="#{messages['orgao.alt.codigo']}" 
+							 			  styleClass="validate[required,maxSize[10]]"/>
 						</div>
 						<div class="fix"></div>
 					</div>
 					
-					<div class="rowElem">
+					<div class="rowElem noborder">
 						<h:outputLabel value="#{messages['orgao.label.uf']}: " for="uf" />
 						<div class="formLeft">
-							 <h:inputText id="uf" value="#{orgaoEditMB.bean.uf}" title="#{messages['orgao.alt.uf']}" />
+							 <h:inputText id="uf" value="#{orgaoEditMB.bean.uf}" title="#{messages['orgao.alt.uf']}" 
+							 			  styleClass="validate[required,minSize[2],maxSize[2]]"/>
 						</div>
 						<div class="fix"></div>
 					</div>
 					
-					<div class="rowElem">
+					<div class="rowElem noborder">
 						<h:outputLabel value="#{messages['orgao.label.endereco']}: " for="endereco" />
 						<div class="formLeft">
-							 <h:inputText id="endereco" value="#{orgaoEditMB.bean.endereco}" title="#{messages['orgao.alt.endereco']}" />
+							 <h:inputText id="endereco" value="#{orgaoEditMB.bean.endereco}" title="#{messages['orgao.alt.endereco']}" 
+							 			  styleClass="validate[required,maxSize[70]]"/>
 						</div>
 						<div class="fix"></div>
 					</div>
 					
-					<div class="rowElem">
+					<div class="rowElem noborder">
 						<h:outputLabel value="#{messages['orgao.label.email']}: " for="email" />
 						<div class="formLeft">
-							 <h:inputText id="email" value="#{orgaoEditMB.bean.email}" title="#{messages['orgao.alt.email']}" />
+							 <h:inputText id="email" value="#{orgaoEditMB.bean.email}" title="#{messages['orgao.alt.email']}" 
+							 			  styleClass="validate[required,maxSize[60],custom[email]]"/>
 						</div>
 						<div class="fix"></div>
 					</div>
 					
-					<div class="rowElem">
+					<div class="rowElem noborder">
 						<h:outputLabel value="#{messages['orgao.label.nome.contato']}: " for="nomeContato" />
 						<div class="formLeft">
-							 <h:inputText id="nomeContato" value="#{orgaoEditMB.bean.nomeContato}" title="#{messages['orgao.alt.nome.contato']}" />
+							 <h:inputText id="nomeContato" value="#{orgaoEditMB.bean.nomeContato}" title="#{messages['orgao.alt.nome.contato']}" 
+							 			  styleClass="validate[required,maxSize[50]]"/>
 						</div>
 						<div class="fix"></div>
 					</div>
