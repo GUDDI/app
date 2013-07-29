@@ -111,8 +111,8 @@
 										
 										</div>				                        
 				                        <div style="font-size: 0.9em; padding: 4px 10px;">
-				                            <h:outputText value="URL : " /> 
-				                            <h:outputLink value="#{item.url}">
+				                            <h:outputText value="URL : " rendered="#{item.isPublico}" /> 
+				                            <h:outputLink value="#{item.url}" rendered="#{item.isPublico}">
 				                            	<h:outputText value="#{item.url}" />
 				                            </h:outputLink>
 				                            <br/>
@@ -128,7 +128,6 @@
 		                
 		                <!-- Aba do Pesquisa Remoto -->
 		                <div id="tab2" class="tab_content">
-		                
 		                
 		                	<p:dataTable id="listRemoto" value="#{pesquisarMB.listRemotoFake}"
 	                             var="item" 

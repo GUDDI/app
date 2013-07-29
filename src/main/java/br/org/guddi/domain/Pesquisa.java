@@ -25,6 +25,8 @@ public class Pesquisa implements Serializable {
 	private Long idSistema;
 
 	private String nomeSistema;
+	
+	private Boolean isPublico;
 
 	private Long idOrgao;
 
@@ -180,5 +182,23 @@ public class Pesquisa implements Serializable {
     public void setNomeSistema(String nomeSistema) {
 		this.nomeSistema = nomeSistema;
 	}
+
+    /**
+    *
+    * @return
+    */
+	public Boolean getIsPublico() {
+		return isPublico;
+	}
+
+	/**
+    *
+    * @param nomeSistema
+    */
+	public void setIsPublico(Boolean isPublico) {
+		this.isPublico = isPublico;
+	}
+    
+    
 
 }

@@ -58,11 +58,11 @@
 			<location>/login.jsf</location> </error-page> -->
 		<error-page>
 			<error-code>404</error-code>
-			<location>/error/404.jsf</location>
+			<location>/404.jsf</location>
 		</error-page>
 		<error-page>
 			<error-code>500</error-code>
-			<location>/error/500.jsf</location>
+			<location>/500.jsf</location>
 		</error-page>
 		<!-- <error-page> <exception-type>br.gov.frameworkdemoiselle.security.AuthorizationException</exception-type> 
 			<location>/login.jsf</location> </error-page> -->
