@@ -67,6 +67,11 @@ public class Servico implements Serializable {
      *
      */
     public Servico() {
+    	setId(null);
+		setNome(null);
+		setTipoRetorno(null);
+		setDescricao(null);
+		setDescritor(null);
     }
 
     /**

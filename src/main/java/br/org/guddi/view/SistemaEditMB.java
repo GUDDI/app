@@ -312,6 +312,15 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 		
 		servicoBC.delete(servico.getId());
 		
+		for(Descritor descritor : getDescritores()){
+			for(Servico serv : descritor.getServicos()){
+				if(serv.getId() != null && serv.getId().equals(servico.getId())){
+					descritor.getServicos().remove(servico);
+					break;
+				}
+			}
+		}
+		
 		adicionarNovoServico();
     }
     

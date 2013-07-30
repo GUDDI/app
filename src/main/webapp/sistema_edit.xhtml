@@ -111,7 +111,7 @@
 									<li class="sep"></li>
 									<li>
 										<p:commandButton value="#{messages['sistema.label.descritores.adicionar']}" actionListener="#{sistemaEditMB.adicionaDescritor()}"
-											 			 icon="ui-icon-plus" update="listaDescritores">
+											 			 icon="ui-icon-plus" update="listaDescritores" immediate="true">
 											<f:ajax execute="@form"/>
 										</p:commandButton>
 									</li>
@@ -165,12 +165,12 @@
 											<div class="rowElem noborder pb0">
 												
 												<p:commandButton value="#{messages['sistema.label.descritores.salvar']}" action="#{sistemaEditMB.salvarDescritor(descritor)}"
-													 			 icon="ui-icon-circle-check" update=":form:listaDescritores">
+													 			 icon="ui-icon-circle-check" update=":form:listaDescritores" immediate="false">
 													<f:ajax execute="@form"/>
 												</p:commandButton>
 												
 												<p:commandButton value="#{messages['sistema.label.descritores.excluir']}" action="#{sistemaEditMB.removerDescritor(descritor)}" rendered="${descritor.id != null}"
-													 			 icon="ui-icon-trash" update=":form:listaDescritores">
+													 			 icon="ui-icon-trash" update=":form:listaDescritores" immediate="true">
 													<f:ajax execute="@form"/>
 												</p:commandButton>
 											</div>
@@ -235,18 +235,18 @@
 																
 																<div class="rowElem noborder pb0">
 																	<p:commandButton value="#{messages['servico.label.salvar']}" action="#{sistemaEditMB.salvarServico(descritor)}" rendered="#{servico.id == null}"
-																	 			 icon="ui-icon-circle-check" update=":form:listaDescritores">
-																		<f:ajax execute="@form" immediate="false"/>
+																	 			 icon="ui-icon-circle-check" update=":form:listaDescritores" immediate="false">
+																		<f:ajax execute="@form"/>
 																	</p:commandButton>
 																	
 																	<p:commandButton value="#{messages['servico.label.salvar']}" action="#{sistemaEditMB.atualizarServico(servico)}" rendered="#{servico.id != null}"
-																	 			 icon="ui-icon-circle-check" update=":form:listaDescritores">
-																		<f:ajax execute="@form" immediate="false"/>
+																	 			 icon="ui-icon-circle-check" update=":form:listaDescritores" immediate="false">
+																		<f:ajax execute="@form"/>
 																	</p:commandButton>
 																	
 																	<p:commandButton value="#{messages['servico.label.excluir']}" rendered="#{servico.id != null}"
 																					 action="#{sistemaEditMB.removerServico(servico)}"
-																		 			 icon="ui-icon-trash" update=":form:listaDescritores">
+																		 			 icon="ui-icon-trash" update=":form:listaDescritores" immediate="true">
 																		<f:ajax execute="@form"/>
 																	</p:commandButton>
 																</div>
@@ -268,8 +268,7 @@
 											                			
 											                			<div id="tabServicoAtributosS#{servico.id}A#{contadorServico.index}" class="tab_content_complementar">
 											                				
-											                				<p:dataTable id="servicoAtributosS#{servico.id}A#{contadorServico.index}" var="atributo" value="#{servico.atributos}"
-											                							 rendered="#{fn:length(servico.atributos) > 1}">
+											                				<p:dataTable id="servicoAtributos" var="atributo" value="#{servico.atributos}">
 										
 																				<p:column rendered="#{atributo.id != null}">
 																					<f:facet name="header">#{messages['atributo.label.nome']}</f:facet>
@@ -287,12 +286,10 @@
 																				</p:column>
 																				
 																				<p:column style="width:4%" rendered="#{atributo.id != null}">  
-																				
 																					<p:commandButton action="#{sistemaEditMB.removerAtributo(servico, atributo)}"
-																					 			 icon="ui-icon-circle-close" update=":form:listaDescritores">
-																						<f:ajax execute="@form" immediate="true"/>
+																					 			 icon="ui-icon-circle-close" update=":form:listaDescritores" immediate="false">
+																						<f:ajax execute="@form"/>
 																					</p:commandButton>
-																					
 																		        </p:column> 
 																						
 																			</p:dataTable>
@@ -341,8 +338,8 @@
 																						<h:outputLabel value=""/>
 																						<div class="formLeft">
 																							<p:commandButton value="#{messages['servico.label.atributos.adicionar']}" action="#{sistemaEditMB.salvarAtributo(servico, atributoNovo)}"
-																							 			 icon="ui-icon-plus" update=":form:listaDescritores">
-																								<f:ajax execute="@form" immediate="false"/>
+																							 			 icon="ui-icon-plus" update=":form:listaDescritores" immediate="false">
+																								<f:ajax execute="@form"/>
 																							</p:commandButton>
 																			
 																						</div>
@@ -359,9 +356,8 @@
 											                			
 											                			<div id="tabServicoExcecoesS#{servico.id}E#{contadorServico.index}" class="tab_content_complementar">
 											                				
-											                				<p:dataTable id="servicoExcecoes" var="excecao" value="#{servico.excecoes}"
-											                							 rendered="#{fn:length(servico.excecoes) > 1}">
-										
+											                				<p:dataTable id="servicoExcecoes" var="excecao" value="#{servico.excecoes}">
+											                				
 																				<p:column rendered="#{excecao.id != null}">
 																					<f:facet name="header">#{messages['excecao.label.identificador']}</f:facet>
 																					<h:outputText value="#{excecao.identificador}" />
@@ -374,9 +370,10 @@
 																				
 																				<p:column style="width:4%" rendered="#{excecao.id != null}">  
 																		            <p:commandButton action="#{sistemaEditMB.removerExcecao(servico, excecao)}"
-																					 			 icon="ui-icon-circle-close" update=":form:listaDescritores">
+																					 			 icon="ui-icon-circle-close" update=":form:listaDescritores" immediate="true">
 																						<f:ajax execute="@form" immediate="true"/>
 																					</p:commandButton> 
+																					
 																		        </p:column> 
 																						
 																			</p:dataTable>
@@ -387,7 +384,7 @@
 													                			
 													                				<div class="rowElem noborder">
 																						<h:outputLabel value="#{messages['excecao.label.identificador']}:" for="excecaoIdentificadorNovo"/>
-																						<div class="formLeft" style="width: 400px;">
+																						<div class="formLeft">
 																							<h:inputText id="excecaoIdentificadorNovo" value="#{excecaoNova.identificador}" />
 																						</div>
 																						<div class="fix"></div>
@@ -395,7 +392,7 @@
 																					
 																					<div class="rowElem noborder">
 																						<h:outputLabel value="#{messages['excecao.label.descricao']}:" for="excecaoDescricaoNovo"/>
-																						<div class="formLeft" style="width: 400px;">
+																						<div class="formLeft">
 																							<h:inputText id="excecaoDescricaoNovo" value="#{excecaoNova.descricao}" />
 																						</div>
 																						<div class="fix"></div>
@@ -406,8 +403,8 @@
 																						<div class="formLeft">
 																						
 																							<p:commandButton value="#{messages['servico.label.atributos.adicionar']}" action="#{sistemaEditMB.salvarExcecao(servico, excecaoNova)}"
-																							 			 icon="ui-icon-plus" update=":form:listaDescritores">
-																								<f:ajax execute="@form" immediate="false"/>
+																							 			 icon="ui-icon-plus" update=":form:listaDescritores" immediate="false">
+																								<f:ajax execute="@form"/>
 																							</p:commandButton>
 																							
 																						</div>
