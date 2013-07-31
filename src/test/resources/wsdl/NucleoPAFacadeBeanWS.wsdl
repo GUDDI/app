@@ -1,0 +1,46 @@
+<definitions name='NucleoPAFacadeBeanWSService' targetNamespace='http://sistemas.pa.gov.br/nucleopa' xmlns='http://schemas.xmlsoap.org/wsdl/' xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' xmlns:tns='http://sistemas.pa.gov.br/nucleopa' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+ <types>
+  <xs:schema targetNamespace='http://sistemas.pa.gov.br/nucleopa' version='1.0' xmlns:tns='http://sistemas.pa.gov.br/nucleopa' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:complexType name='orgaoDtoWS'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='descricao' type='xs:string'/>
+     <xs:element minOccurs='0' name='idOrgao' type='xs:long'/>
+     <xs:element minOccurs='0' name='idOrgaoAdabas' type='xs:long'/>
+     <xs:element minOccurs='0' name='sigla' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType final='#all' name='orgaoDtoWSArray'>
+    <xs:sequence>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='item' nillable='true' type='tns:orgaoDtoWS'/>
+    </xs:sequence>
+   </xs:complexType>
+  </xs:schema>
+ </types>
+ <message name='nucleoPaFacadeWS_buscarOrgaoDtoWS'></message>
+ <message name='nucleoPaFacadeWS_buscarOrgaoDtoWSResponse'>
+  <part name='return' type='tns:orgaoDtoWSArray'></part>
+ </message>
+ <portType name='nucleoPaFacadeWS'>
+  <operation name='buscarOrgaoDtoWS'>
+   <input message='tns:nucleoPaFacadeWS_buscarOrgaoDtoWS'></input>
+   <output message='tns:nucleoPaFacadeWS_buscarOrgaoDtoWSResponse'></output>
+  </operation>
+ </portType>
+ <binding name='nucleoPaFacadeWSBinding' type='tns:nucleoPaFacadeWS'>
+  <soap:binding style='rpc' transport='http://schemas.xmlsoap.org/soap/http'/>
+  <operation name='buscarOrgaoDtoWS'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sistemas.pa.gov.br/nucleopa' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sistemas.pa.gov.br/nucleopa' use='literal'/>
+   </output>
+  </operation>
+ </binding>
+ <service name='NucleoPAFacadeBeanWSService'>
+  <port binding='tns:nucleoPaFacadeWSBinding' name='NucleoPAFacadeBeanWSPort'>
+   <soap:address location='http://10.1.11.14:8080/nucleopa-nucleopa-ejb-2.2/NucleoPAFacadeBeanWS'/>
+  </port>
+ </service>
+</definitions>

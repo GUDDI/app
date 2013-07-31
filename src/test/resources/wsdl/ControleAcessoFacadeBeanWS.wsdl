@@ -1,0 +1,323 @@
+<definitions name='ControleAcessoFacadeBeanWSService' targetNamespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' xmlns='http://schemas.xmlsoap.org/wsdl/' xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' xmlns:tns='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+ <types>
+  <xs:schema targetNamespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' version='1.0' xmlns:tns='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:element name='Exception' type='tns:Exception'/>
+   <xs:complexType name='Exception'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='message' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='usuarioDtoWS'>
+    <xs:sequence>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='aplicacoes' nillable='true' type='tns:aplicacaoDtoWS'/>
+     <xs:element minOccurs='0' name='id' type='xs:long'/>
+     <xs:element minOccurs='0' name='idOrgao' type='xs:long'/>
+     <xs:element minOccurs='0' name='login' type='xs:string'/>
+     <xs:element minOccurs='0' name='nome' type='xs:string'/>
+     <xs:element minOccurs='0' name='numeroDocumento' type='xs:string'/>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='operacoes' nillable='true' type='xs:string'/>
+     <xs:element minOccurs='0' name='passaporte' type='xs:string'/>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='perfis' nillable='true' type='tns:perfilDtoWS'/>
+     <xs:element minOccurs='0' name='siglaOrgao' type='xs:string'/>
+     <xs:element minOccurs='0' name='tipoDocumento' type='xs:string'/>
+     <xs:element name='trocouSenha' type='xs:boolean'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='aplicacaoDtoWS'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='contexto' type='xs:string'/>
+     <xs:element minOccurs='0' name='descricao' type='xs:string'/>
+     <xs:element minOccurs='0' name='id' type='xs:long'/>
+     <xs:element minOccurs='0' name='logo' type='xs:base64Binary'/>
+     <xs:element minOccurs='0' name='nome' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='perfilDtoWS'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='codigo' type='xs:string'/>
+     <xs:element minOccurs='0' name='descricao' type='xs:string'/>
+     <xs:element minOccurs='0' name='id' type='xs:long'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='usuarioComplementoDtoWS'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='dataManut' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='idUsuario' type='xs:long'/>
+     <xs:element minOccurs='0' name='imagem' type='xs:base64Binary'/>
+    </xs:sequence>
+   </xs:complexType>
+  </xs:schema>
+ </types>
+ <message name='ControleAcessoFacadeWS_buscarDadosComplementaresUsuario'>
+  <part name='usuarioComplementoDto' type='tns:usuarioComplementoDtoWS'></part>
+ </message>
+ <message name='ControleAcessoFacadeWS_alterarDadosComplementaresUsuario'>
+  <part name='usuarioComplementoDto' type='tns:usuarioComplementoDtoWS'></part>
+  <part name='idUsuarioManut' type='xsd:long'></part>
+ </message>
+ <message name='ControleAcessoFacadeWS_autenticarResponse'>
+  <part name='return' type='tns:usuarioDtoWS'></part>
+ </message>
+ <message name='ControleAcessoFacadeWS_alterarDadosComplementaresUsuarioResponse'></message>
+ <message name='ControleAcessoFacadeWS_autorizar'>
+  <part name='aplicacao' type='xsd:long'></part>
+  <part name='passaporte' type='xsd:string'></part>
+ </message>
+ <message name='ControleAcessoFacadeWS_atualizarAcesso'>
+  <part name='aplicacao' type='xsd:long'></part>
+  <part name='login' type='xsd:string'></part>
+  <part name='passaporte' type='xsd:string'></part>
+ </message>
+ <message name='ControleAcessoFacadeWS_enviarSenhaResponse'>
+  <part name='return' type='xsd:boolean'></part>
+ </message>
+ <message name='ControleAcessoFacadeWS_enviarSenha'>
+  <part name='tipoDocumento' type='xsd:int'></part>
+  <part name='numeroDocumento' type='xsd:string'></part>
+  <part name='email' type='xsd:string'></part>
+ </message>
+ <message name='ControleAcessoFacadeWS_encerrarSessao'>
+  <part name='passaporte' type='xsd:string'></part>
+ </message>
+ <message name='ControleAcessoFacadeWS_validarSessaoResponse'>
+  <part name='return' type='xsd:boolean'></part>
+ </message>
+ <message name='ControleAcessoFacadeWS_encerrarSessaoResponse'>
+  <part name='return' type='xsd:boolean'></part>
+ </message>
+ <message name='ControleAcessoFacadeWS_valorConfiguracao'>
+  <part name='parametro' type='xsd:string'></part>
+  <part name='aplicacao' type='xsd:long'></part>
+ </message>
+ <message name='ControleAcessoFacadeWS_validarSessao'>
+  <part name='passaporte' type='xsd:string'></part>
+ </message>
+ <message name='ControleAcessoFacadeWS_alterarSenhaResponse'>
+  <part name='return' type='xsd:boolean'></part>
+ </message>
+ <message name='ControleAcessoFacadeWS_atualizarAcessoResponse'>
+  <part name='return' type='xsd:boolean'></part>
+ </message>
+ <message name='ControleAcessoFacadeWS_valorConfiguracaoResponse'>
+  <part name='return' type='xsd:string'></part>
+ </message>
+ <message name='ControleAcessoFacadeWS_autenticar'>
+  <part name='login' type='xsd:string'></part>
+  <part name='senha' type='xsd:string'></part>
+ </message>
+ <message name='ControleAcessoFacadeWS_autorizarAcessoResponse'>
+  <part name='return' type='tns:usuarioDtoWS'></part>
+ </message>
+ <message name='ControleAcessoFacadeWS_autorizarResponse'>
+  <part name='return' type='tns:usuarioDtoWS'></part>
+ </message>
+ <message name='ControleAcessoFacadeWS_buscarDadosComplementaresUsuarioResponse'>
+  <part name='return' type='tns:usuarioComplementoDtoWS'></part>
+ </message>
+ <message name='Exception'>
+  <part element='tns:Exception' name='Exception'></part>
+ </message>
+ <message name='ControleAcessoFacadeWS_alterarSenha'>
+  <part name='login' type='xsd:string'></part>
+  <part name='senhaAtual' type='xsd:string'></part>
+  <part name='novaSenha' type='xsd:string'></part>
+ </message>
+ <message name='ControleAcessoFacadeWS_autorizarAcesso'>
+  <part name='aplicacao' type='xsd:long'></part>
+  <part name='passaporte' type='xsd:string'></part>
+  <part name='atualizarAcesso' type='xsd:boolean'></part>
+ </message>
+ <portType name='ControleAcessoFacadeWS'>
+  <operation name='alterarDadosComplementaresUsuario' parameterOrder='usuarioComplementoDto idUsuarioManut'>
+   <input message='tns:ControleAcessoFacadeWS_alterarDadosComplementaresUsuario'></input>
+   <output message='tns:ControleAcessoFacadeWS_alterarDadosComplementaresUsuarioResponse'></output>
+   <fault message='tns:Exception' name='Exception'></fault>
+  </operation>
+  <operation name='alterarSenha' parameterOrder='login senhaAtual novaSenha'>
+   <input message='tns:ControleAcessoFacadeWS_alterarSenha'></input>
+   <output message='tns:ControleAcessoFacadeWS_alterarSenhaResponse'></output>
+   <fault message='tns:Exception' name='Exception'></fault>
+  </operation>
+  <operation name='atualizarAcesso' parameterOrder='aplicacao login passaporte'>
+   <input message='tns:ControleAcessoFacadeWS_atualizarAcesso'></input>
+   <output message='tns:ControleAcessoFacadeWS_atualizarAcessoResponse'></output>
+   <fault message='tns:Exception' name='Exception'></fault>
+  </operation>
+  <operation name='autenticar' parameterOrder='login senha'>
+   <input message='tns:ControleAcessoFacadeWS_autenticar'></input>
+   <output message='tns:ControleAcessoFacadeWS_autenticarResponse'></output>
+   <fault message='tns:Exception' name='Exception'></fault>
+  </operation>
+  <operation name='autorizar' parameterOrder='aplicacao passaporte'>
+   <input message='tns:ControleAcessoFacadeWS_autorizar'></input>
+   <output message='tns:ControleAcessoFacadeWS_autorizarResponse'></output>
+   <fault message='tns:Exception' name='Exception'></fault>
+  </operation>
+  <operation name='autorizarAcesso' parameterOrder='aplicacao passaporte atualizarAcesso'>
+   <input message='tns:ControleAcessoFacadeWS_autorizarAcesso'></input>
+   <output message='tns:ControleAcessoFacadeWS_autorizarAcessoResponse'></output>
+   <fault message='tns:Exception' name='Exception'></fault>
+  </operation>
+  <operation name='buscarDadosComplementaresUsuario' parameterOrder='usuarioComplementoDto'>
+   <input message='tns:ControleAcessoFacadeWS_buscarDadosComplementaresUsuario'></input>
+   <output message='tns:ControleAcessoFacadeWS_buscarDadosComplementaresUsuarioResponse'></output>
+   <fault message='tns:Exception' name='Exception'></fault>
+  </operation>
+  <operation name='encerrarSessao' parameterOrder='passaporte'>
+   <input message='tns:ControleAcessoFacadeWS_encerrarSessao'></input>
+   <output message='tns:ControleAcessoFacadeWS_encerrarSessaoResponse'></output>
+   <fault message='tns:Exception' name='Exception'></fault>
+  </operation>
+  <operation name='enviarSenha' parameterOrder='tipoDocumento numeroDocumento email'>
+   <input message='tns:ControleAcessoFacadeWS_enviarSenha'></input>
+   <output message='tns:ControleAcessoFacadeWS_enviarSenhaResponse'></output>
+   <fault message='tns:Exception' name='Exception'></fault>
+  </operation>
+  <operation name='validarSessao' parameterOrder='passaporte'>
+   <input message='tns:ControleAcessoFacadeWS_validarSessao'></input>
+   <output message='tns:ControleAcessoFacadeWS_validarSessaoResponse'></output>
+   <fault message='tns:Exception' name='Exception'></fault>
+  </operation>
+  <operation name='valorConfiguracao' parameterOrder='parametro aplicacao'>
+   <input message='tns:ControleAcessoFacadeWS_valorConfiguracao'></input>
+   <output message='tns:ControleAcessoFacadeWS_valorConfiguracaoResponse'></output>
+  </operation>
+ </portType>
+ <binding name='ControleAcessoFacadeWSBinding' type='tns:ControleAcessoFacadeWS'>
+  <soap:binding style='rpc' transport='http://schemas.xmlsoap.org/soap/http'/>
+  <operation name='alterarDadosComplementaresUsuario'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </output>
+   <fault name='Exception'>
+    <soap:fault name='Exception' use='literal'/>
+   </fault>
+  </operation>
+  <operation name='alterarSenha'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </output>
+   <fault name='Exception'>
+    <soap:fault name='Exception' use='literal'/>
+   </fault>
+  </operation>
+  <operation name='atualizarAcesso'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </output>
+   <fault name='Exception'>
+    <soap:fault name='Exception' use='literal'/>
+   </fault>
+  </operation>
+  <operation name='autenticar'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </output>
+   <fault name='Exception'>
+    <soap:fault name='Exception' use='literal'/>
+   </fault>
+  </operation>
+  <operation name='autorizar'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </output>
+   <fault name='Exception'>
+    <soap:fault name='Exception' use='literal'/>
+   </fault>
+  </operation>
+  <operation name='autorizarAcesso'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </output>
+   <fault name='Exception'>
+    <soap:fault name='Exception' use='literal'/>
+   </fault>
+  </operation>
+  <operation name='buscarDadosComplementaresUsuario'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </output>
+   <fault name='Exception'>
+    <soap:fault name='Exception' use='literal'/>
+   </fault>
+  </operation>
+  <operation name='encerrarSessao'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </output>
+   <fault name='Exception'>
+    <soap:fault name='Exception' use='literal'/>
+   </fault>
+  </operation>
+  <operation name='enviarSenha'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </output>
+   <fault name='Exception'>
+    <soap:fault name='Exception' use='literal'/>
+   </fault>
+  </operation>
+  <operation name='validarSessao'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </output>
+   <fault name='Exception'>
+    <soap:fault name='Exception' use='literal'/>
+   </fault>
+  </operation>
+  <operation name='valorConfiguracao'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sistemas.pa.gov.br/controleacesso/ns/ControleAcessoFacadeWS' use='literal'/>
+   </output>
+  </operation>
+ </binding>
+ <service name='ControleAcessoFacadeBeanWSService'>
+  <port binding='tns:ControleAcessoFacadeWSBinding' name='ControleAcessoFacadeBeanWSPort'>
+   <soap:address location='http://10.1.11.14:8080/controleacesso/ws/ControleAcessoFacadeBeanWS'/>
+  </port>
+ </service>
+</definitions>
