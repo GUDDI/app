@@ -156,19 +156,18 @@
         
                 <p:panel rendered="#{not securityContext.loggedIn}">
                     <ui:insert name="body"/>
-                </p:panel>
+                </p:panel>s
         -->
 
 		<p:growl id="messages" globalOnly="true" autoUpdate="true" showSummary="true" showDetail="false" />
 
-        <p:ajaxStatus style="width:16px;height:16px;">
-            <f:facet name="start">
-            </f:facet>
+		<p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>  
+              
+		<p:dialog modal="true" widgetVar="statusDialog" header="Processando ..."   
+		          draggable="false" closable="false" resizable="false">  
+		    <p:graphicImage value="/images/loaders/loader7.gif"/>  
+		</p:dialog>
 
-            <f:facet name="complete">
-                <h:outputText value="" />
-            </f:facet>
-        </p:ajaxStatus>
 
     </h:body>
 </html>
