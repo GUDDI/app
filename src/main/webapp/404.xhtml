@@ -3,18 +3,14 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
     <ui:define name="body">
-        <div class="loginWrapper">
-            <div class="loginPanel">
-               <h:form id="valid" styleClass="mainForm" >
-                    <fieldset>
-                        <div class="loginRow noborder">
-                            <h:outputLabel value="Erro 404"/>
-                            <h:outputText value="#{facesContext.messageList}"/>
-                            <div class="fix"></div>
-                        </div>
-                    </fieldset>
-                </h:form>
-            </div>
-        </div>
+    
+	    <h:form>
+	    	<div class="erro_box">
+				<h2>Erro 404</h2>
+			    <p>A página não foi encontrada. </p>
+			    <a href="#"><strong><h:commandLink value="Voltar" action="/index.jsf" /></strong></a>
+			</div>
+	    </h:form>
+    
     </ui:define>
 </ui:composition>

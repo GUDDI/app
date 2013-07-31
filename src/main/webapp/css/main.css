@@ -862,6 +862,13 @@ ul.listData li { display: inline-block; padding: 0 6px 1px 6px!important; border
 .errorPage p { width: 100%; padding: 13px 0; background: url(../images/linesSep.png) repeat-x 0 0; font-size: 20px; text-align: center; }
 .backToDash { text-align: center; margin: 10px; }
 
+.erro_box {	margin:20px; font-family:Arial, Helvetica, sans-serif; width: 300px; background: #FAFAFA; border: 1px solid #D5D5D5; padding: 20px; color:#666666; position:absolute; left: 50%; margin-left: -155px;}
+.erro_box h2{ font-size:46px; color: #E0E0E0; background:url(../images/alert.gif) no-repeat; padding-left:60px; margin:0; line-height: 55px;}
+
+.erro_box p{ font-size:16px; margin:20px 20px 40px 20px }
+.erro_box a{ font-size:12px; margin:20px; color:#666; text-decoration:none }
+.erro_box p a{ font-size:16px; color:#09F; margin:0 }
+
 
 
 /* ===== File uploader  ===== */
