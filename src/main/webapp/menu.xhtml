@@ -6,28 +6,6 @@
     <h:form>
         <p:menubar id="menu_admin" rendered="#{securityContext.hasRole('ADMINISTRATOR')}">
         
-        	<!-- 
-            <p:submenu label="#{messages['menu.usuario']}" >
-                <p:menuitem value="#{messages['menu.menuitem.new']}" url="/usuario_edit.jsf"></p:menuitem>
-                <p:menuitem value="#{messages['menu.menuitem.list']}" url="/usuario_list.jsf"></p:menuitem>
-            </p:submenu>
-
-            <p:submenu label="#{messages['menu.marcacao']}">
-                <p:menuitem value="#{messages['menu.menuitem.new']}" url="/marcacao_edit.jsf"></p:menuitem>
-                <p:menuitem value="#{messages['menu.menuitem.list']}" url="/marcacao_list.jsf"></p:menuitem>
-            </p:submenu>
-
-            <p:submenu label="#{messages['menu.papel']}">
-                <p:menuitem value="#{messages['menu.menuitem.new']}" url="/papel_edit.jsf"></p:menuitem>
-                <p:menuitem value="#{messages['menu.menuitem.list']}" url="/papel_list.jsf"></p:menuitem>
-            </p:submenu>
-
-            <p:submenu label="#{messages['menu.orgao']}">
-                <p:menuitem value="#{messages['menu.menuitem.new']}" url="/orgao_edit.jsf"></p:menuitem>
-                <p:menuitem value="#{messages['menu.menuitem.list']}" url="/orgao_list.jsf"></p:menuitem>
-            </p:submenu>
-            -->
-            
             <p:menuitem value="#{messages['menu.pesquisa']}" url="/pesquisa_list.jsf"></p:menuitem>
             
             <p:menuitem value="#{messages['menu.usuario']}" url="/usuario_list.jsf"></p:menuitem>
@@ -42,45 +20,9 @@
 
         <p:menubar id="menu_usuario" rendered="#{securityContext.hasRole('MANAGER')}">
         
-        	<!-- 
-             <p:submenu label="#{messages['menu.sistema']}">
-                <p:menuitem value="#{messages['menu.menuitem.new']}" url="/sistema_edit.jsf"></p:menuitem>
-                <p:menuitem value="#{messages['menu.menuitem.list']}" url="/sistema_list.jsf"></p:menuitem>
-            </p:submenu>
-            
-             <p:submenu label="#{messages['menu.servico']}">
-                <p:menuitem value="#{messages['menu.menuitem.new']}" url="/servico_edit.jsf"></p:menuitem>
-                <p:menuitem value="#{messages['menu.menuitem.list']}" url="/servico_list.jsf"></p:menuitem>
-            </p:submenu>
-
-            <p:submenu label="#{messages['menu.descritor']}">
-                <p:menuitem value="#{messages['menu.menuitem.new']}" url="/descritor_edit.jsf"></p:menuitem>
-                <p:menuitem value="#{messages['menu.menuitem.list']}" url="/descritor_list.jsf"></p:menuitem>
-            </p:submenu>
-
-            <p:submenu label="#{messages['menu.atributo']}">
-                <p:menuitem value="#{messages['menu.menuitem.new']}" url="/atributo_edit.jsf"></p:menuitem>
-                <p:menuitem value="#{messages['menu.menuitem.list']}" url="/atributo_list.jsf"></p:menuitem>
-            </p:submenu>
-            
-            <p:submenu label="#{messages['menu.excecao']}">
-                <p:menuitem value="#{messages['menu.menuitem.new']}" url="/excecao_edit.jsf"></p:menuitem>
-                <p:menuitem value="#{messages['menu.menuitem.list']}" url="/excecao_list.jsf"></p:menuitem>
-            </p:submenu>
-            -->
             <p:menuitem value="#{messages['menu.pesquisa']}" url="/pesquisa_list.jsf"></p:menuitem>
             
             <p:menuitem value="#{messages['menu.sistema']}" url="/sistema_list.jsf"></p:menuitem>
-            
-            <!-- 
-            <p:menuitem value="#{messages['menu.servico']}" url="/servico_list.jsf"></p:menuitem>
-            
-            <p:menuitem value="#{messages['menu.descritor']}" url="/descritor_list.jsf"></p:menuitem>
-            
-            <p:menuitem value="#{messages['menu.atributo']}" url="/atributo_list.jsf"></p:menuitem>
-            
-            <p:menuitem value="#{messages['menu.excecao']}" url="/excecao_list.jsf"></p:menuitem>
-             -->	
             
         </p:menubar> 
 
