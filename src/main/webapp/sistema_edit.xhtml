@@ -5,20 +5,12 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="crud">
-		<h:form prependId="true" styleClass="mainForm" id="form">
+		
+		<h:form prependId="true" styleClass="mainForm">
 
 			<p:toolbar>
 				<p:toolbarGroup align="left">
 				
-					<p:commandButton value="#{messages['button.save']}" action="#{sistemaEditMB.insert}"
-									 rendered="#{sistemaEditMB.bean.id == null}" ajax="false" icon="ui-icon-disk"
-									 update="@form">
-						<f:ajax execute="@form"/>
-					</p:commandButton>
-						
-					<p:commandButton value="#{messages['button.save']}" action="#{sistemaEditMB.update}"
-									 rendered="#{sistemaEditMB.bean.id != null}" ajax="false" icon="ui-icon-disk"/>
-						
 					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
 									 rendered="#{sistemaEditMB.bean.id != null}" type="button" immediate="true" ajax="false" icon="ui-icon-trash"/>
 						
@@ -36,21 +28,25 @@
 				</p:toolbarGroup>
 			</p:toolbar>
 			
-			 <!-- Tabs -->
-	        <div class="widget first">       
-	            <ul class="tabs">
-	                <li><a href="#tab1">#{messages['sistema.label']}</a></li>
-	                
-	                <h:panelGroup rendered="#{sistemaEditMB.bean.id != null}">
-	                	<li><a href="#tab2">#{messages['sistema.label.descritores']}</a></li>
-	                </h:panelGroup>
-	                
-	            </ul>
-	            
-	            <!-- Aba do Sistema -->
-	            <div class="tab_container">
-	                <div id="tab1" class="tab_content">
-						
+		</h:form>
+			
+			<!-- Tabs -->
+        <div class="widget first">       
+            <ul class="tabs">
+                <li><a href="#tab1">#{messages['sistema.label']}</a></li>
+                
+                <h:panelGroup rendered="#{sistemaEditMB.bean.id != null}">
+                	<li><a href="#tab2">#{messages['sistema.label.descritores']}</a></li>
+                </h:panelGroup>
+                
+            </ul>
+            
+            <!-- Aba do Sistema -->
+            <div class="tab_container">
+                <div id="tab1" class="tab_content">
+                
+                	<h:form prependId="true" styleClass="mainForm" id="valid">
+					
 						<div class="rowElem noborder">
 							<h:outputLabel value="#{messages['sistema.label.id']}: " for="id"/>
 							<div class="formLeft">
@@ -81,16 +77,37 @@
 						<div class="rowElem noborder">
 							<h:outputLabel value="#{messages['sistema.label.nome']}: " for="nome"/>
 							<div class="formLeft">
-								<h:inputText id="nome" value="#{sistemaEditMB.bean.nome}" />
+								<h:inputText id="nome" value="#{sistemaEditMB.bean.nome}" 
+											 styleClass="validate[required,maxSize[100]]"/>
 							</div>
 							<div class="fix"></div>
 						</div>
 						
-	                </div>
-	                
-	                <!-- Aba dos Descritores -->
-	                <div id="tab2" class="tab_content">
-	                
+						<div class="rowElem noborder">
+							<h:outputLabel value=""/>	
+							<div class="formLeft">		
+								<p:commandButton value="#{messages['button.save']}" action="#{sistemaEditMB.insert}"
+												 rendered="#{sistemaEditMB.bean.id == null}" ajax="false" icon="ui-icon-disk"
+												 update="@form">
+									<f:ajax execute="@form"/>
+								</p:commandButton>
+									
+								<p:commandButton value="#{messages['button.save']}" action="#{sistemaEditMB.update}"
+												 rendered="#{sistemaEditMB.bean.id != null}" ajax="false" icon="ui-icon-disk"/>
+							</div>
+											 
+							<div class="fix"></div>
+						</div>
+						
+					</h:form>
+					
+                </div>
+                
+                <!-- Aba dos Descritores -->
+                <div id="tab2" class="tab_content">
+                
+                	<h:form prependId="true" styleClass="mainForm" id="form">
+                	
 	                	<div class="rowElem noborder">
 							<h:outputLabel value="#{messages['sistema.label.nome']}: "/>
 							<div class="formLeft">
@@ -141,7 +158,7 @@
 			                    			<div class="rowElem noborder pb0">
 												<h:outputLabel value="#{messages['descritor.label.nome']}: " styleClass="topLabel"/>
 												<div class="formBottom">
-													<h:inputText value="#{descritor.nome}" />
+													<h:inputText value="#{descritor.nome}" id="nomeDescritor"/>
 												</div>
 												<div class="fix"></div>
 											</div>
@@ -149,7 +166,7 @@
 			                    			<div class="rowElem noborder pb0">
 												<h:outputLabel value="#{messages['descritor.label.url']}: " styleClass="topLabel"/>
 												<div class="formBottom">
-													<h:inputText value="#{descritor.url}" />
+													<h:inputText value="#{descritor.url}" id="urlDescritor"/>
 												</div>
 												<div class="fix"></div>
 											</div>
@@ -165,12 +182,12 @@
 											<div class="rowElem noborder pb0">
 												
 												<p:commandButton value="#{messages['sistema.label.descritores.salvar']}" action="#{sistemaEditMB.salvarDescritor(descritor)}"
-													 			 icon="ui-icon-circle-check" update=":form:listaDescritores" immediate="false">
+													 			 icon="ui-icon-circle-check" update="@form" immediate="false">
 													<f:ajax execute="@form"/>
 												</p:commandButton>
 												
 												<p:commandButton value="#{messages['sistema.label.descritores.excluir']}" action="#{sistemaEditMB.removerDescritor(descritor)}" rendered="${descritor.id != null}"
-													 			 icon="ui-icon-trash" update=":form:listaDescritores" immediate="true">
+													 			 icon="ui-icon-trash" update="@form" immediate="true">
 													<f:ajax execute="@form"/>
 												</p:commandButton>
 											</div>
@@ -181,7 +198,7 @@
 			                    			<div class="rowElem noborder pb0">
 												<h:outputLabel value="#{messages['descritor.label.descricao']}: " styleClass="topLabel"/>
 												<div class="formBottom">
-													<h:inputTextarea value="#{descritor.descricao}" rows="12"/>
+													<h:inputTextarea value="#{descritor.descricao}" rows="12" id="descritorDescricao"/>
 												</div>
 												<div class="fix"></div>
 											</div>
@@ -212,7 +229,7 @@
 					                							<div class="rowElem noborder pb0">
 																	<h:outputLabel value="#{messages['servico.label.nome']}: " for="servicoNome" styleClass="topLabel"/>
 																	<div class="formBottom">
-																		<h:inputText id="servicoNome" value="#{servico.nome}" />
+																		<h:inputText id="servicoNome" value="#{servico.nome}"/>
 																	</div>
 																	<div class="fix"></div>
 																</div>
@@ -220,7 +237,7 @@
 																<div class="rowElem noborder">
 																	<h:outputLabel value="#{messages['servico.retorno.label']}:" for="retornoTipo"/>
 																	<div class="formBottom">
-																		<h:inputText id="retornoTipo" value="#{servico.tipoRetorno}" />
+																		<h:inputText id="retornoTipo" value="#{servico.tipoRetorno}"/>
 																	</div>
 																	<div class="fix"></div>
 																</div>
@@ -228,25 +245,25 @@
 																<div class="rowElem noborder pb0">
 																	<h:outputLabel value="#{messages['servico.label.descricao']}: " for="servicoDescricao" styleClass="topLabel"/>
 																	<div class="formBottom">
-																		<h:inputTextarea id="servicoDescricao" value="#{servico.descricao}" rows="5" />
+																		<h:inputTextarea id="servicoDescricao" value="#{servico.descricao}" rows="5"/>
 																	</div>
 																	<div class="fix"></div>
 																</div>
 																
 																<div class="rowElem noborder pb0">
 																	<p:commandButton value="#{messages['servico.label.salvar']}" action="#{sistemaEditMB.salvarServico(descritor)}" rendered="#{servico.id == null}"
-																	 			 icon="ui-icon-circle-check" update=":form:listaDescritores" immediate="false">
+																	 			 icon="ui-icon-circle-check" update="@form" immediate="false">
 																		<f:ajax execute="@form"/>
 																	</p:commandButton>
 																	
 																	<p:commandButton value="#{messages['servico.label.salvar']}" action="#{sistemaEditMB.atualizarServico(servico)}" rendered="#{servico.id != null}"
-																	 			 icon="ui-icon-circle-check" update=":form:listaDescritores" immediate="false">
+																	 			 icon="ui-icon-circle-check" update="@form" immediate="false">
 																		<f:ajax execute="@form"/>
 																	</p:commandButton>
 																	
 																	<p:commandButton value="#{messages['servico.label.excluir']}" rendered="#{servico.id != null}"
 																					 action="#{sistemaEditMB.removerServico(servico)}"
-																		 			 icon="ui-icon-trash" update=":form:listaDescritores" immediate="true">
+																		 			 icon="ui-icon-trash" update="@form" immediate="true">
 																		<f:ajax execute="@form"/>
 																	</p:commandButton>
 																</div>
@@ -287,7 +304,7 @@
 																				
 																				<p:column style="width:4%" rendered="#{atributo.id != null}">  
 																					<p:commandButton action="#{sistemaEditMB.removerAtributo(servico, atributo)}"
-																					 			 icon="ui-icon-circle-close" update=":form:listaDescritores" immediate="false">
+																					 			 icon="ui-icon-circle-close" update="@form" immediate="false">
 																						<f:ajax execute="@form"/>
 																					</p:commandButton>
 																		        </p:column> 
@@ -321,7 +338,7 @@
 													                				<div class="rowElem noborder">
 																						<h:outputLabel value="#{messages['atributo.alt.nome']}:" for="atributoNomeNovo"/>
 																						<div class="formLeft">
-																							<h:inputText id="atributoNomeNovo" value="#{atributoNovo.nome}" />
+																							<h:inputText id="atributoNomeNovo" value="#{atributoNovo.nome}"/>
 																						</div>
 																						<div class="fix"></div>
 																					</div>
@@ -338,7 +355,7 @@
 																						<h:outputLabel value=""/>
 																						<div class="formLeft">
 																							<p:commandButton value="#{messages['servico.label.atributos.adicionar']}" action="#{sistemaEditMB.salvarAtributo(servico, atributoNovo)}"
-																							 			 icon="ui-icon-plus" update=":form:listaDescritores" immediate="false">
+																							 			 icon="ui-icon-plus" update="@form" immediate="false">
 																								<f:ajax execute="@form"/>
 																							</p:commandButton>
 																			
@@ -370,7 +387,7 @@
 																				
 																				<p:column style="width:4%" rendered="#{excecao.id != null}">  
 																		            <p:commandButton action="#{sistemaEditMB.removerExcecao(servico, excecao)}"
-																					 			 icon="ui-icon-circle-close" update=":form:listaDescritores" immediate="true">
+																					 			 icon="ui-icon-circle-close" update="@form" immediate="true">
 																						<f:ajax execute="@form" immediate="true"/>
 																					</p:commandButton> 
 																					
@@ -403,7 +420,7 @@
 																						<div class="formLeft">
 																						
 																							<p:commandButton value="#{messages['servico.label.atributos.adicionar']}" action="#{sistemaEditMB.salvarExcecao(servico, excecaoNova)}"
-																							 			 icon="ui-icon-plus" update=":form:listaDescritores" immediate="false">
+																							 			 icon="ui-icon-plus" update="@form" immediate="false">
 																								<f:ajax execute="@form"/>
 																							</p:commandButton>
 																							
@@ -446,19 +463,19 @@
 									$(".acc .head").click(function() {
 										$(this).css({color:"#2B6893"}).next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("slow");
 										$(this).siblings().css({color:"#404040"});
-
+	
 										$(this).next("div.menu_body").find(".tab_content_servicos").hide(); //Hide all content
 										$(this).next("div.menu_body").find("ul.tabsServicos li").removeClass("activeTab");
 										$(this).next("div.menu_body").find("ul.tabsServicos li:eq(0)").addClass("activeTab").show(); //Activate first tab
 										$(this).next("div.menu_body").find(".tab_content_servicos:eq(0)").show(); //Show first tab content
-
+	
 										$(this).next("div.menu_body").find(".tab_content_servicos").find(".tab_content_complementar").hide(); //Hide all content
 										$(this).next("div.menu_body").find(".tab_content_servicos").find("ul.tabsComplementar li").removeClass("activeTab");
 										$(this).next("div.menu_body").find(".tab_content_servicos").find("ul.tabsComplementar li:eq(0)").addClass("activeTab").show(); //Activate first tab
 										$(this).next("div.menu_body").find(".tab_content_servicos").find(".tab_content_complementar:eq(0)").show(); //Show first tab content
 										
 									});
-
+	
 									//====== Tabs =========//
 									$.fn.simpleTabs = function(){ 
 										
@@ -466,12 +483,12 @@
 										$(this).find(".acc .tab_content_servicos").hide(); //Hide all content
 										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) ul.tabsServicos li:eq(#{sistemaEditMB.abaServicoAtual})").addClass("activeTab").show();
 										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) .tab_content_servicos:eq(#{sistemaEditMB.abaServicoAtual})").show();
-
+	
 										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) .tab_content_servicos .tab_content_complementar").hide(); //Hide all content
 										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) .tab_content_servicos:eq(#{sistemaEditMB.abaServicoAtual}) ul.tabsComplementar li").removeClass("activeTab");
 										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) .tab_content_servicos:eq(#{sistemaEditMB.abaServicoAtual}) ul.tabsComplementar li:eq(#{sistemaEditMB.abaComplementarAtual})").addClass("activeTab").show(); //Activate first tab
 										$(this).find(".acc div.menu_body:eq(#{sistemaEditMB.abaDescritorAtual}) .tab_content_servicos:eq(#{sistemaEditMB.abaServicoAtual}) .tab_content_complementar:eq(#{sistemaEditMB.abaComplementarAtual})").show(); //Show first tab content
-
+	
 										//On Click Event
 										$(".acc ul.tabsServicos li").click(function() {
 											$(this).parent().parent().find("ul.tabsServicos li").removeClass("activeTab"); //Remove any "active" class
@@ -479,7 +496,7 @@
 											$(this).parent().parent().find(".tab_content_servicos").hide(); //Hide all tab content
 											var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
 											$(activeTab).show(); //Fade in the active content
-
+	
 											$(this).parent().parent().find(".tab_content_servicos").find("ul.tabsComplementar li").removeClass("activeTab"); //Remove any "active" class
 											$(this).parent().parent().find(".tab_content_servicos").find(".tab_content_complementar").hide(); //Hide all tab content
 											$(this).parent().parent().find(".tab_content_servicos").find("ul.tabsComplementar li:first").addClass("activeTab").show(); //Activate first tab
@@ -487,7 +504,7 @@
 											
 											return false;
 										});
-
+	
 										//On Click Event
 										$(".acc ul.tabsComplementar li").click(function() {
 											$(this).parent().parent().find("ul.tabsComplementar li").removeClass("activeTab"); //Remove any "active" class
@@ -501,21 +518,21 @@
 									};//end function
 									
 									$("div[class^='widget']").simpleTabs();
-
+	
 									//===== Form elements styling =====//
 									
 									$('form').jqTransform({imgPath:'images/forms'});
-
+	
 								});
 							</script>
 							
 			            </h:panelGroup>
-	                </div>
-	                
-	            </div>	
-	            <div class="fix"></div>	 
-	        </div>
+			    	</h:form>
+                </div>
+                
+            </div>	
+            <div class="fix"></div>	 
+        </div>
 			
-		</h:form>
 	</ui:define>
 </ui:composition>
