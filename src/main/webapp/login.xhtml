@@ -15,7 +15,8 @@
                             <div class="loginInput">
                                 <p:inputText id="email"
                                              value="#{identity.usuario}" 
-                                             size="30" maxlength="30" autocomplete="off" />
+                                             size="30" maxlength="30" autocomplete="off" 
+                                             styleClass="validate[required,maxSize[30]]"/>
                             </div>
                             <div class="fix"></div>
                         </div>
@@ -23,7 +24,8 @@
                         <div class="loginRow">
                             <label for="req2">#{messages['login.senha']} :</label>
                             <div class="loginInput">
-                                <p:password id="password" value="#{identity.password}" />  
+                                <p:password id="password" value="#{identity.password}" 
+                                			styleClass="validate[required]"/>  
                             </div>
                             <div class="fix"></div>
                         </div>
@@ -38,6 +40,8 @@
                                              action="#{identity.login}"
                                              styleClass="submitForm"
                                              ajax="false" />
+	                                             
+	                                             
                             <div class="fix"></div>
                         </div>
                     </fieldset>

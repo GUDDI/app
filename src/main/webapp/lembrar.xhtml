@@ -4,9 +4,9 @@
 
     <ui:define name="body">
         <div class="loginWrapper">
-            <div class="loginPanel">
+            <div class="esqueciSenhaPanel">
                 <div class="head">
-                    <h5 class="iUser">#{messages['login.lembre.me']}</h5>
+                    <h5 class="iUser">#{messages['button.esqueci_senha']}</h5>
                 </div>
                 <h:form id="valid" styleClass="mainForm" >
                     <fieldset>
@@ -15,7 +15,8 @@
                             <div class="loginInput">
                                 <p:inputText id="email"
                                              value="#{aminesiaMB.email}"
-                                             size="30" maxlength="30" autocomplete="off" />
+                                             size="30" maxlength="30" autocomplete="off" 
+                                             styleClass="validate[required,maxSize[30],custom[email]]"/>
                             </div>
                             <div class="fix"></div>
                         </div>
