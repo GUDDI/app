@@ -14,7 +14,7 @@ public class WSDLUtilTest {
 	public void toStringNucleopaTest() throws WSDLException {
 		
 		//WSDLMetadata meta = new WSDLUtil().loadWsdl("http://10.1.11.14:8080/nucleopa-nucleopa-ejb-2.2/NucleoPAFacadeBeanWS?wsdl");
-		WSDLMetadata meta = new WSDLUtil().loadWsdl("src/test/resources/wsdl/ControleAcessoFacadeBeanWS.wsdl");
+		WSDL10Metadata meta = new WSDL10Util().loadWsdl("src/test/resources/wsdl/10/ControleAcessoFacadeBeanWS.wsdl");
 
 		/*
 		System.out.println(meta.getTypes());

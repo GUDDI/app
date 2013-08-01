@@ -17,7 +17,6 @@ import br.org.guddi.domain.DescritorType;
 import br.org.guddi.domain.Excecao;
 import br.org.guddi.domain.Servico;
 
-import com.google.common.collect.Lists;
 import com.ibm.wsdl.BindingImpl;
 import com.ibm.wsdl.FaultImpl;
 import com.ibm.wsdl.MessageImpl;

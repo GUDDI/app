@@ -17,7 +17,7 @@ import com.ibm.wsdl.PartImpl;
 
 public class WSDL10UtilTest {
 
-	@Test
+	//@Test
 	public void loadDescritorOnWSDLTest() throws WSDLException {
 		
 		//List<Descritor> descritores = new WSDLUtil().loadDescritorOnWSDL(this.getClass().getResource("/wsdl/NucleoPAFacadeBeanWS.wsdl").getPath());
@@ -56,7 +56,7 @@ public class WSDL10UtilTest {
 	public void toStringNucleopaTest() throws WSDLException {
 		
 		//WSDLMetadata meta = new WSDLUtil().loadWsdl("http://10.1.11.14:8080/nucleopa-nucleopa-ejb-2.2/NucleoPAFacadeBeanWS?wsdl");
-		WSDL10Metadata meta = new WSDL10Util().loadWsdl("http://10.1.11.14:8080/controleacesso/ws/ControleAcessoFacadeBeanWS?wsdl");
+		WSDL10Metadata meta = new WSDL10Util().loadWsdl("src/test/resources/wsdl/10/ControleAcessoFacadeBeanWS.wsdl");
 
 		
 		//System.out.println(meta.getPortTypes());
