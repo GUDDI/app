@@ -11,9 +11,9 @@
                 <h:form id="valid" styleClass="mainForm" >
                     <fieldset>
                         <div class="loginRow noborder">
-                            <label for="req1">#{messages['login.usuario']} :</label>
+                            <label for="usuario">#{messages['login.usuario']} :</label>
                             <div class="loginInput">
-                                <p:inputText id="email"
+                                <p:inputText id="usuario"
                                              value="#{identity.usuario}" 
                                              size="30" maxlength="30" autocomplete="off" 
                                              styleClass="validate[required,maxSize[30]]"/>
@@ -22,7 +22,7 @@
                         </div>
 
                         <div class="loginRow">
-                            <label for="req2">#{messages['login.senha']} :</label>
+                            <label for="password">#{messages['login.senha']} :</label>
                             <div class="loginInput">
                                 <p:password id="password" value="#{identity.password}" 
                                 			styleClass="validate[required]"/>  
@@ -32,15 +32,13 @@
 
                         <div class="loginRow">
                             <div class="rememberMe">
-                            	<input type="checkbox" id="check2" name="chbox" />
-                            	<label>#{messages['login.lembre.me']}</label>
+                            	<p:selectBooleanCheckbox id="lembreMe" name="lembreMe" value="#{identity.lembreMeCookie}" itemLabel="#{messages['login.lembre.me']}"/>
                             </div>
                             <p:commandButton id="login_button"
                                              value="#{messages['button.login']}"
                                              action="#{identity.login}"
                                              styleClass="submitForm"
                                              ajax="false" />
-	                                             
 	                                             
                             <div class="fix"></div>
                         </div>

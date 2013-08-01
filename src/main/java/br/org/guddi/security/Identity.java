@@ -1,13 +1,20 @@
 package br.org.guddi.security;
 
+import java.io.Serializable;
+import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 import br.gov.frameworkdemoiselle.message.MessageContext;
 import br.gov.frameworkdemoiselle.message.SeverityType;
 import br.gov.frameworkdemoiselle.security.SecurityContext;
-import java.io.Serializable;
-import java.security.Principal;
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
 
 /**
  *
@@ -27,10 +34,33 @@ public class Identity implements Serializable, Principal {
     private Long orgao;
     private String nomeorgao;
     private String papel;
+    private Boolean lembreMeCookie;
+    
+    @Inject
+    private FacesContext facesContext;
+    
     @Inject
     private SecurityContext securityContext;
+    
     @Inject
     private MessageContext messageContext;
+    
+    private final String COOKIE_NAME = "guddiCookieLembreMe";
+    
+    public Identity(){
+    	
+    	Cookie cookies[] = ((HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest()).getCookies();
+    	
+    	for(Cookie cookie : cookies){
+    		if(COOKIE_NAME.equals(cookie.getName())){
+    			System.out.println(" >>>>>>>>>>>>>>>> " + cookie.getValue());
+        		if(!cookie.getValue().isEmpty()){
+        			setUsuario(cookie.getValue());
+        		}
+    		}
+    	}
+    	
+    }
 
     /**
      *
@@ -39,11 +69,24 @@ public class Identity implements Serializable, Principal {
     public String login() {
         try {
             securityContext.login();
-            return "index.html";
-        } catch (Exception e) {
+            
+            if(lembreMeCookie){
+            	setCookie(COOKIE_NAME, getUsuario());
+            }
+            
+            return "";
+        } 
+        catch (Exception e) {
             messageContext.add(e.getMessage(), SeverityType.ERROR);
             return null;
         }
+    }
+    
+    private void setCookie(String cookieName, String cookieValue) {
+        Map<String, Object> properties = new HashMap<String, Object>();
+        properties.put("path", "/");
+        
+        facesContext.getExternalContext().addResponseCookie(cookieName, cookieValue, properties);
     }
 
     /**
@@ -200,4 +243,12 @@ public class Identity implements Serializable, Principal {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
+
+	public Boolean getLembreMeCookie() {
+		return lembreMeCookie;
+	}
+
+	public void setLembreMeCookie(Boolean lembreMeCookie) {
+		this.lembreMeCookie = lembreMeCookie;
+	}
 }
