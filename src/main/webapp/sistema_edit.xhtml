@@ -162,7 +162,8 @@
 												<div class="formBottom">
 													<h:inputText value="#{descritor.nome}" id="nomeDescritor"
 																 styleClass="rightDir"
-															     title="#{messages['tooltip.sistema.descritor.nome']}"/>
+															     title="#{messages['tooltip.sistema.descritor.nome']}"
+															     maxlength="35"/>
 												</div>
 												<div class="fix"></div>
 											</div>
@@ -172,7 +173,8 @@
 												<div class="formBottom">
 													<h:inputText value="#{descritor.url}" id="urlDescritor"
 																 styleClass="rightDir"
-															     title="#{messages['tooltip.sistema.descritor.url']}"/>
+															     title="#{messages['tooltip.sistema.descritor.url']}"
+															     maxlength="256"/>
 												</div>
 												<div class="fix"></div>
 											</div>
@@ -208,7 +210,9 @@
 												<div class="formBottom">
 													<h:inputTextarea value="#{descritor.descricao}" rows="12" id="descritorDescricao"
 																	 styleClass="rightDir"
-															     	 title="#{messages['tooltip.sistema.descritor.descricao']}"/>
+															     	 title="#{messages['tooltip.sistema.descritor.descricao']}">
+														<f:validateLength maximum="1500"/>
+													</h:inputTextarea>
 												</div>
 												<div class="fix"></div>
 											</div>
@@ -250,7 +254,8 @@
 																	<div class="formBottom">
 																		<h:inputText id="servicoNome" value="#{servico.nome}"
 																					 styleClass="rightDir"
-															     	 				 title="#{messages['tooltip.sistema.servico.nome']}"/>
+															     	 				 title="#{messages['tooltip.sistema.servico.nome']}"
+															     	 				 maxlength="50"/>
 																	</div>
 																	<div class="fix"></div>
 																</div>
@@ -260,7 +265,8 @@
 																	<div class="formBottom">
 																		<h:inputText id="retornoTipo" value="#{servico.tipoRetorno}"
 																					 styleClass="rightDir"
-															     	 				 title="#{messages['tooltip.sistema.servico.tipo.retorno']}"/>
+															     	 				 title="#{messages['tooltip.sistema.servico.tipo.retorno']}"
+															     	 				 maxlength="100"/>
 																	</div>
 																	<div class="fix"></div>
 																</div>
@@ -270,7 +276,9 @@
 																	<div class="formBottom">
 																		<h:inputTextarea id="servicoDescricao" value="#{servico.descricao}" rows="5"
 																						 styleClass="rightDir"
-															     	 					 title="#{messages['tooltip.sistema.servico.descricao']}"/>
+															     	 					 title="#{messages['tooltip.sistema.servico.descricao']}">
+															     	 		<f:validateLength maximum="1500"/>
+															     	 	</h:inputTextarea>
 																	</div>
 																	<div class="fix"></div>
 																</div>
@@ -311,6 +319,14 @@
 											                			<div id="tabServicoAtributosS#{servico.id}A#{contadorServico.index}" class="tab_content_complementar">
 											                				
 											                				<p:dataTable id="servicoAtributos" var="atributo" value="#{servico.atributos}">
+																				
+																				<p:column style="width:4%" rendered="#{atributo.id != null}">  
+																				
+																					<h:commandButton value="Excluir" action="#{sistemaEditMB.removerAtributo(servico, atributo)}">
+																						<f:ajax execute="@form" render="@form"/>
+																					</h:commandButton>
+																					
+																		        </p:column> 
 										
 																				<p:column rendered="#{atributo.id != null}">
 																					<f:facet name="header">#{messages['atributo.label.nome']}</f:facet>
@@ -326,14 +342,6 @@
 																					<f:facet name="header">#{messages['atributo.label.descricao']}</f:facet>
 																					<h:outputText value="#{atributo.descricao}" />
 																				</p:column>
-																				
-																				<p:column style="width:4%" rendered="#{atributo.id != null}">  
-																				
-																					<h:commandButton value="Excluir" action="#{sistemaEditMB.removerAtributo(servico, atributo)}">
-																						<f:ajax execute="@form" render="@form"/>
-																					</h:commandButton>
-																					
-																		        </p:column> 
 																						
 																			</p:dataTable>
 											                			
@@ -368,7 +376,8 @@
 																						<div class="formLeft">
 																							<h:inputText id="atributoNomeNovo" value="#{atributoNovo.nome}"
 																										 styleClass="rightDir"
-															     	 									 title="#{messages['tooltip.sistema.atributo.nome']}"/>
+															     	 									 title="#{messages['tooltip.sistema.atributo.nome']}"
+															     	 									 maxlength="50"/>
 																						</div>
 																						<div class="fix"></div>
 																					</div>
@@ -378,7 +387,8 @@
 																						<div class="formLeft">
 																							<h:inputText id="atributoDescricaoNovo" value="#{atributoNovo.descricao}"
 																										 styleClass="rightDir"
-															     	 					 				 title="#{messages['tooltip.sistema.atributo.descricao']}" />
+															     	 					 				 title="#{messages['tooltip.sistema.atributo.descricao']}" 
+															     	 					 				 maxlength="300"/>
 																						</div>
 																						<div class="fix"></div>
 																					</div>
@@ -407,6 +417,15 @@
 											                				
 											                				<p:dataTable id="servicoExcecoes" var="excecao" value="#{servico.excecoes}">
 											                				
+											                					<p:column style="width:4%" rendered="#{excecao.id != null}">  
+																				
+																		            <h:commandButton value="Excluir" action="#{sistemaEditMB.removerExcecao(servico, excecao)}"
+																					 			     ajax="false">
+																						<f:ajax execute="@form" render="@form"/>
+																					</h:commandButton> 
+																					
+																		        </p:column> 
+											                				
 																				<p:column rendered="#{excecao.id != null}">
 																					<f:facet name="header">#{messages['excecao.label.identificador']}</f:facet>
 																					<h:outputText value="#{excecao.identificador}" />
@@ -417,15 +436,6 @@
 																					<h:outputText value="#{excecao.descricao}" />
 																				</p:column>
 																				
-																				<p:column style="width:4%" rendered="#{excecao.id != null}">  
-																				
-																		            <h:commandButton value="Excluir" action="#{sistemaEditMB.removerExcecao(servico, excecao)}"
-																					 			     ajax="false">
-																						<f:ajax execute="@form" render="@form"/>
-																					</h:commandButton> 
-																					
-																		        </p:column> 
-																						
 																			</p:dataTable>
 																			
 																			<ui:repeat var="excecaoNova" value="#{servico.excecoes}" >
@@ -437,7 +447,8 @@
 																						<div class="formLeft">
 																							<h:inputText id="excecaoIdentificadorNovo" value="#{excecaoNova.identificador}" 
 																										 styleClass="rightDir"
-															     	 					 				 title="#{messages['tooltip.sistema.excecao.identificador']}"/>
+															     	 					 				 title="#{messages['tooltip.sistema.excecao.identificador']}"
+															     	 					 				 maxlength="20"/>
 																						</div>
 																						<div class="fix"></div>
 																					</div>
@@ -447,7 +458,8 @@
 																						<div class="formLeft">
 																							<h:inputText id="excecaoDescricaoNovo" value="#{excecaoNova.descricao}" 
 																										 styleClass="rightDir"
-															     	 					 				 title="#{messages['tooltip.sistema.excecao.descricao']}"/>
+															     	 					 				 title="#{messages['tooltip.sistema.excecao.descricao']}"
+															     	 					 				 maxlength="255"/>
 																						</div>
 																						<div class="fix"></div>
 																					</div>
