@@ -386,15 +386,15 @@ $(function() {
 			value: 37
 	});
 		
-		
+	*/	
 	//===== Tooltip =====//
 		
-	$('.leftDir').tipsy({fade: true, gravity: 'e'});
+	//$('.leftDir').tipsy({fade: true, gravity: 'e'});
 	$('.rightDir').tipsy({fade: true, gravity: 'w'});
-	$('.topDir').tipsy({fade: true, gravity: 's'});
-	$('.botDir').tipsy({fade: true, gravity: 'n'});
+	//$('.topDir').tipsy({fade: true, gravity: 's'});
+	//$('.botDir').tipsy({fade: true, gravity: 'n'});
 
-		
+	/*
 	//===== Information boxes =====//
 		
 	$(".hideit").click(function() {
