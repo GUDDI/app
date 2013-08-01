@@ -217,7 +217,16 @@
 												<!-- Abas de Serviços -->
 												<ul class="tabsServicos">
 													<ui:repeat var="servico" value="#{descritor.servicos}" varStatus="contadorServico">
-				                    					<li><a href="#tabServicoD#{descritor.id}S#{contadorServico.index}">#{servico.id == null ? messages['descritor.label.servico.adicionar'] : servico.nome}</a></li>
+				                    					<li>
+				                    						<a href="#tabServicoD#{descritor.id}S#{contadorServico.index}">
+				                    						<h:panelGroup rendered="#{servico.id != null}">
+				                    							#{servico.nome}
+				                    						</h:panelGroup>
+				                    						<h:panelGroup rendered="#{servico.id == null}">
+				                    							#{messages['descritor.label.servico.adicionar']}
+				                    						</h:panelGroup>
+				                    						</a>
+				                    					</li>
 						                    		</ui:repeat>
 									            </ul>
 									            
@@ -303,10 +312,11 @@
 																				</p:column>
 																				
 																				<p:column style="width:4%" rendered="#{atributo.id != null}">  
-																					<p:commandButton action="#{sistemaEditMB.removerAtributo(servico, atributo)}"
-																					 			 icon="ui-icon-circle-close" update="@form" immediate="false">
-																						<f:ajax execute="@form"/>
-																					</p:commandButton>
+																				
+																					<h:commandButton value="Excluir" action="#{sistemaEditMB.removerAtributo(servico, atributo)}">
+																						<f:ajax execute="@form" render="@form"/>
+																					</h:commandButton>
+																					
 																		        </p:column> 
 																						
 																			</p:dataTable>
@@ -386,10 +396,11 @@
 																				</p:column>
 																				
 																				<p:column style="width:4%" rendered="#{excecao.id != null}">  
-																		            <p:commandButton action="#{sistemaEditMB.removerExcecao(servico, excecao)}"
-																					 			 icon="ui-icon-circle-close" update="@form" immediate="true">
-																						<f:ajax execute="@form" immediate="true"/>
-																					</p:commandButton> 
+																				
+																		            <h:commandButton value="Excluir" action="#{sistemaEditMB.removerExcecao(servico, excecao)}"
+																					 			     ajax="false">
+																						<f:ajax execute="@form" render="@form"/>
+																					</h:commandButton> 
 																					
 																		        </p:column> 
 																						

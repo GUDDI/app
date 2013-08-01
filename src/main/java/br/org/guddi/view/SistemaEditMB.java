@@ -73,6 +73,8 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 	
 	private DescritorType tipoDescritor;
 	
+	private Long idAtributoRemove;
+	
 	@Inject
 	private MessageContext messageContext;
 	
@@ -343,9 +345,18 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
     
     @Transactional
     public void removerAtributo(Servico servico, Atributo atributo){
-    	
-    	servico.getAtributos().remove(atributo);
-    	atributoBC.delete(atributo.getId());
+
+    	for(Descritor descritor : getDescritores()){
+    		if(descritor.getId().equals(servico.getDescritor().getId())){
+    			for(Servico serv : descritor.getServicos()){
+    				if(serv.getId() != null && serv.getId().equals(servico.getId())){
+    					servico.getAtributos().remove(atributo);
+    			    	atributoBC.delete(atributo.getId());
+    			    	break;
+    				}
+    			}
+    		}
+    	}
     	
     	ajustarAbas(servico.getDescritor(), servico);
     }
@@ -371,8 +382,17 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
     @Transactional
     public void removerExcecao(Servico servico, Excecao excecao){
     	
-    	servico.getExcecoes().remove(excecao);
-    	excecaoBC.delete(excecao.getId());
+    	for(Descritor descritor : getDescritores()){
+    		if(descritor.getId().equals(servico.getDescritor().getId())){
+    			for(Servico serv : descritor.getServicos()){
+    				if(serv.getId() != null && serv.getId().equals(servico.getId())){
+    					servico.getExcecoes().remove(excecao);
+    			    	excecaoBC.delete(excecao.getId());
+    			    	break;
+    				}
+    			}
+    		}
+    	}
     	
     	ajustarAbas(servico.getDescritor(), servico);
 		
@@ -514,6 +534,14 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 	@ExceptionHandler
 	private void tratarExcecao(Exception e){
 		messageContext.add("{guddi.erro.generico}", SeverityType.ERROR);
+	}
+
+	public Long getIdAtributoRemove() {
+		return idAtributoRemove;
+	}
+
+	public void setIdAtributoRemove(Long idAtributoRemove) {
+		this.idAtributoRemove = idAtributoRemove;
 	}
 
 }

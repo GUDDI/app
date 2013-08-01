@@ -38,33 +38,28 @@
 		</web-resource-collection>
 		<auth-constraint />
 	</security-constraint>
-	
-	<!-- <filter>
-		<filter-name>CharacterEncodingFilter</filter-name>
-		<filter-class>br.org.guddi.view.filter.CharacterEncodingFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>CharacterEncodingFilter</filter-name>
-		<url-pattern>*.jsf</url-pattern>
-	</filter-mapping> -->
 
-		<!-- Mapping for ConsultaService endpoint -->
-		<!-- <servlet> <servlet-name>ConsultaService</servlet-name> <servlet-class>br.org.guddi.service.Consulta</servlet-class> 
-			</servlet> <servlet-mapping> <servlet-name>ConsultaService</servlet-name> 
-			<url-pattern>/ConsultaService</url-pattern> </servlet-mapping> -->
-		<!-- <context-param> <param-name>org.apache.myfaces.ERROR_HANDLING</param-name> 
-			<param-value>false</param-value> </context-param> -->
-		<!-- <error-page> <exception-type>javax.faces.application.ViewExpiredException</exception-type> 
-			<location>/login.jsf</location> </error-page> -->
-		<error-page>
-			<error-code>404</error-code>
-			<location>/404.jsf</location>
-		</error-page>
-		<error-page>
-			<error-code>500</error-code>
-			<location>/500.jsf</location>
-		</error-page>
-		<!-- <error-page> <exception-type>br.gov.frameworkdemoiselle.security.AuthorizationException</exception-type> 
-			<location>/login.jsf</location> </error-page> -->
+	<!-- <filter> <filter-name>CharacterEncodingFilter</filter-name> <filter-class>br.org.guddi.view.filter.CharacterEncodingFilter</filter-class> 
+		</filter> <filter-mapping> <filter-name>CharacterEncodingFilter</filter-name> 
+		<url-pattern>*.jsf</url-pattern> </filter-mapping> -->
+
+	<!-- Mapping for ConsultaService endpoint -->
+	<!-- <servlet> <servlet-name>ConsultaService</servlet-name> <servlet-class>br.org.guddi.service.Consulta</servlet-class> 
+		</servlet> <servlet-mapping> <servlet-name>ConsultaService</servlet-name> 
+		<url-pattern>/ConsultaService</url-pattern> </servlet-mapping> -->
+	<!-- <context-param> <param-name>org.apache.myfaces.ERROR_HANDLING</param-name> 
+		<param-value>false</param-value> </context-param> -->
+	<!-- <error-page> <exception-type>javax.faces.application.ViewExpiredException</exception-type> 
+		<location>/login.jsf</location> </error-page> -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.jsf</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/500.jsf</location>
+	</error-page>
+	<!-- <error-page> <exception-type>br.gov.frameworkdemoiselle.security.AuthorizationException</exception-type> 
+		<location>/login.jsf</location> </error-page> -->
 
 </web-app>
