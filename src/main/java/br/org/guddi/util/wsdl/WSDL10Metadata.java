@@ -10,7 +10,7 @@ import com.ibm.wsdl.MessageImpl;
 import com.ibm.wsdl.PortTypeImpl;
 import com.ibm.wsdl.ServiceImpl;
 
-public class WSDLMetadata {
+public class WSDL10Metadata {
 
 	Types types;
 
@@ -22,7 +22,7 @@ public class WSDLMetadata {
 
 	Map<QName, ServiceImpl> services;
 
-	public WSDLMetadata() {
+	public WSDL10Metadata() {
 		super();
 	}
 	
