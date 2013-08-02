@@ -183,7 +183,7 @@
 												<h:outputLabel value="#{messages['descritor.label.marcacoes']}: " styleClass="topLabel"/>
 												<div class="formBottom">
 													<h:inputText value="#{descritor.marcacoesFormatado}"
-																 styleClass="rightDir"
+																 styleClass="rightDir marcacoes" style="width: 100%;"
 															     title="#{messages['tooltip.sistema.descritor.marcacoes']}"/>
 												</div>
 												<div class="fix"></div>
@@ -573,6 +573,9 @@
 									
 									//===== Tooltip =====//
 									$('.rightDir').tipsy({fade: true, gravity: 'w'});
+									
+									//===== Tags =====//
+									$(".marcacoes").select2({tags: [""], maximumInputLength: 15});
 	
 								});
 							</script>

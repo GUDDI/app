@@ -71,7 +71,7 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 	
 	private List<Descritor> descritores;
 	
-	private DescritorType tipoDescritor;
+	private DescritorType tipoDescritor = DescritorType.WSDL;
 	
 	private Long idAtributoRemove;
 	
@@ -124,6 +124,8 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
     				descritor.getMarcacoes().add(marcacao);
 				}
 			}
+			
+			descritor.setMarcacoesFormatado(descritor.getMarcacoesFormatado());
 		}
 		
 		if(descritor.getId() == null){
