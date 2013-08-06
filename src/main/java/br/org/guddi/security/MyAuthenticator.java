@@ -9,6 +9,8 @@ import br.gov.frameworkdemoiselle.security.Authenticator;
 import br.org.guddi.domain.Usuario;
 import br.org.guddi.persistence.UsuarioDAO;
 import br.org.guddi.util.CriptografiaUtil;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author thiago.soares
@@ -29,7 +31,13 @@ public class MyAuthenticator implements Authenticator {
      */
     @Override
     public void authenticate() throws AuthenticationException {
-        Usuario user = usuarioDAO.findByUserName(identity.getUsuario());
+        Usuario user;
+        
+        try {
+            user = usuarioDAO.findByUserName(identity.getUsuario());
+        } catch (Exception ex) {
+            throw new AuthenticationException("Usuário não existe.", ex);
+        }
 
         if (user == null) {
             throw new AuthenticationException("O login falhou.");

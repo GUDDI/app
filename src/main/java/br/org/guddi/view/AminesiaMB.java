@@ -4,6 +4,7 @@ import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.message.MessageContext;
 import br.gov.frameworkdemoiselle.message.SeverityType;
+import br.gov.frameworkdemoiselle.security.AuthenticationException;
 
 import javax.inject.Inject;
 
@@ -58,7 +59,7 @@ public class AminesiaMB extends AbstractEditPageBean<Usuario, Long> {
             securityBC.enviarMensagemLembrandoSenha(email);
             messageContext.add("Lembrete enviado para seu e-mail", SeverityType.INFO);
         } catch (Exception ex) {
-            messageContext.add(ex.getMessage(), SeverityType.ERROR);
+            messageContext.add("E-mail não cadastrado.", SeverityType.ERROR);
             return null;
         }
         return getPreviousView();

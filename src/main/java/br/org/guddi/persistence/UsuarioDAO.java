@@ -1,6 +1,5 @@
 package br.org.guddi.persistence;
 
-import br.gov.frameworkdemoiselle.message.SeverityType;
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 import br.org.guddi.domain.Usuario;
@@ -21,20 +20,16 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
      * @param usuario
      * @return
      */
-    public Usuario findByUserName(String usuario) {
-        try {
+    public Usuario findByUserName(String usuario) throws Exception{
             return (Usuario) getEntityManager().createNamedQuery("Usuario.findByUsuario").setParameter("usuario", usuario).getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
     }
     
-    public Usuario findByEmail(String email) {
-        try {
+    public Usuario findByAminesia(String aminesia) throws Exception{
+            return (Usuario) getEntityManager().createNamedQuery("Usuario.findByAminesia").setParameter("aminesia", aminesia).getSingleResult();
+    }
+    
+    public Usuario findByEmail(String email) throws Exception{
             return (Usuario) getEntityManager().createNamedQuery("Usuario.findByEmail").setParameter("email", email).getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
     }
 
     /**
@@ -43,7 +38,7 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
      * @param idRole
      * @return
      */
-    public Boolean hasRole(Long idUsuario, Short idRole) {
+    public Boolean hasRole(Long idUsuario, Short idRole) throws Exception{
         return (Boolean) getEntityManager().createNativeQuery("SELECT COUNT(1) > 0 FROM guddi.usuario WHERE id = :idUser AND papel = :papel")
                 .setParameter("idUser", idUsuario)
                 .setParameter("papel", idRole)
@@ -56,7 +51,7 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
      * @param idResource
      * @return
      */
-    public Integer hasPermission(Long idUsuario, Long idResource) {
+    public Integer hasPermission(Long idUsuario, Long idResource) throws Exception{
         return (Integer) getEntityManager().createNativeQuery("SELECT operacao FROM usuario_recursos ur WHERE id_usuario = :idUser AND id_recursos = :resource")
                 .setParameter("idUser", idUsuario)
                 .setParameter("resource", idResource)
@@ -71,7 +66,7 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
      */
     public void UpdatePassWithAminesia(String aminesia, String senhanova) throws Exception {
         try {
-            Usuario usu = (Usuario) getEntityManager().createNamedQuery("Usuario.findByAminesia").setParameter("aminesia", aminesia).getSingleResult();
+            Usuario usu = findByAminesia(aminesia);
             if (usu != null) {
                 usu.setSenha(CriptografiaUtil.getCodigoMd5(senhanova));
                 update(usu); 

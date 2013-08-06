@@ -1,9 +1,12 @@
 package br.org.guddi.security;
 
+import br.gov.frameworkdemoiselle.security.AuthenticationException;
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.security.Authorizer;
 import br.org.guddi.persistence.UsuarioDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author thiago.soares
@@ -11,10 +14,8 @@ import br.org.guddi.persistence.UsuarioDAO;
 public class MyAuthorizer implements Authorizer {
 
     private static final long serialVersionUID = 9096827023234484L;
-    
     @Inject
     private Identity identity;
-    
     @Inject
     private UsuarioDAO usuarioDAO;
 
@@ -25,8 +26,12 @@ public class MyAuthorizer implements Authorizer {
      */
     @Override
     public boolean hasRole(String role) {
-        Boolean hasRole = usuarioDAO.hasRole(identity.getId(), Roles.getRole(role));
-        return hasRole;
+        try {
+            Boolean hasRole = usuarioDAO.hasRole(identity.getId(), Roles.getRole(role));
+            return hasRole;
+        } catch (Exception ex) {
+            throw new AuthenticationException("Usuário não tem regra", ex);
+        }
     }
 
     /**
@@ -37,8 +42,12 @@ public class MyAuthorizer implements Authorizer {
      */
     @Override
     public boolean hasPermission(String resource, String operation) {
-        Integer idOperacao = usuarioDAO.hasPermission(identity.getId(), Resources.getResource(resource));
-        return Operations.listOperations(idOperacao).contains(operation);
-    }
+        try {
+            Integer idOperacao = usuarioDAO.hasPermission(identity.getId(), Resources.getResource(resource));
+            return Operations.listOperations(idOperacao).contains(operation);
+        } catch (Exception ex) {
+            throw new AuthenticationException("Usuário não tem permissão", ex);
+        }
 
+    }
 }
