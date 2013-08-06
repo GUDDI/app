@@ -51,12 +51,14 @@ public class Identity implements Serializable, Principal {
     	
     	Cookie cookies[] = ((HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest()).getCookies();
     	
-    	for(Cookie cookie : cookies){
-    		if(COOKIE_NAME.equals(cookie.getName())){
-    			System.out.println(" >>>>>>>>>>>>>>>> " + cookie.getValue());
-        		if(!cookie.getValue().isEmpty()){
-        			setUsuario(cookie.getValue());
-        		}
+    	if(cookies != null) {
+    		for(Cookie cookie : cookies){
+    			if(COOKIE_NAME.equals(cookie.getName())){
+    				System.out.println(" >>>>>>>>>>>>>>>> " + cookie.getValue());
+    				if(!cookie.getValue().isEmpty()){
+    					setUsuario(cookie.getValue());
+    				}
+    			}
     		}
     	}
     	

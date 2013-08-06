@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Excecao.findByDescricao", query = "SELECT e FROM Excecao e WHERE e.descricao = :descricao")})
 public class Excecao implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 8870974717342812588L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
