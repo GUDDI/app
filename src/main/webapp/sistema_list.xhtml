@@ -20,7 +20,8 @@
 						<h5 class="iList">#{messages['sistema.list.table.title']}</h5>
 					</div>
 					
-					<p:dataTable id="list" var="bean" value="#{sistemaListMB.resultList}">
+					<p:dataTable id="list" var="bean" value="#{sistemaListMB.resultList}" widgetVar="listaSistemas"
+								 filteredValue="#{sistemaListMB.sistemaFiltro}">
 						
 						<p:column style="width:5%;" sortBy="#{bean.id}">
 							<f:facet name="header">#{messages['sistema.label.id']}</f:facet>
@@ -30,7 +31,8 @@
 							</h:commandLink>
 						</p:column>
 								
-						<p:column sortBy="#{bean.nome}">
+						<p:column sortBy="#{bean.nome}" filterBy="#{bean.nome}"
+								  filterMatchMode="contains">
 							<f:facet name="header">#{messages['sistema.label.nome']}</f:facet>
 							<h:commandLink action="#{sistemaListMB.getNextView}" actionListener="#{sistemaListMB.clear}">
 								<h:outputText value="#{bean.nome}" />
@@ -38,7 +40,8 @@
 							</h:commandLink>
 						</p:column>
 								
-						<p:column sortBy="#{bean.orgao}">
+						<p:column sortBy="#{bean.orgao}" filterBy="#{bean.orgao.nome}"
+								  filterMatchMode="contains">
 							<f:facet name="header">#{messages['sistema.label.orgao']}</f:facet>
 							<h:commandLink action="#{sistemaListMB.getNextView}" actionListener="#{sistemaListMB.clear}">
 								<h:outputText value="#{bean.orgao.nome}" />

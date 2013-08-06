@@ -21,6 +21,8 @@ import br.org.guddi.domain.Sistema;
 public class SistemaListMB extends AbstractListPageBean<Sistema, Long> {
 
 	private static final long serialVersionUID = 1L;
+	
+	private List<Sistema> sistemaFiltro;
 
 	@Inject
 	private SistemaBC sistemaBC;
@@ -30,5 +32,13 @@ public class SistemaListMB extends AbstractListPageBean<Sistema, Long> {
 		return this.sistemaBC.findAll();
 	}
 
+	public List<Sistema> getSistemaFiltro() {
+		return sistemaFiltro;
+	}
 
+	public void setSistemaFiltro(List<Sistema> sistemaFiltro) {
+		this.sistemaFiltro = sistemaFiltro;
+	}
+
+    
 }

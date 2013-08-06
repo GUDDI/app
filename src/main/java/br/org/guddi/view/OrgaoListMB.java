@@ -21,6 +21,8 @@ import br.org.guddi.domain.Orgao;
 public class OrgaoListMB extends AbstractListPageBean<Orgao, Long> {
 
 	private static final long serialVersionUID = 1L;
+	
+	private List<Orgao> orgaoFiltro;
 
 	@Inject
 	private OrgaoBC orgaoBC;
@@ -28,6 +30,14 @@ public class OrgaoListMB extends AbstractListPageBean<Orgao, Long> {
     @Override
 	protected List<Orgao> handleResultList() {
 		return this.orgaoBC.findAll();
+	}
+
+	public List<Orgao> getOrgaoFiltro() {
+		return orgaoFiltro;
+	}
+
+	public void setOrgaoFiltro(List<Orgao> orgaoFiltro) {
+		this.orgaoFiltro = orgaoFiltro;
 	}
 
 }

@@ -18,14 +18,16 @@
 						<h5 class="iFrames">#{messages['orgao.list.table.title']}</h5>
 					</div>
 					
-					<p:dataTable id="list" var="bean" value="#{orgaoListMB.resultList}">
+					<p:dataTable id="list" var="bean" value="#{orgaoListMB.resultList}" widgetVar="listaOrgaos"
+								 filteredValue="#{orgaoListMB.orgaoFiltro}">
 					
 						<p:column style="width:5%;" sortBy="#{bean.id}">
 							<f:facet name="header">#{messages['orgao.label.id']}</f:facet>
 							<h:outputText value="#{bean.id}" />
 						</p:column>
 								
-						<p:column sortBy="#{bean.nome}">
+						<p:column sortBy="#{bean.nome}" filterBy="#{bean.nome}"
+								  filterMatchMode="contains">
 							<f:facet name="header">#{messages['orgao.label.nome']}</f:facet>
 							<h:commandLink action="#{orgaoListMB.getNextView}" actionListener="#{orgaoListMB.clear}">
 								<h:outputText value="#{bean.nome}" />
@@ -33,7 +35,8 @@
 							</h:commandLink>
 						</p:column>
 						
-						<p:column sortBy="#{bean.uf}">
+						<p:column sortBy="#{bean.uf}" filterBy="#{bean.uf}"
+								  filterMatchMode="contains">
 							<f:facet name="header">#{messages['orgao.label.uf']}</f:facet>
 							<h:commandLink action="#{orgaoListMB.getNextView}" actionListener="#{orgaoListMB.clear}">
 								<h:outputText value="#{bean.uf}" />
@@ -41,7 +44,8 @@
 							</h:commandLink>
 						</p:column>
 						
-						<p:column sortBy="#{bean.sigla}">
+						<p:column sortBy="#{bean.sigla}" filterBy="#{bean.sigla}"
+								  filterMatchMode="contains">
 							<f:facet name="header">#{messages['orgao.label.sigla']}</f:facet>
 							<h:commandLink action="#{orgaoListMB.getNextView}" actionListener="#{orgaoListMB.clear}">
 								<h:outputText value="#{bean.sigla}" />

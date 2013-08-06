@@ -374,7 +374,7 @@ html ul.tabsComplementar li.activeTab a { color: #797979; }
 .widgets .left { float: left; width: 344px; }
 .widgets .right { float: right; width: 344px; }
 
-.content { float: left; width: 726px; margin-bottom: 80px; }
+.content { float: left; width: 100%; margin-bottom: 80px; }
 .content .title { background: url(../images/darkBg.jpg) repeat-x; height: 36px; width: 726px; -moz-box-shadow: 0 1px 0 #fff; -webkit-box-shadow: 0 1px 0 #fff; box-shadow: 0 1px 0 #fff; }
 .content .title h5 { float: left; color: #fafafa; font-weight: normal; display: block; padding: 7px 15px; }
 
@@ -440,7 +440,7 @@ html ul.tabsComplementar li.activeTab a { color: #797979; }
 
 /* ===== Footer ===== */
 
-#footer { clear: both; /*height: 36px;*/ background: url(../images/topNav.jpg) repeat; width: 100%; color: #eeeeee; margin-top: 42px; position: absolute; bottom: 0; }
+#footer { clear: both; /*height: 36px;*/ width: 100%; color: #eeeeee; margin-top: 42px; position: absolute; bottom: 0; }
 #footer span { color: #696969; padding: 9px 5px; display: block; font-size: 11px; }
 #footer span a { color: #eeeeee; }
 

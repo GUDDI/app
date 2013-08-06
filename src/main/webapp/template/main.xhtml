@@ -91,26 +91,37 @@
             </div>
         </h:form>
 
-
-       	<p:panel rendered="#{securityContext.loggedIn}">
-            <div>
-                <ui:include src="/menu.xhtml"/>
-            </div>
-            <div style="clear: both; padding-top: 10px; padding-bottom: 10px;"></div>
-            <div>
-                <ui:insert name="crud"/>
-            </div>
-        </p:panel>
-        <p:panel>
-            <ui:insert name="body"/>
-        </p:panel>
-        <!-- 
-        
-                <p:panel rendered="#{not securityContext.loggedIn}">
-                    <ui:insert name="body"/>
-                </p:panel>s
-        -->
-
+		<div class="wrapper">
+			<div class="content">
+		       	<p:panel rendered="#{securityContext.loggedIn}">
+		            <div>
+		                <ui:include src="/menu.xhtml"/>
+		            </div>
+		            <div style="clear: both; padding-top: 10px; padding-bottom: 10px;"></div>
+		            <div>
+		                <ui:insert name="crud"/>
+		            </div>
+		        </p:panel>
+		        <p:panel>
+		            <ui:insert name="body"/>
+		        </p:panel>
+		    </div>
+		</div>
+		
+		<div class="fix"></div>
+		
+		<!-- Footer -->
+		<div id="footer" class="aligncenter">
+			<div class="wrapper">
+		    	<span>
+					<a href="http://novo.frameworkdemoiselle.gov.br" title="">
+		        		<img src="images/demoiselle.png" alt="" />
+		        	</a>
+				</span>
+		    </div>
+		</div>
+		
+		
 		<p:growl id="messages" globalOnly="true" autoUpdate="true" showSummary="true" showDetail="false" />
 
 		<p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>  
@@ -119,10 +130,6 @@
 		          draggable="false" closable="false" position="center" resizable="false">  
 		    <p:graphicImage value="/images/loaders/loader7.gif"/>  
 		</p:dialog>
-
-
-                
-                <div class="center"><a href="http://novo.frameworkdemoiselle.gov.br" title=""><img src="images/demoiselle.png" alt="" /></a></div>
               
     </h:body>
 </html>

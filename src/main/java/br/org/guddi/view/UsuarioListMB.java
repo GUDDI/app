@@ -21,6 +21,8 @@ import br.org.guddi.domain.Usuario;
 public class UsuarioListMB extends AbstractListPageBean<Usuario, Long> {
 
 	private static final long serialVersionUID = 1L;
+	
+	private List<Usuario> usuarioFiltro;
 
 	@Inject
 	private UsuarioBC usuarioBC;
@@ -32,6 +34,14 @@ public class UsuarioListMB extends AbstractListPageBean<Usuario, Long> {
     @Override
 	protected List<Usuario> handleResultList() {
 		return this.usuarioBC.findAll();
+	}
+
+	public List<Usuario> getUsuarioFiltro() {
+		return usuarioFiltro;
+	}
+
+	public void setUsuarioFiltro(List<Usuario> usuarioFiltro) {
+		this.usuarioFiltro = usuarioFiltro;
 	}
 
 
