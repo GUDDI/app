@@ -11,6 +11,9 @@
 					<p:commandButton value="#{messages['button.save']}" action="#{usuarioEditMB.insert}"
 						rendered="#{!usuarioEditMB.updateMode}" ajax="false" icon="ui-icon-disk" id="submitButton"/>
 						
+					<p:commandButton value="#{messages['button.save']}" action="#{usuarioEditMB.update}"
+						rendered="#{usuarioEditMB.updateMode}" ajax="false" icon="ui-icon-disk" id="updateButton"/>
+						
 					<p:commandButton value="#{messages['button.inactive']}" onclick="confirmationInactive.show()"
 						rendered="#{usuarioEditMB.bean.isAtivo and usuarioEditMB.updateMode}" type="button" immediate="true" ajax="false" icon="ui-icon-trash"/>
 						
@@ -54,7 +57,7 @@
 					<div class="rowElem noborder">
 						<h:outputLabel value="#{messages['usuario.label.papel']}: " for="papel" />
 						<div class="formLeft">
-							<h:selectOneMenu id="papel" value="#{usuarioEditMB.bean.papel}" disabled="#{usuarioEditMB.updateMode}">
+							<h:selectOneMenu id="papel" value="#{usuarioEditMB.bean.papel}">
 								<f:selectItems value="#{usuarioEditMB.papeis.entrySet()}" var="papel" itemValue="#{papel.key}" itemLabel="#{papel.value}"/>
 							</h:selectOneMenu>
 						</div>
@@ -64,7 +67,7 @@
 					<div class="rowElem noborder">
 						<h:outputLabel value="#{messages['usuario.label.nome']}: " for="nome"/>
 						<div class="formLeft">
-							<h:inputText id="nome" value="#{usuarioEditMB.bean.nome}" title="#{messages['usuario.alt.nome']}" disabled="#{usuarioEditMB.updateMode}"
+							<h:inputText id="nome" value="#{usuarioEditMB.bean.nome}" title="#{messages['usuario.alt.nome']}" 
 										 styleClass="validate[required,minSize[3],maxSize[50]]"/>
 						</div>
 						<div class="fix"></div>
@@ -73,7 +76,7 @@
 					<div class="rowElem noborder">
 						<h:outputLabel value="#{messages['usuario.label.usuario']}: " for="usuario"/>
 						<div class="formLeft">
-							<h:inputText id="usuario" value="#{usuarioEditMB.bean.usuario}" title="#{messages['usuario.alt.usuario']}" disabled="#{usuarioEditMB.updateMode}"
+							<h:inputText id="usuario" value="#{usuarioEditMB.bean.usuario}" title="#{messages['usuario.alt.usuario']}"
 										 styleClass="validate[required,minSize[3],maxSize[30]]"/>
 						</div>
 						<div class="fix"></div>
@@ -82,7 +85,7 @@
 					<div class="rowElem noborder">
 						<h:outputLabel value="#{messages['usuario.label.email']}: " for="email"/>
 						<div class="formLeft">
-							<h:inputText id="email" value="#{usuarioEditMB.bean.email}" title="#{messages['usuario.alt.email']}" disabled="#{usuarioEditMB.updateMode}"
+							<h:inputText id="email" value="#{usuarioEditMB.bean.email}" title="#{messages['usuario.alt.email']}"
 										 styleClass="validate[required,minSize[5],maxSize[64],custom[email]]"/>
 						</div>
 						<div class="fix"></div>
@@ -91,7 +94,7 @@
 					<div class="rowElem noborder">
 						<h:outputLabel value="#{messages['usuario.label.orgao']}: " for="orgao"/>
 						<div class="formLeft">
-							<h:selectOneMenu id="orgao" value="#{usuarioEditMB.orgao.id}" disabled="#{usuarioEditMB.updateMode}">
+							<h:selectOneMenu id="orgao" value="#{usuarioEditMB.orgao.id}">
 								<f:selectItems value="#{orgaoListMB.resultList}" var="orgao" itemValue="#{orgao.id}" itemLabel="#{orgao.nome}"/>
 							</h:selectOneMenu>
 						</div>

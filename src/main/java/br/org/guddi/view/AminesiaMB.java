@@ -1,22 +1,21 @@
 package br.org.guddi.view;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.message.MessageContext;
 import br.gov.frameworkdemoiselle.message.SeverityType;
-import br.gov.frameworkdemoiselle.security.AuthenticationException;
-
-import javax.inject.Inject;
-
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.org.guddi.business.SecurityBC;
 import br.org.guddi.domain.Usuario;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  *

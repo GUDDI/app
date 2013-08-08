@@ -11,11 +11,11 @@ import br.gov.frameworkdemoiselle.message.SeverityType;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
+import br.org.guddi.business.SecurityBC;
 import br.org.guddi.business.UsuarioBC;
 import br.org.guddi.domain.Orgao;
 import br.org.guddi.domain.Usuario;
 import br.org.guddi.security.Roles;
-import br.org.guddi.util.CriptografiaUtil;
 
 /**
  *
@@ -35,6 +35,9 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
 	
 	@Inject
 	private Orgao orgao;
+	
+	@Inject
+	private SecurityBC securityBC;
 	
     @Override
 	@Transactional
@@ -65,15 +68,19 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
     @Override
 	@Transactional
 	public String insert() {
-        String senha = CriptografiaUtil.getCodigoMd5(""+System.currentTimeMillis());
-        getBean().setAminesia(senha);
-        getBean().setSenha(senha.substring(21, 27));
         getBean().setOrgao(getOrgao());
         getBean().setIsAtivo(Boolean.FALSE);
         
 		this.usuarioBC.insert(getBean());
 		
 		messageContext.add("{usuario-insert-ok}", getBean().getUsuario());
+		
+		try {
+			securityBC.enviarMensagemLembrandoSenha(getBean());
+		} 
+        catch (Exception e) {
+			messageContext.add("{email.exception.generico}", e.getMessage());
+		}
     	
 		return getPreviousView();
 	}
@@ -81,7 +88,21 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
     @Override
 	@Transactional
 	public String update() {
-    	throw new UnsupportedOperationException();
+        getBean().setOrgao(getOrgao());
+        getBean().setIsAtivo(Boolean.FALSE);
+        
+        this.usuarioBC.update(getBean());
+        
+        messageContext.add("{usuario-update-ok}", getBean().getUsuario());
+        
+        try {
+			securityBC.enviarMensagemLembrandoSenha(getBean());
+		} 
+        catch (Exception e) {
+			messageContext.add("{email.exception.generico}", e.getMessage());
+		}
+        
+        return getPreviousView();
 	}
 	
     @Override

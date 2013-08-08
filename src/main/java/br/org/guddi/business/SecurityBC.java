@@ -73,6 +73,10 @@ public class SecurityBC {
         usuarioDAO.UpdatePassWithAminesia(aminesia, senhanova);
     }
 
+    public void enviarMensagemLembrandoSenha(Usuario usuario) throws Exception {
+    	enviarMensagemLembrandoSenha(usuario.getEmail());
+    }
+    
     public void enviarMensagemLembrandoSenha(String destinatario) throws Exception {
         Usuario usu = usuarioDAO.findByEmail(destinatario);
         String senha = CriptografiaUtil.getCodigoMd5("" + System.currentTimeMillis());
