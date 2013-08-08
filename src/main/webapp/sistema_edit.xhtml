@@ -185,6 +185,7 @@
 													<h:inputText value="#{descritor.marcacoesFormatado}"
 																 styleClass="rightDir marcacoes" style="width: 100%;"
 															     title="#{messages['tooltip.sistema.descritor.marcacoes']}"/>
+															     
 												</div>
 												<div class="fix"></div>
 											</div>
@@ -575,13 +576,21 @@
 									$('.rightDir').tipsy({fade: true, gravity: 'w'});
 									
 									//===== Tags =====//
-									$(".marcacoes").select2({tags: [""], maximumInputLength: 15});
+									$(".marcacoes").select2({
+										tags: function(){
+											return $("#marcacoesOrgao").val().split(",");
+										}, 
+										maximumInputLength: 15
+									});
 	
 								});
 							</script>
 							
 			            </h:panelGroup>
+			            
 			    	</h:form>
+			    	
+			    	<h:inputHidden value="#{sistemaEditMB.marcacoesOrgao}" id="marcacoesOrgao"/>
                 </div>
                 
             </div>	

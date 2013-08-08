@@ -1,8 +1,10 @@
 package br.org.guddi.view;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -25,6 +27,7 @@ import br.org.guddi.domain.Descritor;
 import br.org.guddi.domain.DescritorType;
 import br.org.guddi.domain.Excecao;
 import br.org.guddi.domain.Marcacao;
+import br.org.guddi.domain.Orgao;
 import br.org.guddi.domain.Servico;
 import br.org.guddi.domain.Sistema;
 import br.org.guddi.security.Identity;
@@ -544,6 +547,40 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 
 	public void setIdAtributoRemove(Long idAtributoRemove) {
 		this.idAtributoRemove = idAtributoRemove;
+	}
+
+	public String getMarcacoesOrgao() {
+		StringBuffer sb = new StringBuffer();
+
+		Set<String> marcacoes = new HashSet<String>();
+		
+		Orgao orgao = orgaoBC.load(identity.getOrgao());
+		
+		if(orgao.getSistemas() != null){
+			for(Sistema sistema : orgao.getSistemas()){
+				if(sistema.getDescritores() != null){
+					for(Descritor descritor : sistema.getDescritores()){
+						if(descritor.getMarcacoes() != null){
+							for(Marcacao marcacao : descritor.getMarcacoes()){
+								marcacoes.add(marcacao.getMarcacao());
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		Iterator<String> it = marcacoes.iterator();
+				
+		while(it.hasNext()){
+			if(sb.length() > 0){
+    			sb.append(",");
+    		}
+			
+			sb.append(it.next());
+		}
+		
+		return sb.toString();
 	}
 
 }
