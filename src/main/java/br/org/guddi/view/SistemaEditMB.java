@@ -120,7 +120,7 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
     				Marcacao marcacao = marcacaoBC.findByMarcacao(marcacaoStr.trim());
     				if(marcacao == null){
     					marcacao = new Marcacao();
-    					marcacao.setMarcacao(marcacaoStr.trim());
+    					marcacao.setMarcacao(marcacaoStr.trim().toLowerCase());
     					marcacaoBC.insert(marcacao);
     				}
     				
@@ -562,7 +562,7 @@ public class SistemaEditMB extends AbstractEditPageBean<Sistema, Long> {
 					for(Descritor descritor : sistema.getDescritores()){
 						if(descritor.getMarcacoes() != null){
 							for(Marcacao marcacao : descritor.getMarcacoes()){
-								marcacoes.add(marcacao.getMarcacao());
+								marcacoes.add(marcacao.getMarcacao().trim().toLowerCase());
 							}
 						}
 					}

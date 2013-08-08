@@ -18,7 +18,7 @@ public class MarcacaoDAO extends JPACrud<Marcacao, Long> {
 	public Marcacao findByMarcacao(String marcacao) {
 		
 		try{
-			return (Marcacao) getEntityManager().createNamedQuery("Marcacao.findByMarcacao").setParameter("marcacao", marcacao).getSingleResult();
+			return (Marcacao) getEntityManager().createNamedQuery("Marcacao.findByMarcacao").setParameter("marcacao", marcacao.toLowerCase()).getSingleResult();
 		}
 		catch(NoResultException e){
 			

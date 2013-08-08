@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Marcacao.findAll", query = "SELECT t FROM Marcacao t"),
     @NamedQuery(name = "Marcacao.findById", query = "SELECT t FROM Marcacao t WHERE t.id = :id"),
-    @NamedQuery(name = "Marcacao.findByMarcacao", query = "SELECT t FROM Marcacao t WHERE t.marcacao = :marcacao")})
+    @NamedQuery(name = "Marcacao.findByMarcacao", query = "SELECT t FROM Marcacao t WHERE LOWER(t.marcacao) = :marcacao")})
 public class Marcacao implements Serializable {
 
 	private static final long serialVersionUID = 5602366476002683716L;
