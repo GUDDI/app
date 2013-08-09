@@ -68,6 +68,8 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
     @Override
 	@Transactional
 	public String insert() {
+    	getBean().setSenha("123");
+    	getBean().setAminesia("123");
         getBean().setOrgao(getOrgao());
         getBean().setIsAtivo(Boolean.FALSE);
         
@@ -88,6 +90,8 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
     @Override
 	@Transactional
 	public String update() {
+    	getBean().setSenha("123");
+    	getBean().setAminesia("123");
         getBean().setOrgao(getOrgao());
         getBean().setIsAtivo(Boolean.FALSE);
         

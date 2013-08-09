@@ -64,7 +64,11 @@ p { padding: 12px 0 0 0; }
 .loginLogo { position: absolute; width: 190px; height: 44px; display: block; top: -80px; left: 50%; margin-left: -95px; } 
 .loginPanel h5 { font-weight: normal; padding: 9px 12px 9px 35px; float: left; } 
 
-.esqueciSenhaPanel { width: 320px; background: #fafafa; border: 1px solid #d5d5d5; border-top: 0; display: block; height: 157px; }
+.aminesiaPanel { width: 344px; background: #fafafa; border: 1px solid #d5d5d5; border-top: 0; display: block; height: 213px; }
+.aminesiaPanel label { width: 88px; }
+.aminesiaPanel h5 { font-weight: normal; padding: 9px 12px 9px 35px; float: left; }
+
+.esqueciSenhaPanel { width: 300px; background: #fafafa; border: 1px solid #d5d5d5; border-top: 0; display: block; height: 157px; }
 .esqueciSenhaPanel h5 { font-weight: normal; padding: 9px 12px 9px 35px; float: left; }
 
 .loginPanel label { width: 60px; }

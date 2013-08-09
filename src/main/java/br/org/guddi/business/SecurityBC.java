@@ -5,11 +5,14 @@
 package br.org.guddi.business;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.lifecycle.Startup;
 import br.gov.frameworkdemoiselle.mail.Mail;
+import br.gov.frameworkdemoiselle.mail.internal.Config;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.org.guddi.constant.MailConfig;
 import br.org.guddi.domain.Recurso;
@@ -18,8 +21,6 @@ import br.org.guddi.persistence.RecursoDAO;
 import br.org.guddi.persistence.UsuarioDAO;
 import br.org.guddi.security.Resources;
 import br.org.guddi.util.CriptografiaUtil;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -36,7 +37,10 @@ public class SecurityBC {
     private UsuarioDAO usuarioDAO;
     @Inject
     private MailConfig mailConfig;
-
+    
+    @Inject
+    private Config config;
+    
     /**
      *
      */
@@ -95,5 +99,6 @@ public class SecurityBC {
                 .body().text(texto.toString())
                 .subject(mailConfig.getAssunto())
                 .send();
+        
     }
 }
