@@ -2,15 +2,11 @@ package br.org.guddi.security;
 
 import java.io.Serializable;
 import java.security.Principal;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 
 import br.gov.frameworkdemoiselle.message.MessageContext;
 import br.gov.frameworkdemoiselle.message.SeverityType;
@@ -45,22 +41,26 @@ public class Identity implements Serializable, Principal {
     @Inject
     private MessageContext messageContext;
     
-    private final String COOKIE_NAME = "guddiCookieLembreMe";
+    /*
+     * TODO A Funcionalidade do gravação de Cookie não esta funcionando corretamente. 
+     */
+    
+//  private final String COOKIE_NAME = "guddiCookieLembreMe";
     
     public Identity(){
     	
-    	Cookie cookies[] = ((HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest()).getCookies();
-    	
-    	if(cookies != null) {
-    		for(Cookie cookie : cookies){
-    			if(COOKIE_NAME.equals(cookie.getName())){
-    				System.out.println(" >>>>>>>>>>>>>>>> " + cookie.getValue());
-    				if(!cookie.getValue().isEmpty()){
-    					setUsuario(cookie.getValue());
-    				}
-    			}
-    		}
-    	}
+//    	Cookie cookies[] = ((HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest()).getCookies();
+//    	
+//    	if(cookies != null) {
+//    		for(Cookie cookie : cookies){
+//    			if(COOKIE_NAME.equals(cookie.getName())){
+//    				System.out.println(" >>>>>>>>>>>>>>>> " + cookie.getValue());
+//    				if(!cookie.getValue().isEmpty()){
+//    					setUsuario(cookie.getValue());
+//    				}
+//    			}
+//    		}
+//    	}
     	
     }
 
@@ -72,9 +72,9 @@ public class Identity implements Serializable, Principal {
         try {
             securityContext.login();
             
-            if(lembreMeCookie){
-            	setCookie(COOKIE_NAME, getUsuario());
-            }
+//            if(lembreMeCookie){
+//            	setCookie(COOKIE_NAME, getUsuario());
+//            }
             
             return "";
         } 
@@ -84,12 +84,12 @@ public class Identity implements Serializable, Principal {
         }
     }
     
-    private void setCookie(String cookieName, String cookieValue) {
-        Map<String, Object> properties = new HashMap<String, Object>();
-        properties.put("path", "/");
-        
-        facesContext.getExternalContext().addResponseCookie(cookieName, cookieValue, properties);
-    }
+//    private void setCookie(String cookieName, String cookieValue) {
+//        Map<String, Object> properties = new HashMap<String, Object>();
+//        properties.put("path", "/");
+//        
+//        facesContext.getExternalContext().addResponseCookie(cookieName, cookieValue, properties);
+//    }
 
     /**
      *
