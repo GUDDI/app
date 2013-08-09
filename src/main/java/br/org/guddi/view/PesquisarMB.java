@@ -15,6 +15,7 @@ import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractPageBean;
 import br.org.guddi.business.PesquisarBC;
+import br.org.guddi.constant.GuddiConfig;
 import br.org.guddi.domain.Pesquisa;
 import br.org.guddi.domain.PesquisaFake;
 import br.org.guddi.util.search.SearchFilter;
@@ -38,6 +39,9 @@ public class PesquisarMB extends AbstractPageBean {
     private LazyDataModel<Pesquisa> lazyModel;
     private List<PesquisaFake> listRemotoFake;
     private List<PesquisaFake> mobiListRemotoFake;
+    
+    @Inject
+    private GuddiConfig guddiConfig;
 
     /**
      * Construtor padrão que reinicializa os parametros do paginador
@@ -208,5 +212,9 @@ public class PesquisarMB extends AbstractPageBean {
 
     public void setMobiListRemotoFake(List<PesquisaFake> mobiListRemotoFake) {
         this.mobiListRemotoFake = mobiListRemotoFake;
+    }
+    
+    public Boolean getMostrarAbaRemota(){
+    	return guddiConfig.getGuddiZillaEnabled();
     }
 }

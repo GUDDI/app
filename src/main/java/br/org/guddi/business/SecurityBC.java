@@ -5,21 +5,22 @@
 package br.org.guddi.business;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.lifecycle.Startup;
 import br.gov.frameworkdemoiselle.mail.Mail;
+import br.gov.frameworkdemoiselle.mail.internal.Config;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
-import br.org.guddi.constant.MailConfig;
+import br.org.guddi.constant.GuddiConfig;
 import br.org.guddi.domain.Recurso;
 import br.org.guddi.domain.Usuario;
 import br.org.guddi.persistence.RecursoDAO;
 import br.org.guddi.persistence.UsuarioDAO;
 import br.org.guddi.security.Resources;
 import br.org.guddi.util.CriptografiaUtil;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -30,13 +31,19 @@ public class SecurityBC {
 
     @Inject
     private Mail mailer;
+    
     @Inject
     private RecursoDAO recursoDAO;
+    
     @Inject
     private UsuarioDAO usuarioDAO;
+    
     @Inject
-    private MailConfig mailConfig;
-
+    private GuddiConfig guddiConfig;
+    
+    @Inject
+    private Config config;
+    
     /**
      *
      */
@@ -88,12 +95,13 @@ public class SecurityBC {
                 .append("\n\r Usuário: ").append(usu.getUsuario())
                 .append("\n\r Senha: ").append(usu.getSenha())
                 .append("\n\r siga o link para alterar sua senha: ")
-                .append(mailConfig.getUrl()).append(usu.getAminesia());
+                .append(guddiConfig.getUrl()).append(usu.getAminesia());
 
         mailer.to(destinatario)
-                .from(mailConfig.getRemetente())
+                .from(guddiConfig.getRemetente())
                 .body().text(texto.toString())
-                .subject(mailConfig.getAssunto())
+                .subject(guddiConfig.getAssunto())
                 .send();
+        
     }
 }

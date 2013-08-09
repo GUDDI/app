@@ -5,7 +5,6 @@
 package br.org.guddi.constant;
 
 import br.gov.frameworkdemoiselle.configuration.Configuration;
-import br.org.guddi.security.IRoles;
 
 /**
  *
