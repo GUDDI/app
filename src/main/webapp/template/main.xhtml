@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -75,45 +75,62 @@
             </div>
         </h:form>
 
-		<div class="wrapper">
-			<div class="content">
-		       	<p:panel rendered="#{securityContext.loggedIn}">
-		            <div>
-		                <ui:include src="/menu.xhtml"/>
-		            </div>
-		            <div style="clear: both; padding-top: 10px; padding-bottom: 10px;"></div>
-		            <div>
-		                <ui:insert name="crud"/>
-		            </div>
-		        </p:panel>
-		        <p:panel>
-		            <ui:insert name="body"/>
-		        </p:panel>
-		    </div>
-		</div>
-		
-		<div class="fix"></div>
-		
-		<!-- Footer -->
-		<div id="footer" class="aligncenter">
-			<div class="wrapper">
-		    	<span>
-					<a href="http://novo.frameworkdemoiselle.gov.br" title="">
-		        		<img src="images/demoiselle.png" alt="" />
-		        	</a>
-				</span>
-		    </div>
-		</div>
-		
-		
-		<p:growl id="messages" globalOnly="true" autoUpdate="true" showSummary="true" showDetail="false" />
+        <div class="wrapper">
+            <div class="content">
+                <p:panel rendered="#{securityContext.loggedIn}">
+                    <div>
+                        <ui:include src="/menu.xhtml"/>
+                    </div>
+                    <div style="clear: both; padding-top: 10px; padding-bottom: 10px;"></div>
+                    <div>
+                        <ui:insert name="crud"/>
+                    </div>
+                </p:panel>
+                <p:panel>
+                    <ui:insert name="body"/>
+                </p:panel>
+            </div>
+        </div>
 
-		<p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>  
-              
-		<p:dialog modal="true" widgetVar="statusDialog" header="Processando ..."   
-		          draggable="false" closable="false" position="center" resizable="false">  
-		    <p:graphicImage value="/images/loaders/loader7.gif"/>  
-		</p:dialog>
-              
+        <div class="fix"></div>
+
+        <!-- Footer -->
+        <div id="footer" class="aligncenter">
+            <div class="wrapper">
+                <span>
+                    <a href="http://novo.frameworkdemoiselle.gov.br" title="">
+                        <img src="images/demoiselle.png" alt="" />
+                    </a>
+                </span>
+            </div>
+        </div>
+
+
+        <p:growl id="messages" globalOnly="true" autoUpdate="true" showSummary="true" showDetail="false" />
+
+        <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>
+
+        <p:dialog modal="true" widgetVar="statusDialog" header="Processando ..."
+                  draggable="false" closable="false" position="center" resizable="false">
+            <p:graphicImage value="/images/loaders/loader7.gif"/>
+        </p:dialog>
+
     </h:body>
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-42108725-2', 'guddi.org');
+        ga('send', 'pageview');
+
+    </script>
 </html>
