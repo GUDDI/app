@@ -1,12 +1,14 @@
 package br.org.guddi.security;
 
-import br.gov.frameworkdemoiselle.security.AuthenticationException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 
+import br.gov.frameworkdemoiselle.security.AuthenticationException;
 import br.gov.frameworkdemoiselle.security.Authorizer;
 import br.org.guddi.persistence.UsuarioDAO;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author thiago.soares
@@ -27,9 +29,9 @@ public class MyAuthorizer implements Authorizer {
     @Override
     public boolean hasRole(String role) {
         try {
-            Boolean hasRole = usuarioDAO.hasRole(identity.getId(), Roles.getRole(role));
-            return hasRole;
-        } catch (Exception ex) {
+        	return role.equals(identity.getPapel());
+        } 
+        catch (Exception ex) {
             throw new AuthenticationException("Usuário não tem regra", ex);
         }
     }
@@ -43,8 +45,23 @@ public class MyAuthorizer implements Authorizer {
     @Override
     public boolean hasPermission(String resource, String operation) {
         try {
-            Integer idOperacao = usuarioDAO.hasPermission(identity.getId(), Resources.getResource(resource));
-            return Operations.listOperations(idOperacao).contains(operation);
+        	
+        	Map<Integer, Integer> recursoOperacoes = identity.getRecursosOperacoes();
+        	
+        	List<String> operacoes = new ArrayList<String>();
+        	operacoes.add(operation);
+        	
+        	Integer recurso = Resources.getResource(resource);
+        	Integer operacao = Operations.getOperation(operacoes);
+        	
+        	for (Map.Entry<Integer, Integer> entry : recursoOperacoes.entrySet()){
+        		if(recurso == entry.getKey() && operacao == entry.getValue()){
+        			return true;
+        		}
+        	}
+        	        	
+        	return false;
+        	
         } catch (Exception ex) {
             throw new AuthenticationException("Usuário não tem permissão", ex);
         }

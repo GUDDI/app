@@ -4,10 +4,6 @@
  */
 package br.org.guddi.security;
 
-import static br.org.guddi.security.IResources.ATRIBUTO;
-import static br.org.guddi.security.IResources.ORGAO;
-import static br.org.guddi.security.IResources.PAPEL;
-import static br.org.guddi.security.IResources.MARCACAO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,47 +28,47 @@ public class Resources implements IResources {
      * @param resource
      * @return
      */
-    public static Long getResource(String resource) {
-        Long number = 0L;
+    public static Integer getResource(String resource) {
+        Integer number = new Integer(0);
 
         if (resource.equals(ATRIBUTO)) {
-            number = 1L;
+            number = 1;
         }
         if (resource.equals(DESCRITOR)) {
-            number = 2L;
+            number = 2;
         }
         if (resource.equals(EXCECAO)) {
-            number = 3L;
+            number = 3;
         }
         if (resource.equals(ORGAO)) {
-            number = 4L;
+            number = 4;
         }
         if (resource.equals(PAPEL)) {
-            number = 5L;
+            number = 5;
         }
         if (resource.equals(PESQUISAR)) {
-            number = 6L;
+            number = 6;
         }
         if (resource.equals(RECURSO)) {
-            number = 7L;
+            number = 7;
         }
         if (resource.equals(SECURITY)) {
-            number = 8L;
+            number = 8;
         }
         if (resource.equals(SERVICO)) {
-            number = 9L;
+            number = 9;
         }
         if (resource.equals(SISTEMA)) {
-            number = 10L;
+            number = 10;
         }
         if (resource.equals(MARCACAO)) {
-            number = 12L;
+            number = 12;
         }
         if (resource.equals(USUARIO)) {
-            number = 13L;
+            number = 13;
         }
         if (resource.equals(INVALID)) {
-            number = 99L;
+            number = 99;
         }
 
         return number;

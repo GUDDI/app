@@ -77,7 +77,7 @@ public class SecurityBC {
      * @param senhanova
      */
     public void alteraSenha(String aminesia, String senhanova) throws Exception {
-        usuarioDAO.UpdatePassWithAminesia(aminesia, senhanova);
+        usuarioDAO.updatePassWithAminesia(aminesia, senhanova);
     }
 
     public void enviarMensagemLembrandoSenha(Usuario usuario) throws Exception {

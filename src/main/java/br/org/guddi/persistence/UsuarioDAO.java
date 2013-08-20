@@ -64,11 +64,11 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
      * @param usuario
      * @return
      */
-    public void UpdatePassWithAminesia(String aminesia, String senhanova) throws Exception {
+    public void updatePassWithAminesia(String aminesia, String senhaNova) throws Exception {
         try {
             Usuario usu = findByAminesia(aminesia);
             if (usu != null) {
-                usu.setSenha(CriptografiaUtil.getCodigoMd5(senhanova));
+                usu.setSenha(CriptografiaUtil.getCodigoMd5(senhaNova));
                 update(usu); 
             }else{
                  throw new Exception("Pegar mensagem do propertie - Senha atual inválida");

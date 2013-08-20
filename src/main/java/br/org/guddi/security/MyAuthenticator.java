@@ -1,16 +1,20 @@
 package br.org.guddi.security;
 
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.security.AuthenticationException;
 import br.gov.frameworkdemoiselle.security.Authenticator;
 import br.org.guddi.domain.Usuario;
+import br.org.guddi.domain.UsuarioRecurso;
 import br.org.guddi.persistence.UsuarioDAO;
+import br.org.guddi.persistence.UsuarioRecursoDAO;
 import br.org.guddi.util.CriptografiaUtil;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author thiago.soares
@@ -24,18 +28,35 @@ public class MyAuthenticator implements Authenticator {
     
     @Inject
     private UsuarioDAO usuarioDAO;
+    
+    @Inject
+    private UsuarioRecursoDAO usuarioRecursoDAO;
 
     /**
      *
      * @throws AuthenticationException
      */
-    @Override
+    @SuppressWarnings("unused")
+	@Override
     public void authenticate() throws AuthenticationException {
         Usuario user;
+        Map<Integer, Integer> recursosOperacoes = new HashMap<Integer, Integer>();
         
         try {
             user = usuarioDAO.findByUserName(identity.getUsuario());
-        } catch (Exception ex) {
+            
+            List<UsuarioRecurso> recursosUsuario = usuarioRecursoDAO.findByUsuario(user.getId());
+            
+            Iterator<UsuarioRecurso> it = recursosUsuario.iterator();
+            
+            while(it.hasNext()){
+            	UsuarioRecurso usuarioRecurso = it.next();
+            	
+            	recursosOperacoes.put(usuarioRecurso.getUsuarioRecursosPK().getRecursos(), usuarioRecurso.getOperacao());
+            }
+            
+        } 
+        catch (Exception ex) {
             throw new AuthenticationException("Usuário não existe.", ex);
         }
 
@@ -55,7 +76,7 @@ public class MyAuthenticator implements Authenticator {
         this.identity.setOrgao(user.getOrgao().getId());
         this.identity.setNomeorgao(user.getOrgao().getNome());
         this.identity.setPapel(Roles.getRole(user.getPapel()).get(0));
-
+        this.identity.setRecursosOperacoes(recursosOperacoes);
     }
 
     /**

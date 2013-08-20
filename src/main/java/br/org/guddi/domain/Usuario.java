@@ -1,6 +1,8 @@
 package br.org.guddi.domain;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -75,6 +77,8 @@ public class Usuario implements Serializable {
     
     @Column(name = "ativo")
     private Boolean isAtivo;
+    
+    private List<String> recursos;
 
     /**
      *
@@ -234,9 +238,16 @@ public class Usuario implements Serializable {
         this.aminesia = aminesia;
     }
     
+    public List<String> getRecursos() {
+		return recursos;
+	}
     
 
-    @Override
+    public void setRecursos(List<String> recursos) {
+		this.recursos = recursos;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
@@ -260,4 +271,5 @@ public class Usuario implements Serializable {
     public String toString() {
         return "br.gov.frameworkdemoiselle.guddi.domain.Usuario[ id=" + id + " ]";
     }
+	
 }

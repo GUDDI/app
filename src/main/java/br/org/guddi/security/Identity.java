@@ -2,6 +2,7 @@ package br.org.guddi.security;
 
 import java.io.Serializable;
 import java.security.Principal;
+import java.util.Map;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -30,7 +31,7 @@ public class Identity implements Serializable, Principal {
     private Long orgao;
     private String nomeorgao;
     private String papel;
-    private Boolean lembreMeCookie;
+//    private Boolean lembreMeCookie;
     
     @Inject
     private FacesContext facesContext;
@@ -40,6 +41,7 @@ public class Identity implements Serializable, Principal {
     
     @Inject
     private MessageContext messageContext;
+	private Map<Integer, Integer> recursosOperacoes;
     
     /*
      * TODO A Funcionalidade do gravação de Cookie não esta funcionando corretamente. 
@@ -246,11 +248,21 @@ public class Identity implements Serializable, Principal {
         this.usuario = usuario;
     }
 
-	public Boolean getLembreMeCookie() {
-		return lembreMeCookie;
+
+	public Map<Integer, Integer> getRecursosOperacoes() {
+		return recursosOperacoes;
 	}
 
-	public void setLembreMeCookie(Boolean lembreMeCookie) {
-		this.lembreMeCookie = lembreMeCookie;
+	public void setRecursosOperacoes(Map<Integer, Integer> recursosOperacoes) {
+		this.recursosOperacoes = recursosOperacoes;
 	}
+	
+	
+//	public Boolean getLembreMeCookie() {
+//		return lembreMeCookie;
+//	}
+//
+//	public void setLembreMeCookie(Boolean lembreMeCookie) {
+//		this.lembreMeCookie = lembreMeCookie;
+//	}
 }
