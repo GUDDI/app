@@ -57,7 +57,7 @@ public class SecurityBC {
                 Recurso rec = recursoDAO.load(recursos);
                 if (rec == null) {
                     rec = new Recurso();
-                    rec.setId(Resources.getResource(recursos));
+                    rec.setId(Long.valueOf(Resources.getResource(recursos)));
                     rec.setNome(recursos);
                     recursoDAO.insert(rec);
                 }
