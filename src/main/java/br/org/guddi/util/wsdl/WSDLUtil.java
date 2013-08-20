@@ -26,9 +26,9 @@ import com.ibm.wsdl.PortTypeImpl;
 import com.ibm.wsdl.ServiceImpl;
 
 
-public class WSDL10Util {
+public class WSDLUtil {
 
-	public WSDL10Metadata loadWsdl(String url) throws WSDLException {
+	public WSDLMetadata loadWsdlMetadata(String url) throws WSDLException {
 		
 		// get hold the WSDLFactory
 	    WSDLFactory factory = WSDLFactory.newInstance();
@@ -39,7 +39,7 @@ public class WSDL10Util {
 	    // pass the URL to the reader for parsing and get back a WSDL definiton
 	    Definition wsdlInstance = reader.readWSDL( null, url );
 
-	    WSDL10Metadata meta = new WSDL10Metadata();
+	    WSDLMetadata meta = new WSDLMetadata();
 	    
 	    // get a map of the five specific parts a WSDL file
 	    Types types = wsdlInstance.getTypes();
@@ -60,9 +60,9 @@ public class WSDL10Util {
 	    return meta;
 	}
 	
-	public List<Descritor> loadDescritorOnWSDL(String url) throws WSDLException {
+	public List<Descritor> loadDescriptorsOnWSDL(String url) throws WSDLException {
 		
-		WSDL10Metadata meta = loadWsdl(url);
+		WSDLMetadata meta = loadWsdlMetadata(url);
 		
 		
 		List<Descritor> descritores = new ArrayList<Descritor>();
@@ -134,58 +134,5 @@ public class WSDL10Util {
 		
 		return descritores;
 	}
-		
-	
-	/*private void adicionarNovoServico() {
-		
-		
-	    	if(descritor.getServicos() == null) {
-				descritor.setServicos(new ArrayList<Servico>());
-			}
-			
-			Boolean existeServicoNovo = Boolean.FALSE; 
-			for(Servico servico : descritor.getServicos()){
-				
-				if(servico.getAtributos() == null){
-	    			servico.setAtributos(new ArrayList<Atributo>());
-	    		}
-	    		
-	    		if(servico.getExcecoes() == null){
-	    			servico.setExcecoes(new ArrayList<Excecao>());
-	    		}
-	    		
-				if(servico.getId() == null){
-					existeServicoNovo = Boolean.TRUE;					
-				}
-				
-				Boolean existeNovoAtributo = Boolean.FALSE;
-    			for(Atributo atributo : servico.getAtributos()){
-    				if(atributo.getId() == null){
-    					existeNovoAtributo = Boolean.TRUE;
-    				}
-    			}
-    			
-    			if(!existeNovoAtributo){
-    				servico.getAtributos().add(new Atributo());
-    			}
-    			
-    			Boolean existeNovaExcecao = Boolean.FALSE;
-    			for(Excecao excecao : servico.getExcecoes()){
-    				if(excecao.getId() == null){
-    					existeNovaExcecao = Boolean.TRUE;
-    				}
-    			}
-    			
-    			if(!existeNovaExcecao){
-    				servico.getExcecoes().add(new Excecao());
-    			}
-			}
-			
-			if(!existeServicoNovo){
-				descritor.getServicos().add(new Servico());
-				setAbaServicoAtual(descritor.getServicos().size() - 2);
-				setAbaComplementarAtual(new Integer(0));
-			}
-	}*/
 	
 }

@@ -24,7 +24,7 @@ public class WSDL10UtilTest {
 		//List<Descritor> descritores = new WSDLUtil().loadDescritorOnWSDL("http://10.1.11.14:8080/nucleopa-nucleopa-ejb-2.2/NucleoPAFacadeBeanWS?wsdl");
 		//List<Descritor> descritores = new WSDLUtil().loadDescritorOnWSDL("http://10.1.11.14:8080/controleacesso/ws/ControleAcessoFacadeBeanWS?wsdl");
 		
-		List<Descritor> descritores = new WSDL10Util().loadDescritorOnWSDL("http://www.herongyang.com/Service/Hello_WSDL_20_SOAP.wsdl");
+		List<Descritor> descritores = new WSDLUtil().loadDescriptorsOnWSDL("http://www.herongyang.com/Service/Hello_WSDL_20_SOAP.wsdl");
 		
 		
 		for (Descritor descritor : descritores) {
@@ -56,7 +56,7 @@ public class WSDL10UtilTest {
 	public void toStringNucleopaTest() throws WSDLException {
 		
 		//WSDLMetadata meta = new WSDLUtil().loadWsdl("http://10.1.11.14:8080/nucleopa-nucleopa-ejb-2.2/NucleoPAFacadeBeanWS?wsdl");
-		WSDL10Metadata meta = new WSDL10Util().loadWsdl("src/test/resources/wsdl/10/ControleAcessoFacadeBeanWS.wsdl");
+		WSDLMetadata meta = new WSDLUtil().loadWsdlMetadata("src/test/resources/wsdl/10/ControleAcessoFacadeBeanWS.wsdl");
 
 		
 		//System.out.println(meta.getPortTypes());
