@@ -198,7 +198,5 @@ public class Pesquisa implements Serializable {
 	public void setIsPublico(Boolean isPublico) {
 		this.isPublico = isPublico;
 	}
-    
-    
 
 }

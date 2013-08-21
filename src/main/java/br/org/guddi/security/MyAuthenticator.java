@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.security.AuthenticationException;
 import br.gov.frameworkdemoiselle.security.Authenticator;
+import br.gov.frameworkdemoiselle.util.ResourceBundle;
 import br.org.guddi.domain.Usuario;
 import br.org.guddi.domain.UsuarioRecurso;
 import br.org.guddi.persistence.UsuarioDAO;
@@ -31,6 +32,9 @@ public class MyAuthenticator implements Authenticator {
     
     @Inject
     private UsuarioRecursoDAO usuarioRecursoDAO;
+    
+    @Inject
+    private ResourceBundle rb;
 
     /**
      *
@@ -57,17 +61,17 @@ public class MyAuthenticator implements Authenticator {
             
         } 
         catch (Exception ex) {
-            throw new AuthenticationException("Usuário não existe.", ex);
+            throw new AuthenticationException(rb.getString("login.usuario.nao.existe"), ex);
         }
 
         if (user == null) {
-            throw new AuthenticationException("O login falhou.");
+            throw new AuthenticationException(rb.getString("login.falhou"));
         } else {
             if (!user.getAminesia().isEmpty() && user.getSenha().equals(user.getAminesia().substring(21, 27))) {
-                throw new AuthenticationException("Você deve alterar sua senha apartir do email que o sistema mandou");
+                throw new AuthenticationException(rb.getString("login.alteracao.por.email"));
             }
             if (!user.getSenha().equals(CriptografiaUtil.getCodigoMd5(identity.getPassword()))) {
-                throw new AuthenticationException("O login falhou.");
+                throw new AuthenticationException(rb.getString("login.falhou"));
             }
         }
 

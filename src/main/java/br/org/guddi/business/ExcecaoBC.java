@@ -17,5 +17,4 @@ public class ExcecaoBC extends DelegateCrud<Excecao, Long, ExcecaoDAO> {
 
 	private static final long serialVersionUID = 1L;
 
-
 }

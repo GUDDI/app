@@ -7,12 +7,13 @@
         xmlns:ui="http://java.sun.com/jsf/facelets"
         template="/template/main_mobile.xhtml" contentType="text/html"
         renderKitId="PRIMEFACES_MOBILE">
-    <pm:page title="Edição de sistema">
+        
+    <pm:page title="#{messages['mobile.edicao.sistema.header']}">
 
         <!-- Main View -->
         <pm:view id="main">
 
-            <pm:header title="Pesquisa Serviços" swatch="b">
+            <pm:header title="#{messages['mobile.edicao.pesquisa.servico']}" swatch="b">
                 <f:facet name="left">
                     <p:button value="#{messages['button.back']}" icon="back"
                               href="./navigator.jsf"/>
@@ -26,12 +27,12 @@
             <pm:content>
                 <h:form>
 
-                    <h:inputText autocomplete="true" label="Pesquisar:" value="#{pesquisarMB.searchParam}"/>
+                    <h:inputText autocomplete="true" label="#{messages['mobile.edicao.pesquisa']}" value="#{pesquisarMB.searchParam}"/>
 
                     <pm:buttonGroup orientation="horizontal" >
                         <p:commandButton id="search_button"
-                                         value="Pesquisar"
-                                         title="Pesquisar"
+                                         value="#{messages['mobile.edicao.pesquisa']}"
+                                         title="#{messages['mobile.edicao.pesquisa']}"
                                          icon="ui-icon-search"
                                          action="#{pesquisarMB.gerartListRemotoFake()}"
                                          update="ListMobi"/>
@@ -40,7 +41,7 @@
                     <p:separator />
 
                     <p:dataList id="ListMobi" rows="6" paginator="true" value="#{pesquisarMB.mobiListRemotoFake}" var="fake" lazy="true">
-                        <f:attribute name="paginatorText" value="Consultas" />                        
+                        <f:attribute name="paginatorText" value="#{messages['mobile.edicao.consultas']}" />                        
                         #{fake.nomeOrgao} - #{fake.link}  - #{fake.quantidadeOcorrencias}
                     </p:dataList>
 

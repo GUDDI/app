@@ -7,12 +7,12 @@
         xmlns:ui="http://java.sun.com/jsf/facelets"
         template="/template/main_mobile.xhtml" contentType="text/html"
         renderKitId="PRIMEFACES_MOBILE">
-    <pm:page title="Listagem de sistema">
+    <pm:page title="#{messages['mobile.lista.sistema.header']}">
 
         <!-- Main View -->
         <pm:view id="main">
 
-            <pm:header title="sistema" swatch="b">
+            <pm:header title="#{messages['mobile.lista.sistema.sistema.header']}" swatch="b">
                 <f:facet name="left">
                     <p:button value="#{messages['main.app.title']}" icon="home"
                               href="./navigator.jsf"/>

@@ -13,6 +13,4 @@ public class OrgaoDAO extends JPACrud<Orgao, Long> {
 
 	private static final long serialVersionUID = 1L;
 
-
-
 }

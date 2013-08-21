@@ -323,7 +323,7 @@
 																				
 																				<p:column style="width:4%" rendered="#{atributo.id != null}">  
 																				
-																					<h:commandButton value="Excluir" action="#{sistemaEditMB.removerAtributo(servico, atributo)}">
+																					<h:commandButton value="#{messages['sistema.label.atributos.excluir']}" action="#{sistemaEditMB.removerAtributo(servico, atributo)}">
 																						<f:ajax execute="@form" render="@form"/>
 																					</h:commandButton>
 																					
@@ -420,7 +420,7 @@
 											                				
 											                					<p:column style="width:4%" rendered="#{excecao.id != null}">  
 																				
-																		            <h:commandButton value="Excluir" action="#{sistemaEditMB.removerExcecao(servico, excecao)}"
+																		            <h:commandButton value="#{messages['sistema.label.excecoes.excluir']}" action="#{sistemaEditMB.removerExcecao(servico, excecao)}"
 																					 			     ajax="false">
 																						<f:ajax execute="@form" render="@form"/>
 																					</h:commandButton> 

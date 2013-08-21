@@ -17,5 +17,4 @@ public class DescritorBC extends DelegateCrud<Descritor, Long, DescritorDAO> {
 
 	private static final long serialVersionUID = 1L;
 
-
 }

@@ -36,7 +36,7 @@ public class AminesiaMB extends AbstractEditPageBean<Usuario, Long> {
     private String senhaatual;
     private String senhanova;
     private String senharepetida;
-
+    
     public AminesiaMB() {
         FacesContext ctx = FacesContext.getCurrentInstance();
         HttpServletRequest req = (HttpServletRequest) ctx.getExternalContext().getRequest();
@@ -56,9 +56,9 @@ public class AminesiaMB extends AbstractEditPageBean<Usuario, Long> {
     public String lembrar() {
         try {
             securityBC.enviarMensagemLembrandoSenha(email);
-            messageContext.add("Lembrete enviado para seu e-mail", SeverityType.INFO);
+            messageContext.add("{aminesia.mensagem.lembrete.enviado}", SeverityType.INFO);
         } catch (Exception ex) {
-            messageContext.add("E-mail não cadastrado.", SeverityType.ERROR);
+            messageContext.add("{aminesia.lembrete.email.nao.cadastrado}", SeverityType.ERROR);
             return null;
         }
         return getPreviousView();
@@ -78,7 +78,7 @@ public class AminesiaMB extends AbstractEditPageBean<Usuario, Long> {
             if (senhanova.equals(senharepetida)) {
                 this.securityBC.alteraSenha(aminesia, senhanova);
             } else {
-                messageContext.add("Pegar do propertie - Nova senha não conincide", SeverityType.ERROR);
+                messageContext.add("{aminesia.nova.senha.diferente}", SeverityType.ERROR);
                 return null;
             }
         } catch (Exception ex) {

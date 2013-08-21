@@ -91,7 +91,7 @@
 				<div class="widget first">
 				
 					<div class="head">
-						<h5 class="iList">Atributos</h5>
+						<h5 class="iList">#{messages['pesquisa.detalhamento.atributos.label']}</h5>
 					</div>
 			
 					<h:panelGrid columns="2" styleClass="data_grid" columnClasses="col_label, col_value" >
@@ -102,19 +102,19 @@
 			
 								<p:column width="150">
 									<f:facet name="header">
-										<h:outputText value="Nome" />
+										<h:outputText value="#{messages['pesquisa.detalhamento.atributos.nome']}" />
 									</f:facet>
 									<h:outputText value="#{item.nome}" />
 								</p:column>
 								<p:column width="100">
 									<f:facet name="header">
-										<h:outputText value="Tipo" />
+										<h:outputText value="#{messages['pesquisa.detalhamento.atributos.tipo']}" />
 									</f:facet>
 									<h:outputText value="#{item.tipo}" />
 								</p:column>
 								<p:column width="500">
 									<f:facet name="header">
-										<h:outputText value="Descrição" />
+										<h:outputText value="#{messages['pesquisa.detalhamento.atributos.descricao']}" />
 									</f:facet>
 									<h:outputText value="#{item.descricao}" />
 								</p:column>
@@ -125,7 +125,7 @@
 				<div class="widget first">
 				
 					<div class="head">
-						<h5 class="iList">Excessões</h5>
+						<h5 class="iList">#{messages['pesquisa.detalhamento.excecoes.label']}</h5>
 					</div>
 			
 					<h:panelGrid columns="2" styleClass="data_grid" columnClasses="col_label, col_value">
@@ -136,13 +136,13 @@
 			
 								<p:column width="270">
 									<f:facet name="header">
-										<h:outputText value="identificador" />
+										<h:outputText value="#{messages['pesquisa.detalhamento.excecoes.identificador']}" />
 									</f:facet>
 									<h:outputText value="#{item.identificador}" />
 								</p:column>
 								<p:column width="500">
 									<f:facet name="header">
-										<h:outputText value="Descrição" />
+										<h:outputText value="#{messages['pesquisa.detalhamento.excecoes.descricao']}" />
 									</f:facet>
 									<h:outputText value="#{item.descricao}" />
 								</p:column>
@@ -153,11 +153,11 @@
 				<div class="widget first">
 				
 					<div class="head">
-						<h5 class="iList">Retorno</h5>
+						<h5 class="iList">#{messages['pesquisa.detalhamento.retorno.label']}</h5>
 					</div>
 					
 					<div class="rowElem">
-						<h:outputLabel value="Tipo do Retorno: " for="tipoRetorno"/>
+						<h:outputLabel value="#{messages['pesquisa.detalhamento.retorno.tipo.retorno']}" for="tipoRetorno"/>
 						<div class="formLeft">
 							<h:outputText id="tipoRetorno" value="#{detalharPesquisaMB.bean.tipoRetorno}" />
 						</div>
@@ -167,10 +167,10 @@
 				</div>
 			</fieldset>
 			
-			<p:dialog id="modalDialog" header="Órgão" widgetVar="dlgOrgao" modal="true" height="300" width="500">  
+			<p:dialog id="modalDialog" header="#{messages['pesquisa.detalhamento.orgao.label']}" widgetVar="dlgOrgao" modal="true" height="300" width="500">  
 	    		
 	    			<div class="rowElem">
-						<h:outputLabel value="Nome: " for="m_nomeOrgao"/>
+						<h:outputLabel value="#{messages['pesquisa.detalhamento.orgao.nome']}" for="m_nomeOrgao"/>
 						<div class="formBottom">
 							<h:outputText id="m_nomeOrgao" value="#{detalharPesquisaMB.bean.descritor.sistema.orgao.nome}" />
 						</div>
@@ -178,7 +178,7 @@
 					</div>
 					
 					<div class="rowElem">
-						<h:outputLabel value="Sigla: " for="m_siglaOrgao"/>
+						<h:outputLabel value="#{messages['pesquisa.detalhamento.orgao.sigla']}" for="m_siglaOrgao"/>
 						<div class="formBottom">
 							<h:outputText id="m_siglaOrgao" value="#{detalharPesquisaMB.bean.descritor.sistema.orgao.sigla}" />
 						</div>
@@ -186,7 +186,7 @@
 					</div>
 					
 					<div class="rowElem">
-						<h:outputLabel value="Site: " for="m_urlOrgao"/>
+						<h:outputLabel value="#{messages['pesquisa.detalhamento.orgao.url']}" for="m_urlOrgao"/>
 						<div class="formBottom">
 							<h:outputText id="m_urlOrgao" value="#{detalharPesquisaMB.bean.descritor.sistema.orgao.url}" />
 						</div>
@@ -194,7 +194,7 @@
 					</div>
 					
 					<div class="rowElem">
-						<h:outputLabel value="E-mail: " for="m_emailOrgao"/>
+						<h:outputLabel value="#{messages['pesquisa.detalhamento.orgao.email']}" for="m_emailOrgao"/>
 						<div class="formBottom">
 							<h:outputText id="m_emailOrgao" value="#{detalharPesquisaMB.bean.descritor.sistema.orgao.email}" />
 						</div>
@@ -202,7 +202,7 @@
 					</div>
 					
 					<div class="rowElem">
-						<h:outputLabel value="Contato: " for="m_contatoOrgao"/>
+						<h:outputLabel value="#{messages['pesquisa.detalhamento.orgao.contato']}" for="m_contatoOrgao"/>
 						<div class="formBottom">
 							<h:outputText id="m_contatoOrgao" value="#{detalharPesquisaMB.bean.descritor.sistema.orgao.nomeContato}" />
 						</div>
@@ -210,7 +210,7 @@
 					</div>
 					
 					<div class="rowElem">
-						<h:outputLabel value="Endereço: " for="m_enderecoOrgao"/>
+						<h:outputLabel value="#{messages['pesquisa.detalhamento.orgao.endereco']}" for="m_enderecoOrgao"/>
 						<div class="formBottom">
 							<h:outputText id="m_enderecoOrgao" value="#{detalharPesquisaMB.bean.descritor.sistema.orgao.endereco}" />
 						</div>
