@@ -1,5 +1,5 @@
 $(function() {
-	
+
 	//===== Time picker =====//
 	/*
 	$('.timepicker').timeEntry({
@@ -14,7 +14,7 @@ $(function() {
 	//===== Wizard =====//
 
 	$('.wizard').smartWizard({
-		selected: 0,  // Selected Step, 0 = first step   
+		selected: 0,  // Selected Step, 0 = first step
 		keyNavigation: true, // Enable/Disable key navigation(left and raight keys are used if enabled)
 		enableAllSteps: false,  // Enable/Disable all steps on first load
 		transitionEffect: 'slideleft', // Effect on navigation, none/fade/slide/slideleft
@@ -25,16 +25,16 @@ $(function() {
 		errorSteps:[],    // array of step numbers to highlighting as error steps
 		labelNext:'Next', // label for Next button
 		labelPrevious:'Previous', // label for Previous button
-		labelFinish:'Finish',  // label for Finish button        
+		labelFinish:'Finish',  // label for Finish button
 	  // Events
 		onLeaveStep: null, // triggers when leaving a step
 		onShowStep: null,  // triggers when showing a step
 		onFinish: null  // triggers when Finish button is clicked
 	 });
 
-	
+
 	//===== File uploader =====//
-	
+
 	$("#uploader").pluploadQueue({
 		runtimes : 'html5,html4',
 		url : 'php/upload.php',
@@ -45,16 +45,16 @@ $(function() {
 			{title : "Zip files", extensions : "zip"}
 		]
 	});
-	
 
 
-	//===== File manager =====//	
-	
-	
+
+	//===== File manager =====//
+
+
 	//$('#fileManager').elfinder({
 	//	url : 'php/connector.php',
 	//});
-	
+
 	*/
 	//===== Alert windows =====//
 
@@ -62,41 +62,41 @@ $(function() {
 	$(".bAlert").click( function() {
 		jAlert('This is a custom alert box. Title and this text can be easily editted', 'Alert Dialog Sample');
 	});
-	
+
 	$(".bConfirm").click( function() {
 		jConfirm('Can you confirm this?', 'Confirmation Dialog', function(r) {
 			jAlert('Confirmed: ' + r, 'Confirmation Results');
 		});
 	});
-	
+
 	$(".bPromt").click( function() {
 		jPrompt('Type something:', 'Prefilled value', 'Prompt Dialog', function(r) {
 			if( r ) alert('You entered ' + r);
 		});
 	});
-	
+
 	$(".bHtml").click( function() {
 		jAlert('You can use HTML, such as <strong>bold</strong>, <em>italics</em>, and <u>underline</u>!');
 	});
 
 	*/
 
-	//===== Accordion =====//		
-	
+	//===== Accordion =====//
+
 	/*
 	$('div.menu_body:eq(0)').show();
 	$('.acc .head:eq(0)').show().css({color:"#2B6893"});
-	
+
 	$(".acc .head").click(function() {
 		alert('oi');
 		$(this).css({color:"#2B6893"}).next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("slow");
 		$(this).siblings().css({color:"#404040"});
 	});
 	*/
-	
+
 	/*
 	//===== WYSIWYG editor =====//
-	
+
 	/*
 	$('.wysiwyg').wysiwyg({
 		iFrameClass: "wysiwyg-input",
@@ -105,21 +105,21 @@ $(function() {
 			italic        : { visible : true },
 			underline     : { visible : true },
 			strikeThrough : { visible : false },
-			
+
 			justifyLeft   : { visible : true },
 			justifyCenter : { visible : true },
 			justifyRight  : { visible : true },
 			justifyFull   : { visible : true },
-			
+
 			indent  : { visible : true },
 			outdent : { visible : true },
-			
+
 			subscript   : { visible : false },
 			superscript : { visible : false },
-			
+
 			undo : { visible : true },
 			redo : { visible : true },
-			
+
 			insertOrderedList    : { visible : true },
 			insertUnorderedList  : { visible : true },
 			insertHorizontalRule : { visible : false },
@@ -172,7 +172,7 @@ $(function() {
 			tags: ['h6'],
 			tooltip: 'Header 6'
 			},
-			
+
 			cut   : { visible : true },
 			copy  : { visible : true },
 			paste : { visible : true },
@@ -189,7 +189,7 @@ $(function() {
 			}
 		}
 	});
-	
+
 	//$('.wysiwyg').wysiwyg("insertHtml", "Sample code");
 	*/
 
@@ -198,12 +198,12 @@ $(function() {
 
 
 
-	
+
 	//===== ToTop =====//
 
-	//$().UItoTop({ easingType: 'easeOutQuart' });	
-	
-	
+	//$().UItoTop({ easingType: 'easeOutQuart' });
+
+
 	//===== Spinner options =====//
 
 	/*
@@ -256,13 +256,13 @@ $(function() {
 
 
 	//===== Contacts list =====//
-	
-	$('#myList').listnav({ 
-		initLetter: 'a', 
-		includeAll: true, 
-		includeOther: true, 
-		flagDisabled: true, 
-		noMatchText: 'Nothing matched your filter, please click another letter.', 
+
+	$('#myList').listnav({
+		initLetter: 'a',
+		includeAll: true,
+		includeOther: true,
+		flagDisabled: true,
+		noMatchText: 'Nothing matched your filter, please click another letter.',
 		prefixes: ['the','a'] ,
 	});
 
@@ -282,7 +282,7 @@ $(function() {
 	var d = date.getDate();
 	var m = date.getMonth();
 	var y = date.getFullYear();
-	
+
 	$('#calendar').fullCalendar({
 		header: {
 			left: 'prev,next',
@@ -341,8 +341,8 @@ $(function() {
 			}
 		]
 	});
-	
-	
+
+
 	//===== Dynamic data table =====//
 
 	oTable = $('#example').dataTable({
@@ -351,33 +351,33 @@ $(function() {
 		"sDom": '<""f>t<"F"lp>'
 	});
 	*/
-	
+
 	//===== Form elements styling =====//
-	
+
 	$('form').jqTransform({imgPath:'../images/forms'});
-	
-	
+
+
 	//===== Form validation engine =====//
 
 	$("#valid").validationEngine({promptPosition : "topRight", scroll: true});
-	
+
 	//===== Datepickers =====//
 
 	/*
-	$( ".datepicker" ).datepicker({ 
+	$( ".datepicker" ).datepicker({
 		defaultDate: +7,
 		autoSize: true,
 		appendText: '(dd-mm-yyyy)',
 		dateFormat: 'dd-mm-yy',
-	});	
+	});
 
-	$( ".datepickerInline" ).datepicker({ 
+	$( ".datepickerInline" ).datepicker({
 		defaultDate: +7,
 		autoSize: true,
 		appendText: '(dd-mm-yyyy)',
 		dateFormat: 'dd-mm-yy',
 		numberOfMonths: 1
-	});	
+	});
 
 
 	//===== Progressbar (Jquery UI) =====//
@@ -385,10 +385,10 @@ $(function() {
 	$( "#progressbar" ).progressbar({
 			value: 37
 	});
-		
-	*/	
+
+	*/
 	//===== Tooltip =====//
-		
+
 	//$('.leftDir').tipsy({fade: true, gravity: 'e'});
 	$('.rightDir').tipsy({fade: true, gravity: 'w'});
 	//$('.topDir').tipsy({fade: true, gravity: 's'});
@@ -396,43 +396,43 @@ $(function() {
 
 	/*
 	//===== Information boxes =====//
-		
+
 	$(".hideit").click(function() {
 		$(this).fadeOut(400);
 	});
-	
+
 
 	//=====Resizable table columns =====//
-	
+
 	var onSampleResized = function(e){
 		var columns = $(e.currentTarget).find("th");
 		var msg = "columns widths: ";
 		columns.each(function(){ msg += $(this).width() + "px; "; })
-	};	
+	};
 
 	$(".resize").colResizable({
-		liveDrag:true, 
-		gripInnerHtml:"<div class='grip'></div>", 
-		draggingClass:"dragging", 
+		liveDrag:true,
+		gripInnerHtml:"<div class='grip'></div>",
+		draggingClass:"dragging",
 		onResize:onSampleResized});
 
 
-	//===== Left navigation submenu animation =====//	
-		
+	//===== Left navigation submenu animation =====//
+
 	$("ul.sub li a").hover(function() {
 	$(this).stop().animate({ color: "#3a6fa5" }, 400);
 	},function() {
 	$(this).stop().animate({ color: "#494949" }, 400);
 	});
-	
-	
+
+
 	//===== Image gallery control buttons =====//
 
 	 $(".pics ul li").hover(
 		  function() { $(this).children(".actions").show("fade", 200); },
 		  function() { $(this).children(".actions").hide("fade", 200); }
 	 );
-	
+
 
 	//===== Color picker =====//
 
@@ -447,13 +447,13 @@ $(function() {
 	})
 	.bind('keyup', function(){
 		$(this).ColorPickerSetColor(this.value);
-	});	
-	
-	
+	});
+
+
 	//===== Autogrowing textarea =====//
-	
+
 	$(".auto").autoGrow();
-	
+
 
 	//===== Autotabs. Inline data rows =====//
 
@@ -462,12 +462,12 @@ $(function() {
 	$('.onlyAlpha input').autotab_magic().autotab_filter('alpha');
 	$('.onlyRegex input').autotab_magic().autotab_filter({ format: 'custom', pattern: '[^0-9\.]' });
 	$('.allUpper input').autotab_magic().autotab_filter({ format: 'alphanumeric', uppercase: true });
-	
-	
-	//===== jQuery UI sliders =====//	
-	
+
+
+	//===== jQuery UI sliders =====//
+
 	$( ".uiSlider" ).slider();
-	
+
 	$( ".uiSliderInc" ).slider({
 		value:100,
 		min: 0,
@@ -478,7 +478,7 @@ $(function() {
 		}
 	});
 	$( "#amount" ).val( "$" + $( ".uiSliderInc" ).slider( "value" ) );
-		
+
 	$( ".uiRangeSlider" ).slider({
 		range: true,
 		min: 0,
@@ -489,7 +489,7 @@ $(function() {
 		}
 	});
 	$( "#rangeAmount" ).val( "$" + $( ".uiRangeSlider" ).slider( "values", 0 ) +" - $" + $( ".uiRangeSlider" ).slider( "values", 1 ));
-			
+
 	$( ".uiMinRange" ).slider({
 		range: "min",
 		value: 37,
@@ -500,7 +500,7 @@ $(function() {
 		}
 	});
 	$( "#minRangeAmount" ).val( "$" + $( ".uiMinRange" ).slider( "value" ) );
-	
+
 	$( ".uiMaxRange" ).slider({
 		range: "max",
 		min: 1,
@@ -510,10 +510,10 @@ $(function() {
 			$( "#maxRangeAmount" ).val( ui.value );
 		}
 	});
-	$( "#maxRangeAmount" ).val( $( ".uiMaxRange" ).slider( "value" ) );	
-	
-	
-	
+	$( "#maxRangeAmount" ).val( $( ".uiMaxRange" ).slider( "value" ) );
+
+
+
 	$( "#eq > span" ).each(function() {
 		// read initial values from markup and remove that
 		var value = parseInt( $( this ).text(), 10 );
@@ -524,27 +524,27 @@ $(function() {
 			orientation: "vertical"
 		});
 	});
-	
-	
-	//===== Breadcrumbs =====//	
+
+
+	//===== Breadcrumbs =====//
 
 	$("#breadCrumb").jBreadCrumb();
-	
-	
-	//===== Autofocus =====//	
-	
+
+
+	//===== Autofocus =====//
+
 	$('.autoF').focus();
 
 
 	//===== Tabs =====//
 	*/
-	$.fn.simpleTabs = function(){ 
-	
+	$.fn.simpleTabs = function(){
+
 		//Default Action
 		$(this).find(".tab_content").hide(); //Hide all content
 		$(this).find("ul.tabs li:first").addClass("activeTab").show(); //Activate first tab
 		$(this).find(".tab_content:first").show(); //Show first tab content
-	
+
 		//On Click Event
 		$("ul.tabs li").click(function() {
 			$(this).parent().parent().find("ul.tabs li").removeClass("activeTab"); //Remove any "active" class
@@ -554,7 +554,7 @@ $(function() {
 			$(activeTab).show(); //Fade in the active content
 			return false;
 		});
-	
+
 	};//end function
 
 	$("div[class^='widget']").simpleTabs(); //Run function on any div with class name of "Simple Tabs"
@@ -562,7 +562,7 @@ $(function() {
 	/*
 
 	//===== Placeholder for all browsers =====//
-	
+
 	$("input").each(
 		function(){
 			if($(this).val()=="" && $(this).attr("placeholder")!=""){
@@ -577,25 +577,25 @@ $(function() {
 	});
 
 
-	//===== User nav dropdown =====//		
+	//===== User nav dropdown =====//
 
 	$('.dd').click(function () {
 		$('ul.menu_body').slideToggle(100);
 	});
-	
+
 	$('.acts').click(function () {
 		$('ul.actsBody').slideToggle(100);
 	});
-	
+
 	*/
 	//===== Collapsible elements management =====//
-	
+
 	$('.active').collapsible({
 		defaultOpen: 'current',
 		cookieName: 'nav',
 		speed: 300
 	});
-	
+
 	$('.exp').collapsible({
 		defaultOpen: 'current',
 		cookieName: 'navAct',
@@ -617,8 +617,8 @@ $(function() {
 		cssClose: 'normal',
 		speed: 200
 	});
-	
-	
+
+
 
 
 	/*
@@ -671,18 +671,18 @@ $(function() {
             if (item) {
                 if (previousPoint != item.dataIndex) {
                     previousPoint = item.dataIndex;
-                    
+
                     $("#tooltip").remove();
                     var x = item.datapoint[0].toFixed(2),
                         y = item.datapoint[1].toFixed(2);
-                    
+
                     showTooltip(item.pageX, item.pageY,
                                 item.series.label + " of " + x + " = " + y);
                 }
             }
             else {
                 $("#tooltip").remove();
-                previousPoint = null;            
+                previousPoint = null;
             }
         }
     });
@@ -707,7 +707,7 @@ $(function() {
 		function getRandomData() {
 			if (data.length > 0)
 				data = data.slice(1);
-	
+
 			// do a random walk
 			while (data.length < totalPoints) {
 				var prev = data.length > 0 ? data[data.length - 1] : 50;
@@ -718,14 +718,14 @@ $(function() {
 					y = 100;
 				data.push(y);
 			}
-	
+
 			// zip the generated y values with the x values
 			var res = [];
 			for (var i = 0; i < data.length; ++i)
 				res.push([i, data[i]])
 			return res;
 		}
-	
+
 		// setup control widget
 		var updateInterval = 1000;
 		$("#updateInterval").val(updateInterval).change(function () {
@@ -739,33 +739,33 @@ $(function() {
 				$(this).val("" + updateInterval);
 			}
 		});
-	
+
 		// setup plot
 		var options = {
 			yaxis: { min: 0, max: 100 },
 			xaxis: { min: 0, max: 100 },
 			colors: ["#afd8f8"],
 			series: {
-					   lines: { 
-							lineWidth: 2, 
+					   lines: {
+							lineWidth: 2,
 							fill: true,
 							fillColor: { colors: [ { opacity: 0.6 }, { opacity: 0.2 } ] },
 							//"#dcecf9"
 							steps: false
-	
+
 						}
 				   }
 		};
 		var plot = $.plot($(".autoUpdate"), [ getRandomData() ], options);
-	
+
 		function update() {
 			plot.setData([ getRandomData() ]);
 			// since the axes don't change, we don't need to call plot.setupGrid()
 			plot.draw();
-			
+
 			setTimeout(update, updateInterval);
 		}
-	
+
 		update();
 	});
 
@@ -776,17 +776,17 @@ $(function() {
 	/*
 	$(function () {
     var d2 = [[0.6, 29], [2.6, 13], [4.6, 46], [6.6, 30], [8.6, 48], [10.6, 22], [12.6, 40], [14.6, 32], [16.6, 39], [18.6, 16], [20.6, 27], [22.6, 22], [24.6, 2], [26.6, 45], [28.6, 23], [30.6, 28], [32.6, 30], [34.6, 40], [36.6, 20], [38.6, 47], [40.6, 12], [42.6, 49], [44.6, 28], [46.6, 15], [48.6, 24]];
-	
+
     var plot = $.plot($(".bars"),
            [ { data: d2} ], {
                series: {
-                   bars: { 
+                   bars: {
 					show: true,
 					lineWidth: 0.5,
-					barWidth: 0.85, 
+					barWidth: 0.85,
 					fill: true,
 					fillColor: { colors: [ { opacity: 0.8 }, { opacity: 1 } ] },
-					align: "left", 
+					align: "left",
 					horizontal: false,
 				   },
                },
@@ -812,11 +812,11 @@ $(function() {
 		{
 			data[i] = { label: "Series"+(i+1), data: Math.floor(Math.random()*100)+1 }
 		}
-	
-	$.plot($("#graph1"), data, 
+
+	$.plot($("#graph1"), data,
 	{
 			series: {
-				pie: { 
+				pie: {
 					show: true,
 					radius: 1,
 					label: {
@@ -839,11 +839,11 @@ $(function() {
 	});
 	$("#interactive").bind("plothover", pieHover);
 	$("#interactive").bind("plotclick", pieClick);
-	
-	$.plot($("#graph2"), data, 
+
+	$.plot($("#graph2"), data,
 	{
 			series: {
-				pie: { 
+				pie: {
 					show: true,
 					radius:300,
 					label: {
@@ -866,15 +866,15 @@ $(function() {
 	$("#interactive").bind("plothover", pieHover);
 	$("#interactive").bind("plotclick", pieClick);
 	});
-	
-	function pieHover(event, pos, obj) 
+
+	function pieHover(event, pos, obj)
 	{
 		if (!obj)
 					return;
 		percent = parseFloat(obj.series.percent).toFixed(2);
 		$("#hover").html('<span style="font-weight: bold; color: '+obj.series.color+'">'+obj.series.label+' ('+percent+'%)</span>');
 	}
-	function pieClick(event, pos, obj) 
+	function pieClick(event, pos, obj)
 	{
 		if (!obj)
 					return;
@@ -883,14 +883,8 @@ $(function() {
 	}
 	*/
 
-	
+
 });
 
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-42108725-2', 'sourceforge.net');
-  ga('send', 'pageview');
 
