@@ -5,7 +5,7 @@
         xmlns:pm="http://primefaces.org/mobile"
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:ui="http://java.sun.com/jsf/facelets"
-        template="/template/main_mobile.xhtml" contentType="text/html"
+        template="/mobile/template/main_mobile.xhtml" contentType="text/html"
         renderKitId="PRIMEFACES_MOBILE">
         
     <pm:page title="#{messages['mobile.edicao.sistema.header']}">
@@ -41,7 +41,11 @@
                     <p:separator />
 
                     <p:dataList id="ListMobi" rows="6" paginator="true" value="#{pesquisarMB.mobiListRemotoFake}" var="fake" lazy="true">
+<<<<<<< HEAD
                         <f:attribute name="paginatorText" value="#{messages['mobile.edicao.consultas']}" />                        
+=======
+                        <f:attribute name="paginatorText" value="Consultas" />
+>>>>>>> 1ea360f60e4ba9d1294eb7743d9c6d598f9d6a89
                         #{fake.nomeOrgao} - #{fake.link}  - #{fake.quantidadeOcorrencias}
                     </p:dataList>
 

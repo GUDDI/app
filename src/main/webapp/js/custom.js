@@ -1,29 +1,28 @@
 $(function() {
-	
+
 	//===== Form elements styling =====//
-	
+
 	$('form').jqTransform({imgPath:'../images/forms'});
-	
-	
+
+
 	//===== Form validation engine =====//
 
 	$("#valid").validationEngine({promptPosition : "topRight", scroll: true});
-	
 	//===== Tooltip =====//
-		
+
 	//$('.leftDir').tipsy({fade: true, gravity: 'e'});
 	$('.rightDir').tipsy({fade: true, gravity: 'w'});
 	//$('.topDir').tipsy({fade: true, gravity: 's'});
 	//$('.botDir').tipsy({fade: true, gravity: 'n'});
 
 	//===== Tabs =====//
-	$.fn.simpleTabs = function(){ 
-	
+	$.fn.simpleTabs = function(){
+
 		//Default Action
 		$(this).find(".tab_content").hide(); //Hide all content
 		$(this).find("ul.tabs li:first").addClass("activeTab").show(); //Activate first tab
 		$(this).find(".tab_content:first").show(); //Show first tab content
-	
+
 		//On Click Event
 		$("ul.tabs li").click(function() {
 			$(this).parent().parent().find("ul.tabs li").removeClass("activeTab"); //Remove any "active" class
@@ -33,19 +32,19 @@ $(function() {
 			$(activeTab).show(); //Fade in the active content
 			return false;
 		});
-	
+
 	};//end function
 
 	$("div[class^='widget']").simpleTabs(); //Run function on any div with class name of "Simple Tabs"
 
 	//===== Collapsible elements management =====//
-	
+
 	$('.active').collapsible({
 		defaultOpen: 'current',
 		cookieName: 'nav',
 		speed: 300
 	});
-	
+
 	$('.exp').collapsible({
 		defaultOpen: 'current',
 		cookieName: 'navAct',
@@ -68,8 +67,6 @@ $(function() {
 		speed: 200
 	});
 	
-	
-
 	(function(i, s, o, g, r, a, m) {
 		i['GoogleAnalyticsObject'] = r;
 		i[r] = i[r] || function() {
@@ -84,8 +81,4 @@ $(function() {
 
 	ga('create', 'UA-42108725-2', 'sourceforge.net');
 	ga('send', 'pageview');
-
-	
 });
- 
-
