@@ -1,5 +1,7 @@
 package br.org.guddi.util.wsdl;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,7 @@ import br.org.guddi.domain.Descritor;
 import br.org.guddi.domain.DescritorType;
 import br.org.guddi.domain.Excecao;
 import br.org.guddi.domain.Servico;
+import br.org.guddi.util.HttpsConnectionUtil;
 
 import com.ibm.wsdl.BindingImpl;
 import com.ibm.wsdl.FaultImpl;
@@ -61,6 +64,18 @@ public class WSDLUtil {
 	}
 	
 	public List<Descritor> loadDescriptorsOnWSDL(String url) throws WSDLException {
+		
+		
+		try {
+			URL httpsUrl = new URL(url);
+			
+			if(httpsUrl.getProtocol().equals("https")) { 
+				new HttpsConnectionUtil().connectHttps(httpsUrl.getProtocol() + "://"+httpsUrl.getHost(), "443");
+			}
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		WSDLMetadata meta = loadWsdlMetadata(url);
 		
