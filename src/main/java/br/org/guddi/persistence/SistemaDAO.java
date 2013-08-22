@@ -12,7 +12,4 @@ import br.org.guddi.domain.Sistema;
 public class SistemaDAO extends JPACrud<Sistema, Long> {
 
 	private static final long serialVersionUID = 1L;
-
-
-
 }

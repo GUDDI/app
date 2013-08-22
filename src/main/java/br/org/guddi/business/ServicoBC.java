@@ -37,8 +37,6 @@ public class ServicoBC extends DelegateCrud<Servico, Long, ServicoDAO> {
 	public void update(Servico bean) {
 		super.update(bean);
 	}
-    
-    
 
 
 }

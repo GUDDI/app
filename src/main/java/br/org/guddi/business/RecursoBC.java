@@ -16,8 +16,4 @@ import br.org.guddi.security.IRoles;
 public class RecursoBC extends DelegateCrud<Recurso, Long, RecursoDAO> {
 
 	private static final long serialVersionUID = 1L;
-
-
-
-
 }

@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.security.AuthenticationException;
 import br.gov.frameworkdemoiselle.security.Authorizer;
+import br.gov.frameworkdemoiselle.util.ResourceBundle;
 import br.org.guddi.persistence.UsuarioDAO;
 
 /**
@@ -16,10 +17,15 @@ import br.org.guddi.persistence.UsuarioDAO;
 public class MyAuthorizer implements Authorizer {
 
     private static final long serialVersionUID = 9096827023234484L;
+    
     @Inject
     private Identity identity;
+    
     @Inject
     private UsuarioDAO usuarioDAO;
+    
+    @Inject
+    private ResourceBundle rb;
 
     /**
      *
@@ -32,7 +38,7 @@ public class MyAuthorizer implements Authorizer {
         	return role.equals(identity.getPapel());
         } 
         catch (Exception ex) {
-            throw new AuthenticationException("Usuário não tem regra", ex);
+            throw new AuthenticationException(rb.getString("controle.acesso.tem.papel.excecao"), ex);
         }
     }
 
@@ -63,7 +69,7 @@ public class MyAuthorizer implements Authorizer {
         	return false;
         	
         } catch (Exception ex) {
-            throw new AuthenticationException("Usuário não tem permissão", ex);
+            throw new AuthenticationException(rb.getString("controle.acesso.tem.permissao.excecao"), ex);
         }
 
     }

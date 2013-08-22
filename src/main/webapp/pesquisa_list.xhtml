@@ -6,12 +6,12 @@
         <h:form id="pesquisa_form" styleClass="mainForm">
         
         	<div class="formCenter">
-				 <h:inputText autocomplete="true" label="Pesquisar:" value="#{pesquisarMB.searchParam}" style="width: 300px;"/>
+				 <h:inputText autocomplete="true" label="#{messages['pesquisa.pesquisa.label']}" value="#{pesquisarMB.searchParam}" style="width: 300px;"/>
 				 <span class="sep"></span>
 				 <span class="sep"></span>
 				 <p:commandButton id="search_button"
-                               value="Pesquisar"
-                               title="Pesquisar"
+                               value="#{messages['pesquisa.pesquisa.label']}"
+                               title="#{messages['pesquisa.pesquisa.label']}"
                                icon="ui-icon-search"
                                action="#{pesquisarMB.search()}"
                                update=":result_form" />
@@ -144,12 +144,12 @@
 					                                       style="font-size: medium; color: #2B6893; cursor: pointer;"/>
 					                        <br/>
 					                        <div style="font-size: 0.9em; padding: 5px 10px;">
-					                            <h:outputText value="URL : " /> 
+					                            <h:outputText value="#{messages['pesquisa.pesquisa.remoto.url']} : " /> 
 					                            <h:outputLink value="#{item.link}">
 					                            	<h:outputText value="#{item.link}" />
 					                            </h:outputLink>
 					                            <br/>
-					                            <h:outputText value="Ocorrências : " />
+					                            <h:outputText value="#{messages['pesquisa.pesquisa.remoto.ocorrencias']} : " />
 					                            <h:outputText value="#{item.quantidadeOcorrencias}" />
 					                        </div>
 					

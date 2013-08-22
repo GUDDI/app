@@ -7,19 +7,18 @@
         contentType="text/html"
     renderKitId="PRIMEFACES_MOBILE">
 
-    <pm:page title="GUDDI">
-     <pm:view id="navbar">
-            <pm:header title="GUDDI">
-            </pm:header>
-            <pm:content>
-                <pm:navBar>
-                    <p:button value="Pesquisa Local" icon="gear" href="./pesquisa_mobi.jsf" />
-                </pm:navBar>
-                 <pm:navBar>
-                    <p:button value="Pesquisa Remota" icon="gear" href="./pesquisa_mobi.jsf" />
-                </pm:navBar>
-            </pm:content>
-        </pm:view>
+	<pm:page title="#{messages['main.app.title']}">
+    <pm:view id="navbar">
+    	<pm:header title="#{messages['main.app.title']}"/>
+        <pm:content>
+	        <pm:navBar>
+    	        <p:button value="#{messages['mobile.navegador.pesquisa.local']}" icon="gear" href="./pesquisa_mobi.jsf" />
+            </pm:navBar>
+            <pm:navBar>
+        	    <p:button value="#{messages['mobile.navegador.pesquisa.remota']}" icon="gear" href="./pesquisa_mobi.jsf" />
+            </pm:navBar>
+        </pm:content>
+    </pm:view>
     
 	</pm:page>
 

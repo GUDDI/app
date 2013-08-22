@@ -19,37 +19,51 @@
         <version>2.4.0-BETA1</version>
     </parent>
 
-<repositories>
-    <repository>  
-        <id>prime-repo</id>  
-        <name>PrimeFaces Maven Repository</name>  
-        <url>http://repository.primefaces.org</url>  
-        <layout>default</layout>  
-    </repository>  
-</repositories>
+    <scm>
+      <connection>scm:git:git@github.com:GUDDI/app.git</connection>
+      <developerConnection>scm:git:git@github.com:GUDDI/app.git</developerConnection>
+      <url>https://github.com/GUDDI/app.git</url>
+      <tag>HEAD</tag>
+    </scm>
 
-    <dependencies>		
-		<dependency>
-			<groupId>org.primefaces</groupId>
-			<artifactId>primefaces-mobile</artifactId>
-			<version>0.9.3</version>
-		</dependency>
-		
-		
-    
+<!--    <issueManagement>
+      <system>JIRA</system>
+      <url>http://jira.codehaus.org/browse/SONARPLUGINS/component/14305</url>
+    </issueManagement>
+
+    <ciManagement>
+      <system>Bamboo</system>
+      <url>http://ci.codehaus.org/browse/SONAR-SCMACTIVITY</url>
+    </ciManagement>-->
+
+    <repositories>
+        <repository>
+            <id>prime-repo</id>
+            <name>PrimeFaces Maven Repository</name>
+            <url>http://repository.primefaces.org</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+                <groupId>org.primefaces</groupId>
+                <artifactId>primefaces-mobile</artifactId>
+                <version>0.9.3</version>
+        </dependency>
         <dependency>
             <groupId>br.gov.frameworkdemoiselle</groupId>
             <artifactId>demoiselle-jpa</artifactId>
             <scope>compile</scope>
         </dependency>
-        
+
         <!-- If you are using a JTA transaction then use this extension -->
         <dependency>
             <groupId>br.gov.frameworkdemoiselle</groupId>
             <artifactId>demoiselle-jta</artifactId>
             <scope>compile</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
@@ -79,14 +93,14 @@
             <artifactId>postgresql</artifactId>
             <version>9.1-901-1.jdbc4</version>
         </dependency>
-        <!-- 
+        <!--
        <dependency>
            <groupId>${project.groupId}</groupId>
            <artifactId>login</artifactId>
            <version>${project.version}</version>
        </dependency>
         -->
-          
+
 <!--        <dependency>
             <groupId>com.sun.xml.ws</groupId>
             <artifactId>webservices-rt</artifactId>
@@ -97,7 +111,7 @@
             <artifactId>demoiselle-mail</artifactId>
             <version>2.0.3-SNAPSHOT</version>
         </dependency>
-        
+
         <!-- Wsdl utilities -->
         <dependency>
 		  <groupId>wsdl4j</groupId>
@@ -109,11 +123,11 @@
 		  <groupId>javax.xml.parsers</groupId>
 		  <artifactId>jaxp-api</artifactId>
 		  <version>1.4.5</version>
-		</dependency>	
-        
+		</dependency>
+
     </dependencies>
-  
-    
+
+
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
@@ -129,7 +143,7 @@
                 <artifactId>jboss-as-maven-plugin</artifactId>
                 <version>7.4.Final</version>
                 <executions>
-                     Undeploy the application on clean 
+                     Undeploy the application on clean
                     <execution>
                         <id>undeploy</id>
                         <phase>clean</phase>
@@ -141,7 +155,7 @@
                         </configuration>
                     </execution>
 
-                     Deploy the JDBC library 
+                     Deploy the JDBC library
                     <execution>
                         <id>deploy-driver</id>
                         <phase>install</phase>
@@ -155,7 +169,7 @@
                         </goals>
                     </execution>
 
-                     Add a data source 
+                     Add a data source
                     <execution>
                         <id>add-datasource</id>
                         <phase>install</phase>
@@ -181,7 +195,7 @@
                         </goals>
                     </execution>
 
-                     Add an XA datasource 
+                     Add an XA datasource
                     <execution>
                         <id>add-xa-datasource</id>
                         <phase>install</phase>
@@ -197,9 +211,9 @@
                                         <enabled>true</enabled>
                                         <pool-name>guddiDS</pool-name>
                                         <driver-name>postgresql.jar</driver-name>
-                                        
+
                                     </properties>
-                                     Add the XA data source properties. The nested addresses will prepended the address above. 
+                                     Add the XA data source properties. The nested addresses will prepended the address above.
                                     <resources>
                                         <resource>
                                             <address>
@@ -242,7 +256,7 @@
                         </goals>
                     </execution>
 
-                     Deploy the application on install 
+                     Deploy the application on install
                     <execution>
                         <id>deploy</id>
                         <phase>install</phase>

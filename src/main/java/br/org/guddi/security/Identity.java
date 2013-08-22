@@ -31,7 +31,7 @@ public class Identity implements Serializable, Principal {
     private Long orgao;
     private String nomeorgao;
     private String papel;
-//    private Boolean lembreMeCookie;
+    private Boolean lembreMeCookie;
     
     @Inject
     private FacesContext facesContext;
@@ -257,12 +257,11 @@ public class Identity implements Serializable, Principal {
 		this.recursosOperacoes = recursosOperacoes;
 	}
 	
-	
-//	public Boolean getLembreMeCookie() {
-//		return lembreMeCookie;
-//	}
-//
-//	public void setLembreMeCookie(Boolean lembreMeCookie) {
-//		this.lembreMeCookie = lembreMeCookie;
-//	}
+	public Boolean getLembreMeCookie() {
+		return lembreMeCookie;
+	}
+
+	public void setLembreMeCookie(Boolean lembreMeCookie) {
+		this.lembreMeCookie = lembreMeCookie;
+	}
 }

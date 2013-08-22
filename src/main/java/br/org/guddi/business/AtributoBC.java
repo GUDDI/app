@@ -17,5 +17,4 @@ public class AtributoBC extends DelegateCrud<Atributo, Long, AtributoDAO> {
 
 	private static final long serialVersionUID = 1L;
 
-
 }

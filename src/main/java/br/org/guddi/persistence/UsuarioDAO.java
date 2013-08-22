@@ -2,8 +2,11 @@ package br.org.guddi.persistence;
 
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
+import br.gov.frameworkdemoiselle.util.ResourceBundle;
 import br.org.guddi.domain.Usuario;
 import br.org.guddi.util.CriptografiaUtil;
+
+import javax.inject.Inject;
 import javax.persistence.NoResultException;
 
 /**
@@ -14,6 +17,9 @@ import javax.persistence.NoResultException;
 public class UsuarioDAO extends JPACrud<Usuario, Long> {
 
     private static final long serialVersionUID = 1L;
+    
+    @Inject
+    private ResourceBundle rb;
 
     /**
      *
@@ -70,8 +76,9 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
             if (usu != null) {
                 usu.setSenha(CriptografiaUtil.getCodigoMd5(senhaNova));
                 update(usu); 
-            }else{
-                 throw new Exception("Pegar mensagem do propertie - Senha atual inválida");
+            }
+            else{
+                 throw new Exception(rb.getString("aminesia.senha.atual.invalida"));
             }
         } catch (NoResultException e) {
            throw e;

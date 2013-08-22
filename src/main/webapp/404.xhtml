@@ -6,9 +6,13 @@
     
 	    <h:form>
 	    	<div class="erro_box">
-				<h2>Erro 404</h2>
-			    <p>A página não foi encontrada.</p>
-			    <a href="#"><strong><h:commandLink value="Voltar" action="/index.jsf" /></strong></a>
+				<h2>#{messages['pagina.erro.404.titulo']}</h2>
+			    <p>#{messages['pagina.erro.404.mensagem']}</p>
+			    <a href="#">
+			    	<strong>
+			    		<h:commandLink value="#{messages['button.back']}" action="/index.jsf" />
+			    	</strong>
+			    </a>
 			</div>
 	    </h:form>
     

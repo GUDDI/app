@@ -14,6 +14,7 @@ import br.gov.frameworkdemoiselle.lifecycle.Startup;
 import br.gov.frameworkdemoiselle.mail.Mail;
 import br.gov.frameworkdemoiselle.mail.internal.Config;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
+import br.gov.frameworkdemoiselle.util.ResourceBundle;
 import br.org.guddi.constant.GuddiConfig;
 import br.org.guddi.domain.Recurso;
 import br.org.guddi.domain.Usuario;
@@ -43,6 +44,9 @@ public class SecurityBC {
     
     @Inject
     private Config config;
+    
+    @Inject
+	private ResourceBundle rb;
     
     /**
      *
@@ -85,21 +89,15 @@ public class SecurityBC {
     }
     
     public void enviarMensagemLembrandoSenha(String destinatario) throws Exception {
-        Usuario usu = usuarioDAO.findByEmail(destinatario);
+        Usuario usuario = usuarioDAO.findByEmail(destinatario);
         String senha = CriptografiaUtil.getCodigoMd5("" + System.currentTimeMillis());
-        usu.setAminesia(senha);
-        usu.setSenha(senha.substring(21, 27));
-        usuarioDAO.update(usu);
-        StringBuilder texto = new StringBuilder();
-        texto.append(" O sistema GUDDI gerou novos dados para você:")
-                .append("\n\r Usuário: ").append(usu.getUsuario())
-                .append("\n\r Senha: ").append(usu.getSenha())
-                .append("\n\r siga o link para alterar sua senha: ")
-                .append(guddiConfig.getUrl()).append(usu.getAminesia());
-
+        usuario.setAminesia(senha);
+        usuario.setSenha(senha.substring(21, 27));
+        usuarioDAO.update(usuario);
+        
         mailer.to(destinatario)
                 .from(guddiConfig.getRemetente())
-                .body().text(texto.toString())
+                .body().text(rb.getString("email.aminesia.texto", usuario.getUsuario(), usuario.getSenha(), guddiConfig.getUrl() + usuario.getAminesia()))
                 .subject(guddiConfig.getAssunto())
                 .send();
         

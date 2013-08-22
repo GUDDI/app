@@ -13,6 +13,4 @@ public class DescritorDAO extends JPACrud<Descritor, Long> {
 
 	private static final long serialVersionUID = 1L;
 
-
-
 }

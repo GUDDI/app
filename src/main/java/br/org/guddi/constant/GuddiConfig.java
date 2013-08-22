@@ -1,7 +1,5 @@
 package br.org.guddi.constant;
 
-import javax.inject.Named;
-
 import br.gov.frameworkdemoiselle.annotation.Name;
 import br.gov.frameworkdemoiselle.configuration.Configuration;
 

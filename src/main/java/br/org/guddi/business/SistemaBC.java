@@ -16,6 +16,4 @@ import br.org.guddi.security.IRoles;
 public class SistemaBC extends DelegateCrud<Sistema, Long, SistemaDAO> {
 
 	private static final long serialVersionUID = 1L;
-
-
 }
