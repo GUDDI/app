@@ -4,11 +4,14 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.persistence.Query;
 
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 import br.org.guddi.domain.Pesquisa;
+import br.org.guddi.security.IRoles;
+import br.org.guddi.security.Identity;
 import br.org.guddi.util.search.SearchFilter;
 
 /**
@@ -19,6 +22,9 @@ import br.org.guddi.util.search.SearchFilter;
 public class PesquisaDAO extends JPACrud<Pesquisa, Long> {
 
 	private static final long serialVersionUID = 1L;
+	
+	@Inject
+    private Identity identity;
 
 	/**
      *
@@ -90,10 +96,15 @@ public class PesquisaDAO extends JPACrud<Pesquisa, Long> {
 		sql.append("   OR d.descricao ILIKE :searchParam ");
 		sql.append("   OR s.nome ILIKE :searchParam ");
 		sql.append("   OR o.nome ILIKE :searchParam ");
-		sql.append("   OR EXISTS ( ");
-		sql.append("   SELECT dm.id_descritor FROM guddi.descritor_marcacao dm JOIN guddi.marcacao m ON m.id = dm.id_marcacao WHERE dm.id_descritor = d.id AND m.marcacao ILIKE :searchParam ");
-		sql.append("   )");
+		sql.append("   OR EXISTS ( SELECT dm.id_descritor FROM guddi.descritor_marcacao dm JOIN guddi.marcacao m ON m.id = dm.id_marcacao WHERE dm.id_descritor = d.id AND m.marcacao ILIKE :searchParam )");
     	
+		
+		if(identity.getIsLogged()) {
+			if(!identity.getPapel().equals(IRoles.ADMINISTRATOR)) {
+				sql.append(" AND o.id = :idORgao ");
+			}
+		}
+		
 		/*if(!isCount) {
 			sql.append("ORDER BY ws.nome, s.nome");
 		}*/
@@ -103,6 +114,12 @@ public class PesquisaDAO extends JPACrud<Pesquisa, Long> {
 		
 		query.setParameter("searchParam", filtarParam(searchParam)); //TODO Claro que ainda tenho que filtar isso
 
+		if(identity.getIsLogged()) {
+			if(!identity.getPapel().equals(IRoles.ADMINISTRATOR)) {
+				query.setParameter("idORgao", identity.getOrgao()); 
+			}
+		}
+		
 		if (parameters != null) {
 			query.setFirstResult(parameters.getFirst());
 			query.setMaxResults(parameters.getPageSize());
@@ -114,12 +131,14 @@ public class PesquisaDAO extends JPACrud<Pesquisa, Long> {
     	return query; 
     }
 
-	//TODO Claro que ainda tenho que filtar isso
+	//TODO A demoiselle tem utilitário para filtrar strings ?
 	private String filtarParam(String param) {
+		
+		String p = param.trim();
+		p = param.replaceAll("[^\\p{L}\\p{Nd}]", "");
+		p = "%"+p+"%";
 
-		param = "%"+param.trim()+"%";
-
-		return param;
+		return p;
 	}
 
 

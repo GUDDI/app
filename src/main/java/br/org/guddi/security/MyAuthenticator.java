@@ -81,6 +81,7 @@ public class MyAuthenticator implements Authenticator {
         this.identity.setNomeorgao(user.getOrgao().getNome());
         this.identity.setPapel(Roles.getRole(user.getPapel()).get(0));
         this.identity.setRecursosOperacoes(recursosOperacoes);
+        this.identity.setIsLogged(true);
     }
 
     /**

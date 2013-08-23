@@ -1,12 +1,15 @@
 package br.org.guddi.util.wsdl;
 
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
 import java.io.File;
 import java.util.List;
 
 import javax.wsdl.WSDLException;
 import javax.xml.namespace.QName;
 
-import org.junit.Test;
 
 import br.org.guddi.domain.Atributo;
 import br.org.guddi.domain.Descritor;
@@ -22,6 +25,8 @@ public class WSDLUtilTest {
 	public void loadNuclepaDesenvTest() throws WSDLException {
 		List<Descritor> descritores = new WSDLUtil().loadDescriptorsOnWSDL("http://10.1.11.14:8080/nucleopa-nucleopa-ejb-2.2/NucleoPAFacadeBeanWS?wsdl");
 		printDescritores(descritores);
+		
+		assertFalse(descritores.isEmpty());
 	}
 	
 	@Test
@@ -31,12 +36,16 @@ public class WSDLUtilTest {
 		
 		List<Descritor> descritores2 = new WSDLUtil().loadDescriptorsOnWSDL("https://www2.homologar.prodepa.gov.br/portaltransparencia/ws/ConsultaReceitaFacade?wsdl");
 		printDescritores(descritores2);
+		
+		assertFalse(descritores2.isEmpty());
 	}
 	
 	@Test
 	public void loadNuclepaProducaoTest() throws WSDLException {
 		List<Descritor> descritores = new WSDLUtil().loadDescriptorsOnWSDL("http://10.1.13.23:8080/nucleopa-nucleopa-ejb-2.2/NucleoPAFacadeBeanWS?wsdl");
 		printDescritores(descritores);
+		
+		assertFalse(descritores.isEmpty());
 	}
 	
 	
@@ -44,6 +53,8 @@ public class WSDLUtilTest {
 	public void loadportaltransparenciaProducaoTest() throws WSDLException {
 		List<Descritor> descritores = new WSDLUtil().loadDescriptorsOnWSDL("https://www.sistemas.pa.gov.br/portaltransparencia/ws/ConsultaReceitaFacade?wsdl");
 		printDescritores(descritores);
+		
+		assertFalse(descritores.isEmpty());
 	}
 	
 	
