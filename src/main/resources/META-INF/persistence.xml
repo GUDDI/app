@@ -3,7 +3,7 @@
   <!-- JBoss 7 Persistence-unit configuration -->
   <persistence-unit name="guddi-ds" transaction-type="JTA">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
-    <jta-data-source>java:jboss/datasources/guddiDS</jta-data-source>
+    <jta-data-source>java:jboss/datasources/PostgreSQLDS</jta-data-source>
     <class>br.org.guddi.domain.Marcacao</class>
     <class>br.org.guddi.domain.Atributo</class>
     <class>br.org.guddi.domain.Descritor</class>
@@ -23,8 +23,9 @@
       <property name="hibernate.format_sql" value="true"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>
       <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform"/>
-      <property name="hibernate.default_schema" value="guddi"/>
+      
       <!-- 
+      <property name="hibernate.default_schema" value="guddi"/>
       <property name="hibernate.default_catalog" value="guddi"/>
        -->
     </properties>
