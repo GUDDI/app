@@ -11,6 +11,11 @@
 
 #GUDDI APP
  
+ O Guddi App (http://guddiapp.org/) é uma implementação da 
+ referência e-DSG(http://sisp.gov.br/ver-comunidade?community_id=12785088)
+ que está publicada no e-PING (http://www.governoeletronico.gov.br/acoes-e-projetos/e-ping-padroes-de-interoperabilidade)
+ e o projeto está no Source Forge(https://sourceforge.net/projects/guddi/?source=directory)
+ 
 
 ##Instruções para intalação
 
